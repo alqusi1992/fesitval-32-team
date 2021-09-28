@@ -1,8 +1,9 @@
-const express = require('express');
-const connectDB = require('./config/connectDB');
+import express from 'express';
+import connectDB from './config/connectDB.js';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
-require('dotenv').config();
 
 const startServer = async () => {
   try {
