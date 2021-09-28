@@ -6,14 +6,10 @@ require('dotenv').config();
 
 const startServer = async () => {
   try {
-    const isConnected = await connectDB();
-    if (isConnected) {
-      app.listen(port, () => {
-        console.log(`Server listening at http://localhost:${port}`);
-      });
-    } else {
-      console.log('something wrong with database connection');
-    }
+    await connectDB();
+    app.listen(port, () => {
+      console.log(`Server listening at http://localhost:${port}`);
+    });
   } catch (error) {
     console.log(error);
   }
