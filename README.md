@@ -2,7 +2,7 @@
 
 ## Styling
 
--  The Project is styled using the styled - component for the User Interface. Each component will have its own styled version inside the folder.
+- The Project is styled using the styled - component for the User Interface. Each component will have its own styled version inside the folder.
 
 ## FrontEnd Folder Structure
 
@@ -16,11 +16,16 @@ client
  ┃ ┃ ┃   ┣ NavStyle.js
  ┃ ┃ ┃   ┣ Nav.js
  ┃ ┃ ┣ index.js
+ ┃ ┃ ┣ Pages
  ┃ ┃
- ┃ ┣ Pages
+ ┃ ┣ GlobalStyles.js
  ┃ ┣ Context
 
 ```
+
+- Each component folder gits 2 files one for the styles and one for exporting the logic with the styles, and every logic component get exported from the index.js .
+- index.js is responsible for exporting the final components.
+- globalStyles is responsible for exporting reusable components.
 
 ## FrontEnd Routing Solution
 
