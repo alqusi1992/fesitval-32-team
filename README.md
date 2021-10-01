@@ -2,7 +2,7 @@
 
 ## Styling
 
-- The Project is styled using the styled - component for the User Interface. Each component will have its own styled version inside the folder.
+-  The Project is styled using the styled - component for the User Interface. Each component will have its own styled version inside the folder.
 
 ## FrontEnd Folder Structure
 
@@ -23,9 +23,9 @@ client
 
 ```
 
-- Each component folder gits 2 files one for the styles and one for exporting the logic with the styles, and every logic component get exported from the index.js .
-- index.js is responsible for exporting the final components.
-- globalStyles is responsible for exporting reusable components.
+-  Each component folder gits 2 files one for the styles and one for exporting the logic with the styles, and every logic component get exported from the index.js .
+-  index.js is responsible for exporting the final components.
+-  globalStyles is responsible for exporting reusable components.
 
 ## FrontEnd Routing Solution
 
@@ -60,46 +60,49 @@ Application has ES6 syntax and has not used any shortcuts for the booleans. The 
 
 ## Object
 
-```javascript
-
 ### creating an object
 
+```javascript
 // bad
 const item = new Object();
 
 // good
 const item = {};
+```
 
 ### Property value shorthanded
 
-* Group your shorthand properties at the beginning of your object declaration
-* Use property value shorthand
+-  Group your shorthand properties at the beginning of your object declaration
+-  Use property value shorthand
 
+```javascript
 const anakinSkywalker = 'Anakin Skywalker';
 const lukeSkywalker = 'Luke Skywalker';
 
 // bad
 const obj = {
-  episodeOne: 1,
-  twoJediWalkIntoACantina: 2,
-  lukeSkywalker,
-  episodeThree: 3,
-  mayTheFourth: 4,
-  anakinSkywalker,
+   episodeOne: 1,
+   twoJediWalkIntoACantina: 2,
+   lukeSkywalker,
+   episodeThree: 3,
+   mayTheFourth: 4,
+   anakinSkywalker,
 };
 
 // good
 const obj = {
-  lukeSkywalker,
-  anakinSkywalker,
-  episodeOne: 1,
-  twoJediWalkIntoACantina: 2,
-  episodeThree: 3,
-  mayTheFourth: 4,
+   lukeSkywalker,
+   anakinSkywalker,
+   episodeOne: 1,
+   twoJediWalkIntoACantina: 2,
+   episodeThree: 3,
+   mayTheFourth: 4,
 };
+```
 
 ## Use Spread Operator over `Object-assign` .
 
+```javascript
 // bad
 const original = { a: 1, b: 2 };
 const copy = Object.assign({}, original, { c: 3 }); // copy => { a: 1, b: 2, c: 3 }
@@ -107,8 +110,6 @@ const copy = Object.assign({}, original, { c: 3 }); // copy => { a: 1, b: 2, c: 
 // good
 const original = { a: 1, b: 2 };
 const copy = { ...original, c: 3 };
-
-
 ```
 
 ## Destructuring
@@ -132,27 +133,26 @@ const getFullName = (user) => {
 const getFullName = ({ firstname, lastname }) => {
    return `${firstName} ${lastName}`;
 };
-
+```
 
 ### Use object destructuring for multiple variables instead of array
 
+```javascript
 // bad
-const processInput = (input)  => {
-  // then a miracle occurs
-  return [left, right, top, bottom];
-}
+const processInput = (input) => {
+   // then a miracle occurs
+   return [left, right, top, bottom];
+};
 
 // the caller needs to think about the order of return data
 const [left, __, top] = processInput(input);
 
 // good
-const processInput = (input)  => {
-  // then a miracle occurs
-  return { left, right, top, bottom };
-}
+const processInput = (input) => {
+   // then a miracle occurs
+   return { left, right, top, bottom };
+};
 
 // the caller selects only the data they need
 const { left, top } = processInput(input);
-
-
 ```
