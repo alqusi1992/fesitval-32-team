@@ -23,7 +23,7 @@ client
 
 ```
 
--  Each component folder gits 2 files one for the styles and one for exporting the logic with the styles, and every logic component get exported from the index.js .
+-  Each component folder gets 2 files one for the styles and one for exporting the logic with the styles, and every logic component get exported from the index.js .
 -  index.js is responsible for exporting the final components.
 -  globalStyles is responsible for exporting reusable components.
 
