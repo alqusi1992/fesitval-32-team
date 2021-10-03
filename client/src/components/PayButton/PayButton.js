@@ -13,7 +13,21 @@ export const PayButton = () => {
       price: 30,
     },
   ];
-  const payTickets = async () => {};
+  const payTickets = async () => {
+    try {
+      const response = await fetch('/payment', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(tickets),
+      });
+      const { url } = await response.json();
+      window.location = url;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <button onClick={payTickets}>Pay with card</button>
