@@ -1,7 +1,7 @@
 import stripe from 'stripe';
-const payStripe = stripe(process.env.STRIPE_PRIVATE_KEY);
 
 const paymentHandle = async (req, res) => {
+  const payStripe = stripe(process.env.STRIPE_PRIVATE_KEY);
   const tickets = req.body;
 
   const purchasedTickets = tickets.map((ticket) => {
