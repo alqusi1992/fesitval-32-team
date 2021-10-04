@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import User from "../models/user.js";
+import User from "../models/User.js;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -17,9 +17,10 @@ const login = async (req, res) => {
         .json({ success: false, msg: "Invalid credentials" });
     }
 
-    const { _id, first_name, last_name, email } = existedUser;
+    const { _id, first_name, last_name } = existedUser;
     const phone = existedUser?.phone ? existedUser.phone : "";
-    res.status(200).json({ success: true, result: existedUser });
+    const result = {_id, first_name, last_name, email, phone}
+    res.status(200).json({ success: true, result: result });
   } catch (error) {
     res
       .status(500)
