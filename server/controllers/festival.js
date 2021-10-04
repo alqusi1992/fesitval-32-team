@@ -1,4 +1,4 @@
-import Festival from '../models/Festival';
+import Festival from '../models/Festival.js';
 
 export const getFestivals = async (req, res) => {
   const festival = new Festival({

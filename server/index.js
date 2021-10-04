@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import connectDB from './config/connectDB';
-import festivalRouter from './routes/festivalRoute';
+import connectDB from './config/connectDB.js';
+import festivalRouter from './routes/festivalRoute.js';
 
 dotenv.config();
 const app = express();
