@@ -1,5 +1,5 @@
-import { NavBar } from './components';
-import { MainContainer } from './GlobalStyles';
+import { NavBar } from "./components";
+import { MainContainer } from "./GlobalStyles";
 
 function App() {
   return (
