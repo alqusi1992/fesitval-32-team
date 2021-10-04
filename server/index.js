@@ -1,6 +1,6 @@
 import express from 'express';
-import connectDB from './config/connectDB.js';
 import dotenv from 'dotenv';
+import connectDB from './config/connectDB.js';
 import festivalRouter from './routes/festivalRoute.js';
 import userRouter from './routes/userRoute.js';
 
@@ -18,7 +18,7 @@ const startServer = async () => {
     console.log(error);
   }
 };
-//testing route
+
 app.use('/festival', festivalRouter);
 app.use('/user', userRouter);
 
