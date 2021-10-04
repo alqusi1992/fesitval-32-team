@@ -21,14 +21,14 @@ const paymentHandle = async (req, res) => {
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: purchasedTickets,
-      success_url: `http://localhost:3001`,
-      cancel_url: `http://localhost:3001`,
+      success_url: process.env.STRIPE_SUCCESS_LINK,
+      cancel_url: process.env.STRIPE_CANCEL_LINK,
     });
     res.json({ url: session.url });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      msg: 'payment failed',
+    console.log(error.message);
+    res.status(400).json({
+      msg: error.message,
       success: false,
     });
   }

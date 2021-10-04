@@ -17,7 +17,7 @@ export const PayButton = () => {
   ];
 
   const payTickets = async () => {
-    setDisable(true);
+    setDisable(true); // disable button when click
     try {
       const response = await fetch('/payment', {
         method: 'POST',
@@ -26,10 +26,17 @@ export const PayButton = () => {
         },
         body: JSON.stringify(tickets),
       });
-      const { url } = await response.json();
-      window.location = url;
+      const { url, msg } = await response.json();
+
+      if (msg) {
+        console.log(msg);
+        // here we still should add errorHandling(alert) when context is merged
+      } else {
+        window.location = url;
+      }
     } catch (error) {
       console.log(error);
+      // here we still should add errorHandling(alert) when context is merged
     }
   };
   return (
