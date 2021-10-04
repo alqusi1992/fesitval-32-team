@@ -1,3 +1,4 @@
+
 import dotenv from 'dotenv';
 dotenv.config();
 import express from 'express';
@@ -20,10 +21,12 @@ const startServer = async () => {
     console.log(error);
   }
 };
+
 //testing route
 app.use('/festival', festivalRouter);
 // payment route
 app.use('/payment', paymentRouter);
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
