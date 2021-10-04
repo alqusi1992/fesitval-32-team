@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
+
 const FestivalSchema = new mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
@@ -7,6 +8,6 @@ const FestivalSchema = new mongoose.Schema({
   endTimeStamp: { type: Date, required: true },
 });
 
-const Festival = mongoose.model("festivals", FestivalSchema);
+const Festival = mongoose.model('festivals', FestivalSchema);
 
 export default Festival;
