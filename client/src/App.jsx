@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavBar } from './components';
 import { MainContainer } from './GlobalStyles';
 
