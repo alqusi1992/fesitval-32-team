@@ -24,10 +24,10 @@ const paymentHandle = async (req, res) => {
       success_url: process.env.STRIPE_SUCCESS_LINK,
       cancel_url: process.env.STRIPE_CANCEL_LINK,
     });
-    res.json({ url: session.url });
+    return res.json({ url: session.url });
   } catch (error) {
     console.log(error.message);
-    res.status(400).json({
+    return res.status(400).json({
       msg: error.message,
       success: false,
     });
