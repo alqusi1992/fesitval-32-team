@@ -22,7 +22,6 @@ const startServer = async () => {
 app.use(express.json());
 app.use('/festival', festivalRouter);
 app.use('/user', userRouter);
-
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
