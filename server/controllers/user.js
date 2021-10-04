@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js;
 
-const login = async (req, res) => {
+export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     const existedUser = await User.findOne({ email });
@@ -20,13 +20,12 @@ const login = async (req, res) => {
     const { _id, first_name, last_name } = existedUser;
     const phone = existedUser?.phone ? existedUser.phone : "";
     const result = {_id, first_name, last_name, email, phone}
-    res.status(200).json({ success: true, result: result });
+    res.status(200).json({ success: true, result });
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, msg: "Something went wrong, try later please" });
+      .json({ success: false, msg: "Something went wrong, try again later please" });
     console.log(error);
   }
 };
 
-export { login };
