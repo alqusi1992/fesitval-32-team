@@ -1,7 +1,7 @@
-import express from "express";
-import connectDB from "./config/connectDB.js";
-import dotenv from "dotenv";
-import festivalRouter from "./routes/festivalRoute.js";
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/connectDB';
+import festivalRouter from './routes/festivalRoute';
 import userRouter from "./routes/userRoute.js";
 
 dotenv.config();
@@ -23,8 +23,8 @@ app.use(express.json());
 app.use("/festival", festivalRouter);
 app.use("/user", userRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
 startServer();

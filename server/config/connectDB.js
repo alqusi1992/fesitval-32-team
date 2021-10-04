@@ -1,6 +1,4 @@
 import mongoose from 'mongoose';
 
-const connectDB = () => {
-  return mongoose.connect(process.env.MONGODB_LINK);
-};
+const connectDB = () => mongoose.connect(process.env.MONGODB_LINK);
 export default connectDB;
