@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const PayButton = () => {
+  const [disable, setDisable] = useState(false); // to disable the payButton with first click
+  // this array is just for testing
   const tickets = [
     {
       typeName: 'Early Bird',
@@ -13,7 +15,9 @@ export const PayButton = () => {
       price: 30,
     },
   ];
+
   const payTickets = async () => {
+    setDisable(true);
     try {
       const response = await fetch('/payment', {
         method: 'POST',
@@ -30,7 +34,9 @@ export const PayButton = () => {
   };
   return (
     <div>
-      <button onClick={payTickets}>Pay with card</button>
+      <button disabled={disable ? true : false} onClick={payTickets}>
+        Pay with card
+      </button>
     </div>
   );
 };
