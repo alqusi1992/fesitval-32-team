@@ -1,11 +1,11 @@
-import './App.css';
-import { PayButton } from './components/PayButton/PayButton';
+import { NavBar } from './components';
+import { MainContainer } from './GlobalStyles';
 
 function App() {
   return (
-    <div className='App'>
-      <PayButton />
-    </div>
+    <MainContainer>
+      <NavBar />
+    </MainContainer>
   );
 }
 
