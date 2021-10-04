@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const ticketSchema = new mongoose.Schema({
-  price: { type: String, required: true },
-  type_name: { type: String, required: true },
-  available_qty: { type: String, required: true },
-  festival_id: { type: String, required: true },
+const TicketSchema = new mongoose.Schema({
+  typeName: { type: String, required: true },
+  availableQty: { type: Number, required: true },
+  price: { type: Number, required: true },
+  festivalId: { type: String },
 });
 
-const Ticket = mongoose.model("ticket", ticketSchema);
+const Ticket = mongoose.model('tickets', TicketSchema);
 
 export default Ticket;

@@ -1,17 +1,11 @@
-import Ticket from "../models/Ticket";
+import Ticket from "../models/Ticket.js";
 
 export const getTickets = async (req, res) => {
-  const ticket = new Ticket({
-    price: {},
-    type_name: {},
-    available_qty: {},
-    festival_id: {},
-  });
-
   try {
-    const result = await ticket.save();
-    res.send(result);
+    const tickets = await Ticket.find();
+    res.status(200).send(tickets);
   } catch (error) {
+    res.status(400);
     console.log(error);
   }
 };

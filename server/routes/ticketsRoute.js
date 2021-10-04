@@ -1,7 +1,7 @@
 import express from "express";
-import { getTickets } from "../controllers/tickets";
+import { getTickets } from "../controllers/tickets.js";
 
 const ticketRouter = express.Router();
-ticketRouter.get("/tickets", getTickets);
+ticketRouter.get("/", getTickets);
 
 export default ticketRouter;
