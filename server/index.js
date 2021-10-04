@@ -1,8 +1,8 @@
-import express from 'express';
-import connectDB from './config/connectDB.js';
-import dotenv from 'dotenv';
-import festivalRouter from './routes/festivalRoute.js';
-import userRouter from './routes/userRoute.js';
+import express from "express";
+import connectDB from "./config/connectDB.js";
+import dotenv from "dotenv";
+import festivalRouter from "./routes/festivalRoute.js";
+import userRouter from "./routes/userRoute.js";
 
 dotenv.config();
 const app = express();
@@ -18,12 +18,13 @@ const startServer = async () => {
     console.log(error);
   }
 };
-//testing route
-app.use('/festival', festivalRouter);
-app.use('/user', userRouter);
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
+app.use(express.json());
+app.use("/festival", festivalRouter);
+app.use("/user", userRouter);
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 startServer();
