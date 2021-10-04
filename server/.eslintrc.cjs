@@ -12,6 +12,7 @@ module.exports = {
   },
   rules: {
     'no-console': 'off',
+    'import/extensions': ['error', { "js": "always", "json": "always" }],
     'import/prefer-default-export': 'off'
   },
 };
