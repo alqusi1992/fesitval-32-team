@@ -3,38 +3,25 @@ import { Button, Drawer, Grid, IconButton, List } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Box } from "@mui/system";
 import { useStyles } from "./NavStyles";
+import DrawerListButton from "./DrawerListButton";
 
 export const NavDrawer = () => {
   const [drawer, setDrawer] = useState(false);
-  const toggleDrawer = (open) => () => {
-    setDrawer(open);
+  const handleDrawer = () => {
+    setDrawer(!drawer);
   };
-  const classes = useStyles(drawer);
+  const classes = useStyles({ drawer });
 
   const list = () => (
-    <Box
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-      className={classes.drawerContainer}
-    >
+    <Box className={classes.drawerContainer}>
       <List>
         <div>
           <Grid container>
-            <Grid item>
-              <Button>login</Button>
-            </Grid>
-            <Grid item>
-              <Button>program</Button>
-            </Grid>
-            <Grid item>
-              <Button>tickets</Button>
-            </Grid>
-            <Grid item>
-              <Button>about</Button>
-            </Grid>
-            <Grid item>
-              <Button>contact</Button>
-            </Grid>
+            <DrawerListButton text="login" />
+            <DrawerListButton text="program" />
+            <DrawerListButton text="tickets" />
+            <DrawerListButton text="about" />
+            <DrawerListButton text="contact" />
           </Grid>
         </div>
       </List>
@@ -44,7 +31,7 @@ export const NavDrawer = () => {
   return (
     <>
       <IconButton
-        onClick={toggleDrawer(true)}
+        onClick={() => handleDrawer(true)}
         size="large"
         edge="start"
         color="inherit"
@@ -53,9 +40,7 @@ export const NavDrawer = () => {
       >
         <MenuIcon />
       </IconButton>
-      <Drawer anchor={"top"} open={drawer} onClose={toggleDrawer(false)}>
-        {list()}
-      </Drawer>
+      {list()}
     </>
   );
 };

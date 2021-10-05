@@ -24,4 +24,14 @@ export const theme = createTheme({
       contrastText: "#000",
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      s: 450,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
 });

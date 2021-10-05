@@ -24,21 +24,23 @@ const Nav = () => {
             container
             maxWidth="xs"
             className={classes.logoContainer}
-            spacing={2}
+            // spacing={2}
           >
             <Grid item>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 HackYourFestival
               </Typography>
             </Grid>
-            <Grid item className={classes.navDate}>
-              <Typography
-                variant="subtitle1"
-                component="div"
-                sx={{ flexGrow: 1 }}
-              >
-                4th october 2021 11:00-23:00
-              </Typography>
+            <Grid item>
+              <Box className={classes.navDate}>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  sx={{ flexGrow: 1 }}
+                >
+                  4th october 2021 11:00-23:00
+                </Typography>
+              </Box>
             </Grid>
           </Grid>
           {matches && (
