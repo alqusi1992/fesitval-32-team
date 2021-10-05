@@ -1,12 +1,11 @@
 import React from 'react';
-import { NavBar, PayButton } from './components';
+import { NavBar } from './components';
 import { MainContainer } from './GlobalStyles';
 
 function App() {
   return (
     <MainContainer>
       <NavBar />
-      <PayButton />
     </MainContainer>
   );
 }
