@@ -10,7 +10,10 @@ export const login = async (req, res) => {
         .status(404)
         .json({ success: false, msg: "Account doesn't exist" });
     }
-    const correctPassword = bcrypt.compare(password, existedUser.password);
+    const correctPassword = await bcrypt.compare(
+      password,
+      existedUser.password,
+    );
     if (!correctPassword) {
       return res
         .status(400)
@@ -26,12 +29,41 @@ export const login = async (req, res) => {
       email,
       phone,
     };
-    res.status(200).json({ success: true, result });
+    return res.status(200).json({ success: true, result });
   } catch (error) {
-    res.status(500).json({
+    console.log(error);
+    return res.status(500).json({
       success: false,
       msg: 'Something went wrong, try again later please',
     });
-    console.log(error);
+  }
+};
+
+export const register = async (req, res) => {
+  const {
+    email, password, firstName, lastName, phone,
+  } = req.body;
+  try {
+    const existedUser = await User.findOne({ email });
+    if (existedUser) {
+      return res
+        .status(400)
+        .json({ success: false, msg: 'Account already exists' });
+    }
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const result = await User.create({
+      email,
+      password: hashedPassword,
+      firstName,
+      lastName,
+      phone,
+    });
+    return res.status(200).json({ success: true, result });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      success: false,
+      msg: 'Something went wrong, try again later please',
+    });
   }
 };
