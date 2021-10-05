@@ -36,6 +36,7 @@ const Register = ({ setIsRegister }) => {
     if (userData.password === userData.confirmPassword) {
       const response = register(userData, dispatch);
       if (response) {
+        alert('your account created successfully');
         setIsRegister(false);
       }
     } else {
