@@ -10,7 +10,7 @@ export const NavDrawer = ({ drawer }) => {
   const list = () => (
     <Box className={classes.drawerContainer}>
       <List>
-        <div>
+        <Grid container className={classes.drawerDropDownOuter}>
           <Grid container className={classes.drawerDropDown}>
             <DrawerListButton text="login" />
             <DrawerListButton text="program" />
@@ -18,7 +18,7 @@ export const NavDrawer = ({ drawer }) => {
             <DrawerListButton text="about" />
             <DrawerListButton text="contact" />
           </Grid>
-        </div>
+        </Grid>
       </List>
     </Box>
   );

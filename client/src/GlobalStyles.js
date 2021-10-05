@@ -8,9 +8,9 @@ export const useStyles = makeStyles((theme) => {
 });
 
 export const GlobalStyle = createGlobalStyle`
-* {
+/* * {
   color: black;
-}
+} */
 `;
 
 export const theme = createTheme({

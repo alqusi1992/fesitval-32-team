@@ -2,10 +2,22 @@ import { makeStyles } from "@mui/styles/";
 
 export const useStyles = makeStyles((theme, prop) => {
   return {
-    appBar: {
-      // backgroundColor: "#fff !important",
-      backgroundColor: ({ drawer }) => drawer && "#000 !important",
+    appBarWhite: {
+      backgroundColor: "#fff !important",
       height: "72px",
+      justifyContent: "center",
+      transition: "all 0.5s ease-in-out !important",
+    },
+    appBarBlack: {
+      backgroundColor: "#000 !important",
+      height: "72px",
+      justifyContent: "center",
+      transition: "all 0.5s ease-in-out !important",
+    },
+    toolBar: {
+      [theme.breakpoints.up("md")]: {
+        margin: "0 80px",
+      },
     },
     logoContainer: {
       alignItems: "center",
@@ -13,6 +25,13 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     logo: {
       lineHeight: "1 !important",
+      cursor: "pointer",
+      transition: "transform .3s !important",
+      "&:hover": {
+        transform: "translateX(4px)",
+        transition: "all 0.3s ease-in-out",
+        backgroundColor: "transparent  !important",
+      },
     },
     navDate: {
       width: "250px",
@@ -24,6 +43,7 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     dateText: {
       lineHeight: "1.2 !important",
+      color: ({ drawer }) => (drawer ? "#fff" : "#000"),
     },
     listItemContainer: {
       justifyContent: "flex-end",
@@ -33,28 +53,47 @@ export const useStyles = makeStyles((theme, prop) => {
       },
     },
     listItemBtn: {
+      padding: 0,
+      transition: "transform .3s !important",
       "&:hover": {
         transform: "translateX(4px)",
         transition: "all 0.3s ease-in-out",
-        backgroundColor: "#fff !important",
+        backgroundColor: "transparent  !important",
       },
     },
-    drawerListButton: {
-      color: theme.palette.primary.contrastText,
+    iconBtn: {
+      marginLeft: "10px !important",
+    },
+    listBtn: {
+      color: `${theme.palette.secondary.main} !important`,
+      fontSize: "36px !important",
     },
     drawerContainer: {
       height: "100vh",
       width: "100%",
-      transition: "all 0.5s ease-in-out",
+      opacity: ({ drawer }) => (drawer ? "1" : "0"),
+      transition: "opacity .6s,transform .6s !important",
       transform: ({ drawer }) =>
         drawer ? "translateY(0px)" : "translateY(-800px)",
       backgroundColor: theme.palette.primary.main,
     },
-    drawerDropDown: {
-      flex: 1,
-      flexDirection: "column",
+    drawerDropDownOuter: {
       justifyContent: "center",
+    },
+    drawerDropDown: {
+      height: "50vh",
+      maxWidth: "600px",
+      margin: "20px",
+    },
+    drawerDropDownInner: {
+      justifyContent: "space-between",
       alignItems: "center",
+      transition: "transform .3s !important",
+      "&:hover": {
+        transform: "translateX(4px)",
+        transition: "all 0.3s ease-in-out",
+        cursor: "pointer",
+      },
     },
   };
 });
