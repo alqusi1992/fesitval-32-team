@@ -1,7 +1,7 @@
 import { NavBar } from "./components";
 import { Tickets } from "./components";
 import { MainContainer } from "./GlobalStyles";
-import { BrowserRouter as Router, Switch, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
