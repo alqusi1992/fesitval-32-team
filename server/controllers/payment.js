@@ -4,18 +4,16 @@ const paymentHandle = async (req, res) => {
   const payStripe = stripe(process.env.STRIPE_PRIVATE_KEY);
   const tickets = req.body;
 
-  const purchasedTickets = tickets.map((ticket) => {
-    return {
-      price_data: {
-        currency: 'EUR',
-        product_data: {
-          name: ticket.typeName,
-        },
-        unit_amount: ticket.price * 100,
+  const purchasedTickets = tickets.map((ticket) => ({
+    price_data: {
+      currency: 'EUR',
+      product_data: {
+        name: ticket.typeName,
       },
-      quantity: ticket.quantity,
-    };
-  });
+      unit_amount: ticket.price * 100,
+    },
+    quantity: ticket.quantity,
+  }));
   try {
     const session = await payStripe.checkout.sessions.create({
       payment_method_types: ['card'],
