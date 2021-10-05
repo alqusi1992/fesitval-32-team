@@ -34,7 +34,7 @@ const Register = ({ setIsRegister }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userData.password === userData.confirmPassword) {
-      const response = register(userData, dispatch);
+      const response = await register(userData, dispatch);
       if (response) {
         alert('your account created successfully');
         setIsRegister(false);
