@@ -6,7 +6,6 @@ import festivalRouter from './routes/festivalRoute.js';
 import ticketRouter from './routes/ticketsRoute.js';
 import userRouter from './routes/userRoute.js';
 
-
 dotenv.config();
 
 const app = express();
@@ -25,7 +24,6 @@ const startServer = async () => {
 
 // testing route
 app.use(cors());
-
 
 app.use(express.json());
 
