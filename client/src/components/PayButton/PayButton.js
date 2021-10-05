@@ -5,14 +5,14 @@ export const PayButton = () => {
   // this array is just for testing
   const tickets = [
     {
+      id: '6155a6c27d6165cc07b6d2a7',
       typeName: 'Early Bird',
       quantity: 2,
-      price: 20,
     },
     {
+      id: '6155af5cc783295f2444cadf',
       typeName: 'Regular',
       quantity: 4,
-      price: 30,
     },
   ];
 
@@ -26,9 +26,9 @@ export const PayButton = () => {
         },
         body: JSON.stringify(tickets),
       });
-      const { url, msg } = await response.json();
+      const { url, msg, success } = await response.json();
 
-      if (msg) {
+      if (!success) {
         console.log(msg);
         // here we still should add errorHandling(alert) when context is merged
       } else {

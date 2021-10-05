@@ -1,9 +1,16 @@
 import stripe from 'stripe';
+import Ticket from '../models/Ticket.js';
 
 const paymentHandle = async (req, res) => {
   const payStripe = stripe(process.env.STRIPE_PRIVATE_KEY);
-  const tickets = req.body;
-
+  const ticketsIds = req.body.map((ticket) => ticket.id);
+  const ticketsDB = await Ticket.find({ _id: { $in: ticketsIds } });
+  const tickets = ticketsDB.map((ticket, index) => ({
+    // adding quantity to the tickets
+    typeName: ticket.typeName,
+    price: ticket.price,
+    quantity: req.body[index].quantity,
+  }));
   const purchasedTickets = tickets.map((ticket) => ({
     price_data: {
       currency: 'EUR',
@@ -22,7 +29,7 @@ const paymentHandle = async (req, res) => {
       success_url: process.env.STRIPE_SUCCESS_LINK,
       cancel_url: process.env.STRIPE_CANCEL_LINK,
     });
-    return res.json({ url: session.url });
+    return res.json({ url: session.url, success: true });
   } catch (error) {
     console.log(error.message);
     return res.status(400).json({
