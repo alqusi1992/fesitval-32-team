@@ -1,9 +1,10 @@
-import express from "express";
-import connectDB from "./config/connectDB.js";
-import dotenv from "dotenv";
-import festivalRouter from "./routes/festivalRoute.js";
-import ticketRouter from "./routes/ticketsRoute.js";
-import cors from "cors";
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import connectDB from './config/connectDB.js';
+import festivalRouter from './routes/festivalRoute.js';
+import ticketRouter from './routes/ticketsRoute.js';
+
 dotenv.config();
 
 const app = express();
@@ -19,14 +20,14 @@ const startServer = async () => {
     console.log(error);
   }
 };
-//testing route
+// testing route
 app.use(cors());
-app.use("/festival", festivalRouter);
+app.use('/festival', festivalRouter);
 
-app.use("/tickets", ticketRouter);
+app.use('/tickets', ticketRouter);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+app.get('/', (req, res) => {
+  res.send('Hello World!');
 });
 
 startServer();
