@@ -19,7 +19,6 @@ export const login = async (req, res) => {
         .status(400)
         .json({ success: false, msg: 'Invalid credentials' });
     }
-
     const { _id, firstName, lastName } = existedUser;
     const phone = existedUser?.phone ? existedUser.phone : '';
     const result = {
