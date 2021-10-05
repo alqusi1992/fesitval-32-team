@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PopupTicket from "../popupTicket/PopupTicket";
-import { TicketsWrapper } from "./TicketsStyles";
+import { TicketsWrapper } from "./ticketsStyles";
 
 const Tickets = () => {
   const [tickets, setTickets] = useState([]);
