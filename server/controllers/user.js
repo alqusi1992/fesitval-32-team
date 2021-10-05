@@ -12,16 +12,22 @@ export const login = async (req, res) => {
     }
     const correctPassword = await bcrypt.compare(
       password,
-      existedUser.password
+      existedUser.password,
     );
     if (!correctPassword) {
       return res
         .status(400)
         .json({ success: false, msg: 'Invalid credentials' });
     }
-    const { _id, first_name, last_name } = existedUser;
+    const { _id, firstName, lastName } = existedUser;
     const phone = existedUser?.phone ? existedUser.phone : '';
-    const result = { _id, first_name, last_name, email, phone };
+    const result = {
+      _id,
+      firstName,
+      lastName,
+      email,
+      phone,
+    };
     res.status(200).json({ success: true, result });
   } catch (error) {
     res.status(500).json({
@@ -33,7 +39,9 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const { email, password, first_name, last_name, phone } = req.body;
+  const {
+    email, password, firstName, lastName, phone,
+  } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -45,8 +53,8 @@ export const register = async (req, res) => {
     const result = await User.create({
       email,
       password: hashedPassword,
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       phone,
     });
     res.status(200).json({ success: true, result });
