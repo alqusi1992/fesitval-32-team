@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import connectDB from './config/connectDB.js';
 import festivalRouter from './routes/festivalRoute.js';
 import userRouter from './routes/userRoute.js';
@@ -20,6 +21,7 @@ const startServer = async () => {
 };
 
 app.use(express.json());
+app.use(cors());
 app.use('/festival', festivalRouter);
 app.use('/user', userRouter);
 
