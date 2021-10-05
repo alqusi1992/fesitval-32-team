@@ -28,13 +28,13 @@ export const login = async (req, res) => {
       email,
       phone,
     };
-    res.status(200).json({ success: true, result });
+    return res.status(200).json({ success: true, result });
   } catch (error) {
-    res.status(500).json({
+    console.log(error);
+    return res.status(500).json({
       success: false,
       msg: 'Something went wrong, try again later please',
     });
-    console.log(error);
   }
 };
 
@@ -57,12 +57,12 @@ export const register = async (req, res) => {
       lastName,
       phone,
     });
-    res.status(200).json({ success: true, result });
+    return res.status(200).json({ success: true, result });
   } catch (err) {
-    res.status(500).json({
+    console.log(err);
+    return res.status(500).json({
       success: false,
       msg: 'Something went wrong, try again later please',
     });
-    console.log(err);
   }
 };
