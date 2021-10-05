@@ -1,25 +1,29 @@
 import { makeStyles } from "@mui/styles/";
-import { width } from "@mui/system";
 
 export const useStyles = makeStyles((theme, prop) => {
   return {
     appBar: {
-      backgroundColor: "#fff !important",
-      position: "absolute",
+      // backgroundColor: "#fff !important",
+      backgroundColor: ({ drawer }) => drawer && "#000 !important",
+      height: "72px",
     },
     logoContainer: {
       alignItems: "center",
       flex: 1,
     },
+    logo: {
+      lineHeight: "1 !important",
+    },
     navDate: {
-      width: "200px",
+      width: "250px",
       padding: "0px",
-      backgroundColor: "pink",
-
       [theme.breakpoints.up("s")]: {
         width: "150px",
         paddingLeft: "10px",
       },
+    },
+    dateText: {
+      lineHeight: "1.2 !important",
     },
     listItemContainer: {
       justifyContent: "flex-end",
@@ -41,21 +45,16 @@ export const useStyles = makeStyles((theme, prop) => {
     drawerContainer: {
       height: "100vh",
       width: "100%",
-
-      transform: ({ drawer }) =>
-        drawer ? "translateY(410px)" : "translateY(-800px)",
-      backgroundColor: theme.palette.primary.main,
-
-      position: "absolute",
-      left: "0",
       transition: "all 0.5s ease-in-out",
-
-      [theme.breakpoints.down("sm")]: {
-        transform: ({ drawer }) =>
-          drawer ? "translateY(362px)" : "translateY(-800px)",
-      },
-
-      // marginTop: "80px",
+      transform: ({ drawer }) =>
+        drawer ? "translateY(0px)" : "translateY(-800px)",
+      backgroundColor: theme.palette.primary.main,
+    },
+    drawerDropDown: {
+      flex: 1,
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
     },
   };
 });

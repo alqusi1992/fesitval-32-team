@@ -12,7 +12,10 @@ function App() {
         <GlobalStyle />
         <CssBaseline />
         <NavBar />
-        <Container maxWidth="xl"></Container>
+        <Container
+          maxWidth="xl"
+          style={{ width: "100%", height: "100%", backgroundColor: "blue" }}
+        ></Container>
       </Router>
     </ThemeProvider>
   );
