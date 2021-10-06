@@ -1,4 +1,4 @@
-import CancelIcon from '@material-ui/icons/Cancel';
+import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { register } from '../../../actions/userActions';
 import { useValue } from '../../../context/globalContext';
@@ -48,7 +48,7 @@ const Register = ({ setIsRegister }) => {
       <ModalBackdrop onClick={closeRegister} />
       <Modal>
         <CancelContainer>
-          <CancelIcon onClick={closeRegister} />
+          <CloseIcon onClick={closeRegister} />
         </CancelContainer>
         <form>
           <FieldsContainer>
