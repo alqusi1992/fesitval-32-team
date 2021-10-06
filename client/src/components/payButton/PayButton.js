@@ -19,13 +19,16 @@ export const PayButton = () => {
   const payTickets = async () => {
     setDisable(true); // disable button when click
     try {
-      const response = await fetch('/payment', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/payment`,
+        {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(tickets),
         },
-        body: JSON.stringify(tickets),
-      });
+      );
       const { url, msg, success } = await response.json();
 
       if (!success) {
