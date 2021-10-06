@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrapper } from './NavStyles';
-import { Register } from '../../components';
+import { User } from '../../components';
 import { useState, useEffect } from 'react';
 import { useValue } from '../../context/globalContext';
 
@@ -19,7 +19,7 @@ const Nav = () => {
         <div>nav</div>
         <button onClick={() => setIsRegister(true)}>Register</button>
       </Wrapper>
-      {isRegister && <Register setIsRegister={setIsRegister} />}
+      {isRegister && <User setIsRegister={setIsRegister} />}
     </>
   );
 };
