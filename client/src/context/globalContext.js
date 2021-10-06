@@ -4,6 +4,7 @@ import globalReducer from './globalReducer';
 const initialState = {
   user: null,
   isLoading: false,
+  alert: { isAlert: false, type: '', message: '' },
 };
 
 const globalContext = createContext(initialState);
