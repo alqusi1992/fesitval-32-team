@@ -91,8 +91,8 @@ const order = ({ customerName, tickets, orderId }) => {
                              style="width:100%; max-width:156px;"></td>
                           <td>
                              Datum: ${`${today.getDate()}. ${
-                               today.getMonth() + 1
-                             }. ${today.getFullYear()}.`}
+    today.getMonth() + 1
+  }. ${today.getFullYear()}.`}
                           </td>
                        </tr>
                     </table>
@@ -131,7 +131,7 @@ const order = ({ customerName, tickets, orderId }) => {
             
   </table>
   <br />
-  <h1 class="justify-center">Total price:€${parseInt(total)}</h1>
+  <h1 class="justify-center">Total price:€${total}</h1>
 </div>
 </body>
 </html>`;

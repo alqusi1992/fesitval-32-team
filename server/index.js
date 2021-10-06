@@ -27,13 +27,13 @@ const startServer = async () => {
 };
 
 app.use(express.json());
+// festival route
 app.use('/festival', festivalRouter);
 // payment route
-
-// pdf document
-app.use('/pdf', createPdfRouter);
-
 app.use('/payment', paymentRouter);
+// pdf order route
+app.use('/pdf', createPdfRouter);
+// user route
 app.use('/user', userRouter);
 
 app.get('/', (req, res) => {
