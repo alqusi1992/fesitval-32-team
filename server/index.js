@@ -5,6 +5,7 @@ import connectDB from './config/connectDB.js';
 import festivalRouter from './routes/festivalRoute.js';
 import paymentRouter from './routes/paymentRoute.js';
 import userRouter from './routes/userRoute.js';
+import createPdfRouter from './routes/createPdfRouter.js';
 
 dotenv.config();
 const app = express();
@@ -28,6 +29,10 @@ const startServer = async () => {
 app.use(express.json());
 app.use('/festival', festivalRouter);
 // payment route
+
+// pdf document
+app.use('/pdf', createPdfRouter);
+
 app.use('/payment', paymentRouter);
 app.use('/user', userRouter);
 
