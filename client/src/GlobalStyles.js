@@ -1,12 +1,10 @@
-import styled from 'styled-components';
-
-export const MainContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  box-sizing: border-box;
-  background-color: blue;
+import styled, { createGlobalStyle } from "styled-components";
+export const GlobalStyle = createGlobalStyle`
+*{
+    box-sizing: border-box;
+    height:100%
+    margin:0;
+    padding:0;
+    text-decoration: none;
+}
 `;
