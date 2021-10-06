@@ -6,7 +6,7 @@ import {
   CancelContainer,
   LogInRegister,
 } from './UserStyles';
-import CancelIcon from '@material-ui/icons/Cancel';
+import CloseIcon from '@mui/icons-material/Close';
 import Register from './register/Register';
 import Login from './login/Login';
 
@@ -20,7 +20,7 @@ const User = ({ setIsRegister }) => {
       <ModalBackdrop onClick={closeRegister} />
       <Modal>
         <CancelContainer>
-          <CancelIcon onClick={closeRegister} />
+          <CloseIcon onClick={closeRegister} />
         </CancelContainer>
         {isLogin ? (
           <Login setIsRegister={setIsRegister} />
