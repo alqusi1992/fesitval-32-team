@@ -5,6 +5,7 @@ import connectDB from './config/connectDB.js';
 import festivalRouter from './routes/festivalRoute.js';
 import paymentRouter from './routes/paymentRoute.js';
 import userRouter from './routes/userRoute.js';
+import orderRouter from './routes/orderRoute.js';
 
 dotenv.config();
 const app = express();
@@ -30,6 +31,8 @@ app.use('/festival', festivalRouter);
 // payment route
 app.use('/payment', paymentRouter);
 app.use('/user', userRouter);
+
+app.use('/order', orderRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
