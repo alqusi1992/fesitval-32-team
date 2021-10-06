@@ -1,4 +1,4 @@
-const documents = ({ customerName, tickets, orderId }) => {
+const order = ({ customerName, tickets, orderId }) => {
   const today = new Date();
   let total = 0;
   let output = `
@@ -139,4 +139,4 @@ const documents = ({ customerName, tickets, orderId }) => {
   return output;
 };
 
-export default documents;
+export default order;
