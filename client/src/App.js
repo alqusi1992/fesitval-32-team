@@ -8,9 +8,9 @@ import { NavBar } from "./components";
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <CssBaseline />
       <Router>
-        <GlobalStyle />
-        <CssBaseline />
         <NavBar />
         <Container
           maxWidth="xl"
