@@ -1,12 +1,15 @@
-import React from 'react';
-import { NavBar } from './components';
-import { MainContainer } from './GlobalStyles';
+import React from "react";
+import { NavBar, LandingPage } from "./components";
+import { GlobalStyle } from "./GlobalStyles";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
-    <MainContainer>
+    <Router>
+      <GlobalStyle />
       <NavBar />
-    </MainContainer>
+      <LandingPage />
+    </Router>
   );
 }
 
