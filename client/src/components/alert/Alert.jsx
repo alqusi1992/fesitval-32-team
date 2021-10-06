@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useValue } from '../../context/globalContext';
-import CancelIcon from '@material-ui/icons/Cancel';
-import { AlertCancel, AlertContainer } from './AlertStyles';
+import CancelIcon from '@mui/icons-material/Cancel';
+import { useStyles } from './AlertStyles';
 
 const Alert = () => {
   const {
@@ -29,24 +29,13 @@ const Alert = () => {
     dispatch({ type: 'CLOSE_ALERT' });
     clearTimeout(alertTime.current);
   };
-  const colors = {
-    color: alert?.type === 'success' ? '#155724' : '#721c24',
-    background: alert?.type === 'success' ? '#d4edda' : '#f8d7da',
-    borderColor: alert?.type === 'success' ? '#c3e6cb' : '#f5c6cb',
-  };
 
+  const classes = useStyles();
   return (
-    <AlertContainer
-      color={colors.color}
-      background={colors.background}
-      borderColor={colors.borderColor}
-      ref={alertDiv}
-    >
-      <AlertCancel>
-        <CancelIcon className='cancel-alert' onClick={handleClick} />
-      </AlertCancel>
+    <div ref={alertDiv} className={`${classes.alert} ${classes[alert.type]}`}>
+      <CancelIcon className={classes.alertCancel} onClick={handleClick} />
       <p>{alert.message}</p>
-    </AlertContainer>
+    </div>
   );
 };
 
