@@ -6,6 +6,7 @@ import festivalRouter from './routes/festivalRoute.js';
 import paymentRouter from './routes/paymentRoute.js';
 import ticketRouter from './routes/ticketsRoute.js';
 import userRouter from './routes/userRoute.js';
+import createPdfRouter from './routes/createPdfRouter.js';
 
 dotenv.config();
 
@@ -32,9 +33,13 @@ app.use(cors());
 
 app.use(express.json());
 
+// festival route
 app.use('/festival', festivalRouter);
 // payment route
 app.use('/payment', paymentRouter);
+// pdf order route
+app.use('/pdf', createPdfRouter);
+// user route
 app.use('/user', userRouter);
 
 app.use('/tickets', ticketRouter);
