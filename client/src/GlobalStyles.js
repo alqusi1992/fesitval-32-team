@@ -1,10 +1,36 @@
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
+import { createTheme } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
+
+export const useStyles = makeStyles((theme) => {
+  return {};
+});
+
 export const GlobalStyle = createGlobalStyle`
-*{
-    box-sizing: border-box;
-    height:100%
-    margin:0;
-    padding:0;
-    text-decoration: none;
-}
+/* * {
+  color: black;
+} */
 `;
+
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#000",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#fff",
+      contrastText: "#000",
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      s: 450,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
+});
