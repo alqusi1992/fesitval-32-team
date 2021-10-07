@@ -1,5 +1,6 @@
 import pdf from 'html-pdf';
 import path from 'path';
+import fs from 'fs';
 import orderTemplate from '../orders/index.js';
 
 const dirname = path.resolve();
@@ -18,4 +19,13 @@ export const createPdf = async (req, res) => {
 
 export const getOrderPdf = (req, res) => {
   res.sendFile(`${dirname}/orders/${req.body.orderId}.pdf`);
+
+  setTimeout(() => {
+    fs.unlink(`${dirname}/orders/${req.body.orderId}.pdf`, (err) => {
+      if (err) throw err;
+      else {
+        console.log(`${dirname}/orders/${req.body.orderId}.pdf is deleted`);
+      }
+    });
+  }, 500);
 };

@@ -91,8 +91,8 @@ const order = ({ email, tickets, orderId }) => {
                              style="width:100%; max-width:156px;"></td>
                           <td>
                              Datum: ${`${today.getDate()}. ${
-                               today.getMonth() + 1
-                             }. ${today.getFullYear()}.`}
+    today.getMonth() + 1
+  }. ${today.getFullYear()}.`}
                           </td>
                        </tr>
                     </table>
