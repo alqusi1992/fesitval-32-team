@@ -19,6 +19,7 @@ const Tickets = () => {
   useEffect(() => {
     fetchTickets();
   }, []);
+
   return (
     <div>
       {error && <h3>{error}</h3>}
