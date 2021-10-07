@@ -28,7 +28,11 @@ const LandingPage = () => {
   return (
     <>
       <Container>
-        <CardsHolder responsive={responsive} partialVisible={true}>
+        <CardsHolder
+          responsive={responsive}
+          partialVisible={true}
+          containerClass="carousel-container-margin-80-px"
+        >
           <ListItem>
             <Link to="/home">
               <ImageCard

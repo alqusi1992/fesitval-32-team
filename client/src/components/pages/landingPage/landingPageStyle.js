@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 export const CardsHolder = styled(Carousel)`
   width: 100%;
-  margin-top: 20px;
+  margin-top: 40px;
   border-radius: 10px;
   display: flex;
 `;
@@ -20,12 +20,8 @@ export const Card = styled.div`
   height: 100%;
   border-radius: 10px;
   overflow: hidden;
-`;
-export const Slider = styled.div`
-  width: 100%;
-  height: 100px;
-  margin-top: 20px;
-  display: flex;
+  box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.71);
+  margin: 20px 0;
 `;
 export const Img = styled.img`
   width: 100%;
