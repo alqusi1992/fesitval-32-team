@@ -4,6 +4,6 @@ import { createPdf, getOrderPdf } from '../controllers/pdf.js';
 const createPdfRouter = express.Router();
 
 createPdfRouter.post('/create', createPdf);
-createPdfRouter.get('/order-pdf', getOrderPdf);
+createPdfRouter.post('/order-pdf', getOrderPdf);
 
 export default createPdfRouter;

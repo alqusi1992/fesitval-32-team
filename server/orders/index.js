@@ -1,4 +1,4 @@
-const order = ({ customerName, tickets, orderId }) => {
+const order = ({ email, tickets, orderId }) => {
   const today = new Date();
   let total = 0;
   let output = `
@@ -103,7 +103,7 @@ const order = ({ customerName, tickets, orderId }) => {
                     <table>
                        <tr>
                           <td>
-                             Customer name: ${customerName}
+                             Email: ${email}
                           </td>
                           <td>
                              Order number: ${orderId}
