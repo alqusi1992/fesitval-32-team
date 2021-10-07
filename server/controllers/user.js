@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
 export const login = async (req, res) => {
@@ -28,7 +29,10 @@ export const login = async (req, res) => {
       email,
       phone,
     };
-    return res.status(200).json({ success: true, result });
+    const token = jwt.sign({ email, id: _id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+    return res.status(200).json({ success: true, result, token });
   } catch (error) {
     console.log(error);
     return res.status(500).json({
@@ -57,7 +61,21 @@ export const register = async (req, res) => {
       lastName,
       phone,
     });
-    return res.status(200).json({ success: true, result });
+    const { _id } = result;
+    const token = jwt.sign({ email, id: _id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+    return res.status(200).json({
+      success: true,
+      result: {
+        _id,
+        firstName,
+        lastName,
+        email,
+        phone,
+      },
+      token,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).json({
