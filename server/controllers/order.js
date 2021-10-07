@@ -1,7 +1,8 @@
 import Order from '../models/Order.js';
 
 export const createOrder = async (req, res) => {
-  const { email, festivalId, tickets } = req.body;
+  const { email, festivalId, tickets } = req.body.order;
+  const { sessionID } = req.body;
   try {
     const order = await Order.create({
       email,
