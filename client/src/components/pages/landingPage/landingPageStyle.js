@@ -9,14 +9,14 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 export const CardsHolder = styled.div`
-  width: 1212px;
+  width: 80%;
   height: 590px;
-  margin-top: 20px;
+  margin-top: 20px auto;
   border-radius: 10px;
   display: flex;
   background-color: pink;
   transition: all 0.5s ease-in-out;
-  transform: translateX(${(props) => props.slide});
+  transform: translateX(${(props) => props.slide}px);
 `;
 export const Card = styled.div`
   width: 384px;
