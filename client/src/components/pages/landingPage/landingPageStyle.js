@@ -39,7 +39,7 @@ export const Img = styled.img`
   position: relative;
   transition: all 0.5s ease-in-out;
 
-  &: hover {
+  &:hover {
     transform: scale(1.1);
   }
 `;
@@ -66,7 +66,7 @@ export const ImagText = styled.h2`
   color: white;
   transition: all 0.2s ease-in-out;
 
-  &: hover {
+  &:hover {
     transform: translateX(5px);
   }
 `;
@@ -80,7 +80,7 @@ export const Button = styled.button`
   background-color: #610527;
   transition: all 0.2s ease-in-out;
 
-  &: hover {
+  &:hover {
     background-color: #92083b;
     transform: scale(1.1);
   }
