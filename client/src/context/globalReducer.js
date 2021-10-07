@@ -1,6 +1,6 @@
 const globalReducer = (state, action) => {
   switch (action.type) {
-    case 'TEST':
+    case 'REGISTER':
       return { ...state, user: action.payload };
 
     default:
