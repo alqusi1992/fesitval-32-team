@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import PopupTicket from "../popupTicket/PopupTicket";
-import { TicketsWrapper } from "./ticketsStyles";
+import React, { useEffect, useState } from 'react';
+import PopupTicket from '../popupTicket/PopupTicket';
+import { TicketsWrapper } from './ticketsStyles';
 
 const Tickets = () => {
   const [tickets, setTickets] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const fetchTickets = async () => {
     try {
-      const url = process.env.TICKETS_URL || "http://localhost:3000/tickets";
+      const url = process.env.TICKETS_URL || 'http://localhost:5000/tickets';
       const response = await fetch(url);
       const { tickets } = await response.json();
       setTickets(tickets);
@@ -18,6 +18,7 @@ const Tickets = () => {
   };
   useEffect(() => {
     fetchTickets();
+    localStorage.removeItem('orderInfo');
   }, []);
 
   return (

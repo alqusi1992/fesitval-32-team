@@ -3,18 +3,22 @@ import React, { useState } from 'react';
 export const PayButton = () => {
   const [disable, setDisable] = useState(false); // to disable the payButton with first click
   // this array is just for testing
-  const tickets = [
-    {
-      id: '6155a6c27d6165cc07b6d2a7',
-      typeName: 'Early Bird',
-      quantity: 2,
-    },
-    {
-      id: '6155af5cc783295f2444cadf',
-      typeName: 'Regular',
-      quantity: 4,
-    },
-  ];
+  const order = {
+    email: 'email@gmail.com',
+    festivalId: '6155a68b2a30ca8cc74de40f',
+    tickets: [
+      {
+        id: '6155a6c27d6165cc07b6d2a7',
+        typeName: 'Early Bird',
+        quantity: 2,
+      },
+      {
+        id: '6155af5cc783295f2444cadf',
+        typeName: 'Regular',
+        quantity: 4,
+      },
+    ],
+  };
 
   const payTickets = async () => {
     setDisable(true); // disable button when click
@@ -26,15 +30,16 @@ export const PayButton = () => {
           headers: {
             'content-type': 'application/json',
           },
-          body: JSON.stringify(tickets),
+          body: JSON.stringify(order),
         },
       );
-      const { url, msg, success } = await response.json();
+      const { url, msg, success, orderInfo } = await response.json();
 
       if (!success) {
         console.log(msg);
         // here we still should add errorHandling(alert) when context is merged
       } else {
+        localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
         window.location = url;
       }
     } catch (error) {
