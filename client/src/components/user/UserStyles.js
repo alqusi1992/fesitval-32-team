@@ -15,7 +15,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalBackdrop = styled.div`
-  background: #e9f4f4;
+  background: #000;
   width: 100%;
   position: fixed;
   top: 0;
@@ -24,7 +24,6 @@ export const ModalBackdrop = styled.div`
   display: inline-block;
   height: 100%;
   vertical-align: middle;
-  opacity: 0.95;
 `;
 
 export const Modal = styled.div`
@@ -38,6 +37,8 @@ export const Modal = styled.div`
   max-height: 90vh;
   overflow: auto;
   max-width: 600px;
+  background-color: white;
+  color: #000;
   @media (min-width: 776px) {
     width: 70vw;
     padding: 4rem;
@@ -49,6 +50,7 @@ export const CancelContainer = styled.div`
   position: absolute;
   right: 0;
   top: 0;
+  color: white;
   cursor: pointer;
   & svg {
     font-size: 2.5rem !important;
