@@ -6,8 +6,15 @@ export const useGuestContext = () => {
   return useContext(GuestContext);
 };
 
-const GuestProvider = (children) => {
-  const [guestUser, setGuestUser] = useState({});
+export const GuestProvider = ({ children }) => {
+  const [guestUser, setGuestUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    tickets: "",
+    price: "",
+  });
+
   const value = {
     guestUser,
     setGuestUser,
