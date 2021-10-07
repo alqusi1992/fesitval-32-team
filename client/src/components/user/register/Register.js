@@ -2,6 +2,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useState } from 'react';
 import { register } from '../../../actions/userActions';
 import { useValue } from '../../../context/globalContext';
+import Alert from '../../alert/Alert';
+import { showAlert } from '../../../actions/alertActions';
 import {
   ModalContainer,
   ModalBackdrop,
@@ -29,18 +31,22 @@ const Register = ({ setIsRegister }) => {
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-  const { dispatch } = useValue();
+  const {
+    dispatch,
+    state: { alert },
+  } = useValue();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (userData.password === userData.confirmPassword) {
       const response = await register(userData, dispatch);
-      if (response) {
-        alert('your account created successfully');
+      if (response.success) {
         setIsRegister(false);
+      } else {
+        showAlert('danger', response.msg, dispatch);
       }
     } else {
-      alert("Passwords don't match");
+      showAlert('danger', "passwords don't match");
     }
   };
   return (
@@ -50,6 +56,7 @@ const Register = ({ setIsRegister }) => {
         <CancelContainer>
           <CloseIcon onClick={closeRegister} />
         </CancelContainer>
+        {alert.isAlert && <Alert />}
         <form>
           <FieldsContainer>
             <FormGroup>
@@ -61,7 +68,7 @@ const Register = ({ setIsRegister }) => {
                 required
                 value={userData.firstName}
                 onChange={handleChange}
-              />
+              ></InputControl>
             </FormGroup>
             <FormGroup>
               <FormLabel htmlFor='lastName'>Last Name</FormLabel>

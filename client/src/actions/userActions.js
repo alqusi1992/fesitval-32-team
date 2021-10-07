@@ -11,9 +11,9 @@ export const register = async (userData, dispatch) => {
     if (data?.success) {
       dispatch({ type: 'REGISTER', payload: data.result });
     }
-    return data?.success;
+    return data;
   } catch (error) {
     console.log(error);
-    return false;
+    return { success: false, msg: 'Something went wrong' };
   }
 };
