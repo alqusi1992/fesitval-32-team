@@ -1,29 +1,24 @@
 import styled from "styled-components";
+import Carousel from "react-multi-carousel";
 
 export const Container = styled.div`
-  width: 100%;
+  width: auto;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 `;
-export const CardsHolder = styled.div`
-  width: 80%;
-  height: 590px;
-  margin-top: 20px auto;
+export const CardsHolder = styled(Carousel)`
+  width: 100%;
+  margin-top: 20px;
   border-radius: 10px;
   display: flex;
-  background-color: pink;
-  transition: all 0.5s ease-in-out;
-  transform: translateX(${(props) => props.slide}px);
 `;
 export const Card = styled.div`
-  width: 384px;
-  height: 580px;
-  margin: 10px;
+  width: 90%;
+  height: 100%;
   border-radius: 10px;
-  background-color: yellow;
   overflow: hidden;
 `;
 export const Slider = styled.div`
@@ -37,20 +32,18 @@ export const Img = styled.img`
   height: 100%;
   display: flex;
   position: relative;
-  transition: all 0.5s ease-in-out;
-
+  transition: all 0.4s ease-in-out;
   &:hover {
     transform: scale(1.1);
   }
 `;
 
 export const ImageHolder = styled.div`
-  width: 384px;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: green;
 `;
 
 export const ImageTextHolder = styled.div`
@@ -85,9 +78,8 @@ export const Button = styled.button`
     transform: scale(1.1);
   }
 `;
-export const Footer = styled.div`
+
+export const ListItem = styled.div`
   width: 100%;
-  height: 1000px;
-  background-color: black;
-  margin-top: 50px;
+  margin-left: 20px;
 `;

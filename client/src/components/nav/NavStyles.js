@@ -16,7 +16,7 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     toolBar: {
       [theme.breakpoints.up("md")]: {
-        margin: "0 80px",
+        margin: "0 20px",
       },
     },
     logoContainer: {
@@ -63,6 +63,8 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     iconBtn: {
       marginLeft: "10px !important",
+      paddingRight: "0 !important",
+      marginRight: "0 !important",
     },
     listBtn: {
       color: `${theme.palette.secondary.main} !important`,
@@ -71,6 +73,8 @@ export const useStyles = makeStyles((theme, prop) => {
     drawerContainer: {
       height: "100vh",
       width: "100%",
+      position: "absolute",
+      zIndex: "999",
       opacity: ({ drawer }) => (drawer ? "1" : "0"),
       transition: "opacity .6s,transform .6s !important",
       transform: ({ drawer }) =>
