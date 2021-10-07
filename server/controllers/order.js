@@ -1,15 +1,15 @@
 import Order from '../models/Order.js';
 
 export const createOrder = async (req, res) => {
-  const { userId, festivalId, tickets } = req.body;
+  const { email, festivalId, tickets } = req.body;
   try {
     const order = await Order.create({
-      userId,
+      email,
       festivalId,
       tickets,
     });
-    res.json(order);
+    res.status(200).json(order);
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ status: false, msg: error });
   }
 };

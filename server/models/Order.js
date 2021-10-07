@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
   date: { type: Date, required: true, default: Date.now },
-  userId: { type: String, required: true },
+  email: { type: String, required: true },
   festivalId: { type: String, required: true },
   tickets: [
     {
