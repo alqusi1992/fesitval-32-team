@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import Carousel from "react-multi-carousel";
+import styled from 'styled-components';
+import Carousel from 'react-multi-carousel';
 
 export const Container = styled.div`
   width: auto;

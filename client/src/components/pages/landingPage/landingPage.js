@@ -1,12 +1,12 @@
-import React from "react";
-import { CardsHolder, Container, ListItem } from "./landingPageStyle";
-import about from "../../../images/about.jpg";
-import program from "../../../images/program.jpg";
-import tickets from "../../../images/tickets.jpg";
-import ImageCard from "./ImageCard";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { CardsHolder, Container, ListItem } from './landingPageStyle';
+import about from '../../../images/about.jpg';
+import program from '../../../images/program.jpg';
+import tickets from '../../../images/tickets.jpg';
+import ImageCard from './ImageCard';
+import { Link } from 'react-router-dom';
 
-import "react-multi-carousel/lib/styles.css";
+import 'react-multi-carousel/lib/styles.css';
 
 const LandingPage = () => {
   const responsive = {
@@ -30,26 +30,26 @@ const LandingPage = () => {
       <CardsHolder
         responsive={responsive}
         partialVisible={true}
-        itemClass="image-item"
+        itemClass='image-item'
       >
         <ListItem>
-          <Link to="/home">
+          <Link to='/home'>
             <ImageCard
-              {...{ img: about, title: "ABOUT", buttonTitle: "ABOUT" }}
+              {...{ img: about, title: 'ABOUT', buttonTitle: 'ABOUT' }}
             />
           </Link>
         </ListItem>
         <ListItem>
           <Link>
             <ImageCard
-              {...{ img: program, title: "PROGRAM", buttonTitle: "PROGRAM" }}
+              {...{ img: program, title: 'PROGRAM', buttonTitle: 'PROGRAM' }}
             />
           </Link>
         </ListItem>
         <ListItem>
           <Link>
             <ImageCard
-              {...{ img: tickets, title: "TICKETS", buttonTitle: "TICKETS" }}
+              {...{ img: tickets, title: 'TICKETS', buttonTitle: 'TICKETS' }}
             />
           </Link>
         </ListItem>

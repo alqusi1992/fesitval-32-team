@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Card,
@@ -6,7 +6,7 @@ import {
   ImageTextHolder,
   ImagText,
   Img,
-} from "./landingPageStyle";
+} from './landingPageStyle';
 
 const ImageCard = ({ img, title, buttonTitle }) => {
   return (
