@@ -26,10 +26,11 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
   const redirectToFormPage = () => {
     setGuestUser({
       ...guestUser,
-      tickets: ticketsNumber,
-      price: totalPrice,
+      tickets: [{ ticket }],
+      // price: totalPrice,
     });
   };
+  console.log(guestUser);
 
   return trigger ? (
     <PopupTicketWrapper>

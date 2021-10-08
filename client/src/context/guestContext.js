@@ -11,8 +11,14 @@ export const GuestProvider = ({ children }) => {
     firstName: "",
     lastName: "",
     email: "",
-    tickets: "",
-    price: "",
+    tickets: [
+      {
+        id: "",
+        typeName: "",
+        quantity: 0,
+      },
+    ],
+    // price: "",
   });
 
   const value = {
