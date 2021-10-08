@@ -1,10 +1,12 @@
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import { GlobalStyle, theme } from './GlobalStyles';
-import { NavBar } from './components';
+import { LandingPage, NavBar } from './components';
 import { Tickets } from './components';
+import './app.css';
+
 
 function App() {
   return (
@@ -13,10 +15,9 @@ function App() {
       <CssBaseline />
       <Router>
         <NavBar />
-        <Container
-          maxWidth='xl'
-          style={{ width: '100%', height: '100%', backgroundColor: 'blue' }}
-        ></Container>
+        <Container maxWidth='lg'>
+          <LandingPage />
+        </Container>
         <Switch>
           <Route path='/tickets' component={Tickets} />
         </Switch>
