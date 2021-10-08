@@ -14,9 +14,7 @@ export const NavDrawer = ({ drawer }) => {
         <List>
           <Grid container className={classes.drawerDropDownOuter}>
             <Grid container className={classes.drawerDropDown}>
-              <div onClick={() => setIsRegister(true)}>
-                <DrawerListButton text='login' />
-              </div>
+              <DrawerListButton text='login' {...{ setIsRegister }} />
               <DrawerListButton text='program' />
               <DrawerListButton text='tickets' />
               <DrawerListButton text='about' />
