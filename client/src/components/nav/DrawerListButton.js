@@ -1,17 +1,22 @@
-import React from "react";
-import { Button, Grid } from "@mui/material";
-import { useStyles } from "./NavStyles";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import React from 'react';
+import { Button, Grid } from '@mui/material';
+import { useStyles } from './NavStyles';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const DrawerListButton = ({ text }) => {
+const DrawerListButton = ({ text, handleClick }) => {
   const classes = useStyles();
+
   return (
-    <Grid container className={classes.drawerDropDownInner}>
+    <Grid
+      container
+      className={classes.drawerDropDownInner}
+      onClick={handleClick}
+    >
       <Grid item>
         <Button className={classes.listBtn}>{text}</Button>
       </Grid>
       <Grid item>
-        <ArrowForwardIosIcon color="secondary" />
+        <ArrowForwardIosIcon color='secondary' />
       </Grid>
     </Grid>
   );
