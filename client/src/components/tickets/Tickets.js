@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
-import PopupTicket from "../popupTicket/PopupTicket";
-import { TicketsWrapper } from "./ticketsStyles";
-import { GuestProvider } from "../../context/guestContext";
+import React, { useEffect, useState } from 'react';
+import PopupTicket from '../popupTicket/PopupTicket';
+import { TicketsWrapper } from './ticketsStyles';
+import { GuestProvider } from '../../context/guestContext';
 
 const Tickets = () => {
   const [tickets, setTickets] = useState([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [showPopup, setShowPopup] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState({});
   const fetchTickets = async () => {
     try {
-      const url = process.env.TICKETS_URL || "http://localhost:3000/tickets";
+      const url = process.env.REACT_APP_SERVER_URL + '/tickets';
       const response = await fetch(url);
       const { tickets } = await response.json();
       setTickets(tickets);

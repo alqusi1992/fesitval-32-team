@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   PopupTicketWrapper,
   PopupInnerWrapper,
   CloseBtn,
-} from "./PopupTicketStyles";
-import { useGuestContext } from "../../context/guestContext";
+} from './PopupTicketStyles';
+import { useGuestContext } from '../../context/guestContext';
 
 const PopupTicket = ({ trigger, setTrigger, ticket }) => {
   const [ticketsNumber, setTicketsNumber] = useState(0);
@@ -24,13 +24,30 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
   };
 
   const redirectToFormPage = () => {
-    setGuestUser({
-      ...guestUser,
-      tickets: [{ ticket }],
-      // price: totalPrice,
+    setGuestUser((prev) => {
+      const foundTicket = prev.tickets.find((t) => t._id === ticket._id);
+
+      if (foundTicket) {
+        foundTicket.quantity = ticketsNumber;
+        return {
+          ...prev,
+        };
+      } else {
+        if (prev.tickets[0].id === '') {
+          prev.tickets.shift();
+        }
+        prev.tickets.push({
+          _id: ticket._id,
+          typeName: ticket.typeName,
+          quantity: ticketsNumber,
+        });
+        return {
+          ...prev,
+          tickets: prev.tickets,
+        };
+      }
     });
   };
-  console.log(guestUser);
 
   return trigger ? (
     <PopupTicketWrapper>
@@ -54,7 +71,7 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
       </PopupInnerWrapper>
     </PopupTicketWrapper>
   ) : (
-    ""
+    ''
   );
 };
 
