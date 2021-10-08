@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import { LoadingButton } from '@mui/lab';
 
 export const PayButton = () => {
-  const [disable, setDisable] = useState(false); // to disable the payButton with first click
+  const [loading, setLoading] = useState(false); // to disable the payButton with first click
   // this array is just for testing
   const order = {
     email: 'email@gmail.com',
@@ -21,7 +23,7 @@ export const PayButton = () => {
   };
 
   const payTickets = async () => {
-    setDisable(true); // disable button when click
+    setLoading(true); // disable button when click
     try {
       const response = await fetch(
         `${process.env.REACT_APP_SERVER_URL}/payment`,
@@ -49,9 +51,15 @@ export const PayButton = () => {
   };
   return (
     <div>
-      <button disabled={disable ? true : false} onClick={payTickets}>
+      <LoadingButton
+        endIcon={<CreditCardIcon />}
+        onClick={payTickets}
+        loading={loading}
+        loadingPosition='end'
+        variant='contained'
+      >
         Pay with card
-      </button>
+      </LoadingButton>
     </div>
   );
 };
