@@ -8,32 +8,45 @@ export const SuccessPage = () => {
     localStorage.removeItem('orderInfo');
 
     if (orderInfo !== null) {
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/order`, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(orderInfo),
-      });
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/order`,
+          {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify(orderInfo),
+          },
+        );
 
-      const res = await response.json();
+        const res = await response.json();
+        const { orderId } = res;
 
-      if (res.orderId) {
-        const getPdf = await fetch(`${process.env.REACT_APP_SERVER_URL}/pdf/order-pdf`, {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ orderId: res.orderId }),
-        });
+        if (orderId) {
+          const getPdf = await fetch(
+            `${process.env.REACT_APP_SERVER_URL}/pdf/order-pdf`,
+            {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({ orderId }),
+            },
+          );
 
-        const blob = await getPdf.blob();
-        const pdfBlob = new Blob([blob], { type: 'application/pdf' });
-        saveAs(pdfBlob, `${res.orderId}.pdf`);
+          const blob = await getPdf.blob();
+          const pdfBlob = new Blob([blob], { type: 'application/pdf' });
+          saveAs(pdfBlob, `${orderId}.pdf`);
+        }
+      } catch (error) {
+        console.log(error);
       }
-      console.log(res);
+    } else {
     }
   };
+
   useEffect(() => {
     createOrder();
   }, []);
-  return <div>successPage</div>;
+
+  return <div>The Order has been successfully paid</div>;
 };
