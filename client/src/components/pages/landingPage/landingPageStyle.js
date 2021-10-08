@@ -16,12 +16,11 @@ export const CardsHolder = styled(Carousel)`
   display: flex;
 `;
 export const Card = styled.div`
-  width: 90%;
+  width: 100%;
   height: 100%;
-  border-radius: 10px;
   overflow: hidden;
+  border-radius: 10px;
   box-shadow: 4px 3px 5px 0px rgba(0, 0, 0, 0.71);
-  margin: 20px 0;
 `;
 export const Img = styled.img`
   width: 100%;
@@ -37,6 +36,7 @@ export const Img = styled.img`
 export const ImageHolder = styled.div`
   width: 100%;
   height: 100%;
+  margin-right: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -77,5 +77,4 @@ export const Button = styled.button`
 
 export const ListItem = styled.div`
   width: 100%;
-  margin-left: 20px;
 `;

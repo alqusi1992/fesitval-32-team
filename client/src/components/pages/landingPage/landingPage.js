@@ -20,42 +20,40 @@ const LandingPage = () => {
       partialVisibilityGutter: 30,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 600, min: 0 },
       items: 1,
       partialVisibilityGutter: 40,
     },
   };
   return (
     <>
-      <Container>
-        <CardsHolder
-          responsive={responsive}
-          partialVisible={true}
-          containerClass="carousel-container-margin-80-px"
-        >
-          <ListItem>
-            <Link to="/home">
-              <ImageCard
-                {...{ img: about, title: "ABOUT", buttonTitle: "ABOUT" }}
-              />
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link>
-              <ImageCard
-                {...{ img: program, title: "PROGRAM", buttonTitle: "PROGRAM" }}
-              />
-            </Link>
-          </ListItem>
-          <ListItem>
-            <Link>
-              <ImageCard
-                {...{ img: tickets, title: "TICKETS", buttonTitle: "TICKETS" }}
-              />
-            </Link>
-          </ListItem>
-        </CardsHolder>
-      </Container>
+      <CardsHolder
+        responsive={responsive}
+        partialVisible={true}
+        itemClass="image-item"
+      >
+        <ListItem>
+          <Link to="/home">
+            <ImageCard
+              {...{ img: about, title: "ABOUT", buttonTitle: "ABOUT" }}
+            />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link>
+            <ImageCard
+              {...{ img: program, title: "PROGRAM", buttonTitle: "PROGRAM" }}
+            />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link>
+            <ImageCard
+              {...{ img: tickets, title: "TICKETS", buttonTitle: "TICKETS" }}
+            />
+          </Link>
+        </ListItem>
+      </CardsHolder>
     </>
   );
 };
