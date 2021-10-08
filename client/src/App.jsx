@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
-import CssBaseline from "@mui/material/CssBaseline";
-import Container from "@mui/material/Container";
-import { ThemeProvider } from "@mui/material/styles";
-import { GlobalStyle, theme } from "./GlobalStyles";
-import { NavBar } from "./components";
-import { Tickets } from "./components";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import { ThemeProvider } from '@mui/material/styles';
+import { GlobalStyle, theme } from './GlobalStyles';
+import { NavBar, Tickets, Profile } from './components';
 
 function App() {
   return (
@@ -14,11 +13,12 @@ function App() {
       <Router>
         <NavBar />
         <Container
-          maxWidth="xl"
-          style={{ width: "100%", height: "100%", backgroundColor: "blue" }}
+          maxWidth='xl'
+          style={{ width: '100%', height: '100%', backgroundColor: 'blue' }}
         ></Container>
         <Switch>
-          <Route path="/tickets" component={Tickets} />
+          <Route path='/tickets' component={Tickets} />
+          <Route path='/profile' component={Profile} />
         </Switch>
       </Router>
     </ThemeProvider>
