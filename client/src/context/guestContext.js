@@ -1,4 +1,4 @@
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext } from 'react';
 
 const GuestContext = createContext();
 
@@ -7,24 +7,24 @@ export const useGuestContext = () => {
 };
 
 export const GuestProvider = ({ children }) => {
-  const [guestUser, setGuestUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
+  const [guestUserOrder, setGuestUserOrder] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    festivalId: '',
     tickets: [
       {
-        id: "",
-        typeName: "",
+        id: '',
+        typeName: '',
         quantity: 0,
       },
     ],
-    // price: "",
   });
-
   const value = {
-    guestUser,
-    setGuestUser,
+    guestUserOrder,
+    setGuestUserOrder,
   };
+
   return (
     <GuestContext.Provider value={value}>{children}</GuestContext.Provider>
   );

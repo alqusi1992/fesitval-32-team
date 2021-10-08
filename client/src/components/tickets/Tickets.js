@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PopupTicket from '../popupTicket/PopupTicket';
-import { TicketsWrapper } from './ticketsStyles';
+import { TicketsWrapper, ButtonWrapper } from './ticketsStyles';
 import { GuestProvider } from '../../context/guestContext';
 
 const Tickets = () => {
@@ -29,32 +29,30 @@ const Tickets = () => {
       {tickets &&
         tickets.map((ticket) => {
           return (
-            <div key={ticket._id}>
-              <TicketsWrapper>
-                <h1>{ticket.typeName}</h1>
-                {ticket.availableQty === 0 ? (
-                  <h3>SOLD OUT</h3>
-                ) : (
-                  <>
-                    <button
-                      onClick={() => {
-                        setSelectedTicket(ticket);
-                        setShowPopup(true);
-                      }}
-                    >
-                      Ticket Details
-                    </button>
-                    <GuestProvider>
-                      <PopupTicket
-                        trigger={showPopup}
-                        setTrigger={setShowPopup}
-                        ticket={selectedTicket}
-                      />
-                    </GuestProvider>
-                  </>
-                )}
-              </TicketsWrapper>
-            </div>
+            <TicketsWrapper key={ticket._id}>
+              <h1>{ticket.typeName}</h1>
+              {ticket.availableQty === 0 ? (
+                <ButtonWrapper disabled={true}>SOLD OUT</ButtonWrapper>
+              ) : (
+                <>
+                  <ButtonWrapper
+                    onClick={() => {
+                      setSelectedTicket(ticket);
+                      setShowPopup(true);
+                    }}
+                  >
+                    Ticket Details
+                  </ButtonWrapper>
+                  <GuestProvider>
+                    <PopupTicket
+                      trigger={showPopup}
+                      setTrigger={setShowPopup}
+                      ticket={selectedTicket}
+                    />
+                  </GuestProvider>
+                </>
+              )}
+            </TicketsWrapper>
           );
         })}
     </div>

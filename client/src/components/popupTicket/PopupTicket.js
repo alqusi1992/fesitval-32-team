@@ -3,32 +3,32 @@ import {
   PopupTicketWrapper,
   PopupInnerWrapper,
   CloseBtn,
+  ButtonWrapper,
 } from './PopupTicketStyles';
 import { useGuestContext } from '../../context/guestContext';
 
 const PopupTicket = ({ trigger, setTrigger, ticket }) => {
-  const [ticketsNumber, setTicketsNumber] = useState(0);
+  const [ticketsQty, setTicketsQty] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const { guestUser, setGuestUser } = useGuestContext();
+  const { setGuestUserOrder } = useGuestContext();
 
   const addTicket = () => {
-    setTicketsNumber(ticketsNumber + 1);
+    setTicketsQty(ticketsQty + 1);
     setTotalPrice(totalPrice + ticket.price);
   };
 
   const removeTicket = () => {
-    if (ticketsNumber > 0) {
-      setTicketsNumber(ticketsNumber - 1);
+    if (ticketsQty > 0) {
+      setTicketsQty(ticketsQty - 1);
       setTotalPrice(totalPrice - ticket.price);
     }
   };
 
-  const redirectToFormPage = () => {
-    setGuestUser((prev) => {
+  const storeOrderInContext = () => {
+    setGuestUserOrder((prev) => {
       const foundTicket = prev.tickets.find((t) => t._id === ticket._id);
-
       if (foundTicket) {
-        foundTicket.quantity = ticketsNumber;
+        foundTicket.quantity = ticketsQty;
         return {
           ...prev,
         };
@@ -39,7 +39,8 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
         prev.tickets.push({
           _id: ticket._id,
           typeName: ticket.typeName,
-          quantity: ticketsNumber,
+          quantity: ticketsQty,
+          festivalId: ticket.festivalId,
         });
         return {
           ...prev,
@@ -47,23 +48,31 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
         };
       }
     });
+    setTrigger(false);
+    setTotalPrice(0);
+    setTicketsQty(0);
   };
 
   return trigger ? (
     <PopupTicketWrapper>
       <PopupInnerWrapper>
         <h2>{ticket.typeName}</h2>
-        <h2>{ticket.price}</h2>
-        <button onClick={removeTicket}>-</button>
-        <span>{ticketsNumber}</span>
-        <button onClick={addTicket}>+</button>
-        <h3>{totalPrice}</h3>
-        <button onClick={redirectToFormPage}>CONTINUE</button>
+        <h2>{ticket.price}€</h2>
+        <ButtonWrapper onClick={removeTicket}>-</ButtonWrapper>
+        <span>{ticketsQty}</span>
+        <ButtonWrapper onClick={addTicket}>+</ButtonWrapper>
+        <h3>{totalPrice}€</h3>
+        <ButtonWrapper
+          onClick={storeOrderInContext}
+          disabled={ticketsQty === 0}
+        >
+          ADD
+        </ButtonWrapper>
         <CloseBtn
           onClick={() => {
             setTrigger(false);
             setTotalPrice(0);
-            setTicketsNumber(0);
+            setTicketsQty(0);
           }}
         >
           x

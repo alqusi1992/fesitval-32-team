@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PopupTicketWrapper = styled.div`
   position: fixed;
@@ -18,10 +18,29 @@ export const PopupInnerWrapper = styled.div`
   width: 50%;
   background-color: #fff;
   border-radius: 10px;
+  text-align: center;
 `;
 
 export const CloseBtn = styled.button`
   position: absolute;
   top: 16px;
   right: 16px;
+  border: none;
+  cursor: pointer;
+  background-color: #dc3545;
+  color: #fff;
+`;
+
+export const ButtonWrapper = styled.button`
+  margin: 20px;
+  padding: 15px;
+  justify-content: center;
+  border: none;
+  background-color: #dc3545;
+  color: #fff;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 `;
