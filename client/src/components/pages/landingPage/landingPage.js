@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardsHolder, Container, ListItem } from './landingPageStyle';
+import { CardsHolder, ListItem } from './landingPageStyle';
 import about from '../../../images/about.jpg';
 import program from '../../../images/program.jpg';
 import tickets from '../../../images/tickets.jpg';
