@@ -3,13 +3,14 @@ import { Button, Grid } from '@mui/material';
 import { useStyles } from './NavStyles';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const DrawerListButton = ({ text, setIsRegister }) => {
+const DrawerListButton = ({ text, handleClick }) => {
   const classes = useStyles();
+
   return (
     <Grid
       container
       className={classes.drawerDropDownInner}
-      onClick={() => setIsRegister(true)}
+      onClick={handleClick}
     >
       <Grid item>
         <Button className={classes.listBtn}>{text}</Button>
