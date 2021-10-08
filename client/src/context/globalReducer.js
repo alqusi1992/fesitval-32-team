@@ -5,6 +5,9 @@ const globalReducer = (state, action) => {
     case 'LOGIN':
       return { ...state, user: action.payload };
 
+    case 'LOGOUT':
+      return { ...state, user: null };
+
     case 'SHOW_ALERT':
       return {
         ...state,
@@ -14,6 +17,8 @@ const globalReducer = (state, action) => {
           message: action.payload.message,
         },
       };
+    case 'SET_USER':
+      return { ...state, user: action.payload };
 
     case 'CLOSE_ALERT':
       return { ...state, alert: { isAlert: false, type: '', message: '' } };
