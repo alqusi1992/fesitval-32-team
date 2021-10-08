@@ -3,11 +3,9 @@ import { saveAs } from 'file-saver';
 import Alert from '../alert/Alert';
 import { useValue } from '../../context/globalContext';
 import { showAlert } from '../../actions/alertActions';
-import CircularProgress from '@mui/material/CircularProgress';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { LoadingButton } from '@mui/lab';
-import Box from '@mui/material/Box';
-import '../../App.css';
+import '../../app.css';
 
 import { Grid } from '@mui/material';
 export const SuccessPage = () => {
