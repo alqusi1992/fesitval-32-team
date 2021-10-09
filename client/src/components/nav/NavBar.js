@@ -1,5 +1,4 @@
 import React from 'react';
-import { useStyles } from './NavStyles';
 import {
   Box,
   Grid,
@@ -11,6 +10,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { ListItem } from './ListItem';
 import { useTheme } from '@mui/material/styles';
+import { useStyles } from './NavStyles';
 
 export const NavBar = ({ drawer, handleDrawer, matches }) => {
   const theme = useTheme();

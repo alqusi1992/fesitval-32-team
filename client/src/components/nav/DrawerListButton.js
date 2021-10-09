@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Grid } from '@mui/material';
-import { useStyles } from './NavStyles';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useStyles } from './NavStyles';
 
 const DrawerListButton = ({ text, handleClick }) => {
   const classes = useStyles();
