@@ -7,6 +7,7 @@ import { LandingPage, NavBar } from './components';
 import { Tickets } from './components';
 import './app.css';
 
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
