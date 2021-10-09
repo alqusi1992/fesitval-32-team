@@ -45,7 +45,7 @@ const Register = ({ setIsRegister }) => {
   return (
     <>
       {alert.isAlert && <Alert />}
-      <form>
+      <form onSubmit={registerHandler}>
         <FieldsContainer>
           <FormGroup>
             <FormLabel htmlFor='firstName'>First Name</FormLabel>
@@ -114,9 +114,7 @@ const Register = ({ setIsRegister }) => {
           </FormGroup>
         </FieldsContainer>
         <BtnContainer>
-          <ButtonPrimary type='submit' onClick={registerHandler}>
-            Submit
-          </ButtonPrimary>
+          <ButtonPrimary type='submit'>Submit</ButtonPrimary>
         </BtnContainer>
       </form>
     </>
