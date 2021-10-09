@@ -37,8 +37,14 @@ export default function OrderDisplay({ order }) {
       price: ticket.price,
     };
   });
-  const quantitySum = ticketsData.reduce((acc, value) => acc + value.quantity, 0);
-  const priceSum = ticketsData.reduce((acc, value) => acc + value.price * value.quantity, 0);
+  const quantitySum = ticketsData.reduce(
+    (acc, value) => acc + value.quantity,
+    0
+  );
+  const priceSum = ticketsData.reduce(
+    (acc, value) => acc + value.price * value.quantity,
+    0
+  );
 
   return (
     <TableContainer component={Paper}>

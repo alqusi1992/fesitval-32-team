@@ -9,11 +9,14 @@ export const DownloadButton = ({ order }) => {
   const downloadOrder = async (order) => {
     setLoading(true);
     const { email, tickets } = order;
-    const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/pdf/create`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ orderId: order._id, email, tickets }),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/pdf/create`,
+      {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ orderId: order._id, email, tickets }),
+      }
+    );
 
     const blob = await response.blob();
     if (blob) {
@@ -25,7 +28,7 @@ export const DownloadButton = ({ order }) => {
   return (
     <>
       <LoadingButton
-        className='btn-donwload'
+        className='btn-download'
         endIcon={<FileDownloadIcon />}
         onClick={() => downloadOrder(order)}
         loading={loading}
