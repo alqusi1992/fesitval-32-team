@@ -47,7 +47,6 @@ export const useStyles = makeStyles((theme, prop) => {
         transition: 'transform .3s',
         '&:hover': {
           transform: 'translateX(4px)',
-          transition: 'all 0.3s ease-in-out',
           backgroundColor: 'transparent ',
         },
       },
@@ -87,7 +86,6 @@ export const useStyles = makeStyles((theme, prop) => {
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         '&:hover': {
           transform: 'translateX(4px)',
-          transition: 'all 0.3s ease-in-out',
           backgroundColor: 'transparent ',
         },
       },
@@ -151,8 +149,8 @@ export const useStyles = makeStyles((theme, prop) => {
         alignItems: 'center',
         transition: 'transform .3s',
         '&:hover': {
-          transform: 'translateX(4px)',
-          transition: 'all 0.3s ease-in-out',
+          transform: 'translateX(8px)',
+          transition: 'transform .3s',
           cursor: 'pointer',
         },
       },
