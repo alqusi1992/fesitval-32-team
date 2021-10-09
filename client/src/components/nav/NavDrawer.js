@@ -8,9 +8,6 @@ import { useStyles } from './NavStyles';
 export const NavDrawer = ({ drawer }) => {
   const [isRegister, setIsRegister] = useState(false);
   const classes = useStyles({ drawer });
-  // const handleRegister = () => {
-  //   setIsRegister(true);
-  // };
   const list = () => (
     <>
       <Box className={classes.drawerContainer}>
