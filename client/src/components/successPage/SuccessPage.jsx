@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { saveAs } from 'file-saver';
 import Alert from '../alert/Alert';
 import { useValue } from '../../context/globalContext';
@@ -16,7 +16,7 @@ export const SuccessPage = () => {
     state: { alert },
   } = useValue();
 
-  const createOrder = async () => {
+  const createOrder = useCallback(async () => {
     const orderInfo = JSON.parse(localStorage.getItem('orderInfo'));
 
     localStorage.removeItem('orderInfo');
@@ -44,7 +44,8 @@ export const SuccessPage = () => {
       showAlert('danger', 'no order found', dispatch);
       console.log('no order found');
     }
-  };
+  }, [dispatch]);
+
   const downloadOrder = async () => {
     setLoading(true);
     const { email, tickets } = order;
@@ -67,7 +68,7 @@ export const SuccessPage = () => {
 
   useEffect(() => {
     createOrder();
-  }, []);
+  }, [createOrder]);
 
   return (
     <>
