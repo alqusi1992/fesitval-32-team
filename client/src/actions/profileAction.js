@@ -5,7 +5,8 @@ export const getOrders = async (user) => {
     const response = await fetch(url + '/order', {
       headers: { authorization: `Bearer ${user?.token}` },
     });
-    const data = response.json();
+    const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error);

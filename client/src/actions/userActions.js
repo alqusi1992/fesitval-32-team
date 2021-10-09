@@ -30,7 +30,6 @@ export const login = async (userData, dispatch) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(userData),
     });
-    console.log(userData);
     const data = await response.json();
     if (data.success) {
       dispatch({

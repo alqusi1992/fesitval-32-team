@@ -4,6 +4,8 @@ import decode from 'jwt-decode';
 import { logout, setUser } from '../../../actions/userActions';
 import { getLocalStorage } from '../../../utils/localStorage';
 import { getOrders } from '../../../actions/profileAction';
+import { Order } from './components/Order';
+import { Grid } from '@mui/material';
 
 const Profile = () => {
   const [orders, setOrders] = useState([]);
@@ -33,8 +35,16 @@ const Profile = () => {
 
     fetchOrders();
   }, [dispatch, user]);
-  console.log(orders);
-  return <div>orders list</div>;
+  return (
+    <Grid container justifyContent='center'>
+      <Grid item xs={11} md={6}>
+        {orders.length &&
+          orders.map((order) => {
+            return <Order key={order._id} order={order} />;
+          })}
+      </Grid>
+    </Grid>
+  );
 };
 
 export default Profile;
