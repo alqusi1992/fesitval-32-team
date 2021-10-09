@@ -3,8 +3,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import { GlobalStyle, theme } from './GlobalStyles';
-import { LandingPage, NavBar } from './components';
-import { Tickets } from './components';
+import {
+  LandingPage,
+  SuccessPage,
+  NavBar,
+  PayButton,
+  Tickets,
+} from './components';
 import './app.css';
 
 
@@ -19,9 +24,11 @@ function App() {
           <LandingPage />
         </Container>
         <Switch>
-          <Route path='/tickets' component={Tickets} />
+          <Route exact path='/tickets' component={Tickets} />
+          <Route exact path='/success' component={SuccessPage} />
         </Switch>
       </Router>
+      <PayButton />
     </ThemeProvider>
   );
 }

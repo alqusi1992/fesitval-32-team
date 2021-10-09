@@ -1,19 +1,13 @@
 import pdf from 'html-pdf';
-import path from 'path';
 import orderTemplate from '../orders/index.js';
 
-const dirname = path.resolve();
-
 export const createPdf = async (req, res) => {
-  pdf.create(orderTemplate(req.body), {}).toFile(`${dirname}/orders/order.pdf`, (err) => {
-    if (err) {
-      res.send(Promise.reject(new Error('failed to save pdf')));
-    }
+  pdf.create(orderTemplate(req.body)).toStream((err, stream) => {
+    if (err) return res.end(err.stack);
 
-    res.send(Promise.resolve());
+    res.setHeader('Content-type', 'application/pdf');
+    res.setHeader('Content-Length', ` ${stream.length}`);
+
+    return stream.pipe(res);
   });
-};
-
-export const getOrderPdf = (req, res) => {
-  res.sendFile(`${dirname}/orders/order.pdf`);
 };

@@ -21,6 +21,7 @@ const Tickets = () => {
 
   useEffect(() => {
     fetchTickets();
+    localStorage.removeItem('orderInfo');
   }, []);
 
   return (
