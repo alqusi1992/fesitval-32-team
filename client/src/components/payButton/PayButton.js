@@ -33,7 +33,7 @@ export const PayButton = () => {
             'content-type': 'application/json',
           },
           body: JSON.stringify(order),
-        },
+        }
       );
       const { url, msg, success, orderInfo } = await response.json();
 
