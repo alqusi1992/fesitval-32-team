@@ -32,8 +32,8 @@ const Profile = () => {
     };
 
     fetchOrders();
-  }, [dispatch]);
-
+  }, [dispatch, user]);
+  console.log(orders);
   return <div>orders list</div>;
 };
 
