@@ -6,6 +6,7 @@ import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
+import { DownloadButton } from '../../../downloadButton/DownloadButton';
 
 export const Order = ({ order }) => {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -42,7 +43,9 @@ export const Order = ({ order }) => {
           <TableRow>
             <StyledTableCell>Order Number:</StyledTableCell>
             <StyledTableCell align='right'>{order?._id}</StyledTableCell>
-            <StyledTableCell align='right'>Download</StyledTableCell>
+            <StyledTableCell align='right'>
+              <DownloadButton order={order} />
+            </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableHead>
