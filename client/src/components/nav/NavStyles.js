@@ -100,6 +100,7 @@ export const useStyles = makeStyles((theme, prop) => {
         borderRadius: '50%',
         width: '50px',
         height: '50px',
+        transition: 'transform .5s',
         '&:hover': {
           backgroundColor: '#56555f',
           transform: 'scale(1.05)',
