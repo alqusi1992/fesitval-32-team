@@ -127,7 +127,7 @@ export const useStyles = makeStyles((theme, prop) => {
         position: 'absolute',
         zIndex: '9999',
         opacity: ({ drawer }) => (drawer ? '1' : '0'),
-        transition: 'opacity .6s,transform .6s',
+        transition: 'opacity .3s,transform .3s',
         transform: ({ drawer }) =>
           drawer ? 'translateY(0px)' : 'translateY(-100%)',
         backgroundColor: theme.palette.primary.main,
