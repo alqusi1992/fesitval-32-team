@@ -11,8 +11,8 @@ import { DownloadButton } from '../../../downloadButton/DownloadButton';
 export const Order = ({ order }) => {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+      backgroundColor: '#ccc',
+      color: 'black',
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
@@ -34,11 +34,14 @@ export const Order = ({ order }) => {
       total.totalPrice += ticket.price;
       return total;
     },
-    { totalQty: 0, totalPrice: 0 },
+    { totalQty: 0, totalPrice: 0 }
   );
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label='customized table'>
+      <Table
+        sx={{ minWidth: 300, margin: '30px', width: '80%' }}
+        aria-label='customized table'
+      >
         <TableHead>
           <TableRow>
             <StyledTableCell>Order Number:</StyledTableCell>

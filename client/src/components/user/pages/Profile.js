@@ -40,10 +40,11 @@ const Profile = () => {
   return (
     <Grid container justifyContent='center'>
       <Grid item xs={11} md={6}>
-        {orders.length &&
-          orders.map((order) => {
-            return <Order key={order._id} order={order} />;
-          })}
+        {!orders.length ? (
+          <div>you don't have any orders</div>
+        ) : (
+          orders.map((order) => <Order key={order._id} order={order} />)
+        )}
       </Grid>
     </Grid>
   );

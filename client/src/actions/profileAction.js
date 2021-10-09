@@ -6,7 +6,6 @@ export const getOrders = async (user) => {
       headers: { authorization: `Bearer ${user?.token}` },
     });
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
