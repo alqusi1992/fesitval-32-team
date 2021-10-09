@@ -6,12 +6,13 @@ import festivalRouter from './routes/festivalRoute.js';
 import paymentRouter from './routes/paymentRoute.js';
 import ticketRouter from './routes/ticketsRoute.js';
 import userRouter from './routes/userRoute.js';
+import orderRouter from './routes/orderRoute.js';
 import createPdfRouter from './routes/createPdfRouter.js';
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -42,6 +43,7 @@ app.use('/pdf', createPdfRouter);
 // user route
 app.use('/user', userRouter);
 
+app.use('/order', orderRouter);
 app.use('/tickets', ticketRouter);
 
 app.get('/', (req, res) => {
