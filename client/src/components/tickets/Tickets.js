@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PopupTicket from '../popupTicket/PopupTicket';
 import { TicketsWrapper, ButtonWrapper } from './ticketsStyles';
 import { GuestProvider } from '../../context/guestContext';
-
 const Tickets = () => {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState('');
@@ -18,12 +17,10 @@ const Tickets = () => {
       setError(error.message);
     }
   };
-
   useEffect(() => {
     fetchTickets();
     localStorage.removeItem('orderInfo');
   }, []);
-
   return (
     <div>
       {error && <h3>{error}</h3>}
@@ -59,5 +56,4 @@ const Tickets = () => {
     </div>
   );
 };
-
 export default Tickets;

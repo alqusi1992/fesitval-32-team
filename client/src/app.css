@@ -51,6 +51,11 @@
   animation: animateShadow 0.75s ease-out forwards 0.75s;
 }
 
+.btn-donwload {
+  display: block;
+  margin-top: 30px !important;
+}
+
 @keyframes animateContainer {
   0% {
     opacity: 0;
