@@ -1,16 +1,9 @@
 import { useState } from 'react';
 import Alert from '../../alert/Alert';
 import { showAlert } from '../../../actions/alertActions';
-import {
-  FormGroup,
-  FormLabel,
-  InputControl,
-  FieldsContainer,
-  ButtonPrimary,
-  BtnContainer,
-} from './LoginStyles';
 import { useValue } from '../../../context/globalContext';
 import { login } from '../../../actions/userActions';
+import { useStyles } from './LoginStyles';
 
 const Login = ({ setIsRegister }) => {
   const [userData, setUserData] = useState({
@@ -38,15 +31,19 @@ const Login = ({ setIsRegister }) => {
       showAlert('danger', response.msg, dispatch);
     }
   };
+  const classes = useStyles();
 
   return (
     <>
       {alert.isAlert && <Alert />}
-      <form>
-        <FieldsContainer>
-          <FormGroup>
-            <FormLabel htmlFor='email'>Email</FormLabel>
-            <InputControl
+      <form onSubmit={loginHandler}>
+        <div className={classes.FieldsContainer}>
+          <div className={classes.FieldsContainer}>
+            <label className={classes.FormLabel} htmlFor='email'>
+              Email
+            </label>
+            <input
+              className={classes.InputControl}
               type='email'
               name='email'
               id='email'
@@ -54,10 +51,13 @@ const Login = ({ setIsRegister }) => {
               value={userData.email}
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup>
-            <FormLabel htmlFor='password'>Password</FormLabel>
-            <InputControl
+          </div>
+          <div className={classes.FieldsContainer}>
+            <label className={classes.FormLabel} htmlFor='password'>
+              Password
+            </label>
+            <input
+              className={classes.InputControl}
               type='password'
               name='password'
               id='password'
@@ -65,13 +65,13 @@ const Login = ({ setIsRegister }) => {
               value={userData.password}
               onChange={handleChange}
             />
-          </FormGroup>
-        </FieldsContainer>
-        <BtnContainer>
-          <ButtonPrimary type='submit' onClick={loginHandler}>
+          </div>
+        </div>
+        <div className={classes.BtnContainer}>
+          <button className={classes.ButtonPrimary} type='submit'>
             Submit
-          </ButtonPrimary>
-        </BtnContainer>
+          </button>
+        </div>
       </form>
     </>
   );

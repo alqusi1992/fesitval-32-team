@@ -98,14 +98,14 @@ export const useStyles = makeStyles((theme, prop) => {
       fontSize: '36px !important',
     },
     drawerContainer: {
-      height: '88.5vh',
+      height: '100%',
       width: '100%',
       position: 'absolute',
-      zIndex: '999',
+      zIndex: '9999',
       opacity: ({ drawer }) => (drawer ? '1' : '0'),
       transition: 'opacity .6s,transform .6s !important',
       transform: ({ drawer }) =>
-        drawer ? 'translateY(0px)' : 'translateY(-800px)',
+        drawer ? 'translateY(0px)' : 'translateY(-1200px)',
       backgroundColor: theme.palette.primary.main,
     },
     drawerDropDownOuter: {
