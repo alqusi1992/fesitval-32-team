@@ -1,5 +1,4 @@
 import React from 'react';
-import { useStyles } from './NavStyles';
 import {
   Box,
   Grid,
@@ -10,25 +9,16 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ListItem } from './ListItem';
-import { useTheme } from '@mui/material/styles';
+import { useStyles } from './NavStyles';
 
 export const NavBar = ({ drawer, handleDrawer, matches }) => {
-  const theme = useTheme();
   const classes = useStyles({ drawer });
   return (
-    <AppBar
-      position='static'
-      className={drawer ? classes.appBarBlack : classes.appBarWhite}
-    >
+    <AppBar position='static' className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
         <Grid container maxWidth='xs' className={classes.logoContainer}>
           <Grid item>
             <Typography
-              color={
-                drawer
-                  ? theme.palette.secondary.main
-                  : theme.palette.primary.main
-              }
               variant='h6'
               className={classes.logo}
               component='div'

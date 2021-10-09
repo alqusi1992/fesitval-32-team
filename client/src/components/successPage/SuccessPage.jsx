@@ -14,13 +14,16 @@ export const SuccessPage = () => {
 
     if (orderInfo !== null) {
       try {
-        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/order`, {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-          },
-          body: JSON.stringify(orderInfo),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/order`,
+          {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify(orderInfo),
+          }
+        );
 
         const { order } = await response.json();
         setOrder(order);
@@ -41,7 +44,13 @@ export const SuccessPage = () => {
       {order.tickets ? (
         <>
           <Grid container justifyContent='center'>
-            <Grid container justifyContent='center' item xs={12} className='py-3'>
+            <Grid
+              container
+              justifyContent='center'
+              item
+              xs={12}
+              className='py-3'
+            >
               The Order has been successfully paid
             </Grid>
             <Grid container justifyContent='center' item xs={12}>
@@ -49,7 +58,11 @@ export const SuccessPage = () => {
                 <div className='main-container'>
                   <div className='check-container'>
                     <div className='check-background'>
-                      <svg viewBox='0 0 65 51' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <svg
+                        viewBox='0 0 65 51'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
                         <path
                           d='M7 25L27.3077 44L58.5 7'
                           stroke='white'
