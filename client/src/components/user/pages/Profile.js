@@ -29,8 +29,10 @@ const Profile = () => {
     }
 
     const fetchOrders = async () => {
-      const userOrders = await getOrders(user);
-      setOrders(userOrders);
+      const response = await getOrders(user);
+      if (response.success) {
+        setOrders(response.result);
+      }
     };
 
     fetchOrders();

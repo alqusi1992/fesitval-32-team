@@ -27,23 +27,21 @@ export const Order = ({ order }) => {
       border: 0,
     },
   }));
-
-  const ticketsData = [
-    {
-      _id: 123,
-      typeName: 'scbj',
-      quantity: 2,
-      price: 130,
+  const { totalQty, totalPrice } = order.tickets.reduce(
+    (total, ticket) => {
+      total.totalQty += ticket.quantity;
+      total.totalPrice += ticket.price;
+      return total;
     },
-  ];
-
+    { totalQty: 0, totalPrice: 0 },
+  );
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label='customized table'>
         <TableHead>
           <TableRow>
             <StyledTableCell>Order Number:</StyledTableCell>
-            <StyledTableCell align='right'>123</StyledTableCell>
+            <StyledTableCell align='right'>{order?._id}</StyledTableCell>
             <StyledTableCell align='right'>Download</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -55,7 +53,7 @@ export const Order = ({ order }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {ticketsData.map((ticket) => (
+          {order.tickets.map((ticket) => (
             <StyledTableRow key={ticket._id}>
               <StyledTableCell component='th' scope='row'>
                 {ticket.typeName}
@@ -68,8 +66,8 @@ export const Order = ({ order }) => {
             <StyledTableCell component='th' scope='row'>
               Total:
             </StyledTableCell>
-            <StyledTableCell align='right'>22</StyledTableCell>
-            <StyledTableCell align='right'>€ 10</StyledTableCell>
+            <StyledTableCell align='right'>{totalQty}</StyledTableCell>
+            <StyledTableCell align='right'>€{totalPrice}</StyledTableCell>
           </StyledTableRow>
         </TableBody>
       </Table>
