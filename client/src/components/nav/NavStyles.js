@@ -7,20 +7,9 @@ export const useStyles = makeStyles((theme, prop) => {
         padding: '10px',
       },
     },
-    appBarWhite: {
+    appBar: {
       '&&': {
-        backgroundColor: '#fff',
-        height: '82px',
-        justifyContent: 'center',
-        transition: 'all 0.5s ease-in-out',
-        [theme.breakpoints.up('mdlg')]: {
-          alignItems: 'center',
-        },
-      },
-    },
-    appBarBlack: {
-      '&&': {
-        backgroundColor: '#000',
+        backgroundColor: ({ drawer }) => (drawer ? '#000' : '#fff'),
         height: '82px',
         justifyContent: 'center',
         transition: 'all 0.5s ease-in-out',
@@ -51,6 +40,7 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     logo: {
       '&&': {
+        color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         lineHeight: '1',
         cursor: 'pointer',
         transition: 'transform .3s',
@@ -88,6 +78,7 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     listItemBtn: {
       '&&': {
+        color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         fontWeight: '900',
         transition: 'transform .3s',
         '&:hover': {
