@@ -9,12 +9,13 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ListItem } from './ListItem';
+import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
 
 export const NavBar = ({ drawer, handleDrawer, matches }) => {
   const classes = useStyles({ drawer });
   return (
-    <AppBar position='static' className={classes.appBar}>
+    <AppBar position='sticky' className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
         <Grid container maxWidth='xs' className={classes.logoContainer}>
           <Grid item>
@@ -61,6 +62,7 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
           </IconButton>
         </div>
       </Toolbar>
+      <NavDrawer {...{ drawer }} />
     </AppBar>
   );
 };

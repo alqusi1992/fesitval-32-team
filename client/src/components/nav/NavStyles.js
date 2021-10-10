@@ -33,6 +33,7 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         alignItems: 'center',
         flex: 1,
+        zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         [theme.breakpoints.up('lg')]: {
           marginLeft: '5px',
         },
@@ -46,7 +47,6 @@ export const useStyles = makeStyles((theme, prop) => {
         transition: 'transform .3s',
         '&:hover': {
           transform: 'translateX(4px)',
-          transition: 'all 0.3s ease-in-out',
           backgroundColor: 'transparent ',
         },
       },
@@ -55,6 +55,7 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         width: '250px',
         padding: '0px',
+        zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         [theme.breakpoints.up('s')]: {
           width: '150px',
           paddingLeft: '10px',
@@ -65,6 +66,7 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         lineHeight: '1.2',
         color: ({ drawer }) => (drawer ? '#fff' : '#000'),
+        zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
       },
     },
     listItemContainer: {
@@ -81,9 +83,9 @@ export const useStyles = makeStyles((theme, prop) => {
         color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         fontWeight: '900',
         transition: 'transform .3s',
+        zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         '&:hover': {
           transform: 'translateX(4px)',
-          transition: 'all 0.3s ease-in-out',
           backgroundColor: 'transparent ',
         },
       },
@@ -91,12 +93,14 @@ export const useStyles = makeStyles((theme, prop) => {
     iconBtn: {
       '&&': {
         marginRight: '0',
+        zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
       },
     },
     iconButtonContainer: {
       '&&': {
         backgroundColor: '#610527',
         marginLeft: '20px',
+        zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         borderRadius: '50%',
         width: '50px',
         height: '50px',
@@ -115,25 +119,26 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     drawerContainer: {
       '&&': {
-        height: '100%',
+        top: 0,
+        height: '100vh',
         width: '100%',
         position: 'absolute',
         zIndex: '9999',
         opacity: ({ drawer }) => (drawer ? '1' : '0'),
-        transition: 'opacity .6s,transform .6s',
+        transition: 'opacity .3s,transform .3s',
         transform: ({ drawer }) =>
-          drawer ? 'translateY(0px)' : 'translateY(-1200px)',
+          drawer ? 'translateY(0px)' : 'translateY(-100%)',
         backgroundColor: theme.palette.primary.main,
       },
     },
     drawerDropDownOuter: {
       '&&': {
         justifyContent: 'center',
+        paddingTop: '100px',
       },
     },
     drawerDropDown: {
       '&&': {
-        height: '50vh',
         maxWidth: '600px',
         margin: '20px',
       },
@@ -144,8 +149,8 @@ export const useStyles = makeStyles((theme, prop) => {
         alignItems: 'center',
         transition: 'transform .3s',
         '&:hover': {
-          transform: 'translateX(4px)',
-          transition: 'all 0.3s ease-in-out',
+          transform: 'translateX(8px)',
+          transition: 'transform .3s',
           cursor: 'pointer',
         },
       },
