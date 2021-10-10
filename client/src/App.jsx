@@ -10,26 +10,31 @@ import {
   PayButton,
   Tickets,
   Profile,
+  GuestForm,
 } from './components';
 import './app.css';
+import { GuestProvider } from './context/guestContext';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Router>
-        <NavBar />
-        <Container maxWidth='lg'>
-          <LandingPage />
-        </Container>
-        <Switch>
-          <Route exact path='/success' component={SuccessPage} />
-          <Route path='/tickets' component={Tickets} />
-          <Route path='/profile' component={Profile} />
-        </Switch>
-      </Router>
-      <PayButton />
-    </ThemeProvider>
+    <GuestProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <NavBar />
+          <Container maxWidth='lg'>
+            <LandingPage />
+          </Container>
+          <Switch>
+            <Route exact path='/success' component={SuccessPage} />
+            <Route exact path='/tickets' component={Tickets} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/guestMode' component={GuestForm} />
+          </Switch>
+        </Router>
+        <PayButton />
+      </ThemeProvider>
+    </GuestProvider>
   );
 }
 
