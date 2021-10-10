@@ -42,7 +42,7 @@ const Register = ({ setIsRegister }) => {
         showAlert('danger', response.msg, dispatch);
       }
     } else {
-      showAlert('danger', "passwords don't match");
+      showAlert('danger', "passwords don't match", dispatch);
     }
   };
   return (
