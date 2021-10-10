@@ -1,7 +1,7 @@
 import Order from '../models/Order.js';
 
 export const getOrders = async (req, res) => {
-  const userEmail = req.userEmail;
+  const { userEmail } = req;
   try {
     const userOrders = await Order.find({ email: userEmail });
     return res.status(200).json({ success: true, result: userOrders });
