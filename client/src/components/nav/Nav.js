@@ -11,8 +11,7 @@ const Nav = () => {
 
   return (
     <>
-      <NavBar {...{ handleDrawer, matches, drawer }} />
-      <NavDrawer {...{ drawer, setDrawer }} />
+      <NavBar {...{ handleDrawer, matches, drawer, setDrawer }} />
     </>
   );
 };
