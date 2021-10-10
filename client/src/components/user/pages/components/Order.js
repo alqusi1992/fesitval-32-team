@@ -34,7 +34,7 @@ export const Order = ({ order }) => {
       total.totalPrice += ticket.price;
       return total;
     },
-    { totalQty: 0, totalPrice: 0 }
+    { totalQty: 0, totalPrice: 0 },
   );
   return (
     <TableContainer component={Paper}>
@@ -60,7 +60,7 @@ export const Order = ({ order }) => {
         </TableHead>
         <TableBody>
           {order.tickets.map((ticket) => (
-            <StyledTableRow key={ticket._id}>
+            <StyledTableRow key={ticket.id}>
               <StyledTableCell component='th' scope='row'>
                 {ticket.typeName}
               </StyledTableCell>
