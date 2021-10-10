@@ -10,7 +10,7 @@ const paymentHandle = async (req, res) => {
 
   // adding quantity to the tickets
   const tickets = ticketsDB.map((ticket, index) => ({
-    _id: ticket.id,
+    id: ticket.id,
     typeName: ticket.typeName,
     price: ticket.price,
     quantity: req.body.tickets[index].quantity,

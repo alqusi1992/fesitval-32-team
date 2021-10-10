@@ -31,7 +31,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 export default function OrderDisplay({ order }) {
   const ticketsData = order.tickets.map((ticket) => {
     return {
-      _id: ticket._id,
+      id: ticket.id,
       typeName: ticket.typeName,
       quantity: ticket.quantity,
       price: ticket.price,
@@ -39,11 +39,11 @@ export default function OrderDisplay({ order }) {
   });
   const quantitySum = ticketsData.reduce(
     (acc, value) => acc + value.quantity,
-    0
+    0,
   );
   const priceSum = ticketsData.reduce(
     (acc, value) => acc + value.price * value.quantity,
-    0
+    0,
   );
 
   return (
@@ -58,7 +58,7 @@ export default function OrderDisplay({ order }) {
         </TableHead>
         <TableBody>
           {ticketsData.map((ticket) => (
-            <StyledTableRow key={ticket._id}>
+            <StyledTableRow key={ticket.id}>
               <StyledTableCell component='th' scope='row'>
                 {ticket.typeName}
               </StyledTableCell>

@@ -1,26 +1,11 @@
 import React, { useState } from 'react';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { LoadingButton } from '@mui/lab';
+import { useGuestContext } from '../../context/guestContext';
 
 export const PayButton = () => {
+  const { guestUserOrder } = useGuestContext();
   const [loading, setLoading] = useState(false); // to disable the payButton with first click
-  // this array is just for testing
-  const order = {
-    email: 'email@gmail.com',
-    festivalId: '6155a68b2a30ca8cc74de40f',
-    tickets: [
-      {
-        id: '6155a6c27d6165cc07b6d2a7',
-        typeName: 'Early Bird',
-        quantity: 2,
-      },
-      {
-        id: '6155af5cc783295f2444cadf',
-        typeName: 'Regular',
-        quantity: 4,
-      },
-    ],
-  };
 
   const payTickets = async () => {
     setLoading(true); // disable button when click
@@ -32,8 +17,8 @@ export const PayButton = () => {
           headers: {
             'content-type': 'application/json',
           },
-          body: JSON.stringify(order),
-        }
+          body: JSON.stringify(guestUserOrder),
+        },
       );
       const { url, msg, success, orderInfo } = await response.json();
 

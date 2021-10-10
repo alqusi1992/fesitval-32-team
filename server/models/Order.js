@@ -6,7 +6,7 @@ const orderSchema = new mongoose.Schema({
   festivalId: { type: String, required: true },
   tickets: [
     {
-      _id: { type: String, required: true },
+      id: { type: String, required: true },
       typeName: { type: String, required: true },
       quantity: { type: Number, required: true },
       price: { type: Number, required: true },
