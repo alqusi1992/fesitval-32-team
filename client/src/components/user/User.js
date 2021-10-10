@@ -28,22 +28,22 @@ const User = ({ setIsRegister }) => {
           <Register setIsRegister={setIsRegister} />
         )}
         {isLogin && (
-          <p>
+          <div style={{ marginTop: '20px' }}>
             Don't have an account yet?
             <LogInRegister onClick={() => setIsLogin(false)}>
               {' '}
               Register
             </LogInRegister>
-          </p>
+          </div>
         )}
         {!isLogin && (
-          <p>
+          <div style={{ marginTop: '20px' }}>
             Already have an account?
             <LogInRegister onClick={() => setIsLogin(true)}>
               {' '}
               Log In
             </LogInRegister>
-          </p>
+          </div>
         )}
       </Modal>
     </ModalContainer>

@@ -60,8 +60,9 @@ export const CancelContainer = styled.div`
     top: -35px;
   }
 `;
-export const LogInRegister = styled.div`
+export const LogInRegister = styled.p`
   color: blue;
+  display: inline;
   &:hover {
     cursor: pointer;
   }

@@ -25,10 +25,18 @@ export const DownloadButton = ({ order }) => {
     const pdfBlob = new Blob([blob], { type: 'application/pdf' });
     saveAs(pdfBlob, `${order._id}.pdf`);
   };
+
   return (
     <>
       <LoadingButton
-        className='btn-download'
+        sx={{
+          backgroundColor: '#ccc',
+          color: '#000',
+          boxShadow: 'none',
+          '&:hover': {
+            backgroundColor: '#fff',
+          },
+        }}
         endIcon={<FileDownloadIcon />}
         onClick={() => downloadOrder(order)}
         loading={loading}

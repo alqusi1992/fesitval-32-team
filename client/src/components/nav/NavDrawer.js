@@ -5,7 +5,7 @@ import { Box } from '@mui/system';
 import DrawerListButton from './DrawerListButton';
 import { useStyles } from './NavStyles';
 
-export const NavDrawer = ({ drawer }) => {
+export const NavDrawer = ({ drawer, setDrawer }) => {
   const [isRegister, setIsRegister] = useState(false);
   const classes = useStyles({ drawer });
   const list = () => (
@@ -16,7 +16,10 @@ export const NavDrawer = ({ drawer }) => {
             <Grid container className={classes.drawerDropDown}>
               <DrawerListButton
                 text='login'
-                handleClick={() => setIsRegister(true)}
+                handleClick={() => {
+                  setDrawer(false);
+                  setIsRegister(true);
+                }}
               />
               <DrawerListButton text='program' handleClick={() => {}} />
               <DrawerListButton text='tickets' handleClick={() => {}} />

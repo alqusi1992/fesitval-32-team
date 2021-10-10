@@ -9,6 +9,7 @@ import {
   NavBar,
   PayButton,
   Tickets,
+  Profile,
 } from './components';
 import './app.css';
 
@@ -22,8 +23,9 @@ function App() {
           <LandingPage />
         </Container>
         <Switch>
-          <Route exact path='/tickets' component={Tickets} />
           <Route exact path='/success' component={SuccessPage} />
+          <Route path='/tickets' component={Tickets} />
+          <Route path='/profile' component={Profile} />
         </Switch>
       </Router>
       <PayButton />
