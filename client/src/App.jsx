@@ -34,7 +34,7 @@ function App() {
           </Container>
           <Footer />
         </Router>
-        {/* <PayButton /> */}
+        <PayButton />
       </ThemeProvider>
     </GuestProvider>
   );
