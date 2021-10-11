@@ -7,7 +7,10 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "server": "nodemon index.js"
+    "start": "node index.js",
+    "install-client": "cd .. && cd client && npm install",
+    "build": "cd .. && cd client && npm run build ",
+    "heroku-postbuild": "npm run install-client && npm run build "
   },
   "keywords": [],
   "author": "",
