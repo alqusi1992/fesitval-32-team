@@ -10,7 +10,7 @@ const paymentHandle = async (req, res) => {
 
   // adding quantity to the tickets
   const tickets = ticketsDB.map((ticket, index) => ({
-    _id: ticket.id,
+    id: ticket.id,
     typeName: ticket.typeName,
     price: ticket.price,
     quantity: req.body.tickets[index].quantity,
@@ -40,8 +40,8 @@ const paymentHandle = async (req, res) => {
       payment_method_types: ['card'],
       mode: 'payment',
       line_items: purchasedTickets,
-      success_url: process.env.STRIPE_SUCCESS_LINK,
-      cancel_url: process.env.STRIPE_CANCEL_LINK,
+      success_url: `${process.env.CLIENT_URL}/success`,
+      cancel_url: `${process.env.CLIENT_URL}/tickets`,
       customer_email: req.body.email,
     });
     return res.json({

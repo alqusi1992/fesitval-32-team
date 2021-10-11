@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Alert from '../../alert/Alert';
 import { showAlert } from '../../../actions/alertActions';
 import { useValue } from '../../../context/globalContext';
@@ -6,6 +7,7 @@ import { login } from '../../../actions/userActions';
 import { useStyles } from './LoginStyles';
 
 const Login = ({ setIsRegister }) => {
+  const history = useHistory();
   const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
@@ -27,6 +29,7 @@ const Login = ({ setIsRegister }) => {
     const response = await login(userData, dispatch);
     if (response.success) {
       setIsRegister(false);
+      history.push('/profile');
     } else {
       showAlert('danger', response.msg, dispatch);
     }

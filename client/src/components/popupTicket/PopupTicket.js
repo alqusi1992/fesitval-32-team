@@ -6,6 +6,7 @@ import {
   ButtonWrapper,
 } from './PopupTicketStyles';
 import { useGuestContext } from '../../context/guestContext';
+import { Link } from 'react-router-dom';
 
 const PopupTicket = ({ trigger, setTrigger, ticket }) => {
   const [ticketsQty, setTicketsQty] = useState(0);
@@ -26,7 +27,7 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
 
   const storeOrderInContext = () => {
     setGuestUserOrder((prev) => {
-      const foundTicket = prev.tickets.find((t) => t._id === ticket._id);
+      const foundTicket = prev.tickets.find((t) => t.id === ticket._id);
       if (foundTicket) {
         foundTicket.quantity = ticketsQty;
         return {
@@ -37,13 +38,13 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
           prev.tickets.shift();
         }
         prev.tickets.push({
-          _id: ticket._id,
+          id: ticket._id,
           typeName: ticket.typeName,
           quantity: ticketsQty,
-          festivalId: ticket.festivalId,
         });
         return {
           ...prev,
+          festivalId: ticket.festivalId,
           tickets: prev.tickets,
         };
       }
@@ -56,8 +57,7 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
   return trigger ? (
     <PopupTicketWrapper>
       <PopupInnerWrapper>
-        <h2>{ticket.typeName}</h2>
-        <h2>{ticket.price}€</h2>
+        <h2>{ticket.typeName}</h2> <h2>{ticket.price}€</h2>
         <ButtonWrapper onClick={removeTicket}>-</ButtonWrapper>
         <span>{ticketsQty}</span>
         <ButtonWrapper onClick={addTicket}>+</ButtonWrapper>
@@ -68,6 +68,17 @@ const PopupTicket = ({ trigger, setTrigger, ticket }) => {
         >
           ADD
         </ButtonWrapper>
+        <br></br>
+        <Link to='/guestMode'>
+          <ButtonWrapper style={{ borderRadius: '10px' }}>
+            Continue as guest
+          </ButtonWrapper>
+        </Link>
+        <Link to='/login'>
+          <ButtonWrapper style={{ borderRadius: '10px', background: 'black' }}>
+            Login
+          </ButtonWrapper>
+        </Link>
         <CloseBtn
           onClick={() => {
             setTrigger(false);
