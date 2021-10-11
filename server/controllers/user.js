@@ -36,9 +36,7 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const {
-    email, password, firstName, lastName, phone,
-  } = req.body;
+  const { email, password, firstName, lastName, phone } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -92,9 +90,7 @@ export const deleteAccount = async (req, res) => {
 };
 
 export const updateAccount = async (req, res) => {
-  const {
-    email, password, firstName, lastName, phone,
-  } = req.body;
+  const { email, password, firstName, lastName, phone } = req.body;
   const useObj = {
     firstName,
     lastName,
@@ -107,7 +103,7 @@ export const updateAccount = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       { _id: req.params.id },
       { $set: useObj },
-      { upsert: true, new: true },
+      { new: true },
     );
     return res.status(200).json({ success: true, msg: 'Success', user });
   } catch (error) {
