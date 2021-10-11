@@ -23,7 +23,7 @@ export const NavDrawer = ({ drawer, setDrawer }) => {
               />
               <DrawerListButton text='program' handleClick={() => {}} />
               <DrawerListButton text='tickets' handleClick={() => {}} />
-              <DrawerListButton text='about' handleClick={() => {}} />
+              <DrawerListButton text='about us' handleClick={() => {}} />
               <DrawerListButton text='contact' handleClick={() => {}} />
             </Grid>
           </Grid>
