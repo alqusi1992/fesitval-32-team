@@ -47,7 +47,7 @@ app.use('/order', orderRouter);
 app.use('/tickets', ticketRouter);
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('WELCOME TO OUR API!');
 });
 
 startServer();
