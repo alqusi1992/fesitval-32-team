@@ -36,7 +36,9 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const { email, password, firstName, lastName, phone } = req.body;
+  const {
+    email, password, firstName, lastName, phone,
+  } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -90,7 +92,9 @@ export const deleteAccount = async (req, res) => {
 };
 
 export const updateAccount = async (req, res) => {
-  const { email, password, firstName, lastName, phone } = req.body;
+  const {
+    email, password, firstName, lastName, phone,
+  } = req.body;
   const useObj = {
     firstName,
     lastName,
