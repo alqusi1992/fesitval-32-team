@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '..';
-import { ListWrapper, ListItem, iconsStyles } from './FooterStyles';
+import { ListWrapper, ListItem } from './FooterStyles';
 
 const FooterList = () => {
   const [isRegister, setIsRegister] = useState(false);
