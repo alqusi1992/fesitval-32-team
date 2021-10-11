@@ -24,6 +24,7 @@ export const FooterWrapper = styled.footer`
   bottom: 0;
   color: #fff;
   margin-top: auto;
+  padding-top: 10px;
 `;
 
 export const ListWrapper = styled.ul`
@@ -31,6 +32,18 @@ export const ListWrapper = styled.ul`
   text-decoration: none;
   font-size: 20px;
   font-weight: 500;
+  padding-left: 20px;
+  margin-left: 10px;
+  position: relative;
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: 0%;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #610527;
+  }
 `;
 
 export const ListItem = styled.li`

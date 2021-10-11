@@ -9,7 +9,7 @@ const SocialMediaIcons = () => {
   const { facebookIcon, instagramIcon, youTubeIcon } = iconsStyles();
 
   return (
-    <Grid container justifyContent='space-between' sx={{ paddingTop: '20px' }}>
+    <Grid container justifyContent='space-around'>
       <Grid item xm={2}>
         <FacebookIcon
           sx={{ fontSize: '40px', transition: 'all .2s' }}
