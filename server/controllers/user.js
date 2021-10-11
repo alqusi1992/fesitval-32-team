@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import { comparePassword } from '../utils/helper.js';
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -11,9 +12,10 @@ export const login = async (req, res) => {
         .status(404)
         .json({ success: false, msg: "Account doesn't exist" });
     }
-    const correctPassword = await bcrypt.compare(
+    const correctPassword = await comparePassword(
+      bcrypt,
       password,
-      existedUser.password,
+      existedUser
     );
     if (!correctPassword) {
       return res
@@ -43,9 +45,7 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const {
-    email, password, firstName, lastName, phone,
-  } = req.body;
+  const { email, password, firstName, lastName, phone } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -87,10 +87,19 @@ export const register = async (req, res) => {
 
 export const deleteAccount = async (req, res) => {
   try {
+    const { password } = req.body;
     const { userId } = req;
     const existedUser = await User.findById(userId);
     if (!existedUser) {
       return res.status(404).json({ success: false, msg: 'User not found' });
+    }
+    const correctPassword = await comparePassword(
+      bcrypt,
+      password,
+      existedUser
+    );
+    if (!correctPassword) {
+      return res.status(400).json({ success: false, msg: 'Wrong password' });
     }
     await User.findByIdAndDelete(userId);
     return res.json({ success: true, msg: 'user is deleted' });
@@ -101,11 +110,17 @@ export const deleteAccount = async (req, res) => {
 
 export const updateAccount = async (req, res) => {
   try {
-    const {
-      firstName, lastName, email, password, phone,
-    } = req.body;
+    const { firstName, lastName, email, password, phone } = req.body;
     const { userId } = req;
     const existedUser = await User.findById(userId);
+    const correctPassword = await comparePassword(
+      bcrypt,
+      password,
+      existedUser
+    );
+    if (!correctPassword) {
+      return res.status(400).json({ success: false, msg: 'Wrong password' });
+    }
     const updatedUser = {
       firstName: firstName || existedUser.firstName,
       lastName: lastName || existedUser.lastName,
@@ -119,9 +134,18 @@ export const updateAccount = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       userId,
       { $set: updatedUser },
-      { new: true },
+      { new: true }
     );
-    return res.status(200).json({ success: true, msg: 'Success', user });
+
+    return res.status(200).json({
+      success: true,
+      result: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+      },
+    });
   } catch (error) {
     return res.status(500).json({ success: false, msg: 'Server Error' });
   }
