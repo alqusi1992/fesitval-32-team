@@ -50,7 +50,4 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
 startServer();
