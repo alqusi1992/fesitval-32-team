@@ -12,11 +12,7 @@ export const login = async (req, res) => {
         .status(404)
         .json({ success: false, msg: "Account doesn't exist" });
     }
-    const correctPassword = await comparePassword(
-      bcrypt,
-      password,
-      existedUser,
-    );
+    const correctPassword = await comparePassword(password, existedUser);
     if (!correctPassword) {
       return res
         .status(400)
@@ -45,9 +41,7 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const {
-    email, password, firstName, lastName, phone,
-  } = req.body;
+  const { email, password, firstName, lastName, phone } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -95,11 +89,7 @@ export const deleteAccount = async (req, res) => {
     if (!existedUser) {
       return res.status(404).json({ success: false, msg: 'User not found' });
     }
-    const correctPassword = await comparePassword(
-      bcrypt,
-      password,
-      existedUser,
-    );
+    const correctPassword = await comparePassword(password, existedUser);
     if (!correctPassword) {
       return res.status(400).json({ success: false, msg: 'Wrong password' });
     }
@@ -112,16 +102,11 @@ export const deleteAccount = async (req, res) => {
 
 export const updateAccount = async (req, res) => {
   try {
-    const {
-      firstName, lastName, email, password, phone,
-    } = req.body;
+    const { firstName, lastName, email, newPassword, phone, currentPassword } =
+      req.body;
     const { userId } = req;
     const existedUser = await User.findById(userId);
-    const correctPassword = await comparePassword(
-      bcrypt,
-      password,
-      existedUser,
-    );
+    const correctPassword = await comparePassword(currentPassword, existedUser);
     if (!correctPassword) {
       return res.status(400).json({ success: false, msg: 'Wrong password' });
     }
@@ -129,8 +114,8 @@ export const updateAccount = async (req, res) => {
       firstName: firstName || existedUser.firstName,
       lastName: lastName || existedUser.lastName,
       email: email || existedUser.email,
-      password: password
-        ? await bcrypt.hash(password, 12)
+      password: newPassword
+        ? await bcrypt.hash(newPassword, 12)
         : existedUser.password,
       phone: phone || existedUser.phone,
     };
@@ -138,7 +123,7 @@ export const updateAccount = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       userId,
       { $set: updatedUser },
-      { new: true },
+      { new: true }
     );
 
     return res.status(200).json({
