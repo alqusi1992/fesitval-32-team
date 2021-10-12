@@ -22,6 +22,12 @@ const globalReducer = (state, action) => {
 
     case 'CLOSE_ALERT':
       return { ...state, alert: { isAlert: false, type: '', message: '' } };
+
+    case 'START_LOADING':
+      return { ...state, isLoading: true };
+    case 'END_LOADING':
+      return { ...state, isLoading: false };
+
     default:
       throw new Error('No action type matched');
   }
