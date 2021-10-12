@@ -4,7 +4,8 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import { GuestForm, Tickets } from '..';
+import Tickets from './tickets/Tickets';
+import GuestForm from './guestForm/GuestForm';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 

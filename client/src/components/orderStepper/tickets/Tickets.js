@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useGuestContext } from '../../context/guestContext';
+import { useGuestContext } from '../../../context/guestContext';
 import Ticket from './Ticket';
 
 const Tickets = () => {

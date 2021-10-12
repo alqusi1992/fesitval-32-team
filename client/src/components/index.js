@@ -4,8 +4,6 @@ export { default as Register } from './user/register/Register';
 export { default as User } from './user/User';
 export { default as Profile } from './user/pages/Profile';
 export { PayButton } from './payButton/PayButton';
-export { default as Tickets } from './tickets/Tickets';
 export { SuccessPage } from './successPage/SuccessPage';
-export { default as GuestForm } from './guestForm/GuestForm';
 export { default as Footer } from './footer/Footer';
 export { default as OrderStepper } from './orderStepper/OrderStepper';

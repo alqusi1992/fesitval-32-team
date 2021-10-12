@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useGuestContext } from '../../context/guestContext';
+import { useGuestContext } from '../../../context/guestContext';
 import { ButtonWrapper, TicketsWrapper } from './ticketsStyles';
 
 const Ticket = ({ ticket }) => {
