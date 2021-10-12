@@ -41,7 +41,9 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const { email, password, firstName, lastName, phone } = req.body;
+  const {
+    email, password, firstName, lastName, phone,
+  } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -102,8 +104,9 @@ export const deleteAccount = async (req, res) => {
 
 export const updateAccount = async (req, res) => {
   try {
-    const { firstName, lastName, email, newPassword, phone, currentPassword } =
-      req.body;
+    const {
+      firstName, lastName, email, newPassword, phone, currentPassword,
+    } = req.body;
     const { userId } = req;
     const existedUser = await User.findById(userId);
     const correctPassword = await comparePassword(currentPassword, existedUser);
@@ -123,7 +126,7 @@ export const updateAccount = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       userId,
       { $set: updatedUser },
-      { new: true }
+      { new: true },
     );
 
     return res.status(200).json({
