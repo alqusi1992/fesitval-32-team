@@ -11,8 +11,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { ListItem } from './ListItem';
 import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
+import NavUser from './NavUser/NavUser';
 
-export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
+export const NavBar = ({ drawer, handleDrawer, matches }) => {
   const classes = useStyles({ drawer });
   return (
     <AppBar position='sticky' className={classes.appBar}>
@@ -48,6 +49,7 @@ export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
             <ListItem text='tickets' drawer={drawer} />
           </Grid>
         )}
+        <NavUser />
         <div className={classes.iconButtonContainer}>
           <IconButton
             className={classes.iconBtn}
@@ -62,7 +64,7 @@ export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
           </IconButton>
         </div>
       </Toolbar>
-      <NavDrawer {...{ drawer, setDrawer }} />
+      <NavDrawer {...{ drawer }} />
     </AppBar>
   );
 };
