@@ -7,6 +7,7 @@ import {
   LandingPage,
   SuccessPage,
   NavBar,
+  Loading,
   PayButton,
   Tickets,
   Profile,
@@ -25,6 +26,7 @@ function App() {
         <Router>
           <NavBar />
           <DeleteAccount />
+          <Loading />
           <Container maxWidth='lg' style={{ paddingBottom: '250px' }}>
             <Switch>
               <Route exact path='/' component={LandingPage} />
