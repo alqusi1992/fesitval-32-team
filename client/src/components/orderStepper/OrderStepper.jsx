@@ -6,6 +6,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Tickets from './tickets/Tickets';
 import GuestForm from './guestForm/GuestForm';
+import OrderSummary from './orderSummary/OrderSummary';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
@@ -37,7 +38,7 @@ const OrderStepper = () => {
       <>
         {activeStep === 0 && <Tickets />}
         {activeStep === 1 && <GuestForm />}
-        {activeStep === 2 && 3}
+        {activeStep === 2 && <OrderSummary />}
 
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
           <Button

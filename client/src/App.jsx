@@ -7,7 +7,6 @@ import {
   LandingPage,
   SuccessPage,
   NavBar,
-  PayButton,
   Profile,
   Footer,
   OrderStepper,
@@ -32,7 +31,6 @@ function App() {
           </Container>
           <Footer />
         </Router>
-        <PayButton />
       </ThemeProvider>
     </GuestProvider>
   );
