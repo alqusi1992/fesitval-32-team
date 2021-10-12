@@ -15,6 +15,7 @@ import {
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
+import DeleteAccount from './components/user/pages/components/DeleteAccount';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <CssBaseline />
         <Router>
           <NavBar />
+          <DeleteAccount />
           <Container maxWidth='lg' style={{ paddingBottom: '250px' }}>
             <Switch>
               <Route exact path='/' component={LandingPage} />
