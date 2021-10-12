@@ -54,9 +54,8 @@ const GuestForm = () => {
       />
       {errors.email && <PWrapper>{errors.email.message}</PWrapper>}
 
-      <ButtonWrapper type='submit'>➝ CHECK OUT</ButtonWrapper>
     </FormWrapper>
-  );
+  ); 
 };
 
 export default GuestForm;
