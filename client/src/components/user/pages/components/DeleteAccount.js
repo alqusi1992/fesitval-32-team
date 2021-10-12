@@ -11,7 +11,6 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const DeleteAccount = () => {
   const history = useHistory();
-  // const [deleteAccount, setDeleteAccount] = useState(false);
   const [userPassword, setUserPassword] = useState('');
   const {
     state: { user },
