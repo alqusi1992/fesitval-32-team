@@ -22,7 +22,7 @@ const OrderStepper = () => {
   return (
     <Box sx={{ width: '100%' }}>
       <Stepper activeStep={activeStep}>
-        {steps.map((label, index) => {
+        {steps.map((label) => {
           const stepProps = {};
           const labelProps = {};
 

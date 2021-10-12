@@ -9,7 +9,6 @@ import {
   NavBar,
   PayButton,
   Profile,
-  GuestForm,
   Footer,
   OrderStepper,
 } from './components';
@@ -29,7 +28,6 @@ function App() {
               <Route exact path='/success' component={SuccessPage} />
               <Route exact path='/tickets' component={OrderStepper} />
               <Route exact path='/profile' component={Profile} />
-              <Route exact path='/guestMode' component={GuestForm} />
             </Switch>
           </Container>
           <Footer />

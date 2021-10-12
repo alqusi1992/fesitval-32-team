@@ -12,13 +12,7 @@ export const GuestProvider = ({ children }) => {
     lastName: '',
     email: '',
     festivalId: '',
-    tickets: [
-      {
-        id: '',
-        typeName: '',
-        quantity: 0,
-      },
-    ],
+    tickets: [],
   });
   const value = {
     guestUserOrder,

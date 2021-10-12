@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import PopupTicket from '../popupTicket/PopupTicket';
-import { TicketsWrapper, ButtonWrapper } from './ticketsStyles';
+import { useGuestContext } from '../../context/guestContext';
+import Ticket from './Ticket';
 
 const Tickets = () => {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState('');
-  const [showPopup, setShowPopup] = useState(false);
-  const [selectedTicket, setSelectedTicket] = useState({});
-
+  const { guestUserOrder } = useGuestContext();
+  let totalTicketsPrice = 0;
+  if (guestUserOrder.tickets.length > 0) {
+    totalTicketsPrice = guestUserOrder.tickets.reduce(
+      (acc, value) => acc + value.price * value.quantity,
+      0,
+    );
+  }
   const fetchTickets = async () => {
     try {
       const url = process.env.REACT_APP_SERVER_URL + '/tickets';
@@ -29,31 +34,9 @@ const Tickets = () => {
       {error && <h3>Sorry! the tickets are not available now</h3>}
       {tickets &&
         tickets.map((ticket) => {
-          return (
-            <TicketsWrapper key={ticket._id}>
-              <h1>{ticket.typeName}</h1>
-              {ticket.availableQty === 0 ? (
-                <ButtonWrapper disabled={true}>SOLD OUT</ButtonWrapper>
-              ) : (
-                <>
-                  <ButtonWrapper
-                    onClick={() => {
-                      setSelectedTicket(ticket);
-                      setShowPopup(true);
-                    }}
-                  >
-                    Ticket Details
-                  </ButtonWrapper>
-                </>
-              )}
-            </TicketsWrapper>
-          );
+          return <Ticket ticket={ticket} />;
         })}
-      <PopupTicket
-        trigger={showPopup}
-        setTrigger={setShowPopup}
-        ticket={selectedTicket}
-      />
+      <h1>Total: € {totalTicketsPrice}</h1>
     </div>
   );
 };
