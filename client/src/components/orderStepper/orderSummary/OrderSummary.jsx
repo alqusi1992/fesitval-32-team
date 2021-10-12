@@ -38,8 +38,8 @@ const OrderSummary = () => {
             Quantity
           </Grid>
         </Grid>
-        {tickets.map((ticket) => (
-          <Grid container item xs={12}>
+        {tickets.map((ticket, idx) => (
+          <Grid container item xs={12} key={idx}>
             <Grid item xs={4}>
               {ticket.typeName}
             </Grid>

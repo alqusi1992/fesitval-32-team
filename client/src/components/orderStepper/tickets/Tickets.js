@@ -34,7 +34,7 @@ const Tickets = () => {
       {error && <h3>Sorry! the tickets are not available now</h3>}
       {tickets &&
         tickets.map((ticket) => {
-          return <Ticket ticket={ticket} />;
+          return <Ticket key={ticket._id} ticket={ticket} />;
         })}
       <h1>Total: € {totalTicketsPrice}</h1>
     </div>

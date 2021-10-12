@@ -7,6 +7,7 @@ import {
   LandingPage,
   SuccessPage,
   NavBar,
+  Loading,
   Profile,
   Footer,
   OrderStepper,
@@ -21,6 +22,7 @@ function App() {
         <CssBaseline />
         <Router>
           <NavBar />
+          <Loading />
           <Container maxWidth='lg' style={{ paddingBottom: '250px' }}>
             <Switch>
               <Route exact path='/' component={LandingPage} />
