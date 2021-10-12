@@ -8,7 +8,6 @@ const FooterList = () => {
   return (
     <>
       <ListWrapper>
-        <ListItem onClick={() => setIsRegister(true)}>Log in</ListItem>
         <Link>
           <ListItem>Program</ListItem>
         </Link>
