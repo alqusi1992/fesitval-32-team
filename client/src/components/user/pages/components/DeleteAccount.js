@@ -4,21 +4,31 @@ import { useValue } from '../../../../context/globalContext';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { logout } from '../../../../actions/userActions';
+import { useHistory } from 'react-router';
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const DeleteAccount = () => {
-  const [deleteAccount, setDeleteAccount] = useState(false);
+  const history = useHistory();
+  // const [deleteAccount, setDeleteAccount] = useState(false);
   const [userPassword, setUserPassword] = useState('');
   const {
     state: { user },
+    dispatch,
   } = useValue();
 
   const fetchUser = async () => {
-    const response = await deleteUser(user, userPassword);
-    if (response.success) {
-      setDeleteAccount(true);
+    try {
+      const response = await deleteUser(user, userPassword);
+      if (response.success) {
+        logout(dispatch);
+        history.push('/');
+        setUserPassword('');
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    alert(deleteAccount && 'account deleted');
   };
 
   return (
@@ -38,7 +48,7 @@ const DeleteAccount = () => {
           onChange={(e) => setUserPassword(e.target.value)}
         />
         <Button variant='contained' onClick={fetchUser}>
-          DELETE
+          DELETE ACCOUNT
         </Button>
       </Box>
     </>
