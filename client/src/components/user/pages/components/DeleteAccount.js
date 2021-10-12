@@ -6,8 +6,6 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { logout } from '../../../../actions/userActions';
 import { useHistory } from 'react-router';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const DeleteAccount = () => {
   const history = useHistory();
@@ -19,11 +17,13 @@ const DeleteAccount = () => {
 
   const fetchUser = async () => {
     try {
+      dispatch({ type: 'START_LOADING' });
       const response = await deleteUser(user, userPassword);
       if (response.success) {
         logout(dispatch);
         history.push('/');
         setUserPassword('');
+        dispatch({ type: 'END_LOADING' });
       }
     } catch (error) {
       console.log(error);
