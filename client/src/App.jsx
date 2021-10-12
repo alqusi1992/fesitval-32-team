@@ -8,10 +8,10 @@ import {
   SuccessPage,
   NavBar,
   PayButton,
-  Tickets,
   Profile,
   GuestForm,
   Footer,
+  OrderStepper,
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
@@ -27,7 +27,7 @@ function App() {
             <Switch>
               <Route exact path='/' component={LandingPage} />
               <Route exact path='/success' component={SuccessPage} />
-              <Route exact path='/tickets' component={Tickets} />
+              <Route exact path='/tickets' component={OrderStepper} />
               <Route exact path='/profile' component={Profile} />
               <Route exact path='/guestMode' component={GuestForm} />
             </Switch>
