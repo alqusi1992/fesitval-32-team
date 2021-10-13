@@ -4,7 +4,19 @@ import { LoadingButton } from '@mui/lab';
 import { useGuestContext } from '../../context/guestContext';
 
 export const PayButton = () => {
-  const { guestUserOrder } = useGuestContext();
+  const {
+    guestUserOrder: { tickets, festivalId },
+    guestUserOrder: {
+      userInfo: { firstName, lastName, email },
+    },
+  } = useGuestContext();
+  const order = {
+    firstName,
+    lastName,
+    email,
+    tickets,
+    festivalId,
+  };
   const [loading, setLoading] = useState(false); // to disable the payButton with first click
 
   const payTickets = async () => {
@@ -17,7 +29,7 @@ export const PayButton = () => {
           headers: {
             'content-type': 'application/json',
           },
-          body: JSON.stringify(guestUserOrder),
+          body: JSON.stringify(order),
         },
       );
       const { url, msg, success, orderInfo } = await response.json();

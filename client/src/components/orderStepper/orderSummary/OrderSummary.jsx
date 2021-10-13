@@ -5,7 +5,10 @@ import { useGuestContext } from '../../../context/guestContext';
 
 const OrderSummary = () => {
   const { guestUserOrder } = useGuestContext();
-  const { firstName, lastName, email, tickets } = guestUserOrder;
+  const {
+    userInfo: { firstName, lastName, email },
+    tickets,
+  } = guestUserOrder;
   const totalTicketsPrice = guestUserOrder.tickets.reduce(
     (acc, value) => acc + value.price * value.quantity,
     0,

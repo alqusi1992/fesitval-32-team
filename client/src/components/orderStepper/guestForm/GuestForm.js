@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormWrapper } from './GuestFormStyles';
 import { useGuestContext } from '../../../context/guestContext';
@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import FormControl from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { Button } from '@mui/material';
 
 const GuestForm = ({ setFormSubmit }) => {
   const {
@@ -45,7 +46,6 @@ const GuestForm = ({ setFormSubmit }) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
     setFormSubmit(true);
     setGuestUserOrder((prev) => ({
       ...prev,
@@ -66,7 +66,7 @@ const GuestForm = ({ setFormSubmit }) => {
   }, [userInfo]);
 
   return (
-    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+    <FormWrapper>
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.firstName?.type}
@@ -173,7 +173,9 @@ const GuestForm = ({ setFormSubmit }) => {
         </FormControl>
       )}
 
-      <button type='submit'>submit</button>
+      <Button variant='contained' onClick={handleSubmit(onSubmit)}>
+        submit
+      </Button>
     </FormWrapper>
   );
 };

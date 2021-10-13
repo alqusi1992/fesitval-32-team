@@ -18,9 +18,9 @@ const OrderStepper = () => {
   const [formSubmit, setFormSubmit] = useState(false);
 
   const step = {
-    first: activeStep === steps.length - 3,
-    second: activeStep === steps.length - 2,
-    third: activeStep === steps.length - 1,
+    first: activeStep === 0,
+    second: activeStep === 1,
+    third: activeStep === 2,
   };
 
   const disableNextButton = step.third
