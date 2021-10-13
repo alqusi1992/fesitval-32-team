@@ -16,6 +16,7 @@ import {
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
+import MyAccount from './components/user/pages/components/manageAccount/MyAccount';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route exact path='/tickets' component={Tickets} />
               <Route exact path='/profile' component={Profile} />
               <Route exact path='/guestMode' component={GuestForm} />
+              <Route exact path='/account' component={MyAccount} />
             </Switch>
           </Container>
           <Footer />
