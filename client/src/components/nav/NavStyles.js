@@ -43,6 +43,7 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         lineHeight: '1',
+        fontSize: '35px',
         cursor: 'pointer',
         transition: 'transform .3s',
         '&:hover': {
@@ -53,11 +54,10 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     navDate: {
       '&&': {
-        width: '250px',
+        maxWidth: '160px',
         padding: '0px',
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         [theme.breakpoints.up('s')]: {
-          width: '150px',
           paddingLeft: '10px',
         },
       },
