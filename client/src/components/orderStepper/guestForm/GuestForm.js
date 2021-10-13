@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-  FormWrapper,
-  ButtonWrapper,
-  InputWrapper,
-  PWrapper,
-} from './GuestFormStyles';
+import { FormWrapper } from './GuestFormStyles';
 import { useGuestContext } from '../../../context/guestContext';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -27,20 +20,12 @@ const GuestForm = () => {
   const { guestUserOrder, setGuestUserOrder } = useGuestContext();
 
   const [values, setValues] = useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
     showPassword: false,
   });
   const [checked, setChecked] = useState(false);
 
   const handleCheckBox = (event) => {
     setChecked(event.target.checked);
-  };
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
   };
 
   const handleClickShowPassword = () => {
@@ -54,55 +39,64 @@ const GuestForm = () => {
     event.preventDefault();
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  // };
+  const onSubmit = (data) => {};
 
   return (
-    <FormWrapper onSubmit={handleSubmit}>
-      <InputWrapper
-        type='text'
-        placeholder='First name...'
-        {...register('firstName', {
-          required: 'Please enter your first name!',
-        })}
-        onChange={(e) =>
-          setGuestUserOrder({ ...guestUserOrder, firstName: e.target.value })
-        }
-      />
-      {errors.firstName && <PWrapper>{errors.firstName.message}</PWrapper>}
-      {/* <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
+    <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+      <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
-          // error
+          error={errors?.firstName?.type}
           id='standard-textarea'
           label='First Name'
           placeholder='John'
           multiline
           variant='standard'
-          helperText='Incorrect entry.'
+          helperText={errors?.firstName?.message}
+          {...register('firstName', {
+            required: 'Please insert your first name!',
+            pattern: {
+              value: /^[A-Za-z]+$/i,
+              message: 'Insert only letters',
+            },
+          })}
         />
-      </FormControl> */}
+      </FormControl>
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
+          error={errors?.lastName?.type}
           id='standard-textarea'
           label='Last Name'
           placeholder='Doe'
           multiline
           variant='standard'
-          {...register('lastName', { pattern: /^[A-Za-z]+$/i, required: true })}
+          helperText={errors?.lastName?.message}
+          {...register('lastName', {
+            required: 'Please insert your last name!',
+            pattern: {
+              value: /^[A-Za-z]+$/i,
+              message: 'Insert only letters',
+            },
+          })}
         />
-        {errors?.lastName?.type === 'pattern' && (
-          <p>Alphabetical characters only</p>
-        )}
       </FormControl>
 
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
+          error={errors?.email?.type}
           id='standard-textarea'
           label='E-mail Address'
           placeholder='example@example.com'
           multiline
           variant='standard'
+          helperText={errors?.email?.message}
+          {...register('email', {
+            required: 'Please insert your email!',
+            pattern: {
+              value:
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Insert a valid email!',
+            },
+          })}
         />
       </FormControl>
       <FormControlLabel
@@ -116,27 +110,39 @@ const GuestForm = () => {
         label='Create an Account'
       />
       {checked && (
-        <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
-          <InputLabel htmlFor='standard-adornment-password'>
-            Password
-          </InputLabel>
-          <Input
-            id='standard-adornment-password'
+        <FormControl
+          sx={{ m: 1, width: '25ch', position: 'relative' }}
+          variant='standard'
+        >
+          <TextField
+            error={errors?.password?.type}
+            id='standard-password-input'
+            label='password'
+            placeholder='Password'
+            variant='standard'
             type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position='end'>
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
+            helperText={errors?.password?.message}
+            {...register('password', {
+              required: 'Please insert a password!',
+              pattern: {
+                value:
+                  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                message:
+                  'Password should have at least 8 characters, one uppercase, one lowercase,one number and one special character!',
+              },
+            })}
           />
+          <InputAdornment
+            sx={{ position: 'absolute', right: '0', bottom: '15px' }}
+          >
+            <IconButton
+              aria-label='toggle password visibility'
+              onClick={handleClickShowPassword}
+              onMouseDown={handleMouseDownPassword}
+            >
+              {values.showPassword ? <VisibilityOff /> : <Visibility />}
+            </IconButton>
+          </InputAdornment>
         </FormControl>
       )}
 
