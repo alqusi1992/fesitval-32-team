@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 const DeleteAccount = () => {
   const history = useHistory();
   const [userPassword, setUserPassword] = useState('');
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const {
