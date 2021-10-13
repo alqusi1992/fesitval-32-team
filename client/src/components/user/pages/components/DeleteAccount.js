@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
+import { Box, TextField, Button } from '@mui/material';
 import { deleteUser } from '../../../../actions/profileAction';
 import { useValue } from '../../../../context/globalContext';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import { logout } from '../../../../actions/userActions';
 import { useHistory } from 'react-router';
 
