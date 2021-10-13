@@ -17,11 +17,15 @@ const GuestForm = ({ setFormSubmit }) => {
     register,
     formState: { errors },
   } = useForm();
-  const { guestUserOrder, setGuestUserOrder } = useGuestContext();
+  const {
+    guestUserOrder: { userInfo },
+    setGuestUserOrder,
+  } = useGuestContext();
+
   const [checked, setChecked] = useState(false);
   const [values, setValues] = useState({
     showPassword: false,
-    formValues: {
+    userInfo: {
       firstName: '',
       lastName: '',
       email: '',
@@ -41,31 +45,26 @@ const GuestForm = ({ setFormSubmit }) => {
   };
 
   const onSubmit = (data) => {
+    console.log(data);
     setFormSubmit(true);
-    setGuestUserOrder({
-      ...guestUserOrder,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      password: data.password || null,
-    });
+    setGuestUserOrder((prev) => ({
+      ...prev,
+      userInfo: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        password: data.password || null,
+      },
+    }));
   };
 
-  const checkFilledValues = useCallback(() => {
-    setValues({
-      ...values,
-      formValues: {
-        firstName: guestUserOrder.firstName,
-        lastName: guestUserOrder.lastName,
-        email: guestUserOrder.email,
-        password: guestUserOrder.password,
-      },
-    });
-  }, []);
-
   useEffect(() => {
-    checkFilledValues();
-  }, [checkFilledValues]);
+    setValues((prev) => ({
+      ...prev,
+      userInfo: userInfo,
+    }));
+  }, [userInfo]);
+
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
@@ -76,7 +75,7 @@ const GuestForm = ({ setFormSubmit }) => {
           placeholder='John'
           multiline
           variant='standard'
-          defaultValue={values.formValues.firstName}
+          defaultValue={values.userInfo.firstName}
           helperText={errors?.firstName?.message}
           {...register('firstName', {
             required: 'Please insert your first name!',
@@ -95,7 +94,7 @@ const GuestForm = ({ setFormSubmit }) => {
           placeholder='Doe'
           multiline
           variant='standard'
-          defaultValue={values.formValues.lastName}
+          defaultValue={values.userInfo.lastName}
           helperText={errors?.lastName?.message}
           {...register('lastName', {
             required: 'Please insert your last name!',
@@ -115,7 +114,7 @@ const GuestForm = ({ setFormSubmit }) => {
           placeholder='example@example.com'
           multiline
           variant='standard'
-          defaultValue={values.formValues.email}
+          defaultValue={values.userInfo.email}
           helperText={errors?.email?.message}
           {...register('email', {
             required: 'Please insert your email!',
@@ -148,7 +147,7 @@ const GuestForm = ({ setFormSubmit }) => {
             label='password'
             placeholder='Password'
             variant='standard'
-            defaultValue={values.formValues.password}
+            defaultValue={values.userInfo.password}
             type={values.showPassword ? 'text' : 'password'}
             helperText={errors?.password?.message}
             {...register('password', {
