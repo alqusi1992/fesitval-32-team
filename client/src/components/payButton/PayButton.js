@@ -46,6 +46,7 @@ export const PayButton = () => {
       // here we still should add errorHandling(alert) when context is merged
     }
   };
+
   return (
     <div>
       <LoadingButton

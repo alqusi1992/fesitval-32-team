@@ -9,10 +9,12 @@ const OrderSummary = () => {
     userInfo: { firstName, lastName, email },
     tickets,
   } = guestUserOrder;
+
   const totalTicketsPrice = guestUserOrder.tickets.reduce(
     (acc, value) => acc + value.price * value.quantity,
     0,
   );
+
   return (
     <Grid container>
       <Grid container justifyContent='center' item xs={12}>

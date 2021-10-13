@@ -86,6 +86,7 @@ const GuestForm = ({ setFormSubmit }) => {
           })}
         />
       </FormControl>
+
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.lastName?.type}
@@ -126,6 +127,7 @@ const GuestForm = ({ setFormSubmit }) => {
           })}
         />
       </FormControl>
+
       <FormControlLabel
         control={
           <Checkbox
@@ -136,6 +138,7 @@ const GuestForm = ({ setFormSubmit }) => {
         }
         label='Create an Account'
       />
+
       {checked && (
         <FormControl
           sx={{ m: 1, width: '25ch', position: 'relative' }}
@@ -160,6 +163,7 @@ const GuestForm = ({ setFormSubmit }) => {
               },
             })}
           />
+
           <InputAdornment
             sx={{ position: 'absolute', right: '0', top: '30px' }}
           >
