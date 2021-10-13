@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormWrapper } from './GuestFormStyles';
 import { useGuestContext } from '../../../context/guestContext';
@@ -18,11 +18,16 @@ const GuestForm = ({ setFormSubmit }) => {
     formState: { errors },
   } = useForm();
   const { guestUserOrder, setGuestUserOrder } = useGuestContext();
-
+  const [checked, setChecked] = useState(false);
   const [values, setValues] = useState({
     showPassword: false,
+    formValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+    },
   });
-  const [checked, setChecked] = useState(false);
 
   const handleCheckBox = (event) => {
     setChecked(event.target.checked);
@@ -33,10 +38,6 @@ const GuestForm = ({ setFormSubmit }) => {
       ...values,
       showPassword: !values.showPassword,
     });
-  };
-
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
   };
 
   const onSubmit = (data) => {
@@ -50,6 +51,21 @@ const GuestForm = ({ setFormSubmit }) => {
     });
   };
 
+  const checkFilledValues = useCallback(() => {
+    setValues({
+      ...values,
+      formValues: {
+        firstName: guestUserOrder.firstName,
+        lastName: guestUserOrder.lastName,
+        email: guestUserOrder.email,
+        password: guestUserOrder.password,
+      },
+    });
+  }, []);
+
+  useEffect(() => {
+    checkFilledValues();
+  }, [checkFilledValues]);
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
@@ -60,6 +76,7 @@ const GuestForm = ({ setFormSubmit }) => {
           placeholder='John'
           multiline
           variant='standard'
+          defaultValue={values.formValues.firstName}
           helperText={errors?.firstName?.message}
           {...register('firstName', {
             required: 'Please insert your first name!',
@@ -78,6 +95,7 @@ const GuestForm = ({ setFormSubmit }) => {
           placeholder='Doe'
           multiline
           variant='standard'
+          defaultValue={values.formValues.lastName}
           helperText={errors?.lastName?.message}
           {...register('lastName', {
             required: 'Please insert your last name!',
@@ -97,12 +115,13 @@ const GuestForm = ({ setFormSubmit }) => {
           placeholder='example@example.com'
           multiline
           variant='standard'
+          defaultValue={values.formValues.email}
           helperText={errors?.email?.message}
           {...register('email', {
             required: 'Please insert your email!',
             pattern: {
               value:
-                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
               message: 'Insert a valid email!',
             },
           })}
@@ -129,6 +148,7 @@ const GuestForm = ({ setFormSubmit }) => {
             label='password'
             placeholder='Password'
             variant='standard'
+            defaultValue={values.formValues.password}
             type={values.showPassword ? 'text' : 'password'}
             helperText={errors?.password?.message}
             {...register('password', {
@@ -147,7 +167,6 @@ const GuestForm = ({ setFormSubmit }) => {
             <IconButton
               aria-label='toggle password visibility'
               onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
             >
               {values.showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
