@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const FooterLogo = () => {
   return (
     <Link to='/'>
-      <Grid sx={{ fontSize: '50px', color: '#fff' }}>HackYourFestival</Grid>
+      <Grid sx={{ fontSize: '50px', color: '#fff' }}>Festival32</Grid>
     </Link>
   );
 };

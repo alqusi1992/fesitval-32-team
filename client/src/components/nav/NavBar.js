@@ -26,7 +26,7 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
               component='div'
               sx={{ flexGrow: 1 }}
             >
-              HackYourFestival
+              Festival32
             </Typography>
           </Grid>
           <Grid item>
