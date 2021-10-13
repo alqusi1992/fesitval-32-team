@@ -2,7 +2,8 @@ import Schedule from '../models/Schedule.js';
 
 export const getSchedules = async (req, res) => {
   try {
-    const schedules = await Schedule.find();
+    const { festivalId } = req.params;
+    const schedules = await Schedule.find({ festivalId });
     res.status(200).json({ success: true, result: schedules });
   } catch (error) {
     res

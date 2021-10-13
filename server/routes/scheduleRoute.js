@@ -3,6 +3,6 @@ import { getSchedules } from '../controllers/schedule.js';
 
 const scheduleRouter = Router();
 
-scheduleRouter.get('/', getSchedules);
+scheduleRouter.get('/:festivalId', getSchedules);
 
 export default scheduleRouter;

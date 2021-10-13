@@ -8,6 +8,8 @@ const scheduleSchema = new mongoose.Schema({
       name: String,
       url: String,
       genre: String,
+      startTime: { type: Date, default: new Date() },
+      endTime: { type: Date, default: new Date() },
     },
   ],
 });
