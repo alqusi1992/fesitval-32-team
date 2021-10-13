@@ -9,6 +9,7 @@ import {
   NavBar,
   Loading,
   Profile,
+  Protected,
   Footer,
   OrderStepper,
 } from './components';
@@ -28,7 +29,11 @@ function App() {
               <Route exact path='/' component={LandingPage} />
               <Route exact path='/success' component={SuccessPage} />
               <Route exact path='/tickets' component={OrderStepper} />
-              <Route exact path='/profile' component={Profile} />
+              <Route exact path='/profile'>
+                <Protected>
+                  <Profile />
+                </Protected>
+              </Route>
             </Switch>
           </Container>
           <Footer />

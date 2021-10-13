@@ -21,6 +21,7 @@ const Profile = () => {
 
     fetchOrders();
   }, [dispatch, user]);
+
   return (
     <Grid container justifyContent='center'>
       <Grid item xs={11} md={6}>

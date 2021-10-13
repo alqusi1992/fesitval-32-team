@@ -15,7 +15,6 @@ import decode from 'jwt-decode';
 const NavUser = () => {
   const history = useHistory();
   const classes = useStyles();
-  const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [isRegister, setIsRegister] = useState(false);
   const {
@@ -40,9 +39,6 @@ const NavUser = () => {
   };
 
   if (user?.token) {
-    if (!auth) {
-      setAuth(true);
-    }
     const decodedToken = decode(user.token);
     if (decodedToken.exp * 1000 < new Date().getTime()) logout(dispatch);
   }
@@ -50,21 +46,16 @@ const NavUser = () => {
   const handleLogout = () => {
     handleClose();
     logout(dispatch);
-    setAuth(false);
     history.push('/');
   };
   const handleLogin = () => {
     handleClose();
     setIsRegister(true);
   };
-  if (!auth) {
+  if (!user?.token) {
     return (
       <>
-        <Button
-          onClick={handleLogin}
-          className={classes.listItemBtn}
-          startIcon={<LockIcon />}
-        >
+        <Button onClick={handleLogin} className={classes.listItemBtn} startIcon={<LockIcon />}>
           Login
         </Button>
         {isRegister && <User setIsRegister={setIsRegister} />}
