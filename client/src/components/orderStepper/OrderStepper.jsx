@@ -7,12 +7,29 @@ import Button from '@mui/material/Button';
 import Tickets from './tickets/Tickets';
 import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
-
+import { useGuestContext } from '../../context/guestContext';
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
+  const {
+    guestUserOrder: { tickets },
+  } = useGuestContext();
   const [activeStep, setActiveStep] = useState(0);
   const [formSubmit, setFormSubmit] = useState(false);
+
+  const step = {
+    first: activeStep === steps.length - 3,
+    second: activeStep === steps.length - 2,
+    third: activeStep === steps.length - 1,
+  };
+
+  const disableNextButton = step.third
+    ? true
+    : !formSubmit && step.second
+    ? true
+    : step.first && tickets.length === 0
+    ? true
+    : false;
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -38,7 +55,7 @@ const OrderStepper = () => {
       </Stepper>
       <>
         {activeStep === 0 && <Tickets />}
-        {activeStep === 1 && <GuestForm setFormSubmit={setFormSubmit}/>}
+        {activeStep === 1 && <GuestForm setFormSubmit={setFormSubmit} />}
         {activeStep === 2 && <OrderSummary />}
 
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -52,10 +69,7 @@ const OrderStepper = () => {
           </Button>
           <Box sx={{ flex: '1 1 auto' }} />
 
-          <Button
-            onClick={handleNext}
-            disabled={activeStep === steps.length - 1? true : (!formSubmit && activeStep === steps.length - 2)? true : false}
-          >
+          <Button onClick={handleNext} disabled={disableNextButton}>
             Next
           </Button>
         </Box>
