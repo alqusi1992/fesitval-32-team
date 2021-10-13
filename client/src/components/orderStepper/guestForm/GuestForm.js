@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-const GuestForm = () => {
+const GuestForm = ({ setFormSubmit }) => {
   const {
     handleSubmit,
     register,
@@ -39,7 +39,16 @@ const GuestForm = () => {
     event.preventDefault();
   };
 
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    setFormSubmit(true);
+    setGuestUserOrder({
+      ...guestUserOrder,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      password: data.password || null,
+    });
+  };
 
   return (
     <FormWrapper onSubmit={handleSubmit(onSubmit)}>
@@ -133,7 +142,7 @@ const GuestForm = () => {
             })}
           />
           <InputAdornment
-            sx={{ position: 'absolute', right: '0', bottom: '15px' }}
+            sx={{ position: 'absolute', right: '0', top: '30px' }}
           >
             <IconButton
               aria-label='toggle password visibility'

@@ -12,6 +12,7 @@ const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [formSubmit, setFormSubmit] = useState(false);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -37,7 +38,7 @@ const OrderStepper = () => {
       </Stepper>
       <>
         {activeStep === 0 && <Tickets />}
-        {activeStep === 1 && <GuestForm />}
+        {activeStep === 1 && <GuestForm setFormSubmit={setFormSubmit}/>}
         {activeStep === 2 && <OrderSummary />}
 
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -53,7 +54,7 @@ const OrderStepper = () => {
 
           <Button
             onClick={handleNext}
-            disabled={activeStep === steps.length - 1}
+            disabled={activeStep === steps.length - 1? true : (!formSubmit && activeStep === steps.length - 2)? true : false}
           >
             Next
           </Button>
