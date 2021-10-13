@@ -7,6 +7,7 @@ import paymentRouter from './routes/paymentRoute.js';
 import ticketRouter from './routes/ticketsRoute.js';
 import userRouter from './routes/userRoute.js';
 import orderRouter from './routes/orderRoute.js';
+import scheduleRouter from './routes/scheduleRoute.js';
 import createPdfRouter from './routes/createPdfRouter.js';
 
 dotenv.config();
@@ -45,6 +46,7 @@ app.use('/user', userRouter);
 
 app.use('/order', orderRouter);
 app.use('/tickets', ticketRouter);
+app.use('/schedule', scheduleRouter);
 
 app.get('/', (req, res) => {
   res.send('WELCOME TO OUR API!');
