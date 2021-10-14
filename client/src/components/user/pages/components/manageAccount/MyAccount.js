@@ -17,6 +17,7 @@ import AccountItem from './AccountItem';
 import { useStyles } from './accountStyles';
 import Profile from '../../Profile';
 import UpdateAccount from '../updateAccount/UpdateAccount';
+import DeleteAccount from '../DeleteAccount';
 
 const MyAccount = (props) => {
   const classes = useStyles();
@@ -127,7 +128,7 @@ const MyAccount = (props) => {
         </Toolbar>
         <div className={classes.mainContainer}>
           {value === 'Orders' && <Profile />}
-          {/* {value === 'Delete' && <DeleteAccount />} */}
+          {value === 'Delete' && <DeleteAccount />}
           {value === 'Update' && <UpdateAccount />}
         </div>
       </Box>
