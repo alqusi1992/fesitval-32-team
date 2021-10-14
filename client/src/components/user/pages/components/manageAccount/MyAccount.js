@@ -2,26 +2,28 @@ import React, { useState } from 'react';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import AddIcon from '@mui/icons-material/Add';
 import {
   AppBar,
   Box,
   Divider,
   Drawer,
-  IconButton,
+  Fab,
   List,
   Toolbar,
   Typography,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import AccountItem from './AccountItem';
 import { useStyles } from './accountStyles';
+import Profile from '../../Profile';
+import UpdateAccount from '../updateAccount/UpdateAccount';
 
 const MyAccount = (props) => {
   const classes = useStyles();
+  const [value, setValue] = useState('Orders');
   const drawerWidth = 240;
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -31,15 +33,30 @@ const MyAccount = (props) => {
     <div>
       <Divider />
       <List>
-        <AccountItem icon={<ManageAccountsIcon />} text='Update' />
-        <AccountItem icon={<DeleteIcon />} text='Delete' />
-        <AccountItem icon={<FormatListBulletedIcon />} text='Orders' />
+        <AccountItem
+          icon={<ManageAccountsIcon />}
+          text='Update'
+          setValue={setValue}
+          classes={classes}
+        />
+        <AccountItem
+          icon={<DeleteIcon />}
+          text='Delete'
+          setValue={setValue}
+          classes={classes}
+        />
+        <AccountItem
+          icon={<FormatListBulletedIcon />}
+          text='Orders'
+          setValue={setValue}
+          classes={classes}
+        />
       </List>
       <Divider />
     </div>
   );
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box className={classes.box}>
       <AppBar
         className={classes.appBar}
         position='fixed'
@@ -49,15 +66,15 @@ const MyAccount = (props) => {
         }}
       >
         <Toolbar>
-          <IconButton
+          <Fab
+            size='medium'
             color='primary'
-            aria-label='open drawer'
-            edge='start'
+            aria-label='add'
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, mt: 2, display: { sm: 'none' } }}
           >
-            <MenuIcon />
-          </IconButton>
+            <AddIcon />
+          </Fab>
         </Toolbar>
       </AppBar>
       <Box
@@ -99,22 +116,20 @@ const MyAccount = (props) => {
         </Drawer>
       </Box>
       <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
+        <Toolbar className={classes.bottomToolbar}>
+          <Typography
+            variant='h4'
+            component='h2'
+            className={classes.accountTitle}
+          >
+            {value}
+          </Typography>
+        </Toolbar>
+        <div className={classes.mainContainer}>
+          {value === 'Orders' && <Profile />}
+          {/* {value === 'Delete' && <DeleteAccount />} */}
+          {value === 'Update' && <UpdateAccount />}
+        </div>
       </Box>
     </Box>
   );
