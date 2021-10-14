@@ -1,4 +1,4 @@
-import { setLocalStorage } from '../utils/localStorage';
+import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
 
 const url = process.env.REACT_APP_SERVER_URL + '/user';
 
@@ -53,7 +53,13 @@ export const login = async (userData, dispatch) => {
 
 export const logout = (dispatch) => {
   dispatch({ type: 'LOGOUT' });
-  localStorage.clear();
+  const rememberedEmail = getLocalStorage('remember-email');
+  if (rememberedEmail !== null) {
+    localStorage.clear();
+    setLocalStorage('remember-email', rememberedEmail);
+  } else {
+    localStorage.clear();
+  }
 };
 
 export const setUser = (payload, dispatch) => {
