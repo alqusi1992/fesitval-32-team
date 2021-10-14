@@ -1,0 +1,30 @@
+post http://localhost:5000/
+Content-Type: application/json
+
+{
+    "email":"sam@test.com",
+    "tickets":[
+  { "typeName": "Early Bird", "price": 20, "quantity": 2 },
+  { "typeName": "Regular", "price": 30, "quantity": 4 }
+],
+    "orderId":1000000021
+}
+###
+get http://localhost:5000/
+
+
+###
+delete http://localhost:5000/user/delete/6161e230c7bb1e6287262417
+
+###
+patch  http://localhost:5000/user/update/6160058225bd73c5f2ba61f5
+Content-Type: application/json
+
+{
+  "firstName":"lama",
+  "lastName":"rani11222232233",
+  "email":"rani333@test.com",
+  "password":"rani1212212333",
+  "phone":"064645222222333"
+}
+

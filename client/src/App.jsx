@@ -11,6 +11,7 @@ import {
   PayButton,
   Tickets,
   Profile,
+  Protected,
   GuestForm,
   Footer,
 } from './components';
@@ -31,6 +32,11 @@ function App() {
               <Route exact path='/' component={LandingPage} />
               <Route exact path='/success' component={SuccessPage} />
               <Route exact path='/tickets' component={Tickets} />
+              <Route exact path='/profile'>
+                <Protected>
+                  <Profile />
+                </Protected>
+              </Route>
               <Route exact path='/guestMode' component={GuestForm} />
               <Route exact path='/account' component={MyAccount} />
             </Switch>

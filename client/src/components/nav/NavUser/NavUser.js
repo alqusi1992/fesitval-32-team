@@ -15,7 +15,6 @@ import { useStyles } from './NavUserStyles';
 const NavUser = ({ drawer }) => {
   const history = useHistory();
   const classes = useStyles({ drawer });
-  const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [isRegister, setIsRegister] = useState(false);
   const {
@@ -40,9 +39,6 @@ const NavUser = ({ drawer }) => {
   };
 
   if (user?.token) {
-    if (!auth) {
-      setAuth(true);
-    }
     const decodedToken = decode(user.token);
     if (decodedToken.exp * 1000 < new Date().getTime()) logout(dispatch);
   }
@@ -50,14 +46,13 @@ const NavUser = ({ drawer }) => {
   const handleLogout = () => {
     handleClose();
     logout(dispatch);
-    setAuth(false);
     history.push('/');
   };
   const handleLogin = () => {
     handleClose();
     setIsRegister(true);
   };
-  if (!auth) {
+  if (!user?.token) {
     return (
       <>
         <Button
