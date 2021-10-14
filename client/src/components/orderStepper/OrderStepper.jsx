@@ -25,13 +25,11 @@ const OrderStepper = () => {
   };
 
   const disableNextButton = () => {
-    if (
-      (step.first && tickets.length === 0) ||
-      (!formSubmitted && step.second) ||
-      step.third
-    )
-      return true;
-    return false;
+   if (step.first && tickets.length === 0) return true;
+   if (!formSubmitted && step.second) return true;
+   if (step.third) return true;
+
+   return false;
   };
 
   const handleNext = () => {
