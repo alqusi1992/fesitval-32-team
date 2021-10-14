@@ -77,10 +77,17 @@ const Ticket = ({ ticket }) => {
       justifyContent='center'
       sx={{ margin: '20px 0px' }}
     >
-      <Grid container item xs={4} alignItems='center'>
+      <Grid container item xs={2} alignItems='center'>
         {ticket.typeName}
       </Grid>
-      <Grid container item xs={4} alignItems='center'>
+      <Grid
+        container
+        item
+        xs={2}
+        alignItems='center'
+        justifyContent='center'
+        sx={{ fontWeight: 'bold' }}
+      >
         € {ticketsQty === 0 ? ticket.price : totalPrice}
       </Grid>
 

@@ -49,7 +49,7 @@ const Tickets = () => {
             € {totalTicketsPrice}
           </Grid>
         </Grid>
-        <Grid item xs={6}></Grid>
+        <Grid item xs={2}></Grid>
       </Grid>
     </Grid>
   );

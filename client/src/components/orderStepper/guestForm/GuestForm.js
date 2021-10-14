@@ -126,8 +126,10 @@ const GuestForm = ({ setFormSubmitted }) => {
       </FormControl>
 
       <FormControlLabel
+        sx={{ m: 1, width: '25ch', margin: '20px 0 10px -10px' }}
         control={
           <Checkbox
+            sx={{ padding: '0 10px 0 0' }}
             checked={checked}
             onChange={handleCheckBox}
             inputProps={{ 'aria-label': 'controlled' }}
@@ -173,7 +175,11 @@ const GuestForm = ({ setFormSubmitted }) => {
         </FormControl>
       )}
 
-      <Button variant='contained' onClick={handleSubmit(onSubmit)}>
+      <Button
+        variant='contained'
+        onClick={handleSubmit(onSubmit)}
+        sx={{ marginTop: '20px' }}
+      >
         submit
       </Button>
     </FormWrapper>
