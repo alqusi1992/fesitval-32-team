@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { LoadingButton } from '@mui/lab';
 import { useGuestContext } from '../../context/guestContext';
+import { setLocalStorage } from '../../utils/localStorage';
 
 export const PayButton = () => {
   const {
@@ -38,7 +39,8 @@ export const PayButton = () => {
         console.log(msg);
         // here we still should add errorHandling(alert) when context is merged
       } else {
-        localStorage.setItem('orderInfo', JSON.stringify(orderInfo));
+        setLocalStorage('orderInfo', orderInfo);
+        localStorage.removeItem('guestUserOrder');
         window.location = url;
       }
     } catch (error) {

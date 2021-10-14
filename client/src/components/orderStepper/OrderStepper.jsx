@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -8,11 +8,14 @@ import Tickets from './tickets/Tickets';
 import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
   const {
+    guestUserOrder,
     guestUserOrder: { tickets },
+    setGuestUserOrder,
   } = useGuestContext();
   const [activeStep, setActiveStep] = useState(0);
   const [formSubmit, setFormSubmit] = useState(false);
@@ -32,12 +35,24 @@ const OrderStepper = () => {
     : false;
 
   const handleNext = () => {
+    setLocalStorage('guestUserOrder', guestUserOrder);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
+  const getLocalOrder = useCallback(() => {
+    const userOrder = getLocalStorage('guestUserOrder');
+    if (userOrder !== null) {
+      setGuestUserOrder(userOrder);
+    }
+  }, [setGuestUserOrder]);
+
+  useEffect(() => {
+    getLocalOrder();
+  }, [getLocalOrder]);
 
   return (
     <Box sx={{ width: '100%' }}>
