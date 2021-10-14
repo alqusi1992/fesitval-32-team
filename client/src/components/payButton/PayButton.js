@@ -3,14 +3,19 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import { LoadingButton } from '@mui/lab';
 import { useGuestContext } from '../../context/guestContext';
 import { setLocalStorage } from '../../utils/localStorage';
+import { register } from '../../actions/userActions';
+import { useValue } from '../../context/globalContext';
 
 export const PayButton = () => {
   const {
     guestUserOrder: { tickets, festivalId },
     guestUserOrder: {
-      userInfo: { firstName, lastName, email },
+      userInfo: { firstName, lastName, email, password },
     },
   } = useGuestContext();
+
+  const { dispatch } = useValue();
+
   const order = {
     firstName,
     lastName,
@@ -23,6 +28,10 @@ export const PayButton = () => {
   const payTickets = async () => {
     setLoading(true); // disable button when click
     try {
+      if (password !== null) {
+        // register account
+        await register({ firstName, lastName, email, password }, dispatch);
+      }
       const response = await fetch(
         `${process.env.REACT_APP_SERVER_URL}/payment`,
         {
