@@ -29,7 +29,7 @@ const Login = ({ setIsRegister }) => {
     const response = await login(userData, dispatch);
     if (response.success) {
       setIsRegister(false);
-      history.push('/profile');
+      history.push('/');
     } else {
       showAlert('danger', response.msg, dispatch);
     }
