@@ -50,35 +50,42 @@ const DeleteAccount = () => {
         component='form'
         sx={{
           '& > :not(style)': { m: 1, width: '25ch' },
+          justifyContent: 'center',
         }}
         noValidate
         autoComplete='off'
       >
         <TextField
+          id='standard-search'
           label='Enter Password'
+          type='search'
+          variant='standard'
           value={userPassword}
-          name='password'
           onChange={(e) => setUserPassword(e.target.value)}
         />
-        <Button variant='contained' onClick={handleOpen}>
+        <Button
+          variant='contained'
+          onClick={handleOpen}
+          sx={{ display: 'block' }}
+        >
           DELETE ACCOUNT
         </Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby='modal-modal-title'
+          aria-describedby='modal-modal-description'
+        >
+          <Box sx={style}>
+            <Typography id='modal-modal-description' sx={{ mt: 2 }}>
+              This will remove your orders from the database!
+            </Typography>
+            <Button variant='contained' onClick={fetchUser}>
+              Confirm
+            </Button>
+          </Box>
+        </Modal>
       </Box>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='modal-modal-title'
-        aria-describedby='modal-modal-description'
-      >
-        <Box sx={style}>
-          <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-            This will remove your orders from the database!
-          </Typography>
-          <Button variant='contained' onClick={fetchUser}>
-            Confirm
-          </Button>
-        </Box>
-      </Modal>
     </>
   );
 };
