@@ -25,7 +25,7 @@ const Profile = () => {
     <Grid container justifyContent='center'>
       <Grid item xs={11} md={6}>
         {!orders.length ? (
-          <div>you don't have any orders</div>
+          <div style={{ textAlign: 'center' }}>you don't have any orders</div>
         ) : (
           orders.map((order) => <Order key={order._id} order={order} />)
         )}
