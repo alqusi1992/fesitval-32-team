@@ -9,6 +9,7 @@ import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
+
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
@@ -18,7 +19,7 @@ const OrderStepper = () => {
     setGuestUserOrder,
   } = useGuestContext();
   const [activeStep, setActiveStep] = useState(0);
-  const [formSubmit, setFormSubmit] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const step = {
     first: activeStep === 0,
@@ -26,13 +27,15 @@ const OrderStepper = () => {
     third: activeStep === 2,
   };
 
-  const disableNextButton = step.third
-    ? true
-    : !formSubmit && step.second
-    ? true
-    : step.first && tickets.length === 0
-    ? true
-    : false;
+  const disableNextButton = () => {
+    if (
+      (step.first && tickets.length === 0) ||
+      (!formSubmitted && step.second) ||
+      step.third
+    )
+      return true;
+    return false;
+  };
 
   const handleNext = () => {
     setLocalStorage('guestUserOrder', guestUserOrder);
@@ -69,14 +72,14 @@ const OrderStepper = () => {
         })}
       </Stepper>
       <>
-        {activeStep === 0 && <Tickets />}
-        {activeStep === 1 && <GuestForm setFormSubmit={setFormSubmit} />}
-        {activeStep === 2 && <OrderSummary />}
+        {step.first && <Tickets />}
+        {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
+        {step.third && <OrderSummary />}
 
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
           <Button
             color='inherit'
-            disabled={activeStep === 0}
+            disabled={step.first}
             onClick={handleBack}
             sx={{ mr: 1 }}
           >
@@ -84,7 +87,7 @@ const OrderStepper = () => {
           </Button>
           <Box sx={{ flex: '1 1 auto' }} />
 
-          <Button onClick={handleNext} disabled={disableNextButton}>
+          <Button onClick={handleNext} disabled={disableNextButton()}>
             Next
           </Button>
         </Box>

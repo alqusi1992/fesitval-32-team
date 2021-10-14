@@ -12,7 +12,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Button } from '@mui/material';
 
-const GuestForm = ({ setFormSubmit }) => {
+const GuestForm = ({ setFormSubmitted }) => {
   const {
     handleSubmit,
     register,
@@ -46,7 +46,7 @@ const GuestForm = ({ setFormSubmit }) => {
   };
 
   const onSubmit = (data) => {
-    setFormSubmit(true);
+    setFormSubmitted(true);
     setGuestUserOrder((prev) => ({
       ...prev,
       userInfo: {
