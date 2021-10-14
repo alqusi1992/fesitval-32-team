@@ -15,7 +15,7 @@ const OrderStepper = () => {
     guestUserOrder: { tickets },
   } = useGuestContext();
   const [activeStep, setActiveStep] = useState(0);
-  const [formSubmit, setFormSubmit] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const step = {
     first: activeStep === 0,
@@ -23,13 +23,12 @@ const OrderStepper = () => {
     third: activeStep === 2,
   };
 
-  const disableNextButton = step.third
-    ? true
-    : !formSubmit && step.second
-    ? true
-    : step.first && tickets.length === 0
-    ? true
-    : false;
+  const disableNextButton = () => {
+    if (step.first && tickets.length === 0) return true;
+    else if (!formSubmitted && step.second) return true;
+    else if (step.third) return true;
+    else return false;
+  };
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -55,7 +54,7 @@ const OrderStepper = () => {
       </Stepper>
       <>
         {activeStep === 0 && <Tickets />}
-        {activeStep === 1 && <GuestForm setFormSubmit={setFormSubmit} />}
+        {activeStep === 1 && <GuestForm setFormSubmitted={setFormSubmitted} />}
         {activeStep === 2 && <OrderSummary />}
 
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -69,7 +68,7 @@ const OrderStepper = () => {
           </Button>
           <Box sx={{ flex: '1 1 auto' }} />
 
-          <Button onClick={handleNext} disabled={disableNextButton}>
+          <Button onClick={handleNext} disabled={disableNextButton()}>
             Next
           </Button>
         </Box>
