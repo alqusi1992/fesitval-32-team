@@ -77,13 +77,14 @@ const Ticket = ({ ticket }) => {
       justifyContent='center'
       sx={{ margin: '20px 0px' }}
     >
-      <Grid container item xs={2} alignItems='center'>
+      <Grid container item md={2} xs={6} alignItems='center'>
         {ticket.typeName}
       </Grid>
       <Grid
         container
         item
-        xs={2}
+        md={2}
+        xs={6}
         alignItems='center'
         justifyContent='center'
         sx={{ fontWeight: 'bold' }}
@@ -92,7 +93,14 @@ const Ticket = ({ ticket }) => {
       </Grid>
 
       {ticketsQty === 0 ? (
-        <Grid container item xs={2} justifyContent='center' alignItems='center'>
+        <Grid
+          container
+          item
+          md={2}
+          xs={12}
+          justifyContent='center'
+          alignItems='center'
+        >
           <Grid item xs={12}>
             <ButtonWrapper
               disabled={ticket.availableQty === 0}
@@ -106,7 +114,14 @@ const Ticket = ({ ticket }) => {
           </Grid>
         </Grid>
       ) : (
-        <Grid container item xs={2} justifyContent='center' alignItems='center'>
+        <Grid
+          container
+          item
+          md={2}
+          xs={12}
+          justifyContent='center'
+          alignItems='center'
+        >
           <Grid item xs={4}>
             <ButtonIconWrapper
               onClick={() => {
