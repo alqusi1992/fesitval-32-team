@@ -25,9 +25,9 @@ const OrderStepper = () => {
 
   const disableNextButton = () => {
     if (step.first && tickets.length === 0) return true;
-    else if (!formSubmitted && step.second) return true;
-    else if (step.third) return true;
-    else return false;
+    if (!formSubmitted && step.second) return true;
+    if (step.third) return true;
+    return false;
   };
 
   const handleNext = () => {
