@@ -18,28 +18,28 @@ import { GuestProvider } from './context/guestContext';
 
 function App() {
   return (
-    <GuestProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
-          <NavBar />
-          <Loading />
-          <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>
-            <Switch>
-              <Route exact path='/' component={LandingPage} />
-              <Route exact path='/success' component={SuccessPage} />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <NavBar />
+        <Loading />
+        <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>
+          <Switch>
+            <Route exact path='/' component={LandingPage} />
+            <Route exact path='/success' component={SuccessPage} />
+            <GuestProvider>
               <Route exact path='/tickets' component={OrderStepper} />
-              <Route exact path='/profile'>
-                <Protected>
-                  <Profile />
-                </Protected>
-              </Route>
-            </Switch>
-          </Container>
-          <Footer />
-        </Router>
-      </ThemeProvider>
-    </GuestProvider>
+            </GuestProvider>
+            <Route exact path='/profile'>
+              <Protected>
+                <Profile />
+              </Protected>
+            </Route>
+          </Switch>
+        </Container>
+        <Footer />
+      </Router>
+    </ThemeProvider>
   );
 }
 
