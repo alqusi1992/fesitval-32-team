@@ -9,6 +9,7 @@ import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
 import { Grid } from '@mui/material';
+import '../../app.css';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
@@ -62,8 +63,14 @@ const OrderStepper = () => {
         {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
         {step.third && <OrderSummary />}
       </Grid>
-      <Grid item xs={12} alignSelf='flex-end'>
-        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+      <Grid
+        container
+        justifyContent='space-between'
+        item
+        xs={12}
+        alignSelf='flex-end'
+      >
+        <Grid sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
           <Button
             color='inherit'
             disabled={step.first}
@@ -72,12 +79,13 @@ const OrderStepper = () => {
           >
             Back
           </Button>
-          <Box sx={{ flex: '1 1 auto' }} />
-
+        </Grid>
+        <Grid sx={{ position: 'relative' }}>
+          {!disableNextButton() && <div class='arrows'></div>}
           <Button onClick={handleNext} disabled={disableNextButton()}>
             Next
           </Button>
-        </Box>
+        </Grid>
       </Grid>
     </Grid>
   );
