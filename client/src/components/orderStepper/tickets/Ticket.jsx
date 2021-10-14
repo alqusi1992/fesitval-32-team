@@ -1,6 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useGuestContext } from '../../../context/guestContext';
-import { ButtonWrapper, TicketsWrapper } from './ticketsStyles';
+import {
+  ButtonIconWrapper,
+  ButtonWrapper,
+  TicketsWrapper,
+} from './ticketsStyles';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { Grid } from '@mui/material';
 
 const Ticket = ({ ticket }) => {
   const [ticketsQty, setTicketsQty] = useState(0);
@@ -54,7 +61,7 @@ const Ticket = ({ ticket }) => {
   const checkPreviousValues = useCallback(() => {
     if (guestUserOrder.tickets.length > 0) {
       const foundTicket = guestUserOrder.tickets.find(
-        (t) => t.id === ticket._id,
+        (t) => t.id === ticket._id
       );
       if (foundTicket) {
         setTicketsQty(foundTicket.quantity);
@@ -68,12 +75,19 @@ const Ticket = ({ ticket }) => {
   }, [checkPreviousValues]);
 
   return (
-    <TicketsWrapper key={ticket._id}>
-      <h1>{ticket.typeName}</h1>
-      <h1>€ {ticketsQty === 0 ? ticket.price : totalPrice}</h1>
+    <Grid container key={ticket._id}>
+      <Grid item xs={4}>
+        <h1>{ticket.typeName}</h1>
+      </Grid>
+      <Grid item xs={4}>
+        <h1>€ {ticketsQty === 0 ? ticket.price : totalPrice}</h1>
+      </Grid>
+      
+      
       {ticketsQty === 0 ? (
-        <div>
-          <ButtonWrapper
+        <Grid container item xs={2} alignItems='center'>
+          <Grid item xs={12}>
+             <ButtonWrapper
             disabled={ticket.availableQty === 0}
             onClick={() => {
               addTicket();
@@ -82,29 +96,40 @@ const Ticket = ({ ticket }) => {
           >
             {ticket.availableQty === 0 ? 'SOLD OUT' : 'ADD TO CART'}
           </ButtonWrapper>
-        </div>
+          </Grid>
+         
+        </Grid>
       ) : (
-        <div>
-          <ButtonWrapper
-            onClick={() => {
-              removeTicket();
-              storeOrderInContext(ticketsQty - 1);
-            }}
-          >
-            -
-          </ButtonWrapper>
-          <span>{ticketsQty}</span>
-          <ButtonWrapper
-            onClick={() => {
-              addTicket();
-              storeOrderInContext(ticketsQty + 1);
-            }}
-          >
-            +
-          </ButtonWrapper>
-        </div>
+        <Grid container item xs={2} alignItems='center' >
+          <Grid item xs={4}>
+            <ButtonIconWrapper
+              onClick={() => {
+                removeTicket();
+                storeOrderInContext(ticketsQty - 1);
+              }}
+            >
+              <RemoveIcon fontSize='small' />
+            </ButtonIconWrapper>
+          </Grid>
+          <Grid container item xs={4} justifyContent='center' sx={{height: '45px', borderTop: '1px solid #ddd', borderBottom: '1px solid #ddd'}} alignItems='center'>
+          
+              {ticketsQty} 
+          
+            
+          </Grid>
+          <Grid item xs={4}>
+            <ButtonIconWrapper
+              onClick={() => {
+                addTicket();
+                storeOrderInContext(ticketsQty + 1);
+              }}
+            >
+              <AddIcon fontSize='small' />
+            </ButtonIconWrapper>
+          </Grid>
+        </Grid>
       )}
-    </TicketsWrapper>
+    </Grid>
   );
 };
 
