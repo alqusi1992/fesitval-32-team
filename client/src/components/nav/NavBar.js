@@ -49,7 +49,7 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
             <ListItem text='tickets' drawer={drawer} />
           </Grid>
         )}
-        <NavUser />
+        <NavUser {...{ drawer }} />
         <div className={classes.iconButtonContainer}>
           <IconButton
             className={classes.iconBtn}
