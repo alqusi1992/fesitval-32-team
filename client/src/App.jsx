@@ -27,14 +27,14 @@ function App() {
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
-            <GuestProvider>
-              <Route exact path='/tickets' component={OrderStepper} />
-            </GuestProvider>
             <Route exact path='/profile'>
               <Protected>
                 <Profile />
               </Protected>
             </Route>
+            <GuestProvider>
+              <Route exact path='/tickets' component={OrderStepper} />
+            </GuestProvider>
           </Switch>
         </Container>
         <Footer />
