@@ -7,4 +7,5 @@ export { PayButton } from './payButton/PayButton';
 export { default as Tickets } from './tickets/Tickets';
 export { SuccessPage } from './successPage/SuccessPage';
 export { default as GuestForm } from './guestForm/GuestForm';
-export {default as Footer} from './footer/Footer';
+export { default as Footer } from './footer/Footer';
+export { default as Schedule } from './pages/schedule/Schedule';

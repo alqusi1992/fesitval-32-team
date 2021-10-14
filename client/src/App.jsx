@@ -12,6 +12,7 @@ import {
   Profile,
   GuestForm,
   Footer,
+  Schedule,
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
@@ -30,6 +31,7 @@ function App() {
               <Route exact path='/tickets' component={Tickets} />
               <Route exact path='/profile' component={Profile} />
               <Route exact path='/guestMode' component={GuestForm} />
+              <Route exact path='/schedule' component={Schedule} />
             </Switch>
           </Container>
           <Footer />
