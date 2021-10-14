@@ -8,6 +8,7 @@ import Tickets from './tickets/Tickets';
 import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
+import { Grid } from '@mui/material';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
@@ -25,11 +26,11 @@ const OrderStepper = () => {
   };
 
   const disableNextButton = () => {
-   if (step.first && tickets.length === 0) return true;
-   if (!formSubmitted && step.second) return true;
-   if (step.third) return true;
+    if (step.first && tickets.length === 0) return true;
+    if (step.second && !formSubmitted) return true;
+    if (step.third) return true;
 
-   return false;
+    return false;
   };
 
   const handleNext = () => {
@@ -41,24 +42,27 @@ const OrderStepper = () => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label) => {
-          const stepProps = {};
-          const labelProps = {};
+    <Grid container sx={{ width: '100%', minHeight: '550px' }}>
+      <Grid item xs={12}>
+        <Stepper activeStep={activeStep}>
+          {steps.map((label) => {
+            const stepProps = {};
+            const labelProps = {};
 
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <>
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+      </Grid>
+      <Grid item xs={12}>
         {step.first && <Tickets />}
         {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
         {step.third && <OrderSummary />}
-
+      </Grid>
+      <Grid item xs={12} alignSelf='flex-end'>
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
           <Button
             color='inherit'
@@ -74,8 +78,8 @@ const OrderStepper = () => {
             Next
           </Button>
         </Box>
-      </>
-    </Box>
+      </Grid>
+    </Grid>
   );
 };
 
