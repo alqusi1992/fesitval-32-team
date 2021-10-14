@@ -28,6 +28,7 @@ const Login = ({ setIsRegister }) => {
     e.preventDefault();
     const response = await login(userData, dispatch);
     if (response.success) {
+      console.log(response.result.email);
       setIsRegister(false);
       history.push('/profile');
     } else {
@@ -69,6 +70,10 @@ const Login = ({ setIsRegister }) => {
               onChange={handleChange}
             />
           </div>
+        </div>
+        <div>
+          <input type='checkbox' />
+          <label>Remember me.</label>
         </div>
         <div className={classes.BtnContainer}>
           <button className={classes.ButtonPrimary} type='submit'>
