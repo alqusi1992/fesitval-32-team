@@ -1,5 +1,6 @@
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import moment from 'moment';
 
 export default function Artist({ artist }) {
   return (
@@ -12,8 +13,12 @@ export default function Artist({ artist }) {
           {artist.url}
         </a>
       </TableCell>
-      <TableCell align='right'>{artist.startTime}</TableCell>
-      <TableCell align='right'>{artist.endTime}</TableCell>
+      <TableCell align='right'>
+        {moment(artist.startTime).format('YYYY-MM-DD H:MM')}
+      </TableCell>
+      <TableCell align='right'>
+        {moment(artist.endTime).format('YYYY-MM-DD H:MM')}
+      </TableCell>
     </TableRow>
   );
 }

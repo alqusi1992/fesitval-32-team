@@ -11,24 +11,25 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import { useState } from 'react';
 import Artist from './Artist';
+import { useStyles } from './ScheduleStyles';
 
 export default function Row({ genre, artists }) {
   const [open, setOpen] = useState(false);
-
+  const classes = useStyles();
   return (
     <>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
-        <TableCell component='th' scope='row'>
-          <IconButton
-            aria-label='expand row'
-            size='small'
-            onClick={() => setOpen(!open)}
-          >
+      <TableRow
+        sx={{ '& > *': { borderBottom: 'unset' } }}
+        onClick={() => setOpen(!open)}
+        className={classes.collapse}
+      >
+        <TableCell className={classes.genre} component='th' scope='row'>
+          <IconButton aria-label='expand row' size='large'>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
-          {genre.genre}
+          <span className={classes.collapse}>{genre.genre}</span>
         </TableCell>
-        <TableCell component='th' scope='row'>
+        <TableCell component='th' scope='row' className={classes.genre}>
           {genre.area}
         </TableCell>
       </TableRow>

@@ -12,6 +12,7 @@ import ClockPicker from '@mui/lab/ClockPicker';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useValue } from '../../../context/globalContext';
+import { useStyles } from './ScheduleStyles';
 
 export default function Schedule() {
   const { dispatch } = useValue();
@@ -43,19 +44,20 @@ export default function Schedule() {
       }
     };
     fetchData();
-  }, []);
-
+  }, [dispatch]);
+  const classes = useStyles();
   return (
-    <>
+    <div className={classes.container}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
         <ClockPicker date={moment()} onChange={() => {}} />
       </LocalizationProvider>
+      <h1>Festival32 Schedule</h1>
       <TableContainer component={Paper}>
         <Table aria-label='collapsible table'>
           <TableHead>
             <TableRow>
-              <TableCell>Genre</TableCell>
-              <TableCell>Area</TableCell>
+              <TableCell className={classes.tableHead}>Genre</TableCell>
+              <TableCell className={classes.tableHead}>Area</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -65,6 +67,6 @@ export default function Schedule() {
           </TableBody>
         </Table>
       </TableContainer>
-    </>
+    </div>
   );
 }
