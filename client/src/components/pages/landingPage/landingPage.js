@@ -33,21 +33,21 @@ const LandingPage = () => {
         itemClass='image-item'
       >
         <ListItem>
-          <Link to='/home'>
+          <Link to='/about'>
             <ImageCard
               {...{ img: about, title: 'ABOUT', buttonTitle: 'ABOUT' }}
             />
           </Link>
         </ListItem>
         <ListItem>
-          <Link>
+          <Link to='/program'>
             <ImageCard
               {...{ img: program, title: 'PROGRAM', buttonTitle: 'PROGRAM' }}
             />
           </Link>
         </ListItem>
         <ListItem>
-          <Link>
+          <Link to='/tickets'>
             <ImageCard
               {...{ img: tickets, title: 'TICKETS', buttonTitle: 'TICKETS' }}
             />

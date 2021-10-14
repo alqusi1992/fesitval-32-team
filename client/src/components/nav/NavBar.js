@@ -13,7 +13,7 @@ import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
 
-export const NavBar = ({ drawer, handleDrawer, matches }) => {
+export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
   const classes = useStyles({ drawer });
   return (
     <AppBar position='sticky' className={classes.appBar}>
@@ -64,7 +64,7 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
           </IconButton>
         </div>
       </Toolbar>
-      <NavDrawer {...{ drawer }} />
+      <NavDrawer {...{ drawer, setDrawer }} />
     </AppBar>
   );
 };
