@@ -1,10 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useGuestContext } from '../../../context/guestContext';
-import {
-  ButtonIconWrapper,
-  ButtonWrapper,
-  TicketsWrapper,
-} from './ticketsStyles';
+import { ButtonIconWrapper, ButtonWrapper } from './ticketsStyles';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Grid } from '@mui/material';
@@ -61,7 +57,7 @@ const Ticket = ({ ticket }) => {
   const checkPreviousValues = useCallback(() => {
     if (guestUserOrder.tickets.length > 0) {
       const foundTicket = guestUserOrder.tickets.find(
-        (t) => t.id === ticket._id
+        (t) => t.id === ticket._id,
       );
       if (foundTicket) {
         setTicketsQty(foundTicket.quantity);
@@ -75,32 +71,30 @@ const Ticket = ({ ticket }) => {
   }, [checkPreviousValues]);
 
   return (
-    <Grid container key={ticket._id}>
+    <Grid container key={ticket._id} justifyContent='center'>
       <Grid item xs={4}>
         <h1>{ticket.typeName}</h1>
       </Grid>
       <Grid item xs={4}>
         <h1>€ {ticketsQty === 0 ? ticket.price : totalPrice}</h1>
       </Grid>
-      
-      
+
       {ticketsQty === 0 ? (
-        <Grid container item xs={2} alignItems='center'>
+        <Grid container item xs={2} justifyContent='center' alignItems='center'>
           <Grid item xs={12}>
-             <ButtonWrapper
-            disabled={ticket.availableQty === 0}
-            onClick={() => {
-              addTicket();
-              storeOrderInContext(ticketsQty + 1);
-            }}
-          >
-            {ticket.availableQty === 0 ? 'SOLD OUT' : 'ADD TO CART'}
-          </ButtonWrapper>
+            <ButtonWrapper
+              disabled={ticket.availableQty === 0}
+              onClick={() => {
+                addTicket();
+                storeOrderInContext(ticketsQty + 1);
+              }}
+            >
+              {ticket.availableQty === 0 ? 'SOLD OUT' : 'ADD TO CART'}
+            </ButtonWrapper>
           </Grid>
-         
         </Grid>
       ) : (
-        <Grid container item xs={2} alignItems='center' >
+        <Grid container item xs={2} justifyContent='center' alignItems='center'>
           <Grid item xs={4}>
             <ButtonIconWrapper
               onClick={() => {
@@ -111,11 +105,19 @@ const Ticket = ({ ticket }) => {
               <RemoveIcon fontSize='small' />
             </ButtonIconWrapper>
           </Grid>
-          <Grid container item xs={4} justifyContent='center' sx={{height: '45px', borderTop: '1px solid #ddd', borderBottom: '1px solid #ddd'}} alignItems='center'>
-          
-              {ticketsQty} 
-          
-            
+          <Grid
+            container
+            item
+            xs={4}
+            justifyContent='center'
+            sx={{
+              height: '45px',
+              borderTop: '1px solid #ddd',
+              borderBottom: '1px solid #ddd',
+            }}
+            alignItems='center'
+          >
+            {ticketsQty}
           </Grid>
           <Grid item xs={4}>
             <ButtonIconWrapper
