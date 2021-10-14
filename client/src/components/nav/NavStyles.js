@@ -21,7 +21,6 @@ export const useStyles = makeStyles((theme, prop) => {
     toolBar: {
       '&&': {
         [theme.breakpoints.up('md')]: {
-          margin: '0 20px',
           maxWidth: '1190px',
         },
         [theme.breakpoints.up('mdlg')]: {

@@ -3,7 +3,6 @@ import { IconButton, Menu, MenuItem, Button } from '@mui/material/';
 import { useState } from 'react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import LockIcon from '@mui/icons-material/Lock';
-import { useStyles } from './NavUserStyles';
 import { useValue } from '../../../context/globalContext';
 import { logout, setUser } from '../../../actions/userActions';
 import User from '../../user/User';
@@ -11,10 +10,11 @@ import { useHistory, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getLocalStorage } from '../../../utils/localStorage';
 import decode from 'jwt-decode';
+import { useStyles } from './NavUserStyles';
 
-const NavUser = () => {
+const NavUser = ({ drawer }) => {
   const history = useHistory();
-  const classes = useStyles();
+  const classes = useStyles({ drawer });
   const [auth, setAuth] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [isRegister, setIsRegister] = useState(false);
@@ -98,9 +98,6 @@ const NavUser = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Link to='/profile' style={{ color: '#000' }}>
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-        </Link>
         <Link to='/account' style={{ color: '#000' }}>
           <MenuItem onClick={handleClose}>My account</MenuItem>
         </Link>
