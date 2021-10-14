@@ -71,12 +71,17 @@ const Ticket = ({ ticket }) => {
   }, [checkPreviousValues]);
 
   return (
-    <Grid container key={ticket._id} justifyContent='center'>
-      <Grid item xs={4}>
-        <h1>{ticket.typeName}</h1>
+    <Grid
+      container
+      key={ticket._id}
+      justifyContent='center'
+      sx={{ margin: '20px 0px' }}
+    >
+      <Grid container item xs={4} alignItems='center'>
+        {ticket.typeName}
       </Grid>
-      <Grid item xs={4}>
-        <h1>€ {ticketsQty === 0 ? ticket.price : totalPrice}</h1>
+      <Grid container item xs={4} alignItems='center'>
+        € {ticketsQty === 0 ? ticket.price : totalPrice}
       </Grid>
 
       {ticketsQty === 0 ? (

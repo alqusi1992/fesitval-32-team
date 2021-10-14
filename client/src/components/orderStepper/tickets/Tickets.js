@@ -32,7 +32,7 @@ const Tickets = () => {
   }, []);
 
   return (
-    <Grid container>
+    <Grid container sx={{ padding: '40px 0px' }}>
       <Grid item xs={12}>
         {error && <h3>Sorry! the tickets are not available now</h3>}
         {tickets &&
@@ -41,8 +41,13 @@ const Tickets = () => {
           })}
       </Grid>
       <Grid container item xs={12} justifyContent='center'>
-        <Grid item xs={4}>
-          Total: € {totalTicketsPrice}
+        <Grid container item xs={4}>
+          <Grid item xs={2} sx={{ fontWeight: 'bold' }}>
+            Total:
+          </Grid>
+          <Grid item xs={2}>
+            € {totalTicketsPrice}
+          </Grid>
         </Grid>
         <Grid item xs={6}></Grid>
       </Grid>
