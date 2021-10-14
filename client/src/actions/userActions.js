@@ -54,11 +54,9 @@ export const login = async (userData, dispatch) => {
 export const logout = (dispatch) => {
   dispatch({ type: 'LOGOUT' });
   const rememberedEmail = getLocalStorage('remember-email');
+  localStorage.clear();
   if (rememberedEmail !== null) {
-    localStorage.clear();
     setLocalStorage('remember-email', rememberedEmail);
-  } else {
-    localStorage.clear();
   }
 };
 
