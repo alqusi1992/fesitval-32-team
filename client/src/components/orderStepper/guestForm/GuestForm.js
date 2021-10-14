@@ -70,7 +70,6 @@ const GuestForm = ({ setFormSubmitted }) => {
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.firstName?.type}
-          id='standard-textarea'
           label='First Name'
           placeholder='John'
           multiline
@@ -90,7 +89,6 @@ const GuestForm = ({ setFormSubmitted }) => {
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.lastName?.type}
-          id='standard-textarea'
           label='Last Name'
           placeholder='Doe'
           multiline
@@ -110,7 +108,6 @@ const GuestForm = ({ setFormSubmitted }) => {
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.email?.type}
-          id='standard-textarea'
           label='E-mail Address'
           placeholder='example@example.com'
           multiline
@@ -146,7 +143,6 @@ const GuestForm = ({ setFormSubmitted }) => {
         >
           <TextField
             error={errors?.password?.type}
-            id='standard-password-input'
             label='password'
             placeholder='Password'
             variant='standard'
