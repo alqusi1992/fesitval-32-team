@@ -8,6 +8,7 @@ import Tickets from './tickets/Tickets';
 import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
+
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
@@ -24,9 +25,12 @@ const OrderStepper = () => {
   };
 
   const disableNextButton = () => {
-    if (step.first && tickets.length === 0) return true;
-    if (!formSubmitted && step.second) return true;
-    if (step.third) return true;
+    if (
+      (step.first && tickets.length === 0) ||
+      (!formSubmitted && step.second) ||
+      step.third
+    )
+      return true;
     return false;
   };
 
@@ -53,14 +57,14 @@ const OrderStepper = () => {
         })}
       </Stepper>
       <>
-        {activeStep === 0 && <Tickets />}
-        {activeStep === 1 && <GuestForm setFormSubmitted={setFormSubmitted} />}
-        {activeStep === 2 && <OrderSummary />}
+        {step.first && <Tickets />}
+        {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
+        {step.third && <OrderSummary />}
 
         <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
           <Button
             color='inherit'
-            disabled={activeStep === 0}
+            disabled={step.first}
             onClick={handleBack}
             sx={{ mr: 1 }}
           >
