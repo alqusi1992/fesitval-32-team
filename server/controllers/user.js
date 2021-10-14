@@ -1,6 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import { comparePassword } from '../utils/helper.js';
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -11,10 +12,7 @@ export const login = async (req, res) => {
         .status(404)
         .json({ success: false, msg: "Account doesn't exist" });
     }
-    const correctPassword = await bcrypt.compare(
-      password,
-      existedUser.password,
-    );
+    const correctPassword = await comparePassword(password, existedUser);
     if (!correctPassword) {
       return res
         .status(400)
@@ -82,5 +80,65 @@ export const register = async (req, res) => {
       success: false,
       msg: 'Something went wrong, try again later please',
     });
+  }
+};
+
+export const deleteAccount = async (req, res) => {
+  try {
+    const { password } = req.body;
+    const { userId } = req;
+    const existedUser = await User.findById(userId);
+    if (!existedUser) {
+      return res.status(404).json({ success: false, msg: 'User not found' });
+    }
+    const correctPassword = await comparePassword(password, existedUser);
+    if (!correctPassword) {
+      return res.status(400).json({ success: false, msg: 'Wrong password' });
+    }
+    await User.findByIdAndDelete(userId);
+    return res.json({ success: true, msg: 'user is deleted' });
+  } catch (err) {
+    return res.status(500).json({ success: false, msg: 'Server error' });
+  }
+};
+
+export const updateAccount = async (req, res) => {
+  try {
+    const {
+      firstName, lastName, email, newPassword, phone, currentPassword,
+    } = req.body;
+    const { userId } = req;
+    const existedUser = await User.findById(userId);
+    const correctPassword = await comparePassword(currentPassword, existedUser);
+    if (!correctPassword) {
+      return res.status(400).json({ success: false, msg: 'Wrong password' });
+    }
+    const updatedUser = {
+      firstName: firstName || existedUser.firstName,
+      lastName: lastName || existedUser.lastName,
+      email: email || existedUser.email,
+      password: newPassword
+        ? await bcrypt.hash(newPassword, 12)
+        : existedUser.password,
+      phone: phone || existedUser.phone,
+    };
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { $set: updatedUser },
+      { new: true },
+    );
+
+    return res.status(200).json({
+      success: true,
+      result: {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phone,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, msg: 'Server Error' });
   }
 };

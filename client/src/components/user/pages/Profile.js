@@ -13,7 +13,7 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const response = await getOrders(user);
+      const response = await getOrders(user, dispatch);
       if (response.success) {
         setOrders(response.result);
       }
@@ -21,6 +21,7 @@ const Profile = () => {
 
     fetchOrders();
   }, [dispatch, user]);
+
   return (
     <Grid container justifyContent='center'>
       <Grid item xs={11} md={6}>

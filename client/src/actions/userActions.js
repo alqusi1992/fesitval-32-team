@@ -3,6 +3,7 @@ import { setLocalStorage } from '../utils/localStorage';
 const url = process.env.REACT_APP_SERVER_URL + '/user';
 
 export const register = async (userData, dispatch) => {
+  dispatch({ type: 'START_LOADING' });
   try {
     const response = await fetch(url + '/register', {
       method: 'POST',
@@ -17,13 +18,16 @@ export const register = async (userData, dispatch) => {
       });
       setLocalStorage('profile', { result: data.result, token: data.token });
     }
+    dispatch({ type: 'END_LOADING' });
     return data;
   } catch (error) {
     console.log(error);
+    dispatch({ type: 'END_LOADING' });
     return { success: false, msg: 'Something went wrong' };
   }
 };
 export const login = async (userData, dispatch) => {
+  dispatch({ type: 'START_LOADING' });
   try {
     const response = await fetch(url + '/login', {
       method: 'POST',
@@ -38,9 +42,11 @@ export const login = async (userData, dispatch) => {
       });
       setLocalStorage('profile', { result: data.result, token: data.token });
     }
+    dispatch({ type: 'END_LOADING' });
     return data;
   } catch (error) {
     console.log(error);
+    dispatch({ type: 'END_LOADING' });
     return { success: false, msg: 'something went wrong' };
   }
 };

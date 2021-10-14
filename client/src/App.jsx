@@ -7,9 +7,11 @@ import {
   LandingPage,
   SuccessPage,
   NavBar,
+  Loading,
   PayButton,
   Tickets,
   Profile,
+  Protected,
   GuestForm,
   Footer,
   Schedule,
@@ -24,12 +26,17 @@ function App() {
         <CssBaseline />
         <Router>
           <NavBar />
+          <Loading />
           <Container maxWidth='lg' style={{ paddingBottom: '250px' }}>
             <Switch>
               <Route exact path='/' component={LandingPage} />
               <Route exact path='/success' component={SuccessPage} />
               <Route exact path='/tickets' component={Tickets} />
-              <Route exact path='/profile' component={Profile} />
+              <Route exact path='/profile'>
+                <Protected>
+                  <Profile />
+                </Protected>
+              </Route>
               <Route exact path='/guestMode' component={GuestForm} />
               <Route exact path='/schedule' component={Schedule} />
             </Switch>
