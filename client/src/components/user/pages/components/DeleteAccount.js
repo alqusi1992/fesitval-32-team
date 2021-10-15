@@ -8,14 +8,49 @@ import { useHistory } from 'react-router';
 const DeleteAccount = () => {
   const history = useHistory();
   const [userPassword, setUserPassword] = useState('');
+  const [error, setError] = useState({
+    emptyField: false,
+    incorrect: false,
+  });
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    if (!userPassword) {
+      return setError({ emptyField: true });
+    }
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
   const {
     state: { user },
     dispatch,
   } = useValue();
 
+  const fetchUser = async () => {
+    try {
+      dispatch({ type: 'START_LOADING' });
+      const response = await deleteUser(user, userPassword);
+      if (!response.success) {
+        return handleError();
+      }
+      if (response.success) {
+        logout(dispatch);
+        setUserPassword('');
+        handleClose();
+        dispatch({ type: 'END_LOADING' });
+        history.push('/');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleError = () => {
+    setError({ incorrect: true, emptyField: false });
+    setUserPassword('');
+    handleClose();
+    dispatch({ type: 'END_LOADING' });
+  };
+  // modal styles
   const style = {
     position: 'absolute',
     top: '50%',
@@ -27,23 +62,6 @@ const DeleteAccount = () => {
     boxShadow: 24,
     p: 4,
   };
-
-  const fetchUser = async () => {
-    try {
-      dispatch({ type: 'START_LOADING' });
-      const response = await deleteUser(user, userPassword);
-      if (response.success) {
-        logout(dispatch);
-        history.push('/');
-        setUserPassword('');
-        handleClose();
-        dispatch({ type: 'END_LOADING' });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <>
       <Box
@@ -56,9 +74,17 @@ const DeleteAccount = () => {
         autoComplete='off'
       >
         <TextField
-          id='standard-search'
+          error={error.emptyField || error.incorrect}
+          id='standard-error-helper-text'
           label='Enter Password'
           type='search'
+          helperText={
+            error.emptyField
+              ? 'Empty field is not allowed'
+              : error.incorrect
+              ? 'Incorrect password'
+              : ''
+          }
           variant='standard'
           value={userPassword}
           onChange={(e) => setUserPassword(e.target.value)}
