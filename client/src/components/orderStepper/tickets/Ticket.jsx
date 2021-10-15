@@ -77,17 +77,34 @@ const Ticket = ({ ticket }) => {
       justifyContent='center'
       sx={{ margin: '20px 0px' }}
     >
-      <Grid container item md={2} xs={6} alignItems='center'>
+      <Grid
+        container
+        item
+        s={3}
+        xs={6}
+        alignItems='center'
+        sx={{
+          fontSize: '24px',
+          borderBottom: '2px solid #ddd',
+          paddingBottom: '10px',
+        }}
+      >
         {ticket.typeName}
       </Grid>
       <Grid
         container
         item
-        md={2}
+        s={3}
         xs={6}
         alignItems='center'
-        justifyContent='center'
-        sx={{ fontWeight: 'bold' }}
+        justifyContent='flex-end'
+        sx={{
+          fontWeight: 'bold',
+          marginRight: '40px',
+          fontSize: '30px',
+          borderBottom: '2px solid #ddd',
+          paddingBottom: '10px',
+        }}
       >
         € {ticketsQty === 0 ? ticket.price : totalPrice}
       </Grid>
@@ -96,7 +113,7 @@ const Ticket = ({ ticket }) => {
         <Grid
           container
           item
-          md={2}
+          s={2}
           xs={12}
           justifyContent='center'
           alignItems='center'
@@ -117,7 +134,7 @@ const Ticket = ({ ticket }) => {
         <Grid
           container
           item
-          md={2}
+          s={2}
           xs={12}
           justifyContent='center'
           alignItems='center'

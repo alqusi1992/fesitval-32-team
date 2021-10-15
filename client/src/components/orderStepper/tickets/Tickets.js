@@ -41,15 +41,16 @@ const Tickets = () => {
           })}
       </Grid>
       <Grid container item xs={12} justifyContent='center'>
-        <Grid container item xs={4}>
-          <Grid item xs={2} sx={{ fontWeight: 'bold' }}>
-            Total:
-          </Grid>
-          <Grid item xs={2}>
-            € {totalTicketsPrice}
-          </Grid>
+        <Grid
+          container
+          item
+          s={3}
+          sx={{ fontWeight: 'bold', fontSize: '20px' }}
+        >
+          Total: € {totalTicketsPrice}
         </Grid>
-        <Grid item xs={2}></Grid>
+        <Grid item s={3}></Grid>
+        <Grid item s={2}></Grid>
       </Grid>
     </Grid>
   );
