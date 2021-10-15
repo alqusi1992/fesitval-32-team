@@ -13,10 +13,12 @@ import {
   Footer,
   OrderStepper,
   Schedule,
+  Tickets,
+  GuestForm,
+  MyAccount,
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
-import MyAccount from './components/user/pages/components/manageAccount/MyAccount';
 
 function App() {
   return (
@@ -31,20 +33,20 @@ function App() {
             <Route exact path='/success' component={SuccessPage} />
             <Route exact path='/schedule' component={Schedule} />
             <Route exact path='/tickets' component={Tickets} />
+            <Route exact path='/guestMode' component={GuestForm} />
             <Route exact path='/profile'>
               <Protected>
                 <Profile />
               </Protected>
             </Route>
-            <GuestProvider>
-              <Route exact path='/tickets' component={OrderStepper} />
-            </GuestProvider>
-            <Route exact path='/guestMode' component={GuestForm} />
             <Route exact path='/account'>
               <Protected>
                 <MyAccount />
               </Protected>
             </Route>
+            <GuestProvider>
+              <Route exact path='/tickets' component={OrderStepper} />
+            </GuestProvider>
           </Switch>
         </Container>
         <Footer />
