@@ -68,5 +68,18 @@ export const useStyles = makeStyles((theme, prop) => {
         minHeight: '200px',
       },
     },
+    formmUpdate: {
+      '&&': {
+        textAlign: 'center',
+        padding: '40px',
+        margin: '30px',
+      },
+    },
+    buttonUpdate: {
+      '&&': {
+        display: 'block',
+        margin: '30px auto',
+      },
+    },
   };
 });
