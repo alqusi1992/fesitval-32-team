@@ -4,11 +4,13 @@ import { ButtonIconWrapper, ButtonWrapper } from './ticketsStyles';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Grid } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Ticket = ({ ticket }) => {
   const [ticketsQty, setTicketsQty] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const { guestUserOrder, setGuestUserOrder } = useGuestContext();
+  const smallScreen = useMediaQuery('(max-width:450px)');
 
   const addTicket = () => {
     setTicketsQty(ticketsQty + 1);
@@ -85,7 +87,7 @@ const Ticket = ({ ticket }) => {
         alignItems='center'
         sx={{
           fontSize: '24px',
-          borderBottom: '2px solid #ddd',
+          borderBottom: `${smallScreen ? 'none' : '2px solid #ddd'}`,
           paddingBottom: '10px',
         }}
       >
@@ -100,9 +102,9 @@ const Ticket = ({ ticket }) => {
         justifyContent='flex-end'
         sx={{
           fontWeight: 'bold',
-          marginRight: '40px',
+          marginRight: `${smallScreen ? '0px' : '40px'}`,
           fontSize: '30px',
-          borderBottom: '2px solid #ddd',
+          borderBottom: `${smallScreen ? 'none' : '2px solid #ddd'}`,
           paddingBottom: '10px',
         }}
       >
