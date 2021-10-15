@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -8,13 +8,16 @@ import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
 import { Grid } from '@mui/material';
+import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 import '../../app.css';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
   const {
+    guestUserOrder,
     guestUserOrder: { tickets },
+    setGuestUserOrder,
   } = useGuestContext();
   const [activeStep, setActiveStep] = useState(0);
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -34,12 +37,24 @@ const OrderStepper = () => {
   };
 
   const handleNext = () => {
+    setLocalStorage('guestUserOrder', guestUserOrder);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
+
+  const getLocalOrder = useCallback(() => {
+    const userOrder = getLocalStorage('guestUserOrder');
+    if (userOrder !== null) {
+      setGuestUserOrder(userOrder);
+    }
+  }, [setGuestUserOrder]);
+
+  useEffect(() => {
+    getLocalOrder();
+  }, [getLocalOrder]);
 
   return (
     <Grid container sx={{ width: '100%', minHeight: '550px' }}>
