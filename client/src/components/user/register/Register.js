@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { register } from '../../../actions/userActions';
 import { useValue } from '../../../context/globalContext';
 import Alert from '../../alert/Alert';
@@ -23,6 +24,13 @@ const Register = ({ setIsRegister }) => {
     confirmPassword: '',
     phone: '',
   });
+
+  const {
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm();
+  const registerForm = useForm().register;
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
@@ -32,23 +40,23 @@ const Register = ({ setIsRegister }) => {
   } = useValue();
 
   const registerHandler = async (e) => {
-    e.preventDefault();
-    if (userData.password === userData.confirmPassword) {
-      const response = await register(userData, dispatch);
-      if (response.success) {
-        setIsRegister(false);
-        history.push('/profile');
-      } else {
-        showAlert('danger', response.msg, dispatch);
-      }
+    // e.preventDefault();
+    // if (userData.password === userData.confirmPassword) {
+    const response = await register(userData, dispatch);
+    if (response.success) {
+      setIsRegister(false);
+      history.push('/profile');
     } else {
-      showAlert('danger', "passwords don't match", dispatch);
+      showAlert('danger', response.msg, dispatch);
     }
+    // } else {
+    //   showAlert('danger', "passwords don't match", dispatch);
+    // }
   };
   return (
     <>
       {alert.isAlert && <Alert />}
-      <form onSubmit={registerHandler}>
+      <form onSubmit={handleSubmit(registerHandler)}>
         <FieldsContainer>
           <FormGroup>
             <FormLabel htmlFor='firstName'>First Name</FormLabel>
@@ -100,9 +108,19 @@ const Register = ({ setIsRegister }) => {
               name='password'
               id='password'
               required
-              value={userData.password}
-              onChange={handleChange}
+              // value={userData.password}
+              // onChange={handleChange}
+              {...registerForm('password', {
+                required: 'Please insert a password!',
+                pattern: {
+                  value:
+                    /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                  message:
+                    'Password should have at least 8 characters, one uppercase, one lowercase,one number and one special character!',
+                },
+              })}
             />
+            {errors?.password && <p>{errors?.password?.message}</p>}
           </FormGroup>
           <FormGroup>
             <FormLabel htmlFor='confirmPassword'>Confirm Password</FormLabel>
