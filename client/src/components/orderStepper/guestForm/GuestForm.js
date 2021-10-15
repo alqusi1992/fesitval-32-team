@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormWrapper } from './GuestFormStyles';
 import { useGuestContext } from '../../../context/guestContext';
@@ -27,10 +27,10 @@ const GuestForm = ({ setFormSubmitted }) => {
   const [values, setValues] = useState({
     showPassword: false,
     userInfo: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      email: userInfo.email,
+      password: userInfo.password,
     },
   });
 
@@ -58,18 +58,11 @@ const GuestForm = ({ setFormSubmitted }) => {
     }));
   };
 
-  useEffect(() => {
-    setValues((prev) => ({
-      ...prev,
-      userInfo: userInfo,
-    }));
-  }, [userInfo]);
-
   return (
     <FormWrapper>
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
-          error={errors?.firstName?.type}
+          error={errors?.firstName?.type ? true : false}
           id='standard-textarea'
           label='First Name'
           placeholder='John'
@@ -89,7 +82,7 @@ const GuestForm = ({ setFormSubmitted }) => {
 
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
-          error={errors?.lastName?.type}
+          error={errors?.lastName?.type ? true : false}
           id='standard-textarea'
           label='Last Name'
           placeholder='Doe'
@@ -109,7 +102,7 @@ const GuestForm = ({ setFormSubmitted }) => {
 
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
-          error={errors?.email?.type}
+          error={errors?.email?.type ? true : false}
           id='standard-textarea'
           label='E-mail Address'
           placeholder='example@example.com'
@@ -145,7 +138,7 @@ const GuestForm = ({ setFormSubmitted }) => {
           variant='standard'
         >
           <TextField
-            error={errors?.password?.type}
+            error={errors?.password?.type ? true : false}
             id='standard-password-input'
             label='password'
             placeholder='Password'
