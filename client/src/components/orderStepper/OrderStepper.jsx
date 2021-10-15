@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -8,7 +7,9 @@ import Tickets from './tickets/Tickets';
 import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
+import { Grid } from '@mui/material';
 import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
+import '../../app.css';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
@@ -28,11 +29,11 @@ const OrderStepper = () => {
   };
 
   const disableNextButton = () => {
-   if (step.first && tickets.length === 0) return true;
-   if (!formSubmitted && step.second) return true;
-   if (step.third) return true;
+    if (step.first && tickets.length === 0) return true;
+    if (step.second && !formSubmitted) return true;
+    if (step.third) return true;
 
-   return false;
+    return false;
   };
 
   const handleNext = () => {
@@ -56,25 +57,34 @@ const OrderStepper = () => {
   }, [getLocalOrder]);
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Stepper activeStep={activeStep}>
-        {steps.map((label) => {
-          const stepProps = {};
-          const labelProps = {};
+    <Grid container sx={{ width: '100%', minHeight: '550px' }}>
+      <Grid item xs={12}>
+        <Stepper activeStep={activeStep}>
+          {steps.map((label) => {
+            const stepProps = {};
+            const labelProps = {};
 
-          return (
-            <Step key={label} {...stepProps}>
-              <StepLabel {...labelProps}>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <>
+            return (
+              <Step key={label} {...stepProps}>
+                <StepLabel {...labelProps}>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+      </Grid>
+      <Grid item xs={12}>
         {step.first && <Tickets />}
         {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
         {step.third && <OrderSummary />}
-
-        <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+      </Grid>
+      <Grid
+        container
+        justifyContent='space-between'
+        item
+        xs={12}
+        alignSelf='flex-end'
+      >
+        <Grid sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
           <Button
             color='inherit'
             disabled={step.first}
@@ -83,14 +93,15 @@ const OrderStepper = () => {
           >
             Back
           </Button>
-          <Box sx={{ flex: '1 1 auto' }} />
-
+        </Grid>
+        <Grid sx={{ position: 'relative' }}>
+          {!disableNextButton() && <div class='arrows'></div>}
           <Button onClick={handleNext} disabled={disableNextButton()}>
             Next
           </Button>
-        </Box>
-      </>
-    </Box>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 

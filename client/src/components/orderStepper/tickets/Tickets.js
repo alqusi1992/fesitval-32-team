@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useGuestContext } from '../../../context/guestContext';
 import Ticket from './Ticket';
@@ -10,7 +11,7 @@ const Tickets = () => {
   if (guestUserOrder.tickets.length > 0) {
     totalTicketsPrice = guestUserOrder.tickets.reduce(
       (acc, value) => acc + value.price * value.quantity,
-      0
+      0,
     );
   }
   const fetchTickets = async () => {
@@ -31,14 +32,27 @@ const Tickets = () => {
   }, []);
 
   return (
-    <div>
-      {error && <h3>Sorry! the tickets are not available now</h3>}
-      {tickets &&
-        tickets.map((ticket) => {
-          return <Ticket key={ticket._id} ticket={ticket} />;
-        })}
-      <h1>Total: € {totalTicketsPrice}</h1>
-    </div>
+    <Grid container sx={{ padding: '40px 0px' }}>
+      <Grid item xs={12}>
+        {error && <h3>Sorry! the tickets are not available now</h3>}
+        {tickets &&
+          tickets.map((ticket) => {
+            return <Ticket key={ticket._id} ticket={ticket} />;
+          })}
+      </Grid>
+      <Grid container item xs={12} justifyContent='center'>
+        <Grid
+          container
+          item
+          s={3}
+          sx={{ fontWeight: 'bold', fontSize: '20px' }}
+        >
+          Total: € {totalTicketsPrice}
+        </Grid>
+        <Grid item s={3}></Grid>
+        <Grid item s={2}></Grid>
+      </Grid>
+    </Grid>
   );
 };
 export default Tickets;

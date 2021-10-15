@@ -1,11 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useGuestContext } from '../../../context/guestContext';
-import { ButtonWrapper, TicketsWrapper } from './ticketsStyles';
+import { ButtonIconWrapper, ButtonWrapper } from './ticketsStyles';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import { Grid } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Ticket = ({ ticket }) => {
   const [ticketsQty, setTicketsQty] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const { guestUserOrder, setGuestUserOrder } = useGuestContext();
+  const smallScreen = useMediaQuery('(max-width:450px)');
 
   const addTicket = () => {
     setTicketsQty(ticketsQty + 1);
@@ -68,43 +73,111 @@ const Ticket = ({ ticket }) => {
   }, [checkPreviousValues]);
 
   return (
-    <TicketsWrapper key={ticket._id}>
-      <h1>{ticket.typeName}</h1>
-      <h1>€ {ticketsQty === 0 ? ticket.price : totalPrice}</h1>
+    <Grid
+      container
+      key={ticket._id}
+      justifyContent='center'
+      sx={{ margin: '20px 0px' }}
+    >
+      <Grid
+        container
+        item
+        s={3}
+        xs={6}
+        alignItems='center'
+        sx={{
+          fontSize: '24px',
+          borderBottom: `${smallScreen ? 'none' : '2px solid #ddd'}`,
+          paddingBottom: '10px',
+        }}
+      >
+        {ticket.typeName}
+      </Grid>
+      <Grid
+        container
+        item
+        s={3}
+        xs={6}
+        alignItems='center'
+        justifyContent='flex-end'
+        sx={{
+          fontWeight: 'bold',
+          marginRight: `${smallScreen ? '0px' : '40px'}`,
+          fontSize: '30px',
+          borderBottom: `${smallScreen ? 'none' : '2px solid #ddd'}`,
+          paddingBottom: '10px',
+        }}
+      >
+        € {ticketsQty === 0 ? ticket.price : totalPrice}
+      </Grid>
+
       {ticketsQty === 0 ? (
-        <div>
-          <ButtonWrapper
-            disabled={ticket.availableQty === 0}
-            onClick={() => {
-              addTicket();
-              storeOrderInContext(ticketsQty + 1);
-            }}
-          >
-            {ticket.availableQty === 0 ? 'SOLD OUT' : 'ADD TO CART'}
-          </ButtonWrapper>
-        </div>
+        <Grid
+          container
+          item
+          s={2}
+          xs={12}
+          justifyContent='center'
+          alignItems='center'
+        >
+          <Grid item xs={12}>
+            <ButtonWrapper
+              disabled={ticket.availableQty === 0}
+              onClick={() => {
+                addTicket();
+                storeOrderInContext(ticketsQty + 1);
+              }}
+            >
+              {ticket.availableQty === 0 ? 'SOLD OUT' : 'ADD TO CART'}
+            </ButtonWrapper>
+          </Grid>
+        </Grid>
       ) : (
-        <div>
-          <ButtonWrapper
-            onClick={() => {
-              removeTicket();
-              storeOrderInContext(ticketsQty - 1);
+        <Grid
+          container
+          item
+          s={2}
+          xs={12}
+          justifyContent='center'
+          alignItems='center'
+        >
+          <Grid item xs={4}>
+            <ButtonIconWrapper
+              onClick={() => {
+                removeTicket();
+                storeOrderInContext(ticketsQty - 1);
+              }}
+            >
+              <RemoveIcon fontSize='small' />
+            </ButtonIconWrapper>
+          </Grid>
+          <Grid
+            container
+            item
+            xs={4}
+            justifyContent='center'
+            sx={{
+              height: '45px',
+              borderTop: '1px solid #ddd',
+              borderBottom: '1px solid #ddd',
             }}
+            alignItems='center'
           >
-            -
-          </ButtonWrapper>
-          <span>{ticketsQty}</span>
-          <ButtonWrapper
-            onClick={() => {
-              addTicket();
-              storeOrderInContext(ticketsQty + 1);
-            }}
-          >
-            +
-          </ButtonWrapper>
-        </div>
+            {ticketsQty}
+          </Grid>
+          <Grid item xs={4}>
+            <ButtonIconWrapper
+              onClick={() => {
+                addTicket();
+                storeOrderInContext(ticketsQty + 1);
+              }}
+            >
+              <AddIcon fontSize='small' />
+            </ButtonIconWrapper>
+          </Grid>
+        </Grid>
       )}
-    </TicketsWrapper>
+    </Grid>
   );
 };
 

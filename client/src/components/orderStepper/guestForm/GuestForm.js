@@ -63,7 +63,6 @@ const GuestForm = ({ setFormSubmitted }) => {
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.firstName?.type ? true : false}
-          id='standard-textarea'
           label='First Name'
           placeholder='John'
           multiline
@@ -83,7 +82,6 @@ const GuestForm = ({ setFormSubmitted }) => {
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.lastName?.type ? true : false}
-          id='standard-textarea'
           label='Last Name'
           placeholder='Doe'
           multiline
@@ -103,7 +101,6 @@ const GuestForm = ({ setFormSubmitted }) => {
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.email?.type ? true : false}
-          id='standard-textarea'
           label='E-mail Address'
           placeholder='example@example.com'
           multiline
@@ -122,8 +119,10 @@ const GuestForm = ({ setFormSubmitted }) => {
       </FormControl>
 
       <FormControlLabel
+        sx={{ m: 1, width: '25ch', margin: '20px 0 10px -10px' }}
         control={
           <Checkbox
+            sx={{ padding: '0 10px 0 0' }}
             checked={checked}
             onChange={handleCheckBox}
             inputProps={{ 'aria-label': 'controlled' }}
@@ -139,7 +138,6 @@ const GuestForm = ({ setFormSubmitted }) => {
         >
           <TextField
             error={errors?.password?.type ? true : false}
-            id='standard-password-input'
             label='password'
             placeholder='Password'
             variant='standard'
@@ -170,7 +168,11 @@ const GuestForm = ({ setFormSubmitted }) => {
         </FormControl>
       )}
 
-      <Button variant='contained' onClick={handleSubmit(onSubmit)}>
+      <Button
+        variant='contained'
+        onClick={handleSubmit(onSubmit)}
+        sx={{ marginTop: '20px' }}
+      >
         submit
       </Button>
     </FormWrapper>
