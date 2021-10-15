@@ -13,8 +13,6 @@ import {
   Footer,
   OrderStepper,
   Schedule,
-  Tickets,
-  GuestForm,
   MyAccount,
 } from './components';
 import './app.css';
@@ -32,8 +30,6 @@ function App() {
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
             <Route exact path='/schedule' component={Schedule} />
-            <Route exact path='/tickets' component={Tickets} />
-            <Route exact path='/guestMode' component={GuestForm} />
             <Route exact path='/profile'>
               <Protected>
                 <Profile />
