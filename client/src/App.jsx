@@ -38,7 +38,11 @@ function App() {
                 </Protected>
               </Route>
               <Route exact path='/guestMode' component={GuestForm} />
-              <Route exact path='/account' component={MyAccount} />
+              <Route exact path='/account'>
+                <Protected>
+                  <MyAccount />
+                </Protected>
+              </Route>
             </Switch>
           </Container>
           <Footer />
