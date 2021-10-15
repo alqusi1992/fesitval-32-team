@@ -6,8 +6,8 @@ export { default as User } from './user/User';
 export { default as Profile } from './user/pages/Profile';
 export { default as Protected } from './protected/Protected';
 export { PayButton } from './payButton/PayButton';
-export { default as Tickets } from './tickets/Tickets';
 export { SuccessPage } from './successPage/SuccessPage';
-export { default as GuestForm } from './guestForm/GuestForm';
 export { default as Footer } from './footer/Footer';
+export { default as OrderStepper } from './orderStepper/OrderStepper';
 export { default as Schedule } from './pages/schedule/Schedule';
+

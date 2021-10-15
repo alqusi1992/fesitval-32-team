@@ -1,14 +1,16 @@
-*{
+* {
   text-decoration: none;
 }
 
-#root, body, html {
+#root,
+body,
+html {
   min-height: 100vh;
   position: relative;
 }
 
 .react-multi-carousel-item {
-  padding: 10px;
+  padding: 7px;
 }
 
 /* ^_^ Success page style no body touch it please ^_^ */
@@ -126,3 +128,66 @@
   }
 }
 /* End success page style */
+
+/*  arrow animation START */
+.arrows {
+  /* position: absolute;
+  top: -90px;
+  left: 20px;
+  width: 80px;
+  height: 80px;
+  transform: translate(-50%, -50%) rotate(-14deg); */
+  position: absolute;
+  top: 0px;
+  left: -64px;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.arrows:before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border-left: 7px solid rgba(0, 0, 0, 0.7);
+  border-bottom: 7px solid rgba(0, 0, 0, 0.7);
+  transform: translate(26.66667px, 106.66667px) rotate(-45deg);
+  animation: arrows 1.5s linear infinite;
+}
+
+.arrows:after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 60%;
+  border-left: 7px solid rgba(0, 0, 0, 0.7);
+  border-bottom: 7px solid rgba(0, 0, 0, 0.7);
+  transform: translate(53.33333px, 0px) rotate(-45deg);
+  animation: arrows 1.5s linear infinite -0.75s;
+}
+
+@keyframes arrows {
+  0% {
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    transform: translate(-13.33333px, -53.33333px) rotate(-45deg);
+  }
+  10%,
+  90% {
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+  }
+  50% {
+    border-left: 7px solid rgba(0, 0, 0, 0.7);
+    border-bottom: 7px solid rgba(0, 0, 0, 0.7);
+    transform: translate(-13.33333px, 0px) rotate(-45deg);
+  }
+  100% {
+    border-left: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    transform: translate(-13.33333px, 53.33333px) rotate(-45deg);
+  }
+}
+
+/*  arrow animation END */

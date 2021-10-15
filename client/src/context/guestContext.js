@@ -8,17 +8,13 @@ export const useGuestContext = () => {
 
 export const GuestProvider = ({ children }) => {
   const [guestUserOrder, setGuestUserOrder] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
+    userInfo: {
+      firstName: '',
+      lastName: '',
+      email: '',
+    },
     festivalId: '',
-    tickets: [
-      {
-        id: '',
-        typeName: '',
-        quantity: 0,
-      },
-    ],
+    tickets: [],
   });
   const value = {
     guestUserOrder,
