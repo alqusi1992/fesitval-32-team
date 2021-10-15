@@ -14,6 +14,7 @@ import {
   Protected,
   GuestForm,
   Footer,
+  Schedule,
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
@@ -37,6 +38,7 @@ function App() {
                 </Protected>
               </Route>
               <Route exact path='/guestMode' component={GuestForm} />
+              <Route exact path='/schedule' component={Schedule} />
             </Switch>
           </Container>
           <Footer />

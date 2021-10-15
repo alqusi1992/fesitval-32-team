@@ -40,7 +40,7 @@ const LandingPage = () => {
           </Link>
         </ListItem>
         <ListItem>
-          <Link>
+          <Link to='/schedule'>
             <ImageCard
               {...{ img: program, title: 'PROGRAM', buttonTitle: 'PROGRAM' }}
             />
