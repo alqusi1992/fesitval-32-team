@@ -9,3 +9,5 @@ export { PayButton } from './payButton/PayButton';
 export { SuccessPage } from './successPage/SuccessPage';
 export { default as Footer } from './footer/Footer';
 export { default as OrderStepper } from './orderStepper/OrderStepper';
+export { default as Schedule } from './pages/schedule/Schedule';
+
