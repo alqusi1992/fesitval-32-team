@@ -24,6 +24,7 @@ export const ModalBackdrop = styled.div`
   display: inline-block;
   height: 100%;
   vertical-align: middle;
+  opacity: 0.7;
 `;
 
 export const Modal = styled.div`

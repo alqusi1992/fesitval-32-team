@@ -14,6 +14,7 @@ import {
   Protected,
   GuestForm,
   Footer,
+  About,
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
@@ -26,11 +27,12 @@ function App() {
         <Router>
           <NavBar />
           <Loading />
-          <Container maxWidth='lg' style={{ paddingBottom: '250px' }}>
+          <Container maxWidth='lg' style={{ paddingBottom: '50px' }}>
             <Switch>
-              <Route exact path='/' component={LandingPage} />
+              <Route exact path='/home' component={LandingPage} />
               <Route exact path='/success' component={SuccessPage} />
               <Route exact path='/tickets' component={Tickets} />
+              <Route exact path='/about' component={About} />
               <Route exact path='/profile'>
                 <Protected>
                   <Profile />
