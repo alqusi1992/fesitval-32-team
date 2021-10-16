@@ -8,16 +8,16 @@ const FooterList = () => {
   return (
     <>
       <ListWrapper>
-        <Link>
+        <Link to='/schedule'>
           <ListItem>Program</ListItem>
         </Link>
         <Link to='/tickets'>
           <ListItem>Tickets</ListItem>
         </Link>
-        <Link>
+        <Link to='/about'>
           <ListItem>About</ListItem>
         </Link>
-        <Link>
+        <Link to='/schedule'>
           <ListItem>Contact</ListItem>
         </Link>
       </ListWrapper>

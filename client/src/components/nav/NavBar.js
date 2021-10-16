@@ -12,9 +12,11 @@ import { ListItem } from './ListItem';
 import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
+import { useHistory } from 'react-router-dom';
 
 export const NavBar = ({ drawer, handleDrawer, matches }) => {
   const classes = useStyles({ drawer });
+  const history = useHistory();
   return (
     <AppBar position='sticky' className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
@@ -44,9 +46,21 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
         </Grid>
         {matches && (
           <Grid container className={classes.listItemContainer} spacing={2}>
-            <ListItem text='program' drawer={drawer} />
-            <ListItem text='about' drawer={drawer} />
-            <ListItem text='tickets' drawer={drawer} />
+            <ListItem
+              handleClick={() => history.push('/schedule')}
+              text='program'
+              drawer={drawer}
+            />
+            <ListItem
+              text='about'
+              drawer={drawer}
+              handleClick={() => history.push('/about')}
+            />
+            <ListItem
+              text='tickets'
+              drawer={drawer}
+              handleClick={() => history.push('/tickets')}
+            />
           </Grid>
         )}
         <NavUser {...{ drawer }} />
@@ -64,7 +78,7 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
           </IconButton>
         </div>
       </Toolbar>
-      <NavDrawer {...{ drawer }} />
+      <NavDrawer {...{ drawer, handleDrawer }} />
     </AppBar>
   );
 };
