@@ -5,12 +5,7 @@ import { register } from '../../../actions/userActions';
 import { useValue } from '../../../context/globalContext';
 import Alert from '../../alert/Alert';
 import { showAlert } from '../../../actions/alertActions';
-import {
-  FieldsContainer,
-  FormGroup,
-  ButtonPrimary,
-  BtnContainer,
-} from './RegisterStyles';
+import { FieldsContainer, FormGroup, BtnContainer } from './RegisterStyles';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
@@ -207,7 +202,7 @@ const Register = ({ setIsRegister }) => {
           <Button
             variant='contained'
             onClick={handleSubmit(registerHandler)}
-            sx={{ marginTop: '20px' }}
+            sx={{ marginTop: '20px', padding: '10px 30px' }}
           >
             Submit
           </Button>
