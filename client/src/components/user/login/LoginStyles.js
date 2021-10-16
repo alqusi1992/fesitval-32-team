@@ -1,4 +1,5 @@
 import { makeStyles } from '@mui/styles';
+import styled from 'styled-components';
 
 export const useStyles = makeStyles({
   FormGroup: {
@@ -46,3 +47,11 @@ export const useStyles = makeStyles({
     borderRadius: '25px',
   },
 });
+export const BtnContainer = styled.div`
+  text-align: center;
+  margin-top: 20px;
+  & :hover {
+    background: transparent;
+    color: #222;
+  }
+`;
