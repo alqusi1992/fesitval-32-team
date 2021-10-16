@@ -30,7 +30,10 @@ export const PayButton = () => {
     try {
       if (password !== null) {
         // register account
-        await register({ firstName, lastName, email, password }, dispatch);
+        await register(
+          { firstName, lastName, email, password, phone: '' },
+          dispatch,
+        );
       }
       const response = await fetch(
         `${process.env.REACT_APP_SERVER_URL}/payment`,

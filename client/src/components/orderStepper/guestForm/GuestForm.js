@@ -162,7 +162,7 @@ const GuestForm = ({ setFormSubmitted }) => {
               aria-label='toggle password visibility'
               onClick={handleClickShowPassword}
             >
-              {values.showPassword ? <VisibilityOff /> : <Visibility />}
+              {!values.showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </InputAdornment>
         </FormControl>
