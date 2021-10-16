@@ -16,7 +16,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormControl from '@mui/material/FormControl';
-import { IconButton } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 
 const Register = ({ setIsRegister }) => {
   const history = useHistory();
@@ -67,7 +67,7 @@ const Register = ({ setIsRegister }) => {
   return (
     <>
       {alert.isAlert && <Alert />}
-      <form onSubmit={handleSubmit(registerHandler)}>
+      <form>
         <FieldsContainer>
           <FormGroup>
             <TextField
@@ -204,7 +204,13 @@ const Register = ({ setIsRegister }) => {
           </FormControl>
         </FieldsContainer>
         <BtnContainer>
-          <ButtonPrimary type='submit'>Submit</ButtonPrimary>
+          <Button
+            variant='contained'
+            onClick={handleSubmit(registerHandler)}
+            sx={{ marginTop: '20px' }}
+          >
+            Submit
+          </Button>
         </BtnContainer>
       </form>
     </>
