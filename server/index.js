@@ -15,6 +15,18 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+const whitelist = ['http://localhost:3000', 'https://festival32.netlify.app'];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -28,14 +40,6 @@ const startServer = async () => {
     console.log(error);
   }
 };
-
-app.use(
-  cors({
-    origin: '*',
-  }),
-);
-
-app.use(express.json());
 
 // festival route
 app.use('/festival', festivalRouter);
