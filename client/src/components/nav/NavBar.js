@@ -26,7 +26,7 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
               component='div'
               sx={{ flexGrow: 1 }}
             >
-              HackYourFestival
+              Festival32
             </Typography>
           </Grid>
           <Grid item>
@@ -49,7 +49,7 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
             <ListItem text='tickets' drawer={drawer} />
           </Grid>
         )}
-        <NavUser />
+        <NavUser {...{ drawer }} />
         <div className={classes.iconButtonContainer}>
           <IconButton
             className={classes.iconBtn}

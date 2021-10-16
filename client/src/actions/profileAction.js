@@ -20,8 +20,29 @@ export const deleteUser = async (user, password) => {
   try {
     const response = await fetch(url + '/user/delete', {
       method: 'DELETE',
-      headers: { authorization: `Bearer ${user?.token}`, 'Content-Type': 'application/json' },
+      headers: {
+        authorization: `Bearer ${user?.token}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ password: password }),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    return { success: false, msg: 'Something went wrong!' };
+  }
+};
+
+export const UpdateUser = async (user, userObj) => {
+  try {
+    const response = await fetch(url + '/user/update', {
+      method: 'PATCH',
+      headers: {
+        authorization: `Bearer ${user?.token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userObj),
     });
     const data = await response.json();
     return data;

@@ -55,7 +55,7 @@ const Register = ({ setIsRegister }) => {
       const response = await register(userData, dispatch);
       if (response.success) {
         setIsRegister(false);
-        history.push('/profile');
+        history.push('/account');
       } else {
         showAlert('danger', response.msg, dispatch);
       }

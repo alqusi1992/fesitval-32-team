@@ -44,7 +44,7 @@ const Login = ({ setIsRegister }) => {
         setLocalStorage('remember-email', response.result.email);
       }
       setIsRegister(false);
-      history.push('/profile');
+      history.push('/');
     } else {
       showAlert('danger', response.msg, dispatch);
     }
