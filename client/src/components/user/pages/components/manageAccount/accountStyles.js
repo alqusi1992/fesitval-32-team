@@ -81,5 +81,11 @@ export const useStyles = makeStyles((theme, prop) => {
         margin: '30px auto',
       },
     },
+    alertStyle: {
+      '&&': {
+        display: 'block',
+        margin: '60px auto',
+      },
+    },
   };
 });
