@@ -10,4 +10,6 @@ export { SuccessPage } from './successPage/SuccessPage';
 export { default as Footer } from './footer/Footer';
 export { default as OrderStepper } from './orderStepper/OrderStepper';
 export { default as Schedule } from './pages/schedule/Schedule';
-
+export { default as GuestForm } from './orderStepper/guestForm/GuestForm';
+export { default as Tickets } from './orderStepper/tickets/Tickets';
+export { default as MyAccount } from './user/pages/components/manageAccount/MyAccount';

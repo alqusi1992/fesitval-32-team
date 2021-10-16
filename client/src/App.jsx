@@ -13,6 +13,7 @@ import {
   Footer,
   OrderStepper,
   Schedule,
+  MyAccount,
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
@@ -24,7 +25,7 @@ function App() {
       <Router>
         <NavBar />
         <Loading />
-        <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>
+        <Container maxWidth='lg' style={{ paddingBottom: '250px' }}>
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
@@ -32,6 +33,11 @@ function App() {
             <Route exact path='/profile'>
               <Protected>
                 <Profile />
+              </Protected>
+            </Route>
+            <Route exact path='/account'>
+              <Protected>
+                <MyAccount />
               </Protected>
             </Route>
             <GuestProvider>
