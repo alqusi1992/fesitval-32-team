@@ -17,14 +17,17 @@ const UpdateAccount = () => {
     formState: { errors },
   } = useForm();
   const classes = useStyles();
-  const [data, setData] = useState({ showCurrentPassword: false, showNewPassword: false });
+  const [showPassword, setShowPassword] = useState({
+    showCurrentPassword: false,
+    showNewPassword: false,
+  });
   const {
     dispatch,
     state: { user },
     state: { alert },
   } = useValue();
 
-  const fetchUser = async () => {
+  const fetchUser = async (data) => {
     try {
       const response = await UpdateUser(user, data);
       if (response.success) {
@@ -36,15 +39,15 @@ const UpdateAccount = () => {
   };
 
   const handleClickCurrentPassword = () => {
-    setData({
-      ...data,
-      showCurrentPassword: !data.showCurrentPassword,
+    setShowPassword({
+      ...showPassword,
+      showCurrentPassword: !showPassword.showCurrentPassword,
     });
   };
   const handleClickNewPassword = () => {
-    setData({
-      ...data,
-      showNewPassword: !data.showNewPassword,
+    setShowPassword({
+      ...showPassword,
+      showNewPassword: !showPassword.showNewPassword,
     });
   };
 
@@ -64,7 +67,6 @@ const UpdateAccount = () => {
           error={errors?.firstName?.type ? true : false}
           label='FirstName'
           variant='standard'
-          onChange={(e) => setData({ ...data, firstName: e.target.value })}
           helperText={errors?.firstName?.message}
           {...register('firstName', {
             pattern: {
@@ -77,7 +79,6 @@ const UpdateAccount = () => {
           error={errors?.lastName?.type ? true : false}
           label='LastName'
           variant='standard'
-          onChange={(e) => setData({ ...data, lastName: e.target.value })}
           helperText={errors?.lastName?.message}
           {...register('lastName', {
             pattern: {
@@ -90,7 +91,6 @@ const UpdateAccount = () => {
           error={errors?.email?.type ? true : false}
           label='Emial'
           variant='standard'
-          onChange={(e) => setData({ ...data, email: e.target.value })}
           helperText={errors?.email?.message}
           {...register('email', {
             pattern: {
@@ -105,7 +105,6 @@ const UpdateAccount = () => {
           label='Phone'
           variant='standard'
           helperText={errors?.phone?.message}
-          onChange={(e) => setData({ ...data, phone: e.target.value })}
           {...register('phone', {
             pattern: {
               value: /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im,
@@ -115,31 +114,33 @@ const UpdateAccount = () => {
         />
         <FormControl sx={{ m: 1, width: '25ch', position: 'relative' }} variant='standard'>
           <TextField
+            error={errors?.currentPassword?.type ? true : false}
             label='CurrentPassword'
             variant='standard'
-            onChange={(e) => setData({ ...data, currentPassword: e.target.value })}
-            type={data.showCurrentPassword ? 'text' : 'password'}
+            type={showPassword.showCurrentPassword ? 'text' : 'password'}
+            helperText={errors?.currentPassword?.message}
+            {...register('currentPassword', {
+              required: 'Please insert your currentPassword!',
+            })}
           />
           <InputAdornment sx={{ position: 'absolute', right: '0', top: '30px' }}>
             <IconButton
               aria-label='toggle password visibility'
               onClick={handleClickCurrentPassword}
             >
-              {data.showCurrentPassword ? <VisibilityOff /> : <Visibility />}
+              {showPassword.showCurrentPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </InputAdornment>
         </FormControl>
 
         <FormControl sx={{ m: 1, width: '25ch', position: 'relative' }} variant='standard'>
           <TextField
-            error={errors?.password?.type ? true : false}
+            error={errors?.newPassword?.type ? true : false}
             label='NewPassword'
             variant='standard'
-            onChange={(e) => setData({ ...data, newPassword: e.target.value })}
-            type={data.showNewPassword ? 'text' : 'password'}
-            helperText={errors?.password?.message}
-            {...register('password', {
-              required: 'Please insert a password!',
+            type={showPassword.showNewPassword ? 'text' : 'password'}
+            helperText={errors?.newPassword?.message}
+            {...register('newPassword', {
               pattern: {
                 value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
                 message:
@@ -149,7 +150,7 @@ const UpdateAccount = () => {
           />
           <InputAdornment sx={{ position: 'absolute', right: '0', top: '30px' }}>
             <IconButton aria-label='toggle password visibility' onClick={handleClickNewPassword}>
-              {data.showNewPassword ? <VisibilityOff /> : <Visibility />}
+              {showPassword.showNewPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </InputAdornment>
         </FormControl>
