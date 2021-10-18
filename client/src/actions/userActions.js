@@ -52,12 +52,8 @@ export const login = async (userData, dispatch) => {
 };
 
 export const logout = (dispatch) => {
+  localStorage.removeItem('profile');
   dispatch({ type: 'LOGOUT' });
-  const rememberedEmail = getLocalStorage('remember-email');
-  localStorage.clear();
-  if (rememberedEmail !== null) {
-    setLocalStorage('remember-email', rememberedEmail);
-  }
 };
 
 export const setUser = (payload, dispatch) => {
