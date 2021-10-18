@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import { comparePassword } from '../utils/helper.js';
+import sendEmail from '../utils/sendEmail.js';
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -41,9 +42,7 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const {
-    email, password, firstName, lastName, phone,
-  } = req.body;
+  const { email, password, firstName, lastName, phone } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -104,9 +103,8 @@ export const deleteAccount = async (req, res) => {
 
 export const updateAccount = async (req, res) => {
   try {
-    const {
-      firstName, lastName, email, newPassword, phone, currentPassword,
-    } = req.body;
+    const { firstName, lastName, email, newPassword, phone, currentPassword } =
+      req.body;
     const { userId } = req;
     const existedUser = await User.findById(userId);
     const correctPassword = await comparePassword(currentPassword, existedUser);
@@ -140,5 +138,17 @@ export const updateAccount = async (req, res) => {
     });
   } catch (error) {
     return res.status(500).json({ success: false, msg: 'Server Error' });
+  }
+};
+
+export const testEmail = async (req, res) => {
+  const to = 'mohammedagl6@gmail.com';
+  const subject = 'Reset Password';
+  const html = '<h1>Hey There</h1>';
+  try {
+    await sendEmail(to, subject, html);
+    res.status(200).json({ success: true, msg: 'sent successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, msg: 'Something went wrong' });
   }
 };
