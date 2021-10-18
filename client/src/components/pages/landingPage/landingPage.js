@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CardsHolder, ListItem } from './landingPageStyle';
 import about from '../../../images/about.jpg';
 import program from '../../../images/program.jpg';
 import tickets from '../../../images/tickets.jpg';
 import ImageCard from './ImageCard';
-import { Link } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
 import 'react-multi-carousel/lib/styles.css';
+import { useValue } from '../../../context/globalContext';
+import { showAlert } from '../../../actions/alertActions';
+import Alert from '../../alert/Alert';
 
 const LandingPage = () => {
+  const {
+    dispatch,
+    state: { user },
+    state: { alert },
+  } = useValue();
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -25,8 +33,23 @@ const LandingPage = () => {
       partialVisibilityGutter: 40,
     },
   };
+
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const verified = useQuery().get('isVerified');
+
+  useEffect(() => {
+    if (verified) {
+      showAlert('success', 'your email is successfully verified', dispatch);
+    } else {
+      showAlert('danger', 'Verification is failed', dispatch);
+    }
+  }, [dispatch, verified]);
+
   return (
     <>
+      {alert.isAlert && <Alert />}
       <CardsHolder
         responsive={responsive}
         partialVisible={true}
