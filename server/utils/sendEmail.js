@@ -12,7 +12,7 @@ const sendEmail = async (to, subject, html) => {
   });
 
   await transporter.sendMail({
-    from: '"Festival32" <info@festival32.nl>', // sender address
+    from: '"Festival32" <info@eveme.nl>', // sender address
     to,
     subject,
     html,
