@@ -9,11 +9,7 @@ import userRouter from './routes/userRoute.js';
 import orderRouter from './routes/orderRoute.js';
 import scheduleRouter from './routes/scheduleRoute.js';
 import createPdfRouter from './routes/createPdfRouter.js';
-import sendEmail from './utils/sendEmail.js';
 
-if (1 === 2) {
-  sendEmail().catch(console.error);
-}
 dotenv.config();
 
 const app = express();
