@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from '../utils/localStorage';
+import { setLocalStorage } from '../utils/localStorage';
 
 const url = process.env.REACT_APP_SERVER_URL + '/user';
 
