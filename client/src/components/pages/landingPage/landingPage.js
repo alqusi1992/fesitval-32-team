@@ -38,14 +38,23 @@ const LandingPage = () => {
     return new URLSearchParams(useLocation().search);
   };
   const verified = useQuery().get('isVerified');
+  const tokenExpired = useQuery().get('tokenExpired');
 
   useEffect(() => {
-    if (verified) {
+    if (verified === null) {
+      return;
+    } else if (verified === 'true') {
       showAlert('success', 'your email is successfully verified', dispatch);
+    } else if (tokenExpired === 'true') {
+      showAlert(
+        'danger',
+        'Link is expired, please request a new link',
+        dispatch,
+      );
     } else {
       showAlert('danger', 'Verification is failed', dispatch);
     }
-  }, [dispatch, verified]);
+  }, [dispatch, verified, tokenExpired]);
 
   return (
     <>
