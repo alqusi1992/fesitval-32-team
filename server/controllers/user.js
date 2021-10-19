@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import { comparePassword } from '../utils/helper.js';
 import sendEmail from '../utils/sendEmail.js';
+import sendEmailSandGrid from '../utils/sendEmailSandGrid.js';
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -153,12 +154,24 @@ export const forgotPassword = async (req, res) => {
       res.status(400).json({ success: false, msg: 'Account with this email does not exist' });
     } else {
       const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET, {expiresIn: '30m'});
-      await existedUser.updateOne({resetLink: token});
+      await existedUser.updateOne({token: token});
       const html = `<p>Hello${existedUser.firstName},
-      please click <a href = ${process.env.CLIENT_URL}/user/reset-password/token=${token}>here<a> to reset your password<p>`
-      await sendEmail(email, 'Reset Password', html);
+      please click <a href = ${process.env.CLIENT_URL}/user/reset-password/token=${token}>here<a> to reset your password</p>`
+      await sendEmailSandGrid(email, 'Reset Password', html);
       return res.status(200).json({ success: true, msg: 'sent successfully' });
 }
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({ success: false, msg: 'Something went wrong' });
+  }
+}
+
+export const resetPassword = async (req, res) => {
+  const {token, newPass} = req.body;
+
+  try {
+    const existedUser = await User.findOne({ token });
+    console.log(existedUser)
   } catch (error) {
     console.log(error)
     return res.status(500).json({ success: false, msg: 'Something went wrong' });

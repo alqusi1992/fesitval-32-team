@@ -6,6 +6,7 @@ import {
   updateAccount,
   forgotPassword,
   testEmail,
+  resetPassword
 } from '../controllers/user.js';
 import auth from '../middleware/auth.js';
 
@@ -15,7 +16,8 @@ userRouter.post('/login', login);
 userRouter.post('/register', register);
 userRouter.delete('/delete', auth, deleteAccount);
 userRouter.patch('/update', auth, updateAccount);
-userRouter.put('/forgot-password', forgotPassword)
+userRouter.post('/forgot-password', forgotPassword)
+userRouter.post('/reset-password', resetPassword)
 userRouter.get('/testEmail', testEmail);
 
 export default userRouter;
