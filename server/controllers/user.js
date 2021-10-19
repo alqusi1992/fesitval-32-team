@@ -142,3 +142,20 @@ export const updateAccount = async (req, res) => {
     return res.status(500).json({ success: false, msg: 'Server Error' });
   }
 };
+
+export const forgotPassword = async (req, res) => {
+  const {email} = req.body;
+  try {
+    const existedUser = await User.findOne({ email });
+    if (!existedUser) {
+      return res
+        .status(400)
+        .json({ success: false, msg: 'Account with this email does not exist' });
+    }
+    const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET, {
+      expiresIn: '30m',
+    });
+  } catch (error) {
+    
+  }
+}
