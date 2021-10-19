@@ -9,6 +9,7 @@ import userRouter from './routes/userRoute.js';
 import orderRouter from './routes/orderRoute.js';
 import scheduleRouter from './routes/scheduleRoute.js';
 import createPdfRouter from './routes/createPdfRouter.js';
+import verificationRouter from './routes/verificationRoute.js';
 
 dotenv.config();
 
@@ -43,6 +44,9 @@ app.use('/user', userRouter);
 app.use('/order', orderRouter);
 app.use('/tickets', ticketRouter);
 app.use('/schedule', scheduleRouter);
+
+// verified route
+app.use('/verification', verificationRouter);
 
 app.get('/', (req, res) => {
   res.send('WELCOME TO OUR API!');
