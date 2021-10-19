@@ -146,26 +146,31 @@ export const updateAccount = async (req, res) => {
 
 export const forgotPassword = async (req, res) => {
   const {email} = req.body;
+  console.log(email)
   try {
     const existedUser = await User.findOne({ email });
     if (!existedUser) {
-      return res
-        .status(400)
-        .json({ success: false, msg: 'Account with this email does not exist' });
-    }
-    const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET, {
-      expiresIn: '30m',
-    });
+      res.status(400).json({ success: false, msg: 'Account with this email does not exist' });
+    } else {
+      const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET, {expiresIn: '30m'});
+      await existedUser.updateOne({resetLink: token});
+      const html = `<p>Hello${existedUser.firstName},
+      please click <a href = ${process.env.CLIENT_URL}/user/reset-password/token=${token}>here<a> to reset your password<p>`
+      await sendEmail(email, 'Reset Password', html);
+      return res.status(200).json({ success: true, msg: 'sent successfully' });
+}
   } catch (error) {
-    
+    console.log(error)
+    return res.status(500).json({ success: false, msg: 'Something went wrong' });
   }
 }
 export const testEmail = async (req, res) => {
-  const to = 'mohammedagl6@gmail.com';
-  const subject = 'Reset Password';
+  const to = 'yahya.ganjo@gmail.com';
+  const subject = 'Test';
   const html = '<h1>Hey There</h1>';
   try {
-    await sendEmail(to, subject, html);
+    const result = await sendEmail(to, subject, html);
+    console.log(result)
     res.status(200).json({ success: true, msg: 'sent successfully' });
   } catch (error) {
     res.status(500).json({ success: false, msg: 'Something went wrong' });
