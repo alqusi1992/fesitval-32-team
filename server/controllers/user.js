@@ -63,7 +63,7 @@ export const register = async (req, res) => {
       lastName,
       phone,
     });
-    const { _id } = result;
+    const { _id, isVerified } = result;
     const token = jwt.sign({ email, id: _id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     });
@@ -75,6 +75,7 @@ export const register = async (req, res) => {
         lastName,
         email,
         phone,
+        isVerified,
       },
       token,
     });
