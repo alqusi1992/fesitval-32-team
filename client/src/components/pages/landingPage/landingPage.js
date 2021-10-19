@@ -13,7 +13,6 @@ import Alert from '../../alert/Alert';
 const LandingPage = () => {
   const {
     dispatch,
-    state: { user },
     state: { alert },
   } = useValue();
 
