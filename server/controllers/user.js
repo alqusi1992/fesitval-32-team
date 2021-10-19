@@ -19,7 +19,9 @@ export const login = async (req, res) => {
         .status(400)
         .json({ success: false, msg: 'Invalid credentials' });
     }
-    const { _id, firstName, lastName } = existedUser;
+    const {
+      _id, firstName, lastName, isVerified,
+    } = existedUser;
     const phone = existedUser?.phone ? existedUser.phone : '';
     const result = {
       _id,
@@ -27,6 +29,7 @@ export const login = async (req, res) => {
       lastName,
       email,
       phone,
+      isVerified,
     };
     const token = jwt.sign({ email, id: _id }, process.env.JWT_SECRET, {
       expiresIn: '1h',

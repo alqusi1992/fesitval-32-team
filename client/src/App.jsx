@@ -14,6 +14,7 @@ import {
   OrderStepper,
   Schedule,
   MyAccount,
+  Verify,
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
@@ -25,6 +26,7 @@ function App() {
       <Router>
         <NavBar />
         <Loading />
+        <Verify />
         <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>
           <Switch>
             <Route exact path='/' component={LandingPage} />

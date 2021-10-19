@@ -13,7 +13,7 @@ import Alert from '../../alert/Alert';
 const LandingPage = () => {
   const {
     dispatch,
-    state: { alert },
+    state: { user, alert },
   } = useValue();
 
   const responsive = {
@@ -44,6 +44,9 @@ const LandingPage = () => {
       return;
     } else if (verified === 'true') {
       showAlert('success', 'your email is successfully verified', dispatch);
+      if (user.result) {
+        user.result.isVerified = true;
+      }
     } else if (tokenExpired === 'true') {
       showAlert(
         'danger',
@@ -57,7 +60,7 @@ const LandingPage = () => {
 
   return (
     <>
-      {alert.isAlert && <Alert />}
+      {alert.isAlert && verified ? <Alert /> : ''}
       <CardsHolder
         responsive={responsive}
         partialVisible={true}

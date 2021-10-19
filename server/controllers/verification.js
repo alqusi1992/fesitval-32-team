@@ -50,9 +50,11 @@ export const sendEmailVerification = async (req, res) => {
 
   try {
     await sendEmailSandGrid(toEmail, subject, html);
-    res.status(200).json({ success: true, msg: 'email has been sent' });
+    return res.status(200).json({ success: true, msg: 'email has been sent' });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ success: false, msg: 'Something went wrong' });
+    return res
+      .status(500)
+      .json({ success: false, msg: 'Something went wrong' });
   }
 };
