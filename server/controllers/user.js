@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 import { comparePassword } from '../utils/helper.js';
+import sendEmail from '../utils/sendEmail.js';
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
@@ -159,3 +160,14 @@ export const forgotPassword = async (req, res) => {
     
   }
 }
+export const testEmail = async (req, res) => {
+  const to = 'mohammedagl6@gmail.com';
+  const subject = 'Reset Password';
+  const html = '<h1>Hey There</h1>';
+  try {
+    await sendEmail(to, subject, html);
+    res.status(200).json({ success: true, msg: 'sent successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, msg: 'Something went wrong' });
+  }
+};

@@ -4,7 +4,8 @@ import {
   register,
   deleteAccount,
   updateAccount,
-  forgotPassword
+  forgotPassword,
+  testEmail,
 } from '../controllers/user.js';
 import auth from '../middleware/auth.js';
 
@@ -15,5 +16,6 @@ userRouter.post('/register', register);
 userRouter.delete('/delete', auth, deleteAccount);
 userRouter.patch('/update', auth, updateAccount);
 userRouter.put('/forgot-password', forgotPassword)
+userRouter.get('/testEmail', testEmail);
 
 export default userRouter;
