@@ -9,11 +9,8 @@ const sendEmailSandGrid = async (toEmail, subject, html) => {
     subject,
     html,
   };
-  try {
-    await sgMail.send(msg);
-  } catch (error) {
-    console.log(error);
-  }
+
+  await sgMail.send(msg);
 };
 
 export default sendEmailSandGrid;
