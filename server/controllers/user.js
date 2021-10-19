@@ -146,51 +146,51 @@ export const updateAccount = async (req, res) => {
 };
 
 export const forgotPassword = async (req, res) => {
-  const {email} = req.body;
-  console.log(email)
+  const { email } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (!existedUser) {
       res.status(400).json({ success: false, msg: 'Account with this email does not exist' });
     } else {
-      const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET_FORGET, {expiresIn: '30m'});
-      await existedUser.updateOne({token});
+      const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET_FORGET, { expiresIn: '30m' });
+      await existedUser.updateOne({ token });
       const html = `<p>Hello ${existedUser.firstName},<br>
-      Please click <a href = ${process.env.CLIENT_URL}/user/reset-password/${token}>here<a> to reset your password.</p>`
+      Please click <a href = ${process.env.CLIENT_URL}/user/reset-password/${token}>here<a> to reset your password.</p>`;
       await sendEmailSandGrid(email, 'Reset Password', html);
       return res.status(200).json({ success: true, msg: 'sent successfully' });
-}
+    }
+    return existedUser;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({ success: false, msg: 'Something went wrong' });
   }
-}
+};
 
 export const resetPassword = async (req, res) => {
-  const {token, newPass} = req.body;
+  const { token, newPass } = req.body;
   const hashedPassword = await bcrypt.hash(newPass, 12);
 
   try {
     const existedUser = await User.findOneAndUpdate(
-      { token }, 
-      {password: hashedPassword, token: ""}, 
+      { token },
+      { password: hashedPassword, token: '' },
     );
     if (!existedUser) {
       return res.status(400).json({ success: false, msg: 'Expired or invalid token' });
     }
-    console.log(existedUser.password)
+    return existedUser;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.status(500).json({ success: false, msg: 'Something went wrong' });
   }
-}
+};
 export const testEmail = async (req, res) => {
   const to = 'yahya.ganjo@gmail.com';
   const subject = 'Test';
   const html = '<h1>Hey There</h1>';
   try {
     const result = await sendEmail(to, subject, html);
-    console.log(result)
+    console.log(result);
     res.status(200).json({ success: true, msg: 'sent successfully' });
   } catch (error) {
     res.status(500).json({ success: false, msg: 'Something went wrong' });
