@@ -153,10 +153,10 @@ export const forgotPassword = async (req, res) => {
     if (!existedUser) {
       res.status(400).json({ success: false, msg: 'Account with this email does not exist' });
     } else {
-      const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET, {expiresIn: '30m'});
-      await existedUser.updateOne({token: token});
-      const html = `<p>Hello${existedUser.firstName},
-      please click <a href = ${process.env.CLIENT_URL}/user/reset-password/token=${token}>here<a> to reset your password</p>`
+      const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET_FORGET, {expiresIn: '30m'});
+      await existedUser.updateOne({token});
+      const html = `<p>Hello ${existedUser.firstName},<br>
+      Please click <a href = ${process.env.CLIENT_URL}/user/reset-password/${token}>here<a> to reset your password.</p>`
       await sendEmailSandGrid(email, 'Reset Password', html);
       return res.status(200).json({ success: true, msg: 'sent successfully' });
 }
@@ -168,10 +168,17 @@ export const forgotPassword = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
   const {token, newPass} = req.body;
+  const hashedPassword = await bcrypt.hash(newPass, 12);
 
   try {
-    const existedUser = await User.findOne({ token });
-    console.log(existedUser)
+    const existedUser = await User.findOneAndUpdate(
+      { token }, 
+      {password: hashedPassword, token: ""}, 
+    );
+    if (!existedUser) {
+      return res.status(400).json({ success: false, msg: 'Expired or invalid token' });
+    }
+    console.log(existedUser.password)
   } catch (error) {
     console.log(error)
     return res.status(500).json({ success: false, msg: 'Something went wrong' });
