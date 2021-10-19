@@ -1,6 +1,6 @@
-import sgMail from '@sendgrid/mail';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import sendEmailSandGrid from '../utils/sendEmailSandGrid.js';
 
 export const verifyEmail = async (req, res) => {
   const { token } = req.query;
@@ -36,28 +36,20 @@ export const verifyEmail = async (req, res) => {
   }
 };
 
-export const sendEmail = async (req, res) => {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
+export const sendEmailVerification = async (req, res) => {
   const { email, _id } = req.body;
   const token = jwt.sign({ email, id: _id }, process.env.JWT_SECRET, {
     expiresIn: '1h',
   });
 
+  const subject = 'Festival32 email Verification';
+  const toEmail = email;
   const url = `${process.env.SERVER_URL}/verification/verify-email?token=${token}`;
-
-  const msg = {
-    to: `${email}`,
-    from: `${process.env.SENDGRID_EMAIL}`,
-    subject: 'Festival32 email Verification',
-    text: 'and easy to do anywhere, even with Node.js',
-    html: `<p>Please verify your email by clicking this link below: </p>
-   <a href='${url}'>${url}</a>
-    `,
-  };
+  const html = `<p>Please verify your email by clicking this link below: </p>
+<a href='${url}'>${url}</a>`;
 
   try {
-    await sgMail.send(msg);
+    await sendEmailSandGrid(toEmail, subject, html);
     res.send('email has been sent');
   } catch (error) {
     console.log(error);
