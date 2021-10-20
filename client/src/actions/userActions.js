@@ -59,3 +59,22 @@ export const logout = (dispatch) => {
 export const setUser = (payload, dispatch) => {
   dispatch({ type: 'SET_USER', payload });
 };
+
+// export const forgotPassword = async (email, dispatch) => {
+//   dispatch({ type: 'SEND_LINK' });
+//   try {
+//     const response = await fetch(url + '/forgotPassword', {
+//       method: 'POST',
+//       header: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(email),
+//     });
+//     const data = await response.json();
+//     if (data.success) {
+//       dispatch({ type: 'SEND_LINK' });
+//     }
+//     return email;
+//   } catch (error) {
+//     console.log(error);
+//     return { success: false, msg: 'Something went wrong' };
+//   }
+// };

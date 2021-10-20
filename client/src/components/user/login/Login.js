@@ -15,6 +15,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormControl from '@mui/material/FormControl';
 import { Button, IconButton } from '@mui/material';
+import ForgotPassword from '../resetPassword/ForgotPassword';
 
 const Login = ({ setIsRegister }) => {
   const history = useHistory();
@@ -137,6 +138,7 @@ const Login = ({ setIsRegister }) => {
             Submit
           </Button>
         </BtnContainer>
+        <ForgotPassword />
       </form>
     </>
   );
