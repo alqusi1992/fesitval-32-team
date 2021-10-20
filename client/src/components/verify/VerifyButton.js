@@ -28,6 +28,7 @@ const VerifyButton = () => {
         setLoading(false);
         showAlert('success', 'Check your mailbox to verify your account', dispatch);
       } else if (!response.success) {
+        setLoading(false);
         showAlert('danger', response.msg, dispatch);
       }
     } catch (error) {
