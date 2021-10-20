@@ -11,6 +11,7 @@ import {
   Profile,
   Protected,
   Footer,
+  About,
   OrderStepper,
   Schedule,
   MyAccount,
@@ -30,6 +31,7 @@ function App() {
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
             <Route exact path='/schedule' component={Schedule} />
+            <Route exact path='/about' component={About} />
             <Route exact path='/profile'>
               <Protected>
                 <Profile />
