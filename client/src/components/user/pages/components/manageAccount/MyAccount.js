@@ -3,16 +3,7 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import AddIcon from '@mui/icons-material/Add';
-import {
-  AppBar,
-  Box,
-  Divider,
-  Drawer,
-  Fab,
-  List,
-  Toolbar,
-  Typography,
-} from '@mui/material';
+import { AppBar, Box, Divider, Drawer, Fab, List, Toolbar, Typography } from '@mui/material';
 import AccountItem from './AccountItem';
 import { useStyles } from './accountStyles';
 import Profile from '../../Profile';
@@ -28,8 +19,7 @@ const MyAccount = (props) => {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
   const drawer = (
     <div>
       <Divider />
@@ -40,12 +30,7 @@ const MyAccount = (props) => {
           setValue={setValue}
           classes={classes}
         />
-        <AccountItem
-          icon={<DeleteIcon />}
-          text='Delete'
-          setValue={setValue}
-          classes={classes}
-        />
+        <AccountItem icon={<DeleteIcon />} text='Delete' setValue={setValue} classes={classes} />
         <AccountItem
           icon={<FormatListBulletedIcon />}
           text='Orders'
@@ -118,11 +103,7 @@ const MyAccount = (props) => {
       </Box>
       <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar className={classes.bottomToolbar}>
-          <Typography
-            variant='h4'
-            component='h2'
-            className={classes.accountTitle}
-          >
+          <Typography variant='h4' component='h2' className={classes.accountTitle}>
             {value}
           </Typography>
         </Toolbar>

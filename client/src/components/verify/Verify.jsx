@@ -19,7 +19,11 @@ const Verify = () => {
   return (
     <>
       {user?.result?.isVerified === false && (
-        <Grid container justifyContent='center'>
+        <Grid
+          container
+          justifyContent='center'
+          sx={{ position: 'absolute', top: '90px', zIndex: 1 }}
+        >
           <Grid
             container
             item
