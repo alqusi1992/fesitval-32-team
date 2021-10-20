@@ -1,13 +1,19 @@
 import { Grid } from '@mui/material';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { useValue } from '../../context/globalContext';
+import Alert from '../alert/Alert';
 import VerifyButton from './VerifyButton';
 import { useStyles } from './verifyStyle';
 
 const Verify = () => {
   const {
-    state: { user },
+    state: { user, alert },
   } = useValue();
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const verified = useQuery().get('isVerified');
   const classes = useStyles();
 
   return (
@@ -31,6 +37,7 @@ const Verify = () => {
           </Grid>
         </Grid>
       )}
+      {alert.isAlert && !verified ? <Alert /> : ''}
     </>
   );
 };
