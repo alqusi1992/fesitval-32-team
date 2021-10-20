@@ -16,7 +16,7 @@ import { logout, setUser } from '../../../actions/userActions';
 import User from '../../user/User';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getLocalStorage } from '../../../utils/localStorage';
+import { getLocalStorage, setLocalStorage } from '../../../utils/localStorage';
 import decode from 'jwt-decode';
 import { useStyles } from './NavUserStyles';
 
@@ -42,6 +42,7 @@ const NavUser = ({ drawer }) => {
       if (userProfile?.token) {
         if (verified === 'true') {
           userProfile.result.isVerified = true;
+          setLocalStorage('profile', userProfile);
         }
         setUser(userProfile, dispatch);
       }
