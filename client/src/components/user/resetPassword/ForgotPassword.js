@@ -1,7 +1,8 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import { useForm } from 'react-hook-form';
-import { forgotPassword } from '../../../actions/userActions';
+import { SendLink } from '../../../actions/passwordAction';
+import { Button } from '@mui/material';
 
 const ForgotPassword = () => {
   const {
@@ -9,21 +10,6 @@ const ForgotPassword = () => {
     register,
     formState: { errors },
   } = useForm();
-
-  const url = process.env.REACT_APP_SERVER_URL + '/user';
-
-  const sendLink = async (data) => {
-    // const response = await forgotPassword(email, dispatch)
-    try {
-      const response = await fetch(url + '/forgot-password', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   return (
     <>
@@ -42,9 +28,9 @@ const ForgotPassword = () => {
           },
         })}
       />
-      <button type='submit' onClick={handleSubmit(sendLink)}>
+      <Button type='submit' onClick={handleSubmit(SendLink)}>
         SEND
-      </button>
+      </Button>
     </>
   );
 };

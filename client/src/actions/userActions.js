@@ -70,7 +70,7 @@ export const setUser = (payload, dispatch) => {
 //     });
 //     const data = await response.json();
 //     if (data.success) {
-//       dispatch({ type: 'SEND_LINK' });
+//       dispatch({ type: 'SEND_LINK', });
 //     }
 //     return email;
 //   } catch (error) {

@@ -45,6 +45,7 @@ const User = ({ setIsRegister }) => {
             </LogInRegister>
           </div>
         )}
+        <div>Forgot your password?</div>
       </Modal>
     </ModalContainer>
   );

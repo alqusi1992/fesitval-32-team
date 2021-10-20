@@ -14,6 +14,7 @@ import {
   OrderStepper,
   Schedule,
   MyAccount,
+  ResetPassword
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
@@ -30,11 +31,11 @@ function App() {
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
             <Route exact path='/schedule' component={Schedule} />
-            <Route exact path='/profile'>
+            <Route exact path='/profile'/>
+            <Route exact path='/user/reset-password/:token' component={ResetPassword}/>
               <Protected>
                 <Profile />
               </Protected>
-            </Route>
             <Route exact path='/account'>
               <Protected>
                 <MyAccount />

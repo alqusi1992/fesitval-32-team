@@ -174,6 +174,7 @@ export const forgotPassword = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
   const { token, newPass } = req.body;
+  console.log(req.body);
   const hashedPassword = await bcrypt.hash(newPass, 12);
 
   try {

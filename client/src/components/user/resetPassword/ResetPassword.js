@@ -1,0 +1,114 @@
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import FormControl from '@mui/material/FormControl';
+import { useForm } from 'react-hook-form';
+import { Button, IconButton } from '@mui/material';
+import { SubmitNewPassword } from '../../../actions/passwordAction';
+
+const ResetPassword = () => {
+  const {
+    handleSubmit,
+    register: registerForm,
+    formState: { errors },
+  } = useForm();
+
+  const { token } = useParams();
+
+  const [showPassword, setShowPassword] = useState({
+    newPassword: false,
+    confirmPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setShowPassword({
+      ...showPassword,
+      newPassword: !showPassword.newPassword,
+    });
+  };
+
+  const handleClickShowConfirmPassword = () => {
+    setShowPassword({
+      ...showPassword,
+      confirmPassword: !showPassword.confirmPassword,
+    });
+  };
+
+  const submit = async (data) => {
+    const response = await SubmitNewPassword(data.password, token);
+  };
+
+  return (
+    <div>
+      <FormControl sx={{ position: 'relative' }} variant='standard'>
+        <TextField
+          variant='standard'
+          label='New password'
+          placeholder='New Password'
+          error={errors?.password?.type ? true : false}
+          helperText={errors?.password?.message}
+          type={showPassword.newPassword ? 'text' : 'password'}
+          {...registerForm('password', {
+            required: 'Please insert a password!',
+            pattern: {
+              value:
+                /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+              message:
+                'Password should have at least 8 characters, one uppercase, one lowercase,one number and one special character!',
+            },
+          })}
+        />
+        <InputAdornment
+          position='end'
+          sx={{ position: 'absolute', right: '0', top: '30px' }}
+        >
+          <IconButton
+            aria-label='toggle password visibility'
+            onClick={handleClickShowPassword}
+          >
+            {!showPassword.newPassword ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
+        </InputAdornment>
+      </FormControl>
+      <FormControl sx={{ position: 'relative' }} variant='standard'>
+        <TextField
+          error={errors?.confirmPassword?.type ? true : false}
+          label='Confirm new password'
+          placeholder='Confirm new Password'
+          variant='standard'
+          helperText={errors?.confirmPassword?.message}
+          name='confirmPassword'
+          type={showPassword.confirmPassword ? 'text' : 'password'}
+          {...registerForm('confirmPassword', {
+            required: 'Please insert a password!',
+            pattern: {
+              value:
+                /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+              message:
+                'Password should have at least 8 characters, one uppercase, one lowercase,one number and one special character!',
+            },
+          })}
+        />
+        <InputAdornment
+          position='end'
+          sx={{ position: 'absolute', right: '0', top: '30px' }}
+        >
+          <IconButton
+            aria-label='toggle password visibility'
+            onClick={handleClickShowConfirmPassword}
+          >
+            {!showPassword.confirmPassword ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
+        </InputAdornment>
+      </FormControl>
+      <Button type='submit' onClick={handleSubmit(submit)}>
+        SUBMIT
+      </Button>
+    </div>
+  );
+};
+
+export default ResetPassword;
