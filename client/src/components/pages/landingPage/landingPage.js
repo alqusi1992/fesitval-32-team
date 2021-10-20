@@ -44,9 +44,6 @@ const LandingPage = () => {
       return;
     } else if (verified === 'true') {
       showAlert('success', 'your email is successfully verified', dispatch);
-      if (user.result) {
-        user.result.isVerified = true;
-      }
     } else if (tokenExpired === 'true') {
       showAlert(
         'danger',

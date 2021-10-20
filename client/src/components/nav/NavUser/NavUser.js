@@ -35,6 +35,7 @@ const NavUser = ({ drawer }) => {
     if (!user?.token) {
       const userProfile = getLocalStorage('profile');
       if (userProfile?.token) {
+        userProfile.result.isVerified = true;
         setUser(userProfile, dispatch);
       }
     }
