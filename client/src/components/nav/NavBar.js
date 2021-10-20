@@ -28,7 +28,7 @@ export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
               component='div'
               sx={{ flexGrow: 1 }}
             >
-              HackYourFestival
+              Festival32
             </Typography>
           </Grid>
           <Grid item>
@@ -46,12 +46,24 @@ export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
         </Grid>
         {matches && (
           <Grid container className={classes.listItemContainer} spacing={2}>
-            <ListItem text='program' drawer={drawer} />
-            <ListItem text='about' drawer={drawer} />
-            <ListItem text='tickets' drawer={drawer} />
+            <ListItem
+              handleClick={() => history.push('/schedule')}
+              text='program'
+              drawer={drawer}
+            />
+            <ListItem
+              text='about'
+              drawer={drawer}
+              handleClick={() => history.push('/about')}
+            />
+            <ListItem
+              text='tickets'
+              drawer={drawer}
+              handleClick={() => history.push('/tickets')}
+            />
           </Grid>
         )}
-        <NavUser />
+        <NavUser {...{ drawer }} />
         <div className={classes.iconButtonContainer}>
           <IconButton
             className={classes.iconBtn}
@@ -66,7 +78,7 @@ export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
           </IconButton>
         </div>
       </Toolbar>
-      <NavDrawer {...{ drawer, setDrawer }} />
+      <NavDrawer {...{ drawer, handleDrawer }} />
     </AppBar>
   );
 };

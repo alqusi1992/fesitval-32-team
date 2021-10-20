@@ -4,9 +4,13 @@ import DrawerListButton from './DrawerListButton';
 import { useStyles } from './NavStyles';
 import { useHistory } from 'react-router-dom';
 
-export const NavDrawer = ({ drawer, setDrawer }) => {
-  const history = useHistory();
+export const NavDrawer = ({ drawer, handleDrawer }) => {
   const classes = useStyles({ drawer });
+  const history = useHistory();
+  const handleClick = (clickFunction) => {
+    handleDrawer();
+    clickFunction();
+  };
   const list = () => (
     <>
       <Box className={classes.drawerContainer}>
@@ -15,31 +19,19 @@ export const NavDrawer = ({ drawer, setDrawer }) => {
             <Grid container className={classes.drawerDropDown}>
               <DrawerListButton
                 text='program'
-                handleClick={() => {
-                  history.push('/program');
-                  setDrawer(false);
-                }}
+                handleClick={() => handleClick(() => history.push('/schedule'))}
               />
               <DrawerListButton
                 text='tickets'
-                handleClick={() => {
-                  history.push('/tickets');
-                  setDrawer(false);
-                }}
+                handleClick={() => handleClick(() => history.push('/tickets'))}
               />
               <DrawerListButton
-                text='about'
-                handleClick={() => {
-                  history.push('/about');
-                  setDrawer(false);
-                }}
+                text='about us'
+                handleClick={() => handleClick(() => history.push('/about'))}
               />
               <DrawerListButton
                 text='contact'
-                handleClick={() => {
-                  history.push('/contact');
-                  setDrawer(false);
-                }}
+                handleClick={() => handleClick(() => history.push('/schedule'))}
               />
             </Grid>
           </Grid>

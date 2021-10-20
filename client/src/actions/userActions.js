@@ -52,8 +52,8 @@ export const login = async (userData, dispatch) => {
 };
 
 export const logout = (dispatch) => {
+  localStorage.removeItem('profile');
   dispatch({ type: 'LOGOUT' });
-  localStorage.clear();
 };
 
 export const setUser = (payload, dispatch) => {
