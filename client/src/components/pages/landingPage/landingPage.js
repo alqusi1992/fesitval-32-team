@@ -45,7 +45,11 @@ const LandingPage = () => {
     } else if (verified === 'true') {
       showAlert('success', 'your email is successfully verified', dispatch);
     } else if (tokenExpired === 'true') {
-      showAlert('danger', 'Link is expired, please request a new link', dispatch);
+      showAlert(
+        'danger',
+        'Link is expired, please request a new link',
+        dispatch,
+      );
     } else {
       showAlert('danger', 'Verification is failed', dispatch);
     }
@@ -54,20 +58,30 @@ const LandingPage = () => {
   return (
     <>
       {alert.isAlert && verified ? <Alert /> : ''}
-      <CardsHolder responsive={responsive} partialVisible={true} itemClass='image-item'>
+      <CardsHolder
+        responsive={responsive}
+        partialVisible={true}
+        itemClass='image-item'
+      >
         <ListItem>
-          <Link to='/home'>
-            <ImageCard {...{ img: about, title: 'ABOUT', buttonTitle: 'ABOUT' }} />
+          <Link to='/about'>
+            <ImageCard
+              {...{ img: about, title: 'ABOUT', buttonTitle: 'ABOUT' }}
+            />
           </Link>
         </ListItem>
         <ListItem>
           <Link to='/schedule'>
-            <ImageCard {...{ img: program, title: 'PROGRAM', buttonTitle: 'PROGRAM' }} />
+            <ImageCard
+              {...{ img: program, title: 'PROGRAM', buttonTitle: 'PROGRAM' }}
+            />
           </Link>
         </ListItem>
         <ListItem>
-          <Link>
-            <ImageCard {...{ img: tickets, title: 'TICKETS', buttonTitle: 'TICKETS' }} />
+          <Link to='/tickets'>
+            <ImageCard
+              {...{ img: tickets, title: 'TICKETS', buttonTitle: 'TICKETS' }}
+            />
           </Link>
         </ListItem>
       </CardsHolder>

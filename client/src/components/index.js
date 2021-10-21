@@ -8,6 +8,7 @@ export { default as Protected } from './protected/Protected';
 export { PayButton } from './payButton/PayButton';
 export { SuccessPage } from './successPage/SuccessPage';
 export { default as Footer } from './footer/Footer';
+export { default as About } from './pages/about/about';
 export { default as OrderStepper } from './orderStepper/OrderStepper';
 export { default as Schedule } from './pages/schedule/Schedule';
 export { default as GuestForm } from './orderStepper/guestForm/GuestForm';

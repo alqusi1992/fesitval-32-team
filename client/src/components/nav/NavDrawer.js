@@ -1,8 +1,8 @@
 import { Grid, List } from '@mui/material';
 import { Box } from '@mui/system';
-import { useHistory } from 'react-router';
 import DrawerListButton from './DrawerListButton';
 import { useStyles } from './NavStyles';
+import { useHistory } from 'react-router-dom';
 
 export const NavDrawer = ({ drawer, handleDrawer }) => {
   const classes = useStyles({ drawer });
