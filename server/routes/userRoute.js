@@ -17,7 +17,7 @@ userRouter.post('/register', register);
 userRouter.delete('/delete', auth, deleteAccount);
 userRouter.patch('/update', auth, updateAccount);
 userRouter.post('/forgot-password', forgotPassword);
-userRouter.post('/reset-password', resetPassword);
+userRouter.put('/reset-password', resetPassword);
 userRouter.get('/testEmail', testEmail);
 
 export default userRouter;
