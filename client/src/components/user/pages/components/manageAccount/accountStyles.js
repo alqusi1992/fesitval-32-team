@@ -59,9 +59,6 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     mainContainer: {
       '&&': {
-        // [theme.breakpoints.down('md')]: {
-        //   fontSize: '28px',
-        // },
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

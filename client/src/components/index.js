@@ -15,3 +15,4 @@ export { default as GuestForm } from './orderStepper/guestForm/GuestForm';
 export { default as Tickets } from './orderStepper/tickets/Tickets';
 export { default as MyAccount } from './user/pages/components/manageAccount/MyAccount';
 export { default as ResetPassword } from './user/resetPassword/ResetPassword';
+export { default as Verify } from './verify/Verify';

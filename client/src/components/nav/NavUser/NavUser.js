@@ -14,9 +14,9 @@ import LockIcon from '@mui/icons-material/Lock';
 import { useValue } from '../../../context/globalContext';
 import { logout, setUser } from '../../../actions/userActions';
 import User from '../../user/User';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getLocalStorage } from '../../../utils/localStorage';
+import { getLocalStorage, setLocalStorage } from '../../../utils/localStorage';
 import decode from 'jwt-decode';
 import { useStyles } from './NavUserStyles';
 
@@ -31,14 +31,23 @@ const NavUser = ({ drawer }) => {
     dispatch,
   } = useValue();
 
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const verified = useQuery().get('isVerified');
+
   useEffect(() => {
     if (!user?.token) {
       const userProfile = getLocalStorage('profile');
       if (userProfile?.token) {
+        if (verified === 'true') {
+          userProfile.result.isVerified = true;
+          setLocalStorage('profile', userProfile);
+        }
         setUser(userProfile, dispatch);
       }
     }
-  }, [user, dispatch]);
+  }, [user, dispatch, verified]);
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -63,11 +72,7 @@ const NavUser = ({ drawer }) => {
   if (!user?.token) {
     return (
       <>
-        <Button
-          onClick={handleLogin}
-          className={classes.listItemBtn}
-          startIcon={<LockIcon />}
-        >
+        <Button onClick={handleLogin} className={classes.listItemBtn} startIcon={<LockIcon />}>
           Login
         </Button>
         {isRegister && <User setIsRegister={setIsRegister} />}

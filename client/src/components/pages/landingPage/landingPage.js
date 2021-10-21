@@ -57,7 +57,7 @@ const LandingPage = () => {
 
   return (
     <>
-      {alert.isAlert && <Alert />}
+      {alert.isAlert && verified ? <Alert /> : ''}
       <CardsHolder
         responsive={responsive}
         partialVisible={true}
