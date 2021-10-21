@@ -8,6 +8,8 @@ import FormControl from '@mui/material/FormControl';
 import { useForm } from 'react-hook-form';
 import { Button, IconButton } from '@mui/material';
 import { SubmitNewPassword } from '../../../actions/passwordAction';
+import { FormWrapper } from './ResetPasswordStyles';
+import { showAlert } from '../../../actions/alertActions';
 
 const ResetPassword = () => {
   const {
@@ -38,13 +40,20 @@ const ResetPassword = () => {
   };
 
   const submit = async (data) => {
-    const response = await SubmitNewPassword(data.password, token);
-    console.log(response)
+    if (data.password === data.confirmPassword) {
+      const response = await SubmitNewPassword(data.password, token);
+      console.log(response);
+    } else {
+      showAlert('danger', 'Passwords are not matched!');
+    }
   };
 
   return (
-    <div>
-      <FormControl sx={{ position: 'relative' }} variant='standard'>
+    <FormWrapper>
+      <FormControl
+        sx={{ position: 'relative', margin: '10px', width: '35%' }}
+        variant='standard'
+      >
         <TextField
           variant='standard'
           label='New password'
@@ -74,7 +83,10 @@ const ResetPassword = () => {
           </IconButton>
         </InputAdornment>
       </FormControl>
-      <FormControl sx={{ position: 'relative' }} variant='standard'>
+      <FormControl
+        sx={{ position: 'relative', margin: '10px', width: '35%' }}
+        variant='standard'
+      >
         <TextField
           error={errors?.confirmPassword?.type ? true : false}
           label='Confirm new password'
@@ -105,10 +117,15 @@ const ResetPassword = () => {
           </IconButton>
         </InputAdornment>
       </FormControl>
-      <Button type='submit' onClick={handleSubmit(submit)}>
+      <Button
+        sx={{ margin: '15px' }}
+        variant='contained'
+        type='submit'
+        onClick={handleSubmit(submit)}
+      >
         SUBMIT
       </Button>
-    </div>
+    </FormWrapper>
   );
 };
 

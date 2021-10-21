@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import { useForm } from 'react-hook-form';
 import { SendLink } from '../../../actions/passwordAction';
 import { Button } from '@mui/material';
+import { FormWrapper } from './ForgotPasswordStyles';
 
 const ForgotPassword = () => {
   const {
@@ -12,7 +13,7 @@ const ForgotPassword = () => {
   } = useForm();
 
   return (
-    <>
+    <FormWrapper>
       <TextField
         variant='standard'
         label='Email'
@@ -28,10 +29,15 @@ const ForgotPassword = () => {
           },
         })}
       />
-      <Button type='submit' onClick={handleSubmit(SendLink)}>
-        SEND
+      <Button
+        sx={{ m: '15px' }}
+        variant='contained'
+        type='submit'
+        onClick={handleSubmit(SendLink)}
+      >
+        RESET PASSWORD
       </Button>
-    </>
+    </FormWrapper>
   );
 };
 
