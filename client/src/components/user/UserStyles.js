@@ -4,7 +4,7 @@ export const ModalContainer = styled.div`
   transition: opacity 0.3s ease;
   position: fixed;
   top: 0;
-  left: 0;
+  left: -15px;
   z-index: 9999;
   width: 100%;
   height: 100%;
