@@ -17,6 +17,7 @@ const GuestForm = ({ setFormSubmitted }) => {
     handleSubmit,
     register,
     formState: { errors },
+    getValues,
   } = useForm();
   const {
     guestUserOrder: { userInfo },
@@ -45,6 +46,7 @@ const GuestForm = ({ setFormSubmitted }) => {
     });
   };
 
+  console.log(errors);
   const onSubmit = (data) => {
     setFormSubmitted(true);
     setGuestUserOrder((prev) => ({
@@ -118,6 +120,31 @@ const GuestForm = ({ setFormSubmitted }) => {
         />
       </FormControl>
 
+      <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
+        <TextField
+          error={errors?.confirmEmail?.type ? true : false}
+          label='Confirm your E-mail Address'
+          placeholder='example@example.com'
+          multiline
+          variant='standard'
+          defaultValue={values.userInfo.email}
+          helperText={
+            errors?.confirmEmail?.type === 'validate'
+              ? 'Your email does not match'
+              : errors?.confirmEmail?.message
+          }
+          {...register('confirmEmail', {
+            required: 'Please insert your email!',
+            pattern: {
+              value:
+                /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              message: 'Insert a valid email!',
+            },
+            validate: (value) => value === getValues('email'),
+          })}
+        />
+      </FormControl>
+
       <FormControlLabel
         sx={{ m: 1, width: '25ch', margin: '20px 0 10px -10px' }}
         control={
@@ -132,10 +159,7 @@ const GuestForm = ({ setFormSubmitted }) => {
       />
 
       {checked && (
-        <FormControl
-          sx={{ m: 1, width: '25ch', position: 'relative' }}
-          variant='standard'
-        >
+        <FormControl sx={{ m: 1, width: '25ch', position: 'relative' }} variant='standard'>
           <TextField
             error={errors?.password?.type ? true : false}
             label='password'
@@ -147,32 +171,22 @@ const GuestForm = ({ setFormSubmitted }) => {
             {...register('password', {
               required: 'Please insert a password!',
               pattern: {
-                value:
-                  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
                 message:
                   'Password should have at least 8 characters, one uppercase, one lowercase,one number and one special character!',
               },
             })}
           />
 
-          <InputAdornment
-            sx={{ position: 'absolute', right: '0', top: '30px' }}
-          >
-            <IconButton
-              aria-label='toggle password visibility'
-              onClick={handleClickShowPassword}
-            >
+          <InputAdornment sx={{ position: 'absolute', right: '0', top: '30px' }}>
+            <IconButton aria-label='toggle password visibility' onClick={handleClickShowPassword}>
               {!values.showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </InputAdornment>
         </FormControl>
       )}
 
-      <Button
-        variant='contained'
-        onClick={handleSubmit(onSubmit)}
-        sx={{ marginTop: '20px' }}
-      >
+      <Button variant='contained' onClick={handleSubmit(onSubmit)} sx={{ marginTop: '20px' }}>
         submit
       </Button>
     </FormWrapper>
