@@ -52,7 +52,7 @@ export const sendEmailVerification = async (req, res) => {
     await sendEmailSandGrid(toEmail, subject, html);
     return res.status(200).json({ success: true, msg: 'email has been sent' });
   } catch (error) {
-    console.log(error);
+    console.log(error, 'error');
     return res
       .status(500)
       .json({ success: false, msg: 'Something went wrong' });
