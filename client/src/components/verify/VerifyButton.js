@@ -15,7 +15,6 @@ const VerifyButton = () => {
 
   const verifyEmailHandler = async () => {
     setLoading(true);
-
     const response = await sendVerifyEmail(user.result);
     if (response.success) {
       setLoading(false);

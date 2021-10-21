@@ -54,7 +54,7 @@ export const login = async (userData, dispatch) => {
 export const sendVerifyEmail = async (userData) => {
   const { _id, email } = userData;
   try {
-    const data = await fetch(
+    const response = await fetch(
       `${process.env.REACT_APP_SERVER_URL}/verification/send-email`,
       {
         method: 'POST',
@@ -64,6 +64,7 @@ export const sendVerifyEmail = async (userData) => {
         body: JSON.stringify({ _id, email }),
       },
     );
+    const data = await response.json();
     return data;
   } catch (error) {
     console.log(error, 'error');
