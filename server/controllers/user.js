@@ -20,7 +20,9 @@ export const login = async (req, res) => {
         .status(400)
         .json({ success: false, msg: 'Invalid credentials' });
     }
-    const { _id, firstName, lastName } = existedUser;
+    const {
+      _id, firstName, lastName, isVerified,
+    } = existedUser;
     const phone = existedUser?.phone ? existedUser.phone : '';
     const result = {
       _id,
@@ -28,6 +30,7 @@ export const login = async (req, res) => {
       lastName,
       email,
       phone,
+      isVerified,
     };
     const token = jwt.sign({ email, id: _id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
@@ -61,7 +64,7 @@ export const register = async (req, res) => {
       lastName,
       phone,
     });
-    const { _id } = result;
+    const { _id, isVerified } = result;
     const token = jwt.sign({ email, id: _id }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     });
@@ -73,6 +76,7 @@ export const register = async (req, res) => {
         lastName,
         email,
         phone,
+        isVerified,
       },
       token,
     });
@@ -150,9 +154,16 @@ export const forgotPassword = async (req, res) => {
   try {
     const existedUser = await User.findOne({ email });
     if (!existedUser) {
-      res.status(400).json({ success: false, msg: 'Account with this email does not exist' });
+      res.status(400).json({
+        success: false,
+        msg: 'Account with this email does not exist',
+      });
     } else {
-      const token = jwt.sign({ _id: existedUser.id }, process.env.JWT_SECRET_FORGET, { expiresIn: '30m' });
+      const token = jwt.sign(
+        { _id: existedUser.id },
+        process.env.JWT_SECRET_FORGET,
+        { expiresIn: '30m' },
+      );
       await existedUser.updateOne({ token });
       const html = `<p>Hello ${existedUser.firstName},<br>
       Please click <a href = ${process.env.CLIENT_URL}/user/reset-password/${token}>here<a> to reset your password.</p>`;
@@ -162,7 +173,9 @@ export const forgotPassword = async (req, res) => {
     return existedUser;
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ success: false, msg: 'Something went wrong' });
+    return res
+      .status(500)
+      .json({ success: false, msg: 'Something went wrong' });
   }
 };
 
@@ -176,12 +189,16 @@ export const resetPassword = async (req, res) => {
       { password: hashedPassword, token: '' },
     );
     if (!existedUser) {
-      return res.status(400).json({ success: false, msg: 'Expired or invalid token' });
+      return res
+        .status(400)
+        .json({ success: false, msg: 'Expired or invalid token' });
     }
     return existedUser;
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ success: false, msg: 'Something went wrong' });
+    return res
+      .status(500)
+      .json({ success: false, msg: 'Something went wrong' });
   }
 };
 export const testEmail = async (req, res) => {

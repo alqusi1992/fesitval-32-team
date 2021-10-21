@@ -57,7 +57,7 @@ const OrderStepper = () => {
   }, [getLocalOrder]);
 
   return (
-    <Grid container sx={{ width: '100%', minHeight: '550px' }}>
+    <Grid container sx={{ width: '100%', minHeight: '550px', padding: '30px' }}>
       <Grid item xs={12}>
         <Stepper activeStep={activeStep}>
           {steps.map((label) => {
@@ -77,20 +77,9 @@ const OrderStepper = () => {
         {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
         {step.third && <OrderSummary />}
       </Grid>
-      <Grid
-        container
-        justifyContent='space-between'
-        item
-        xs={12}
-        alignSelf='flex-end'
-      >
+      <Grid container justifyContent='space-between' item xs={12} alignSelf='flex-end'>
         <Grid sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-          <Button
-            color='inherit'
-            disabled={step.first}
-            onClick={handleBack}
-            sx={{ mr: 1 }}
-          >
+          <Button color='inherit' disabled={step.first} onClick={handleBack} sx={{ mr: 1 }}>
             Back
           </Button>
         </Grid>
