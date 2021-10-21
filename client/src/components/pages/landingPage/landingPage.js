@@ -57,14 +57,14 @@ const LandingPage = () => {
 
   return (
     <>
-      {alert.isAlert && <Alert />}
+      {alert.isAlert && verified ? <Alert /> : ''}
       <CardsHolder
         responsive={responsive}
         partialVisible={true}
         itemClass='image-item'
       >
         <ListItem>
-          <Link to='/home'>
+          <Link to='/about'>
             <ImageCard
               {...{ img: about, title: 'ABOUT', buttonTitle: 'ABOUT' }}
             />
@@ -78,7 +78,7 @@ const LandingPage = () => {
           </Link>
         </ListItem>
         <ListItem>
-          <Link>
+          <Link to='/tickets'>
             <ImageCard
               {...{ img: tickets, title: 'TICKETS', buttonTitle: 'TICKETS' }}
             />

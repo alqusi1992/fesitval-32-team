@@ -11,9 +11,11 @@ import {
   Profile,
   Protected,
   Footer,
+  About,
   OrderStepper,
   Schedule,
   MyAccount,
+  Verify,
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
@@ -25,11 +27,13 @@ function App() {
       <Router>
         <NavBar />
         <Loading />
+        <Verify />
         <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
             <Route exact path='/schedule' component={Schedule} />
+            <Route exact path='/about' component={About} />
             <Route exact path='/profile'>
               <Protected>
                 <Profile />

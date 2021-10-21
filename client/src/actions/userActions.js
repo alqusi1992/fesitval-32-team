@@ -51,6 +51,27 @@ export const login = async (userData, dispatch) => {
   }
 };
 
+export const sendVerifyEmail = async (userData) => {
+  const { _id, email } = userData;
+  try {
+    const response = await fetch(
+      `${process.env.REACT_APP_SERVER_URL}/verification/send-email`,
+      {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({ _id, email }),
+      },
+    );
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error, 'error');
+    return { success: false, msg: 'Something went wrong' };
+  }
+};
+
 export const logout = (dispatch) => {
   localStorage.removeItem('profile');
   dispatch({ type: 'LOGOUT' });

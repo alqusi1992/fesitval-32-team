@@ -17,14 +17,11 @@ export const iconsStyles = makeStyles({
 });
 
 export const FooterWrapper = styled.footer`
-  position: absolute;
   background-color: black;
   width: 100%;
-  min-height: 200px;
-  bottom: 0;
+  margin-top: 0;
+  padding: 50px;
   color: #fff;
-  margin-top: auto;
-  padding-top: 10px;
 `;
 
 export const ListWrapper = styled.ul`

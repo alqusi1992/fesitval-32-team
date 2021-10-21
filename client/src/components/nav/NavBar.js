@@ -14,9 +14,9 @@ import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
 import { useHistory } from 'react-router-dom';
 
-export const NavBar = ({ drawer, handleDrawer, matches }) => {
-  const classes = useStyles({ drawer });
+export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
   const history = useHistory();
+  const classes = useStyles({ drawer });
   return (
     <AppBar position='sticky' className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
