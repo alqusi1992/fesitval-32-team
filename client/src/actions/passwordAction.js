@@ -9,7 +9,6 @@ export const SendLink = async (data, dispatch) => {
       body: JSON.stringify(data),
     });
     const result = await response.json();
-    console.log(result);
 
     dispatch({ type: 'END_LOADING' });
     return result;

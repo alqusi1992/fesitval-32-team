@@ -43,7 +43,9 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const { email, password, firstName, lastName, phone } = req.body;
+  const {
+    email, password, firstName, lastName, phone,
+  } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -104,8 +106,9 @@ export const deleteAccount = async (req, res) => {
 
 export const updateAccount = async (req, res) => {
   try {
-    const { firstName, lastName, email, newPassword, phone, currentPassword } =
-      req.body;
+    const {
+      firstName, lastName, email, newPassword, phone, currentPassword,
+    } = req.body;
     const { userId } = req;
     const existedUser = await User.findById(userId);
     const correctPassword = await comparePassword(currentPassword, existedUser);
@@ -125,7 +128,7 @@ export const updateAccount = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       userId,
       { $set: updatedUser },
-      { new: true }
+      { new: true },
     );
 
     return res.status(200).json({
@@ -155,11 +158,11 @@ export const forgotPassword = async (req, res) => {
       const token = jwt.sign(
         { _id: existedUser.id },
         process.env.JWT_SECRET_FORGET,
-        { expiresIn: '30m' }
+        { expiresIn: '1h' },
       );
       await existedUser.updateOne({ token });
       const html = `<p>Hello ${existedUser.firstName},<br>
-      Please click <a href = ${process.env.CLIENT_URL}/user/reset-password/${token}>here<a> to reset your password.</p>`;
+      Please click <a href = ${process.env.CLIENT_URL}/user/reset-password/${token}>here<a> to reset your password. This link can be used once within one hour.</p>`;
       await sendEmailSandGrid(email, 'Reset Password', html);
       return res.status(200).json({ success: true, msg: 'sent successfully' });
     }
@@ -175,19 +178,23 @@ export const forgotPassword = async (req, res) => {
 export const resetPassword = async (req, res) => {
   const { token, newPass } = req.body;
   const hashedPassword = await bcrypt.hash(newPass, 12);
-
   try {
-    const existedUser = await User.findOneAndUpdate(
-      { token },
-      { password: hashedPassword }
-    );
+    const existedUser = await User.findOne({ token });
+    const samePassword = await comparePassword(newPass, existedUser);
+    if (samePassword) {
+      return res
+        .status(400)
+        .json({ success: false, msg: 'Failed ! Please enter a new password' });
+    }
     if (!existedUser) {
       return res
         .status(400)
         .json({ success: false, msg: 'Expired or invalid token' });
     }
-
-    return res.status(200).json({ success: true, msg: 'sent successfully' });
+    await existedUser.updateOne({ password: hashedPassword, token: '' });
+    return res
+      .status(200)
+      .json({ success: true, msg: 'Password successfully updated' });
   } catch (error) {
     console.log(error);
     return res
