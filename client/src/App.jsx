@@ -33,11 +33,12 @@ function App() {
             <Route exact path='/success' component={SuccessPage} />
             <Route exact path='/schedule' component={Schedule} />
             <Route exact path='/about' component={About} />
-            <Route exact path='/profile'/>
             <Route exact path='/user/reset-password/:token' component={ResetPassword}/>
-              <Protected>
+            <Route exact path='/profile'>
+               <Protected>
                 <Profile />
               </Protected>
+            </Route>
             <Route exact path='/account'>
               <Protected>
                 <MyAccount />

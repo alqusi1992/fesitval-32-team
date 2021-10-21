@@ -28,9 +28,6 @@ const globalReducer = (state, action) => {
     case 'END_LOADING':
       return { ...state, isLoading: false };
 
-    // case 'SEND_LINK':
-    //   return { ...state, email: action.payload };
-
     default:
       throw new Error('No action type matched');
   }

@@ -1,7 +1,7 @@
 const url = process.env.REACT_APP_SERVER_URL + '/user';
 
 export const SendLink = async (data, dispatch) => {
-  // dispatch({ type: 'START_LOADING' });
+  dispatch({ type: 'START_LOADING' });
   try {
     const response = await fetch(url + '/forgot-password', {
       method: 'POST',
@@ -11,17 +11,17 @@ export const SendLink = async (data, dispatch) => {
     const result = await response.json();
     console.log(result);
 
-    // dispatch({ type: 'END_LOADING' });
+    dispatch({ type: 'END_LOADING' });
     return result;
   } catch (error) {
     console.log(error);
-    // dispatch({ type: 'END_LOADING' });
+    dispatch({ type: 'END_LOADING' });
     return { success: false, msg: 'Something went wrong!' };
   }
 };
 
-export const SubmitNewPassword = async (newPass, token) => {
-  //   dispatch({ type: 'START_LOADING' });
+export const SubmitNewPassword = async (newPass, token, dispatch) => {
+  dispatch({ type: 'START_LOADING' });
   const body = {
     newPass,
     token,
@@ -33,11 +33,11 @@ export const SubmitNewPassword = async (newPass, token) => {
       body: JSON.stringify(body),
     });
     const result = await response.json();
-    // dispatch({ type: 'END_LOADING' });
+    dispatch({ type: 'END_LOADING' });
     return result;
   } catch (error) {
     console.log(error);
-    // dispatch({ type: 'END_LOADING' });
+    dispatch({ type: 'END_LOADING' });
     return { success: false, msg: 'Something went wrong!' };
   }
 };

@@ -174,20 +174,20 @@ export const forgotPassword = async (req, res) => {
 
 export const resetPassword = async (req, res) => {
   const { token, newPass } = req.body;
-  console.log(req.body);
   const hashedPassword = await bcrypt.hash(newPass, 12);
 
   try {
     const existedUser = await User.findOneAndUpdate(
       { token },
-      { password: hashedPassword, token: '' }
+      { password: hashedPassword }
     );
     if (!existedUser) {
       return res
         .status(400)
         .json({ success: false, msg: 'Expired or invalid token' });
     }
-    return existedUser;
+
+    return res.status(200).json({ success: true, msg: 'sent successfully' });
   } catch (error) {
     console.log(error);
     return res
@@ -195,6 +195,7 @@ export const resetPassword = async (req, res) => {
       .json({ success: false, msg: 'Something went wrong' });
   }
 };
+
 export const testEmail = async (req, res) => {
   const to = 'yahya.ganjo@gmail.com';
   const subject = 'Test';
