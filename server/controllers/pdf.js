@@ -4,7 +4,7 @@ import orderTemplate from '../orders/index.js';
 export const createPdf = async (req, res) => {
   pdf.create(orderTemplate(req.body)).toStream((err, stream) => {
     if (err) return res.end(err.stack);
-
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Content-type', 'application/pdf');
     res.setHeader('Content-Length', ` ${stream.length}`);
 
