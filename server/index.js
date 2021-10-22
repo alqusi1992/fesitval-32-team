@@ -16,10 +16,21 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const whitelist = ['http://localhost:3000', 'https://festival32.netlify.app'];
+const corsOptionsDelegate = (req, callback) => {
+  let corsOptions;
+  if (whitelist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true };
+  } else {
+    corsOptions = { origin: false };
+  }
+  callback(null, corsOptions);
+};
+
+app.use(cors(corsOptionsDelegate));
 
 const startServer = async () => {
   try {
