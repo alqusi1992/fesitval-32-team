@@ -168,5 +168,23 @@ export const useStyles = makeStyles((theme, prop) => {
         },
       },
     },
+    closeDrawer: {
+      '&&': {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: '100%',
+        marginBottom: '20px',
+      },
+    },
+    closeIcon: {
+      '&&': {
+        transition: 'transform .5s',
+        cursor: 'pointer',
+        '&:hover': {
+          transform: 'scale(1.35)',
+          color: 'rgb(97, 5, 39)',
+        },
+      },
+    },
   };
 });
