@@ -14,7 +14,7 @@ import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
 import { useHistory } from 'react-router-dom';
 
-export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
+export const NavBar = ({ drawer, handleDrawer, matches }) => {
   const history = useHistory();
   const classes = useStyles({ drawer });
   return (
@@ -61,24 +61,33 @@ export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
               drawer={drawer}
               handleClick={() => history.push('/tickets')}
             />
+            <ListItem
+              text='contact'
+              drawer={drawer}
+              handleClick={() => history.push('/tickets')}
+            />
           </Grid>
         )}
-        <NavUser {...{ drawer }} />
-        <div className={classes.iconButtonContainer}>
-          <IconButton
-            className={classes.iconBtn}
-            onClick={() => handleDrawer(true)}
-            size='large'
-            edge='end'
-            color='secondary'
-            aria-label='menu'
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon color='secondary' />
-          </IconButton>
+        <div className={classes.loginHamburgerWrapper}>
+          <NavUser drawer={drawer} />
+          {!matches && (
+            <div className={classes.iconButtonContainer}>
+              <IconButton
+                className={classes.iconBtn}
+                onClick={() => handleDrawer(true)}
+                size='large'
+                edge='end'
+                color='secondary'
+                aria-label='menu'
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon color='secondary' />
+              </IconButton>
+            </div>
+          )}
         </div>
       </Toolbar>
-      <NavDrawer {...{ drawer, handleDrawer }} />
+      <NavDrawer drawer={drawer} handleDrawer={handleDrawer} />
     </AppBar>
   );
 };
