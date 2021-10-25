@@ -12,10 +12,8 @@ import { ListItem } from './ListItem';
 import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
-import { useHistory } from 'react-router-dom';
 
 export const NavBar = ({ drawer, handleDrawer, matches }) => {
-  const history = useHistory();
   const classes = useStyles({ drawer });
   return (
     <AppBar position='sticky' className={classes.appBar}>
