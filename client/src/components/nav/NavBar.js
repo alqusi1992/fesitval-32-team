@@ -45,27 +45,11 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
           </Grid>
         </Grid>
         {matches && (
-          <Grid container className={classes.listItemContainer} spacing={2}>
-            <ListItem
-              handleClick={() => history.push('/schedule')}
-              text='program'
-              drawer={drawer}
-            />
-            <ListItem
-              text='about'
-              drawer={drawer}
-              handleClick={() => history.push('/about')}
-            />
-            <ListItem
-              text='tickets'
-              drawer={drawer}
-              handleClick={() => history.push('/tickets')}
-            />
-            <ListItem
-              text='contact'
-              drawer={drawer}
-              handleClick={() => history.push('/contact')}
-            />
+          <Grid container className={classes.listItemContainer} spacing={3}>
+            <ListItem text='program' drawer={drawer} />
+            <ListItem text='about' drawer={drawer} />
+            <ListItem text='tickets' drawer={drawer} />
+            <ListItem text='contact' drawer={drawer} />
           </Grid>
         )}
         <div className={classes.loginHamburgerWrapper}>

@@ -77,14 +77,11 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     listItemBtn: {
       '&&': {
+        padding: '6px 0',
+        minWidth: 0,
         color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         fontWeight: '900',
-        transition: 'transform .3s',
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
-        '&:hover': {
-          transform: 'translateX(4px)',
-          backgroundColor: 'transparent ',
-        },
       },
     },
     iconBtn: {
@@ -120,7 +117,6 @@ export const useStyles = makeStyles((theme, prop) => {
         height: '100vh',
         width: '100%',
         position: 'absolute',
-        zIndex: '9999',
         opacity: ({ drawer }) => (drawer ? '1' : '0'),
         transition: 'opacity .3s,transform .3s',
         transform: ({ drawer }) =>
@@ -155,6 +151,21 @@ export const useStyles = makeStyles((theme, prop) => {
     loginHamburgerWrapper: {
       '&&': {
         display: 'flex',
+      },
+    },
+    selected: {
+      '&&': {
+        borderBottom: '4px solid rgb(97, 5, 39)',
+        paddingBottom: '2px',
+      },
+    },
+    listItemWrapper: {
+      '&&': {
+        transition: 'transform .3s',
+        '&:hover': {
+          transform: 'translateX(4px)',
+          backgroundColor: 'transparent ',
+        },
       },
     },
   };
