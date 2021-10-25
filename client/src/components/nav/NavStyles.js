@@ -20,6 +20,7 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     toolBar: {
       '&&': {
+        justifyContent: 'space-between',
         [theme.breakpoints.up('md')]: {
           maxWidth: '1190px',
         },
@@ -31,7 +32,7 @@ export const useStyles = makeStyles((theme, prop) => {
     logoContainer: {
       '&&': {
         alignItems: 'center',
-        flex: 1,
+        maxWidth: '330px',
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         [theme.breakpoints.up('lg')]: {
           marginLeft: '5px',
@@ -72,9 +73,6 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         justifyContent: 'flex-end',
         flex: 1,
-        [theme.breakpoints.down('md')]: {
-          display: 'none',
-        },
       },
     },
     listItemBtn: {
@@ -152,6 +150,11 @@ export const useStyles = makeStyles((theme, prop) => {
           transition: 'transform .3s',
           cursor: 'pointer',
         },
+      },
+    },
+    loginHamburgerWrapper: {
+      '&&': {
+        display: 'flex',
       },
     },
   };
