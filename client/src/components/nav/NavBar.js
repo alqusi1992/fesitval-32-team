@@ -64,7 +64,7 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
             <ListItem
               text='contact'
               drawer={drawer}
-              handleClick={() => history.push('/tickets')}
+              handleClick={() => history.push('/contact')}
             />
           </Grid>
         )}
