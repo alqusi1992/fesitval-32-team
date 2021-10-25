@@ -46,7 +46,6 @@ const GuestForm = ({ setFormSubmitted }) => {
     });
   };
 
-  console.log(errors);
   const onSubmit = (data) => {
     setFormSubmitted(true);
     setGuestUserOrder((prev) => ({
@@ -154,7 +153,10 @@ const GuestForm = ({ setFormSubmitted }) => {
       />
 
       {checked && (
-        <FormControl sx={{ m: 1, width: '25ch', position: 'relative' }} variant='standard'>
+        <FormControl
+          sx={{ m: 1, width: '25ch', position: 'relative' }}
+          variant='standard'
+        >
           <TextField
             error={errors?.password?.type ? true : false}
             label='password'
@@ -166,22 +168,32 @@ const GuestForm = ({ setFormSubmitted }) => {
             {...register('password', {
               required: 'Please insert a password!',
               pattern: {
-                value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                value:
+                  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
                 message:
                   'Password should have at least 8 characters, one uppercase, one lowercase,one number and one special character!',
               },
             })}
           />
 
-          <InputAdornment sx={{ position: 'absolute', right: '0', top: '30px' }}>
-            <IconButton aria-label='toggle password visibility' onClick={handleClickShowPassword}>
+          <InputAdornment
+            sx={{ position: 'absolute', right: '0', top: '30px' }}
+          >
+            <IconButton
+              aria-label='toggle password visibility'
+              onClick={handleClickShowPassword}
+            >
               {!values.showPassword ? <VisibilityOff /> : <Visibility />}
             </IconButton>
           </InputAdornment>
         </FormControl>
       )}
 
-      <Button variant='contained' onClick={handleSubmit(onSubmit)} sx={{ marginTop: '20px' }}>
+      <Button
+        variant='contained'
+        onClick={handleSubmit(onSubmit)}
+        sx={{ marginTop: '20px' }}
+      >
         submit
       </Button>
     </FormWrapper>
