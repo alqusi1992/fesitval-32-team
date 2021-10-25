@@ -33,11 +33,15 @@ function App() {
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
-            <Route exact path='/schedule' component={Schedule} />
+            <Route exact path='/program' component={Schedule} />
             <Route exact path='/about' component={About} />
-            <Route exact path='/user/reset-password/:token' component={ResetPassword}/>
+            <Route
+              exact
+              path='/user/reset-password/:token'
+              component={ResetPassword}
+            />
             <Route exact path='/profile'>
-               <Protected>
+              <Protected>
                 <Profile />
               </Protected>
             </Route>
