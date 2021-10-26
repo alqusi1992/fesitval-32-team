@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -8,12 +8,21 @@ import GuestForm from './guestForm/GuestForm';
 import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
 import { Grid } from '@mui/material';
-import { getLocalStorage, setLocalStorage } from '../../utils/localStorage';
 import '../../app.css';
+import {
+  getSessionStorage,
+  setSessionStorage,
+} from '../../utils/sessionStorage';
+import { useLocation } from 'react-router';
+import { showAlert } from '../../actions/alertActions';
+import Alert from '../alert/Alert';
+import { useValue } from '../../context/globalContext';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
+  const { dispatch } = useValue();
+
   const {
     guestUserOrder,
     guestUserOrder: { tickets },
@@ -37,7 +46,7 @@ const OrderStepper = () => {
   };
 
   const handleNext = () => {
-    setLocalStorage('guestUserOrder', guestUserOrder);
+    setSessionStorage('guestUserOrder', guestUserOrder);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -45,19 +54,38 @@ const OrderStepper = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const getLocalOrder = useCallback(() => {
-    const userOrder = getLocalStorage('guestUserOrder');
+  const getSessionOrder = useCallback(() => {
+    const userOrder = getSessionStorage('guestUserOrder');
     if (userOrder !== null) {
       setGuestUserOrder(userOrder);
     }
   }, [setGuestUserOrder]);
 
   useEffect(() => {
-    getLocalOrder();
-  }, [getLocalOrder]);
+    getSessionOrder();
+  }, [getSessionOrder]);
+
+  const location = useLocation().search;
+
+  const memorizedQuery = useMemo(() => {
+    const query = new URLSearchParams(location);
+    return query;
+  }, [location]);
+
+  useEffect(() => {
+    if (memorizedQuery.has('canceled')) {
+      setActiveStep(2);
+      showAlert(
+        'danger',
+        'Your payment was canceled either by you or by the bank, please try again',
+        dispatch
+      );
+    }
+  }, [memorizedQuery, dispatch]);
 
   return (
     <Grid container sx={{ width: '100%', minHeight: '550px', padding: '30px' }}>
+      {alert.isAlert && <Alert />}
       <Grid item xs={12}>
         <Stepper activeStep={activeStep}>
           {steps.map((label) => {
@@ -77,9 +105,20 @@ const OrderStepper = () => {
         {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
         {step.third && <OrderSummary />}
       </Grid>
-      <Grid container justifyContent='space-between' item xs={12} alignSelf='flex-end'>
+      <Grid
+        container
+        justifyContent='space-between'
+        item
+        xs={12}
+        alignSelf='flex-end'
+      >
         <Grid sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-          <Button color='inherit' disabled={step.first} onClick={handleBack} sx={{ mr: 1 }}>
+          <Button
+            color='inherit'
+            disabled={step.first}
+            onClick={handleBack}
+            sx={{ mr: 1 }}
+          >
             Back
           </Button>
         </Grid>
