@@ -41,7 +41,7 @@ const paymentHandle = async (req, res) => {
       mode: 'payment',
       line_items: purchasedTickets,
       success_url: `${process.env.CLIENT_URL}/success`,
-      cancel_url: `${process.env.CLIENT_URL}/tickets`,
+      cancel_url: `${process.env.CLIENT_URL}/tickets?canceled=true`,
       customer_email: req.body.email,
     });
     return res.json({
