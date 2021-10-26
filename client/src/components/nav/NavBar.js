@@ -13,7 +13,7 @@ import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
 
-export const NavBar = ({ drawer, handleDrawer, matches }) => {
+export const NavBar = ({ drawer, setDrawer, handleDrawer, isMatch }) => {
   const classes = useStyles({ drawer });
   return (
     <AppBar position='sticky' className={classes.appBar}>
@@ -42,17 +42,17 @@ export const NavBar = ({ drawer, handleDrawer, matches }) => {
             </Box>
           </Grid>
         </Grid>
-        {matches && (
+        {isMatch && (
           <Grid container className={classes.listItemContainer} spacing={3}>
-            <ListItem text='program' drawer={drawer} />
-            <ListItem text='about' drawer={drawer} />
-            <ListItem text='tickets' drawer={drawer} />
-            <ListItem text='contact' drawer={drawer} />
+            <ListItem label='program' drawer={drawer} />
+            <ListItem label='about' drawer={drawer} />
+            <ListItem label='tickets' drawer={drawer} />
+            <ListItem label='contact' drawer={drawer} />
           </Grid>
         )}
         <div className={classes.loginHamburgerWrapper}>
-          <NavUser drawer={drawer} />
-          {!matches && (
+          <NavUser drawer={drawer} setDrawer={setDrawer} />
+          {!isMatch && (
             <div className={classes.iconButtonContainer}>
               <IconButton
                 className={classes.iconBtn}
