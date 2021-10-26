@@ -12,6 +12,7 @@ import { ListItem } from './ListItem';
 import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
+import { Link } from 'react-router-dom';
 
 export const NavBar = ({ drawer, setDrawer, handleDrawer, isMatch }) => {
   const classes = useStyles({ drawer });
@@ -22,8 +23,9 @@ export const NavBar = ({ drawer, setDrawer, handleDrawer, isMatch }) => {
           <Grid item>
             <Typography
               variant='h6'
+              to='/'
               className={classes.logo}
-              component='div'
+              component={Link}
               sx={{ flexGrow: 1 }}
             >
               Festival32
