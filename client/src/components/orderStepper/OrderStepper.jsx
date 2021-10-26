@@ -123,7 +123,7 @@ const OrderStepper = () => {
           </Button>
         </Grid>
         <Grid sx={{ position: 'relative' }}>
-          {!disableNextButton() && <div class='arrows'></div>}
+          {!disableNextButton() && <div className='arrows'></div>}
           <Button onClick={handleNext} disabled={disableNextButton()}>
             Next
           </Button>
