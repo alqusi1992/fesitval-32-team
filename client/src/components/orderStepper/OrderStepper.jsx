@@ -21,7 +21,7 @@ const OrderStepper = () => {
   } = useGuestContext();
   const [activeStep, setActiveStep] = useState(0);
   const [formSubmitted, setFormSubmitted] = useState(false);
-
+  const [triggerSubmit, setTriggerSubmit] = useState(false);
   const step = {
     first: activeStep === 0,
     second: activeStep === 1,
@@ -74,7 +74,14 @@ const OrderStepper = () => {
       </Grid>
       <Grid item xs={12}>
         {step.first && <Tickets />}
-        {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
+        {step.second && (
+          <GuestForm
+            triggerSubmit={triggerSubmit}
+            setFormSubmitted={setFormSubmitted}
+            handleNext={handleNext}
+            setTriggerSubmit={setTriggerSubmit}
+          />
+        )}
         {step.third && <OrderSummary />}
       </Grid>
       <Grid
@@ -97,10 +104,17 @@ const OrderStepper = () => {
         <Grid sx={{ position: 'relative' }}>
           {!disableNextButton() && <div class='arrows'></div>}
 
-          <Button onClick={handleNext} disabled={disableNextButton()}>
-            {step.first && 'Go to Form'}
-            {step.second && 'Go to Payment'}
-          </Button>
+          {step.first && (
+            <Button onClick={handleNext} disabled={disableNextButton()}>
+              Go to Form
+            </Button>
+          )}
+
+          {step.second && (
+            <Button onClick={() => setTriggerSubmit(true)}>
+              Go to Payment
+            </Button>
+          )}
         </Grid>
       </Grid>
     </Grid>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormWrapper } from './GuestFormStyles';
 import { useGuestContext } from '../../../context/guestContext';
@@ -12,7 +12,12 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Button } from '@mui/material';
 
-const GuestForm = ({ setFormSubmitted }) => {
+const GuestForm = ({
+  setFormSubmitted,
+  triggerSubmit,
+  handleNext,
+  setTriggerSubmit,
+}) => {
   const {
     handleSubmit,
     register,
@@ -57,7 +62,16 @@ const GuestForm = ({ setFormSubmitted }) => {
         password: data.password || null,
       },
     }));
+
+    handleNext();
   };
+
+  useEffect(() => {
+    if (triggerSubmit) {
+      handleSubmit(onSubmit)();
+      setTriggerSubmit(false);
+    }
+  }, [triggerSubmit]);
 
   return (
     <FormWrapper>
