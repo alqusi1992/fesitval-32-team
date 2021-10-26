@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormWrapper } from './GuestFormStyles';
 import { useGuestContext } from '../../../context/guestContext';
@@ -51,27 +51,30 @@ const GuestForm = ({
     });
   };
 
-  const onSubmit = (data) => {
-    setFormSubmitted(true);
-    setGuestUserOrder((prev) => ({
-      ...prev,
-      userInfo: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        password: data.password || null,
-      },
-    }));
+  const onSubmitCallback = useCallback(() => {
+    const onSubmit = (data) => {
+      setFormSubmitted(true);
+      setGuestUserOrder((prev) => ({
+        ...prev,
+        userInfo: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password || null,
+        },
+      }));
 
-    handleNext();
-  };
+      handleNext();
+    };
+    handleSubmit(onSubmit)();
+  }, [handleSubmit, setFormSubmitted, setGuestUserOrder, handleNext]);
 
   useEffect(() => {
     if (triggerSubmit) {
-      handleSubmit(onSubmit)();
+      onSubmitCallback();
       setTriggerSubmit(false);
     }
-  }, [triggerSubmit]);
+  }, [onSubmitCallback, setTriggerSubmit, triggerSubmit]);
 
   return (
     <FormWrapper>
@@ -203,13 +206,13 @@ const GuestForm = ({
         </FormControl>
       )}
 
-      <Button
+      {/* <Button
         variant='contained'
         onClick={handleSubmit(onSubmit)}
         sx={{ marginTop: '20px' }}
       >
         submit
-      </Button>
+      </Button> */}
     </FormWrapper>
   );
 };
