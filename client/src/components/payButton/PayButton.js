@@ -32,7 +32,7 @@ export const PayButton = () => {
         // register account
         await register(
           { firstName, lastName, email, password, phone: '' },
-          dispatch,
+          dispatch
         );
       }
       const response = await fetch(
@@ -43,7 +43,7 @@ export const PayButton = () => {
             'content-type': 'application/json',
           },
           body: JSON.stringify(order),
-        },
+        }
       );
       const { url, msg, success, orderInfo } = await response.json();
 
@@ -52,7 +52,6 @@ export const PayButton = () => {
         // here we still should add errorHandling(alert) when context is merged
       } else {
         setLocalStorage('orderInfo', orderInfo);
-        localStorage.removeItem('guestUserOrder');
         window.location = url;
       }
     } catch (error) {
