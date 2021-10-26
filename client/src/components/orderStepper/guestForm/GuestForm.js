@@ -10,7 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import FormControl from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { Button } from '@mui/material';
 
 const GuestForm = ({
   setFormSubmitted,
@@ -205,14 +204,6 @@ const GuestForm = ({
           </InputAdornment>
         </FormControl>
       )}
-
-      {/* <Button
-        variant='contained'
-        onClick={handleSubmit(onSubmit)}
-        sx={{ marginTop: '20px' }}
-      >
-        submit
-      </Button> */}
     </FormWrapper>
   );
 };
