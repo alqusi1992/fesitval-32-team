@@ -27,7 +27,7 @@ export const NavDrawer = ({ drawer, handleDrawer }) => {
               </div>
               <DrawerListButton
                 text='program'
-                handleClick={() => handleClick(() => history.push('/schedule'))}
+                handleClick={() => handleClick(() => history.push('/program'))}
               />
               <DrawerListButton
                 text='tickets'
@@ -39,7 +39,7 @@ export const NavDrawer = ({ drawer, handleDrawer }) => {
               />
               <DrawerListButton
                 text='contact'
-                handleClick={() => handleClick(() => history.push('/schedule'))}
+                handleClick={() => handleClick(() => history.push('/contact'))}
               />
             </Grid>
           </Grid>
