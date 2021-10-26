@@ -10,7 +10,8 @@ export const SuccessPage = () => {
   const createOrder = useCallback(async () => {
     const orderInfo = JSON.parse(localStorage.getItem('orderInfo'));
 
-    localStorage.removeItem('orderInfo');
+    window.localStorage.removeItem('orderInfo');
+    window.sessionStorage.removeItem('guestUserOrder');
 
     if (orderInfo !== null) {
       try {
