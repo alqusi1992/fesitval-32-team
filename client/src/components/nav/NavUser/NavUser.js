@@ -20,7 +20,7 @@ import { getLocalStorage, setLocalStorage } from '../../../utils/localStorage';
 import decode from 'jwt-decode';
 import { useStyles } from './NavUserStyles';
 
-const NavUser = ({ drawer }) => {
+const NavUser = ({ drawer, setDrawer }) => {
   const history = useHistory();
   const classes = useStyles({ drawer });
   const [anchorEl, setAnchorEl] = useState(null);
@@ -51,6 +51,7 @@ const NavUser = ({ drawer }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setDrawer(false);
   };
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -72,7 +73,11 @@ const NavUser = ({ drawer }) => {
   if (!user?.token) {
     return (
       <>
-        <Button onClick={handleLogin} className={classes.listItemBtn} startIcon={<LockIcon />}>
+        <Button
+          onClick={handleLogin}
+          className={classes.listItemBtn}
+          startIcon={<LockIcon />}
+        >
           Login
         </Button>
         {isRegister && <User setIsRegister={setIsRegister} />}

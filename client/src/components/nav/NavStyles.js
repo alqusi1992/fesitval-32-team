@@ -20,6 +20,7 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     toolBar: {
       '&&': {
+        justifyContent: 'space-between',
         [theme.breakpoints.up('md')]: {
           maxWidth: '1190px',
         },
@@ -31,7 +32,7 @@ export const useStyles = makeStyles((theme, prop) => {
     logoContainer: {
       '&&': {
         alignItems: 'center',
-        flex: 1,
+        maxWidth: '330px',
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         [theme.breakpoints.up('lg')]: {
           marginLeft: '5px',
@@ -72,21 +73,15 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         justifyContent: 'flex-end',
         flex: 1,
-        [theme.breakpoints.down('md')]: {
-          display: 'none',
-        },
       },
     },
     listItemBtn: {
       '&&': {
+        padding: '6px 0',
+        minWidth: 0,
         color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         fontWeight: '900',
-        transition: 'transform .3s',
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
-        '&:hover': {
-          transform: 'translateX(4px)',
-          backgroundColor: 'transparent ',
-        },
       },
     },
     iconBtn: {
@@ -122,7 +117,6 @@ export const useStyles = makeStyles((theme, prop) => {
         height: '100vh',
         width: '100%',
         position: 'absolute',
-        zIndex: '9999',
         opacity: ({ drawer }) => (drawer ? '1' : '0'),
         transition: 'opacity .3s,transform .3s',
         transform: ({ drawer }) =>
@@ -151,6 +145,44 @@ export const useStyles = makeStyles((theme, prop) => {
           transform: 'translateX(8px)',
           transition: 'transform .3s',
           cursor: 'pointer',
+        },
+      },
+    },
+    loginHamburgerWrapper: {
+      '&&': {
+        display: 'flex',
+      },
+    },
+    selected: {
+      '&&': {
+        borderBottom: '4px solid rgb(97, 5, 39)',
+        paddingBottom: '2px',
+      },
+    },
+    listItemWrapper: {
+      '&&': {
+        transition: 'transform .3s',
+        '&:hover': {
+          transform: 'translateX(4px)',
+          backgroundColor: 'transparent ',
+        },
+      },
+    },
+    closeDrawer: {
+      '&&': {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: '100%',
+        marginBottom: '20px',
+      },
+    },
+    closeIcon: {
+      '&&': {
+        transition: 'transform .5s',
+        cursor: 'pointer',
+        '&:hover': {
+          transform: 'scale(1.35)',
+          color: 'rgb(97, 5, 39)',
         },
       },
     },

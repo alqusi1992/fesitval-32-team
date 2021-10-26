@@ -12,10 +12,9 @@ import { ListItem } from './ListItem';
 import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
-  const history = useHistory();
+export const NavBar = ({ drawer, setDrawer, handleDrawer, isMatch }) => {
   const classes = useStyles({ drawer });
   return (
     <AppBar position='sticky' className={classes.appBar}>
@@ -24,8 +23,9 @@ export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
           <Grid item>
             <Typography
               variant='h6'
+              to='/'
               className={classes.logo}
-              component='div'
+              component={Link}
               sx={{ flexGrow: 1 }}
             >
               Festival32
@@ -44,41 +44,34 @@ export const NavBar = ({ drawer, handleDrawer, matches, setDrawer }) => {
             </Box>
           </Grid>
         </Grid>
-        {matches && (
-          <Grid container className={classes.listItemContainer} spacing={2}>
-            <ListItem
-              handleClick={() => history.push('/schedule')}
-              text='program'
-              drawer={drawer}
-            />
-            <ListItem
-              text='about'
-              drawer={drawer}
-              handleClick={() => history.push('/about')}
-            />
-            <ListItem
-              text='tickets'
-              drawer={drawer}
-              handleClick={() => history.push('/tickets')}
-            />
+        {isMatch && (
+          <Grid container className={classes.listItemContainer} spacing={3}>
+            <ListItem label='program' drawer={drawer} />
+            <ListItem label='about' drawer={drawer} />
+            <ListItem label='tickets' drawer={drawer} />
+            <ListItem label='contact' drawer={drawer} />
           </Grid>
         )}
-        <NavUser {...{ drawer }} />
-        <div className={classes.iconButtonContainer}>
-          <IconButton
-            className={classes.iconBtn}
-            onClick={() => handleDrawer(true)}
-            size='large'
-            edge='end'
-            color='secondary'
-            aria-label='menu'
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon color='secondary' />
-          </IconButton>
+        <div className={classes.loginHamburgerWrapper}>
+          <NavUser drawer={drawer} setDrawer={setDrawer} />
+          {!isMatch && (
+            <div className={classes.iconButtonContainer}>
+              <IconButton
+                className={classes.iconBtn}
+                onClick={() => handleDrawer(true)}
+                size='large'
+                edge='end'
+                color='secondary'
+                aria-label='menu'
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon color='secondary' />
+              </IconButton>
+            </div>
+          )}
         </div>
       </Toolbar>
-      <NavDrawer {...{ drawer, handleDrawer }} />
+      <NavDrawer drawer={drawer} handleDrawer={handleDrawer} />
     </AppBar>
   );
 };

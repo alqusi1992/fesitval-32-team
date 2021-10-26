@@ -3,16 +3,19 @@ import { useMediaQuery } from '@mui/material';
 import { NavBar } from './NavBar';
 
 const Nav = () => {
-  const matches = useMediaQuery('(min-width:768px)');
+  const isMatch = useMediaQuery('(min-width:832px)');
   const [drawer, setDrawer] = useState(false);
   const handleDrawer = () => {
     setDrawer(!drawer);
   };
 
   return (
-    <>
-      <NavBar {...{ handleDrawer, matches, drawer, setDrawer }} />
-    </>
+    <NavBar
+      handleDrawer={handleDrawer}
+      isMatch={isMatch}
+      drawer={drawer}
+      setDrawer={setDrawer}
+    />
   );
 };
 
