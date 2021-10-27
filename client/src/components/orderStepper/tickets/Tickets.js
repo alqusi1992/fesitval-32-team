@@ -14,7 +14,6 @@ const Tickets = () => {
       0,
     );
   }
-
   const fetchTickets = async () => {
     try {
       const url = process.env.REACT_APP_SERVER_URL + '/tickets';
