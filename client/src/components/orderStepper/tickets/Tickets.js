@@ -11,7 +11,7 @@ const Tickets = () => {
   if (guestUserOrder.tickets.length > 0) {
     totalTicketsPrice = guestUserOrder.tickets.reduce(
       (acc, value) => acc + value.price * value.quantity,
-      0
+      0,
     );
   }
 
@@ -39,8 +39,9 @@ const Tickets = () => {
 
   return (
     <Grid container sx={{ padding: '40px 0px' }}>
-      <Grid item xs={12}>
+      <Grid container item xs={12} justifyContent='center'>
         {error && <h3>Sorry! the tickets are not available now</h3>}
+        <h2> Select Your Tickets </h2>
         {tickets &&
           tickets.map((ticket) => {
             return <Ticket key={ticket._id} ticket={ticket} />;
