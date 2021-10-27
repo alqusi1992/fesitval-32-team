@@ -99,20 +99,19 @@ const GuestForm = ({
 
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
-          error={errors?.confirmEmail?.type ? true : false}
-          label='Confirm your E-mail Address'
-          placeholder='example@example.com'
+          error={errors?.lastName?.type ? true : false}
+          label='Last Name'
+          placeholder='Doe'
           multiline
           variant='standard'
-          defaultValue={values.userInfo.email}
-          helperText={
-            errors?.confirmEmail?.type === 'validate'
-              ? 'Your email does not match'
-              : errors?.confirmEmail?.message
-          }
-          {...register('confirmEmail', {
-            required: 'Please confirm your email!',
-            validate: (value) => value === getValues('email'),
+          defaultValue={values.userInfo.lastName}
+          helperText={errors?.lastName?.message}
+          {...register('lastName', {
+            required: 'Please insert your last name!',
+            pattern: {
+              value: /^[A-Za-z]+$/i,
+              message: 'Insert only letters',
+            },
           })}
         />
       </FormControl>
