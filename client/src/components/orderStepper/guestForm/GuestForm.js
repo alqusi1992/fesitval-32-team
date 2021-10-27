@@ -12,10 +12,10 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 const GuestForm = ({
-  setFormSubmitted,
-  triggerSubmit,
+  setIsFormSubmitted,
+  isTriggerSubmit,
   handleNext,
-  setTriggerSubmit,
+  setIsTriggerSubmit,
 }) => {
   const {
     handleSubmit,
@@ -52,7 +52,7 @@ const GuestForm = ({
 
   const onSubmitCallback = useCallback(() => {
     const onSubmit = (data) => {
-      setFormSubmitted(true);
+      setIsFormSubmitted(true);
       setGuestUserOrder((prev) => ({
         ...prev,
         userInfo: {
@@ -66,14 +66,14 @@ const GuestForm = ({
       handleNext();
     };
     handleSubmit(onSubmit)();
-  }, [handleSubmit, setFormSubmitted, setGuestUserOrder, handleNext]);
+  }, [handleSubmit, setIsFormSubmitted, setGuestUserOrder, handleNext]);
 
   useEffect(() => {
-    if (triggerSubmit) {
+    if (isTriggerSubmit) {
       onSubmitCallback();
-      setTriggerSubmit(false);
+      setIsTriggerSubmit(false);
     }
-  }, [onSubmitCallback, setTriggerSubmit, triggerSubmit]);
+  }, [onSubmitCallback, setIsTriggerSubmit, isTriggerSubmit]);
 
   return (
     <FormWrapper>

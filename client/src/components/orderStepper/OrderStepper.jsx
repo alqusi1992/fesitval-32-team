@@ -20,8 +20,8 @@ const OrderStepper = () => {
     setGuestUserOrder,
   } = useGuestContext();
   const [activeStep, setActiveStep] = useState(0);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [triggerSubmit, setTriggerSubmit] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isTriggerSubmit, setIsTriggerSubmit] = useState(false);
   const step = {
     first: activeStep === 0,
     second: activeStep === 1,
@@ -30,7 +30,7 @@ const OrderStepper = () => {
 
   const disableNextButton = () => {
     if (step.first && tickets.length === 0) return true;
-    if (step.second && !formSubmitted) return true;
+    if (step.second && !isFormSubmitted) return true;
     if (step.third) return true;
 
     return false;
@@ -76,10 +76,10 @@ const OrderStepper = () => {
         {step.first && <Tickets />}
         {step.second && (
           <GuestForm
-            triggerSubmit={triggerSubmit}
-            setFormSubmitted={setFormSubmitted}
+            isTriggerSubmit={isTriggerSubmit}
+            setIsFormSubmitted={setIsFormSubmitted}
             handleNext={handleNext}
-            setTriggerSubmit={setTriggerSubmit}
+            setIsTriggerSubmit={setIsTriggerSubmit}
           />
         )}
         {step.third && <OrderSummary />}
@@ -111,7 +111,7 @@ const OrderStepper = () => {
           )}
 
           {step.second && (
-            <Button onClick={() => setTriggerSubmit(true)}>
+            <Button onClick={() => setIsTriggerSubmit(true)}>
               Go to Payment
             </Button>
           )}
