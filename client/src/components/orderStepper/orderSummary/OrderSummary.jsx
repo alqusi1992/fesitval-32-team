@@ -18,7 +18,7 @@ const OrderSummary = () => {
   return (
     <Grid container>
       <Grid container justifyContent='center' item xs={12}>
-        Order review
+        <h2>Buy Your Tickets</h2>
       </Grid>
       <Grid container item xs={12}>
         <Grid item xs={12}>
