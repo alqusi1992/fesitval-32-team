@@ -29,8 +29,8 @@ const OrderStepper = () => {
     setGuestUserOrder,
   } = useGuestContext();
   const [activeStep, setActiveStep] = useState(0);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isTriggerSubmit, setIsTriggerSubmit] = useState(false);
   const step = {
     first: activeStep === 0,
     second: activeStep === 1,
@@ -39,7 +39,7 @@ const OrderStepper = () => {
 
   const disableNextButton = () => {
     if (step.first && tickets.length === 0) return true;
-    if (step.second && !formSubmitted) return true;
+    if (step.second && !isFormSubmitted) return true;
     if (step.third) return true;
 
     return false;
@@ -102,7 +102,14 @@ const OrderStepper = () => {
       </Grid>
       <Grid item xs={12}>
         {step.first && <Tickets />}
-        {step.second && <GuestForm setFormSubmitted={setFormSubmitted} />}
+        {step.second && (
+          <GuestForm
+            isTriggerSubmit={isTriggerSubmit}
+            setIsFormSubmitted={setIsFormSubmitted}
+            handleNext={handleNext}
+            setIsTriggerSubmit={setIsTriggerSubmit}
+          />
+        )}
         {step.third && <OrderSummary />}
       </Grid>
       <Grid
@@ -123,10 +130,19 @@ const OrderStepper = () => {
           </Button>
         </Grid>
         <Grid sx={{ position: 'relative' }}>
-          {!disableNextButton() && <div className='arrows'></div>}
-          <Button onClick={handleNext} disabled={disableNextButton()}>
-            Next
-          </Button>
+          {!disableNextButton() && <div class='arrows'></div>}
+
+          {step.first && (
+            <Button onClick={handleNext} disabled={disableNextButton()}>
+              Go to Form
+            </Button>
+          )}
+
+          {step.second && (
+            <Button onClick={() => setIsTriggerSubmit(true)}>
+              Go to Payment
+            </Button>
+          )}
         </Grid>
       </Grid>
     </Grid>
