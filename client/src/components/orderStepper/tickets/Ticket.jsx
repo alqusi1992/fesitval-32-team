@@ -111,7 +111,7 @@ const Ticket = ({ ticket }) => {
         € {ticketsQty === 0 ? ticket.price : totalPrice}
       </Grid>
 
-      {ticketsQty === 0 ? (
+      {ticket.availableQty === 0 ? (
         <Grid
           container
           item
@@ -121,15 +121,7 @@ const Ticket = ({ ticket }) => {
           alignItems='center'
         >
           <Grid item xs={12}>
-            <ButtonWrapper
-              disabled={ticket.availableQty === 0}
-              onClick={() => {
-                addTicket();
-                storeOrderInContext(ticketsQty + 1);
-              }}
-            >
-              {ticket.availableQty === 0 ? 'SOLD OUT' : 'ADD TO CART'}
-            </ButtonWrapper>
+             <ButtonWrapper disabled > SOLD OUT</ButtonWrapper>
           </Grid>
         </Grid>
       ) : (
