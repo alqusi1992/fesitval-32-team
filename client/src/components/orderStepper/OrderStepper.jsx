@@ -45,7 +45,7 @@ const OrderStepper = () => {
     return false;
   };
 
-  const handleNext = () => {
+  const handleNext = (guestUserOrder) => {
     setSessionStorage('guestUserOrder', guestUserOrder);
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -78,7 +78,7 @@ const OrderStepper = () => {
       showAlert(
         'danger',
         'Your payment was canceled either by you or by the bank, please try again',
-        dispatch
+        dispatch,
       );
     }
   }, [memorizedQuery, dispatch]);
@@ -105,6 +105,7 @@ const OrderStepper = () => {
         {step.second && (
           <GuestForm
             isTriggerSubmit={isTriggerSubmit}
+            isFormSubmitted={isFormSubmitted}
             setIsFormSubmitted={setIsFormSubmitted}
             handleNext={handleNext}
             setIsTriggerSubmit={setIsTriggerSubmit}
@@ -133,7 +134,10 @@ const OrderStepper = () => {
           {!disableNextButton() && <div class='arrows'></div>}
 
           {step.first && (
-            <Button onClick={handleNext} disabled={disableNextButton()}>
+            <Button
+              onClick={() => handleNext(guestUserOrder)}
+              disabled={disableNextButton()}
+            >
               Go to Form
             </Button>
           )}
