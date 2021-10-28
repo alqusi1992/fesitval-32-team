@@ -16,6 +16,7 @@ const GuestForm = ({
   isTriggerSubmit,
   handleNext,
   setIsTriggerSubmit,
+  isFormSubmitted,
 }) => {
   const {
     handleSubmit,
@@ -25,6 +26,7 @@ const GuestForm = ({
   } = useForm();
   const {
     guestUserOrder: { userInfo },
+    guestUserOrder,
     setGuestUserOrder,
   } = useGuestContext();
 
@@ -52,7 +54,6 @@ const GuestForm = ({
 
   const onSubmitCallback = useCallback(() => {
     const onSubmit = (data) => {
-      setIsFormSubmitted(true);
       setGuestUserOrder((prev) => ({
         ...prev,
         userInfo: {
@@ -62,18 +63,27 @@ const GuestForm = ({
           password: data.password || null,
         },
       }));
-
-      handleNext();
+      setIsFormSubmitted(true);
     };
     handleSubmit(onSubmit)();
-  }, [handleSubmit, setIsFormSubmitted, setGuestUserOrder, handleNext]);
+  }, [handleSubmit, setIsFormSubmitted, setGuestUserOrder]);
 
   useEffect(() => {
     if (isTriggerSubmit) {
       onSubmitCallback();
       setIsTriggerSubmit(false);
     }
-  }, [onSubmitCallback, setIsTriggerSubmit, isTriggerSubmit]);
+    if (isFormSubmitted) {
+      handleNext(guestUserOrder);
+    }
+  }, [
+    onSubmitCallback,
+    setIsTriggerSubmit,
+    isTriggerSubmit,
+    guestUserOrder,
+    handleNext,
+    isFormSubmitted,
+  ]);
 
   return (
     <FormWrapper>
