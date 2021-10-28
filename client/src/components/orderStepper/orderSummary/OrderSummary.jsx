@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import React from 'react';
 import { PayButton } from '../..';
 import { useGuestContext } from '../../../context/guestContext';
-import { useStyles } from '../orderSummary/OrderSummaryStyles';
+import { classes } from './OrderSummaryStyles';
 
 const OrderSummary = () => {
   const { guestUserOrder } = useGuestContext();
@@ -10,7 +10,6 @@ const OrderSummary = () => {
     userInfo: { firstName, lastName, email },
     tickets,
   } = guestUserOrder;
-  const classes = useStyles();
 
   const totalTicketsPrice = guestUserOrder.tickets.reduce(
     (acc, value) => acc + value.price * value.quantity,
@@ -19,19 +18,21 @@ const OrderSummary = () => {
 
   return (
     <Grid container position='relative'>
-      <Grid container className={classes.tableOrder}>
+      <Grid container sx={classes.tableOrder}>
         <Grid container justifyContent='center' item xs={12}>
-          <div className={classes.behindColor}>
-            <h2 className={classes.BuyTicketTitle} justifyContent='center'>
+          <Grid sx={classes.behindColor}>
+            <Grid sx={classes.BuyTicketTitle} justifyContent='center'>
               ORDER OVERVIEW
-            </h2>
-          </div>
+            </Grid>
+          </Grid>
         </Grid>
-        <div className={classes.userContainer}>
-          <Grid container item xs={12} className={classes.userInfo}>
-            <div>
-              <h3 className={classes.personalDetailsHeader}>PERSONAL DETAILS</h3>
-              <div className={classes.personalDetails}>
+        <Grid sx={classes.userContainer}>
+          <Grid container item alignItems='flex-start' xs={12} sx={classes.userInfo}>
+            <Grid container>
+              <Grid item xs={12} sx={classes.personalDetailsHeader}>
+                PERSONAL DETAILS
+              </Grid>
+              <Grid item xs={12} sx={classes.personalDetails}>
                 <Grid item xs={12}>
                   First name: {firstName}
                 </Grid>
@@ -41,11 +42,11 @@ const OrderSummary = () => {
                 <Grid item xs={12}>
                   Email address: {email}
                 </Grid>
-              </div>
-            </div>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid container item xs={12} className={classes.orderContainer}>
-            <Grid container item xs={12} className={classes.orderTitels}>
+          <Grid container item xs={12} sx={classes.orderContainer}>
+            <Grid container item xs={12} sx={classes.orderTitels}>
               <Grid item xs={4}>
                 Ticket Type
               </Grid>
@@ -58,7 +59,7 @@ const OrderSummary = () => {
             </Grid>
 
             {tickets.map((ticket, idx) => (
-              <Grid container item xs={12} key={idx} className={classes.orderInfo}>
+              <Grid container item xs={12} key={idx} sx={classes.orderInfo}>
                 <Grid item xs={4}>
                   {ticket.typeName}
                 </Grid>
@@ -70,13 +71,13 @@ const OrderSummary = () => {
                 </Grid>
               </Grid>
             ))}
-            <Grid container item xs={12} className={classes.totalPrice}>
+            <Grid container item xs={12} sx={classes.totalPrice}>
               <Grid textAlign='center'>Total: € {totalTicketsPrice}</Grid>
             </Grid>
           </Grid>
-        </div>
+        </Grid>
       </Grid>
-      <Grid container item xs={12} className={classes.buttonPay}>
+      <Grid container justifyContent='flex-end' item xs={12} sx={classes.buttonPay}>
         <PayButton />
       </Grid>
     </Grid>
