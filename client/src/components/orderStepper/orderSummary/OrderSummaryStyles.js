@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme, prop) => {
     },
     behindColor: {
       backgroundColor: '#581127',
-      width: '115vh',
+      width: '100%',
     },
     BuyTicketTitle: {
       color: '#fff',
@@ -40,7 +40,7 @@ export const useStyles = makeStyles((theme, prop) => {
       backgroundColor: '#DDD',
       padding: '15px',
       margin: '0',
-      width: '24vw',
+      width: '27vw',
     },
     orderTitels: {
       backgroundColor: '#DDD',
