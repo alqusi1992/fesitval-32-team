@@ -21,13 +21,11 @@ const OrderSummary = () => {
       <Grid container sx={classes.tableOrder}>
         <Grid container justifyContent='center' item xs={12}>
           <Grid sx={classes.behindColor}>
-            <Grid sx={classes.BuyTicketTitle} justifyContent='center'>
-              ORDER OVERVIEW
-            </Grid>
+            <Grid sx={classes.BuyTicketTitle}>ORDER OVERVIEW</Grid>
           </Grid>
         </Grid>
         <Grid sx={classes.userContainer}>
-          <Grid container item alignItems='flex-start' xs={12} sx={classes.userInfo}>
+          <Grid container item xs={12} sx={classes.userInfo}>
             <Grid container>
               <Grid item xs={12} sx={classes.personalDetailsHeader}>
                 PERSONAL DETAILS
@@ -46,7 +44,7 @@ const OrderSummary = () => {
             </Grid>
           </Grid>
           <Grid container item xs={12} sx={classes.orderContainer}>
-            <Grid container item xs={12} sx={classes.orderTitels}>
+            <Grid container item xs={12} sx={classes.orderTitles}>
               <Grid item xs={4}>
                 Ticket Type
               </Grid>
@@ -77,7 +75,7 @@ const OrderSummary = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid container justifyContent='flex-end' item xs={12} sx={classes.buttonPay}>
+      <Grid container item xs={12} sx={classes.buttonPay}>
         <PayButton />
       </Grid>
     </Grid>

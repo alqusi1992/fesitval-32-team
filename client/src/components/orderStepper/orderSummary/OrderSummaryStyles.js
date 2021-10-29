@@ -11,12 +11,12 @@ export const classes = {
   BuyTicketTitle: {
     color: '#fff',
     textAlign: 'center',
+    justifyContent: 'center',
   },
   userContainer: {
     display: 'flex',
     margin: '0 auto',
     padding: '15px',
-
     flexDirection: {
       xs: 'column',
       sm: 'row',
@@ -42,7 +42,7 @@ export const classes = {
     backgroundColor: '#DDD',
     padding: '15px',
   },
-  orderTitels: {
+  orderTitles: {
     backgroundColor: '#DDD',
     padding: '15px',
     fontWeight: 'bold',
@@ -60,5 +60,6 @@ export const classes = {
 
   buttonPay: {
     transform: 'translateY(50px)',
+    justifyContent: 'flex-end',
   },
 };
