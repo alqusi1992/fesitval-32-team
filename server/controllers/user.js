@@ -20,7 +20,9 @@ export const login = async (req, res) => {
         .status(400)
         .json({ success: false, msg: 'Invalid credentials' });
     }
-    const { _id, firstName, lastName, isVerified } = existedUser;
+    const {
+      _id, firstName, lastName, isVerified,
+    } = existedUser;
     const phone = existedUser?.phone ? existedUser.phone : '';
     const result = {
       _id,
@@ -44,7 +46,9 @@ export const login = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const { email, password, firstName, lastName, phone } = req.body;
+  const {
+    email, password, firstName, lastName, phone,
+  } = req.body;
   try {
     const existedUser = await User.findOne({ email });
     if (existedUser) {
@@ -106,8 +110,9 @@ export const deleteAccount = async (req, res) => {
 
 export const updateAccount = async (req, res) => {
   try {
-    const { firstName, lastName, email, newPassword, phone, currentPassword } =
-      req.body;
+    const {
+      firstName, lastName, email, newPassword, phone, currentPassword,
+    } = req.body;
     const { userId } = req;
     const existedUser = await User.findById(userId);
     const correctPassword = await comparePassword(currentPassword, existedUser);
@@ -127,7 +132,7 @@ export const updateAccount = async (req, res) => {
     const user = await User.findByIdAndUpdate(
       userId,
       { $set: updatedUser },
-      { new: true }
+      { new: true },
     );
 
     return res.status(200).json({
@@ -157,7 +162,7 @@ export const forgotPassword = async (req, res) => {
       const token = jwt.sign(
         { _id: existedUser.id },
         process.env.JWT_SECRET_FORGET,
-        { expiresIn: '1h' }
+        { expiresIn: '1h' },
       );
       await existedUser.updateOne({ token });
       const html = `<p>Hello ${existedUser.firstName},<br>
