@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
@@ -12,11 +12,11 @@ import { FormWrapper } from './ResetPasswordStyles';
 import { showAlert } from '../../../actions/alertActions';
 import { useValue } from '../../../context/globalContext';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Alert from '../../alert/Alert';
+import User from '../User';
 
 const ResetPassword = () => {
   const [isUpdated, setIsUpdated] = useState(false);
-  const history = useHistory();
+  const [isRegister, setIsRegister] = useState(false);
   const {
     handleSubmit,
     register: registerForm,
@@ -46,10 +46,7 @@ const ResetPassword = () => {
     });
   };
 
-  const {
-    dispatch,
-    state: { alert },
-  } = useValue();
+  const { dispatch } = useValue();
 
   const resetPasswordHandler = async (data) => {
     if (data.password === data.confirmPassword) {
@@ -67,7 +64,6 @@ const ResetPassword = () => {
 
   return (
     <>
-      {alert.isAlert && <Alert />}
       {isUpdated ? (
         <div style={{ textAlign: 'center' }}>
           <Button
@@ -75,10 +71,10 @@ const ResetPassword = () => {
             variant='contained'
             type='submit'
             onClick={() => {
-              history.push('/');
+              setIsRegister(true);
             }}
           >
-            HOME
+            Log In
           </Button>
         </div>
       ) : (
@@ -172,6 +168,7 @@ const ResetPassword = () => {
           </Button>
         </FormWrapper>
       )}
+      {isRegister && <User setIsRegister={setIsRegister} />}
     </>
   );
 };

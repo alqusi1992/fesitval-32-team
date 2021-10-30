@@ -184,17 +184,18 @@ export const resetPassword = async (req, res) => {
   const hashedPassword = await bcrypt.hash(newPass, 12);
   try {
     const existedUser = await User.findOne({ token });
+    if (!existedUser) {
+      return res
+        .status(400)
+        .json({ success: false, msg: 'Expired or invalid token' });
+    }
     const samePassword = await comparePassword(newPass, existedUser);
     if (samePassword) {
       return res
         .status(400)
         .json({ success: false, msg: 'Failed ! Please enter a new password' });
     }
-    if (!existedUser) {
-      return res
-        .status(400)
-        .json({ success: false, msg: 'Expired or invalid token' });
-    }
+
     await existedUser.updateOne({ password: hashedPassword, token: '' });
     return res
       .status(200)

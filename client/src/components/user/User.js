@@ -47,10 +47,9 @@ const User = ({ setIsRegister }) => {
                   Register
                 </LogInRegister>
                 <br />
-                Forgot your password?
                 <LogInRegister onClick={() => setShowEmail(!showEmail)}>
                   {' '}
-                  Click Here
+                  Forgot your password?
                 </LogInRegister>
               </div>
             )}
