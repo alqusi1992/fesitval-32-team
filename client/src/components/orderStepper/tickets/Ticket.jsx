@@ -15,12 +15,14 @@ const Ticket = ({ ticket }) => {
   const addTicket = () => {
     setTicketsQty(ticketsQty + 1);
     setTotalPrice(totalPrice + ticket.price);
+    storeOrderInContext(ticketsQty + 1);
   };
 
   const removeTicket = () => {
     if (ticketsQty > 0) {
       setTicketsQty(ticketsQty - 1);
       setTotalPrice(totalPrice - ticket.price);
+      storeOrderInContext(ticketsQty - 1);
     }
   };
 
@@ -121,7 +123,7 @@ const Ticket = ({ ticket }) => {
           alignItems='center'
         >
           <Grid item xs={12}>
-             <ButtonWrapper disabled > SOLD OUT</ButtonWrapper>
+            <ButtonWrapper disabled> SOLD OUT</ButtonWrapper>
           </Grid>
         </Grid>
       ) : (
@@ -137,7 +139,6 @@ const Ticket = ({ ticket }) => {
             <ButtonIconWrapper
               onClick={() => {
                 removeTicket();
-                storeOrderInContext(ticketsQty - 1);
               }}
             >
               <RemoveIcon fontSize='small' />
@@ -161,7 +162,6 @@ const Ticket = ({ ticket }) => {
             <ButtonIconWrapper
               onClick={() => {
                 addTicket();
-                storeOrderInContext(ticketsQty + 1);
               }}
             >
               <AddIcon fontSize='small' />
