@@ -9,7 +9,10 @@ import OrderSummary from './orderSummary/OrderSummary';
 import { useGuestContext } from '../../context/guestContext';
 import { Grid } from '@mui/material';
 import '../../app.css';
-import { getSessionStorage, setSessionStorage } from '../../utils/sessionStorage';
+import {
+  getSessionStorage,
+  setSessionStorage,
+} from '../../utils/sessionStorage';
 import { useLocation } from 'react-router';
 import { showAlert } from '../../actions/alertActions';
 import Alert from '../alert/Alert';
@@ -75,13 +78,13 @@ const OrderStepper = () => {
       showAlert(
         'danger',
         'Your payment was canceled either by you or by the bank, please try again',
-        dispatch,
+        dispatch
       );
     }
   }, [memorizedQuery, dispatch]);
 
   return (
-    <Grid container sx={{ width: '100%', minHeight: '550px', padding: '30px' }}>
+    <Grid container sx={{ width: '100%', minHeight: '550px' }}>
       {alert.isAlert && <Alert />}
       <Grid item xs={12}>
         <Stepper activeStep={activeStep}>
@@ -110,13 +113,24 @@ const OrderStepper = () => {
         )}
         {step.third && <OrderSummary />}
       </Grid>
-      <Grid container justifyContent='space-between' item xs={12} alignSelf='flex-end'>
+      <Grid
+        container
+        justifyContent='space-between'
+        item
+        xs={12}
+        alignSelf='flex-end'
+      >
         <Grid sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
           <Button
             color='inherit'
             disabled={step.first}
             onClick={handleBack}
-            sx={{ backgroundColor: '#DDD', mr: 1, color: '#fff', '&:hover': { color: '#000' } }}
+            sx={{
+              backgroundColor: '#DDD',
+              mr: 1,
+              color: '#fff',
+              '&:hover': { color: '#000' },
+            }}
           >
             Back
           </Button>
@@ -133,7 +147,11 @@ const OrderStepper = () => {
             </Button>
           )}
 
-          {step.second && <Button onClick={() => setIsTriggerSubmit(true)}>Go to Payment</Button>}
+          {step.second && (
+            <Button onClick={() => setIsTriggerSubmit(true)}>
+              Go to Payment
+            </Button>
+          )}
         </Grid>
       </Grid>
     </Grid>
