@@ -6,7 +6,7 @@ import { setLocalStorage } from '../../utils/localStorage';
 import { register } from '../../actions/userActions';
 import { useValue } from '../../context/globalContext';
 
-export const PayButton = () => {
+export const PayButton = ({ classes }) => {
   const {
     guestUserOrder: { tickets, festivalId },
     guestUserOrder: {
@@ -30,15 +30,21 @@ export const PayButton = () => {
     try {
       if (password !== null) {
         // register account
-        await register({ firstName, lastName, email, password, phone: '' }, dispatch);
+        await register(
+          { firstName, lastName, email, password, phone: '' },
+          dispatch,
+        );
       }
-      const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/payment`, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/payment`,
+        {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(order),
         },
-        body: JSON.stringify(order),
-      });
+      );
       const { url, msg, success, orderInfo } = await response.json();
 
       if (!success) {
@@ -62,7 +68,7 @@ export const PayButton = () => {
         loading={loading}
         loadingPosition='end'
         variant='contained'
-        sx={{ backgroundColor: '#581127', '&:hover': { backgroundColor: '#952f4e' } }}
+        sx={classes.payBtn}
       >
         Pay with card
       </LoadingButton>
