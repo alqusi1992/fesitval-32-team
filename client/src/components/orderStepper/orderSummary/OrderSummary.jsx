@@ -1,6 +1,5 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { PayButton } from '../..';
 import { useGuestContext } from '../../../context/guestContext';
 import { classes } from './OrderSummaryStyles';
 
@@ -74,9 +73,6 @@ const OrderSummary = () => {
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
-      <Grid container item xs={12} sx={classes.buttonPay}>
-        <PayButton />
       </Grid>
     </Grid>
   );
