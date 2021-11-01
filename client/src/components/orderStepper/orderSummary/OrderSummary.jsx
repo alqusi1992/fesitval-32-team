@@ -1,5 +1,5 @@
 import { Grid } from '@mui/material';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { PayButton } from '../..';
 import { useGuestContext } from '../../../context/guestContext';
 import { classes } from './OrderSummaryStyles';
@@ -15,6 +15,10 @@ const OrderSummary = () => {
     (acc, value) => acc + value.price * value.quantity,
     0,
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Grid container position='relative'>

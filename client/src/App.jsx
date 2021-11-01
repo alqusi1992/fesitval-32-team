@@ -20,6 +20,7 @@ import {
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
+import ScrollToTop from './utils/ScrollToTop';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Loading />
         <Verify />
         <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>
+          <ScrollToTop>
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
@@ -54,6 +56,7 @@ function App() {
               <Route exact path='/tickets' component={OrderStepper} />
             </GuestProvider>
           </Switch>
+          </ScrollToTop>
         </Container>
         <Footer />
       </Router>

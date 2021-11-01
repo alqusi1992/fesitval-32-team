@@ -11,7 +11,7 @@ const Tickets = () => {
   if (guestUserOrder.tickets.length > 0) {
     totalTicketsPrice = guestUserOrder.tickets.reduce(
       (acc, value) => acc + value.price * value.quantity,
-      0,
+      0
     );
   }
   const fetchTickets = async () => {
@@ -34,6 +34,10 @@ const Tickets = () => {
     return () => {
       clearTimeout(timer);
     };
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   return (

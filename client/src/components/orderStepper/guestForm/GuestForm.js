@@ -85,6 +85,10 @@ const GuestForm = ({
     isFormSubmitted,
   ]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <FormWrapper>
       <h2>Fill in Your Personal Details </h2>
