@@ -29,7 +29,7 @@ function App() {
         <NavBar />
         <Loading />
         <Verify />
-        <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>
+        <Container maxWidth='lg' style={{ padding: '50px 0px 350px 0px' }}>
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
