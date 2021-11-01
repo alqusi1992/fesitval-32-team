@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from './GlobalStyles';
+import { classes, theme } from './GlobalStyles';
 import {
   LandingPage,
   SuccessPage,
@@ -29,7 +29,7 @@ function App() {
         <NavBar />
         <Loading />
         <Verify />
-        <Container maxWidth='lg' style={{ padding: '50px 0px 350px 0px' }}>
+        <Container maxWidth='lg' sx={classes.container}>
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
