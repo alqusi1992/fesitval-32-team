@@ -40,16 +40,20 @@ const User = ({ setIsRegister }) => {
               <Register setIsRegister={setIsRegister} />
             )}
             {isLogin && (
-              <div style={{ marginTop: '20px' }}>
-                Don't have an account yet?
-                <LogInRegister onClick={() => setIsLogin(false)}>
-                  {' '}
-                  Register
-                </LogInRegister>
-                <br />
+              <div
+                style={{
+                  marginTop: '20px',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}
+              >
                 <LogInRegister onClick={() => setShowEmail(!showEmail)}>
                   {' '}
-                  Forgot your password?
+                  Forgot password?
+                </LogInRegister>
+                <LogInRegister onClick={() => setIsLogin(false)}>
+                  {' '}
+                  Create account
                 </LogInRegister>
               </div>
             )}

@@ -37,7 +37,7 @@ export const Modal = styled.div`
   position: relative;
   max-height: 90vh;
   overflow: auto;
-  max-width: 600px;
+  max-width: 400px;
   background-color: white;
   color: #000;
   @media (min-width: 776px) {
