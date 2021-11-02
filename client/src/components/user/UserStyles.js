@@ -68,3 +68,11 @@ export const LogInRegister = styled.p`
     cursor: pointer;
   }
 `;
+
+export const classes = {
+  loginOptionsContainer: {
+    marginTop: '20px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+};

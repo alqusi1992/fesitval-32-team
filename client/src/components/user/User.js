@@ -5,11 +5,13 @@ import {
   Modal,
   CancelContainer,
   LogInRegister,
+  classes,
 } from './UserStyles';
 import CloseIcon from '@mui/icons-material/Close';
 import Register from './register/Register';
 import Login from './login/Login';
 import ForgotPassword from './resetPassword/ForgotPassword';
+import { Box } from '@mui/system';
 
 const User = ({ setIsRegister }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -27,7 +29,6 @@ const User = ({ setIsRegister }) => {
         {showEmail ? (
           <>
             <LogInRegister onClick={() => setShowEmail(!showEmail)}>
-              {' '}
               Back
             </LogInRegister>
             <ForgotPassword />
@@ -40,22 +41,14 @@ const User = ({ setIsRegister }) => {
               <Register setIsRegister={setIsRegister} />
             )}
             {isLogin && (
-              <div
-                style={{
-                  marginTop: '20px',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                }}
-              >
+              <Box sx={classes.loginOptionsContainer}>
                 <LogInRegister onClick={() => setShowEmail(!showEmail)}>
-                  {' '}
                   Forgot password?
                 </LogInRegister>
                 <LogInRegister onClick={() => setIsLogin(false)}>
-                  {' '}
                   Create account
                 </LogInRegister>
-              </div>
+              </Box>
             )}
             {!isLogin && (
               <div style={{ marginTop: '20px' }}>
