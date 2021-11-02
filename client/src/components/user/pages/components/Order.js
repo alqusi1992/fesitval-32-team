@@ -5,7 +5,7 @@ export const Order = ({ order }) => {
   const { totalQty, totalPrice } = order.tickets.reduce(
     (total, ticket) => {
       total.totalQty += ticket.quantity;
-      total.totalPrice += ticket.price;
+      total.totalPrice += ticket.price * ticket.quantity;
       return total;
     },
     { totalQty: 0, totalPrice: 0 },
@@ -16,7 +16,12 @@ export const Order = ({ order }) => {
         <Grid>Order Number:</Grid>
         <Grid>{order?._id}</Grid>
         <Grid>
-          <DownloadButton order={order} item xs={12} sx={classes.downloadButton} />
+          <DownloadButton
+            order={order}
+            item
+            xs={12}
+            sx={classes.downloadButton}
+          />
         </Grid>
       </Grid>
       <Grid container sx={classes.orderContainer}>
