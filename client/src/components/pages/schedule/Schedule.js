@@ -49,9 +49,13 @@ export default function Schedule() {
   return (
     <div className={classes.container}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        <ClockPicker date={moment()} onChange={() => {}} />
+        <ClockPicker
+          className={classes.clock}
+          date={moment()}
+          onChange={() => {}}
+        />
       </LocalizationProvider>
-      <h1>Festival32 Schedule</h1>
+      <h1 className={classes.title}>Festival32 Schedule</h1>
       <TableContainer component={Paper}>
         <Table aria-label='collapsible table'>
           <TableHead>

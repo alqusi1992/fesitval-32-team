@@ -90,7 +90,7 @@ const OrderStepper = () => {
       showAlert(
         'danger',
         'Your payment was canceled either by you or by the bank, please try again',
-        dispatch,
+        dispatch
       );
     }
   }, [memorizedQuery, dispatch]);
@@ -130,6 +130,7 @@ const OrderStepper = () => {
         justifyContent='space-between'
         item
         xs={12}
+
         alignSelf='center'
         sx={classes.ctaBar}
       >
@@ -140,7 +141,6 @@ const OrderStepper = () => {
             </Button>
           </Grid>
         )}
-
         <Grid sx={classes.total}>Total: € {totalTicketsPrice}</Grid>
         <Grid>
           {step.first && (
@@ -154,6 +154,7 @@ const OrderStepper = () => {
           )}
 
           {step.second && (
+
             <Button onClick={() => setIsTriggerSubmit(true)} sx={classes.btn}>
               Go to Payment <KeyboardArrowRightIcon />
             </Button>

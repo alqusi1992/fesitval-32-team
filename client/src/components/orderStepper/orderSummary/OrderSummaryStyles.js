@@ -26,15 +26,21 @@ export const classes = {
   userInfo: {
     border: '2px solid #DDD',
     flex: '6',
-    margin: '30px 5px ',
+    margin: {
+      xs: '30px 0',
+      sm: '30px 10px',
+    },
   },
   personalDetails: {
-    padding: '20px 20px',
+    padding: '20px',
   },
 
   orderContainer: {
     border: '2px solid #DDD',
-    margin: '30px 5px',
+    margin: {
+      xs: '30px 0',
+      sm: '30px 10px',
+    },
     flex: '10',
   },
 
@@ -44,11 +50,17 @@ export const classes = {
   },
   orderTitles: {
     backgroundColor: '#DDD',
-    padding: '15px',
+    padding: '15px 8px',
     fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: {
+      xs: '11px',
+      sm: '22px',
+    },
   },
   orderInfo: {
     padding: '15px',
+    textAlign: 'center',
   },
   totalPrice: {
     borderTop: '2px solid #DDD',
