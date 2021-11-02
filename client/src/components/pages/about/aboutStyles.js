@@ -6,7 +6,7 @@ export const Header = styled.h2`
    text-align: center;
 `;
 export const Description = styled.h5`
-   font-size: 1.3333em;
+   font-size: 1.3333rem;
    max-width: 1440px;
    text-align: center;
    @media only screen and (min-width: 1024px) {
@@ -14,20 +14,21 @@ export const Description = styled.h5`
       margin: 0 auto;
    }
 `;
-export const Image = styled.img`
-   width: 100%;
-`;
 
 export const ImageDivision = styled.div`
-   margin: 150px auto;
-   width: 850px;
-   height: auto;
+   margin: 0 auto;
+   width: 90vw;
+   height: 90vw;
+   text-align: center;
+   display: flex;
+   justify-content: center;
    border-radius: 10px;
    @media only screen and (min-width: 1024px) {
       width: 90%;
-      display: block;
-      margin: 30px auto;
    } ;
+`;
+export const Image = styled.img`
+   width: 100%;
 `;
 
 export const CardHolder = styled.div`

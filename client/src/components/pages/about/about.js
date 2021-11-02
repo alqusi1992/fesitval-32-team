@@ -27,32 +27,23 @@ const About = () => {
             {loading ? (
                <Image src="https://s3.eu-west-1.amazonaws.com/museumnacht.amsterdam/thumbs/1280x_5d8b3edd811e5be036854cda55768c6b57e2896479001.jpg" />
             ) : (
-               <Box sx={{ position: 'relative', display: 'inline-flex', width: '850px;', height: '850px' }}>
-                  <CircularProgress
-                     variant="determinate"
-                     value={progress}
-                     sx={{
-                        position: 'relative',
+               <Box sx={{ display: 'flex', position: 'relative', marginTop: '2%' }}>
+                  <CircularProgress variant="determinate" value={progress} sx={{}} thickness={2} size={150} />
 
-                        left: '55.5%',
-                     }}
-                     thickness={2}
-                     size={150}
-                  />
-                  <Box
+                  <Typography
+                     variant="caption"
+                     component="div"
+                     color="text.secondary"
+                     variant={'h5'}
                      sx={{
-                        top: '6.5%;',
-                        left: '63%',
                         position: 'absolute',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        top: { xs: '20%', md: '10%', sm: '15%', lg: '7%', xl: '5%' },
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
                      }}
                   >
-                     <Typography variant="caption" component="div" color="text.secondary" variant={'h5'}>
-                        {`${Math.round(progress)}%`}
-                     </Typography>
-                  </Box>
+                     {`${Math.round(progress)}%`}
+                  </Typography>
                </Box>
             )}{' '}
          </ImageDivision>
