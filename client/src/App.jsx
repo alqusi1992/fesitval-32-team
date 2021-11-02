@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme, classes } from './GlobalStyles';
+import { classes, theme } from './GlobalStyles';
+
 import {
   LandingPage,
   SuccessPage,

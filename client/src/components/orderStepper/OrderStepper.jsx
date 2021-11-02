@@ -17,6 +17,10 @@ import { useLocation } from 'react-router';
 import { showAlert } from '../../actions/alertActions';
 import Alert from '../alert/Alert';
 import { useValue } from '../../context/globalContext';
+import { classes } from './OrderStepperStyles';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { PayButton } from '../payButton/PayButton';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
@@ -61,6 +65,14 @@ const OrderStepper = () => {
     }
   }, [setGuestUserOrder]);
 
+  let totalTicketsPrice = 0;
+  if (guestUserOrder.tickets.length > 0) {
+    totalTicketsPrice = guestUserOrder.tickets.reduce(
+      (acc, value) => acc + value.price * value.quantity,
+      0,
+    );
+  }
+
   useEffect(() => {
     getSessionOrder();
   }, [getSessionOrder]);
@@ -84,7 +96,7 @@ const OrderStepper = () => {
   }, [memorizedQuery, dispatch]);
 
   return (
-    <Grid container sx={{ width: '100%', minHeight: '550px' }}>
+    <Grid container sx={classes.stepper}>
       {alert.isAlert && <Alert />}
       <Grid item xs={12}>
         <Stepper activeStep={activeStep}>
@@ -100,7 +112,7 @@ const OrderStepper = () => {
           })}
         </Stepper>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sx={classes.stepContainer}>
         {step.first && <Tickets />}
         {step.second && (
           <GuestForm
@@ -118,40 +130,36 @@ const OrderStepper = () => {
         justifyContent='space-between'
         item
         xs={12}
-        alignSelf='flex-end'
-      >
-        <Grid sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-          <Button
-            color='inherit'
-            disabled={step.first}
-            onClick={handleBack}
-            sx={{
-              backgroundColor: '#DDD',
-              mr: 1,
-              color: '#fff',
-              '&:hover': { color: '#000' },
-            }}
-          >
-            Back
-          </Button>
-        </Grid>
-        <Grid sx={{ position: 'relative' }}>
-          {!disableNextButton() && <div class='arrows'></div>}
 
+        alignSelf='center'
+        sx={classes.ctaBar}
+      >
+        {!step.first && (
+          <Grid>
+            <Button color='inherit' onClick={handleBack} sx={classes.btn}>
+              <KeyboardArrowLeftIcon /> Back
+            </Button>
+          </Grid>
+        )}
+        <Grid sx={classes.total}>Total: € {totalTicketsPrice}</Grid>
+        <Grid>
           {step.first && (
             <Button
               onClick={() => handleNext(guestUserOrder)}
               disabled={disableNextButton()}
+              sx={classes.btn}
             >
-              Go to Form
+              Go to Form <KeyboardArrowRightIcon />
             </Button>
           )}
 
           {step.second && (
-            <Button onClick={() => setIsTriggerSubmit(true)}>
-              Go to Payment
+
+            <Button onClick={() => setIsTriggerSubmit(true)} sx={classes.btn}>
+              Go to Payment <KeyboardArrowRightIcon />
             </Button>
           )}
+          {step.third && <PayButton classes={classes} />}
         </Grid>
       </Grid>
     </Grid>

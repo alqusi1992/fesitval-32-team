@@ -35,14 +35,7 @@ const Verify = () => {
           >
             Your Email is not verified yet, please verify to get full access
           </Grid>
-          <Grid
-            container
-            item
-            md={4}
-            sm={5}
-            margin='5px'
-            className={classes.verifyButton}
-          >
+          <Grid container item md={4} sm={5} margin='5px' className={classes.verifyButton}>
             <VerifyButton />
           </Grid>
         </Grid>
