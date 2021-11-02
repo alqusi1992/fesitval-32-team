@@ -37,7 +37,7 @@ export const Modal = styled.div`
   position: relative;
   max-height: 90vh;
   overflow: auto;
-  max-width: 600px;
+  max-width: 400px;
   background-color: white;
   color: #000;
   @media (min-width: 776px) {
@@ -68,3 +68,11 @@ export const LogInRegister = styled.p`
     cursor: pointer;
   }
 `;
+
+export const classes = {
+  loginOptionsContainer: {
+    marginTop: '20px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+};
