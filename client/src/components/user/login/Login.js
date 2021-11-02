@@ -4,7 +4,7 @@ import Alert from '../../alert/Alert';
 import { showAlert } from '../../../actions/alertActions';
 import { useValue } from '../../../context/globalContext';
 import { login } from '../../../actions/userActions';
-import { BtnContainer, useStyles } from './LoginStyles';
+import { classes } from './LoginStyles';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { getLocalStorage, setLocalStorage } from '../../../utils/localStorage';
@@ -15,6 +15,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import FormControl from '@mui/material/FormControl';
 import { Button, IconButton } from '@mui/material';
+import { Box } from '@mui/system';
 
 const Login = ({ setIsRegister }) => {
   const history = useHistory();
@@ -60,14 +61,12 @@ const Login = ({ setIsRegister }) => {
     }
   };
 
-  const classes = useStyles();
-
   return (
     <>
       {alert.isAlert && <Alert />}
       <form>
-        <div className={classes.FieldsContainer}>
-          <div className={classes.FieldsContainer}>
+        <Box sx={classes.fieldsContainer}>
+          <FormControl>
             <TextField
               variant='standard'
               label='Email'
@@ -84,40 +83,33 @@ const Login = ({ setIsRegister }) => {
                 },
               })}
             />
-          </div>
-          <div className={classes.FieldsContainer}>
-            <FormControl sx={{ position: 'relative' }} variant='standard'>
-              <TextField
-                variant='standard'
-                label='password'
-                placeholder='Password'
-                error={errors?.password?.type ? true : false}
-                helperText={errors?.password?.message}
-                type={showPassword.newPassword ? 'text' : 'password'}
-                {...LoginForm('password', {
-                  required: 'Please insert a password!',
-                })}
-              />
-              <InputAdornment
-                position='end'
-                sx={{ position: 'absolute', right: '0', top: '30px' }}
+          </FormControl>
+
+          <FormControl variant='standard'>
+            <TextField
+              variant='standard'
+              label='password'
+              placeholder='Password'
+              error={errors?.password?.type ? true : false}
+              helperText={errors?.password?.message}
+              type={showPassword.newPassword ? 'text' : 'password'}
+              {...LoginForm('password', {
+                required: 'Please insert a password!',
+              })}
+            />
+            <InputAdornment position='end' sx={classes.inputAdornment}>
+              <IconButton
+                aria-label='toggle password visibility'
+                onClick={handleClickShowPassword}
               >
-                <IconButton
-                  aria-label='toggle password visibility'
-                  onClick={handleClickShowPassword}
-                >
-                  {!showPassword.newPassword ? (
-                    <VisibilityOff />
-                  ) : (
-                    <Visibility />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            </FormControl>
-          </div>
-        </div>
-        <div>
+                {!showPassword.newPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          </FormControl>
+        </Box>
+        <Box>
           <FormControlLabel
+            sx={classes.rememberMe}
             control={
               <Checkbox
                 checked={checked}
@@ -127,16 +119,16 @@ const Login = ({ setIsRegister }) => {
             }
             label='Remember me.'
           />
-        </div>
-        <BtnContainer>
+        </Box>
+        <Box sx={classes.btnContainer}>
           <Button
             variant='contained'
             onClick={handleSubmit(loginHandler)}
-            sx={{ marginTop: '20px', padding: '10px 30px' }}
+            sx={classes.btn}
           >
-            Submit
+            Log in
           </Button>
-        </BtnContainer>
+        </Box>
       </form>
     </>
   );
