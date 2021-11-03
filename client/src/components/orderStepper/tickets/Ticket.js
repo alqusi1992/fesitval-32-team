@@ -5,12 +5,10 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Button, Grid } from '@mui/material';
 
-
 const Ticket = ({ ticket }) => {
   const [ticketsQuantity, setTicketsQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const { guestUserOrder, setGuestUserOrder } = useGuestContext();
- 
 
   const addTicket = () => {
     const newTicketQuantity = ticketsQuantity + 1;
@@ -77,50 +75,24 @@ const Ticket = ({ ticket }) => {
   }, [checkPreviousValues]);
 
   return (
-    <Grid
-      container
-      key={ticket._id}
-      sx={classes.ticketContainer}
-    >
-      <Grid
-        container
-        item
-        s={3}
-        xs={6}
-        sx={classes.ticketType}
-      >
+    <Grid container key={ticket._id} sx={classes.ticketContainer}>
+      <Grid container item s={3} xs={6} sx={classes.ticketType}>
         {ticket.typeName}
       </Grid>
-      <Grid
-        container
-        item
-        s={3}
-        xs={6}
-        sx={classes.ticketPrice}
-      >
+      <Grid container item s={3} xs={6} sx={classes.ticketPrice}>
         € {ticketsQuantity === 0 ? ticket.price : totalPrice}
       </Grid>
       {ticket.availableQty === 0 ? (
-        <Grid
-          container
-          item
-          s={2}
-          xs={12}
-          sx={classes.soldOutContainer}
-        >
-            <Button sx={classes.soldOutBtn} disabled> SOLD OUT</Button>        
+        <Grid container item s={3} xs={12} sx={classes.soldOutContainer}>
+          <Button sx={classes.soldOutBtn} disabled>
+            SOLD OUT
+          </Button>
         </Grid>
       ) : (
-        <Grid
-          container
-          item
-          s={2}
-          xs={12}
-         sx={classes.ticketQuantityContainer}
-        >
+        <Grid container item s={3} xs={12} sx={classes.ticketQuantityContainer}>
           <Grid item xs={4}>
             <Button
-            sx={classes.ticketQuantityController}
+              sx={classes.ticketQuantityController}
               onClick={() => {
                 removeTicket();
               }}
@@ -128,17 +100,12 @@ const Ticket = ({ ticket }) => {
               <RemoveIcon sx={classes.icon} />
             </Button>
           </Grid>
-          <Grid
-            container
-            item
-            xs={4}       
-            sx={classes.ticketQuantity}         
-          >
+          <Grid container item xs={4} sx={classes.ticketQuantity}>
             {ticketsQuantity}
           </Grid>
           <Grid item xs={4}>
             <Button
-            sx={classes.ticketQuantityController}
+              sx={classes.ticketQuantityController}
               onClick={() => {
                 addTicket();
               }}

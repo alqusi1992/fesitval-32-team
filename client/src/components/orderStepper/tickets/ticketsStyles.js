@@ -1,4 +1,8 @@
 export const classes = {
+  ticketsContainer: {
+    justifyContent: 'center',
+    padding: '40px 10px',
+  },
   ticketContainer: {
     margin: '20px 0px',
     justifyContent: 'center',
