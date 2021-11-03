@@ -89,7 +89,7 @@ const GuestForm = ({
 
   return (
     <FormWrapper>
-      <h2>Fill in Your Personal Details </h2>
+      <h3 sx={{ textAlign: 'center' }}>Fill in Your Personal Details </h3>
       <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
         <TextField
           error={errors?.firstName?.type ? true : false}

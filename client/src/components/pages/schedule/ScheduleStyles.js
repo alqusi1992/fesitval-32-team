@@ -15,7 +15,7 @@ export const useStyles = makeStyles({
     cursor: 'pointer',
   },
   clock: {
-    width: 'auto',
+    maxWidth: '100%',
   },
   tableHead: {
     fontSize: '1.5rem !important',

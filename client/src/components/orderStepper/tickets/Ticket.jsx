@@ -63,7 +63,7 @@ const Ticket = ({ ticket }) => {
   const checkPreviousValues = useCallback(() => {
     if (guestUserOrder.tickets.length > 0) {
       const foundTicket = guestUserOrder.tickets.find(
-        (t) => t.id === ticket._id,
+        (t) => t.id === ticket._id
       );
       if (foundTicket) {
         setTicketsQuantity(foundTicket.quantity);
@@ -81,7 +81,7 @@ const Ticket = ({ ticket }) => {
       container
       key={ticket._id}
       justifyContent='center'
-      sx={{ margin: '20px 0px' }}
+      sx={{ margin: '15px' }}
     >
       <Grid
         container

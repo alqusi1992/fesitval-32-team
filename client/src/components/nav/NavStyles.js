@@ -151,8 +151,11 @@ export const useStyles = makeStyles((theme, prop) => {
     loginHamburgerWrapper: {
       '&&': {
         display: 'flex',
-        flexDirection: 'column',
         alignItems: 'center',
+        flexDirection: 'column',
+        [theme.breakpoints.up('xss')]: {
+          flexDirection: 'row',
+        },
       },
     },
     selected: {
