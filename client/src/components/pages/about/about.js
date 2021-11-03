@@ -17,7 +17,7 @@ const About = () => {
       return () => {
          clearInterval(timer);
       };
-   }, [loading]);
+   }, [progress, loading]);
 
    return (
       <>
@@ -28,7 +28,7 @@ const About = () => {
                <Image src="https://s3.eu-west-1.amazonaws.com/museumnacht.amsterdam/thumbs/1280x_5d8b3edd811e5be036854cda55768c6b57e2896479001.jpg" />
             ) : (
                <Box sx={{ display: 'flex', position: 'relative', marginTop: '2%' }}>
-                  <CircularProgress variant="determinate" value={progress} sx={{}} thickness={2} size={150} />
+                  <CircularProgress variant="determinate" value={progress} thickness={2} size={150} />
 
                   <Typography
                      variant="caption"
