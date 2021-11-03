@@ -31,7 +31,6 @@ const About = () => {
                   <CircularProgress variant="determinate" value={progress} thickness={2} size={150} />
 
                   <Typography
-                     variant="caption"
                      component="div"
                      color="text.secondary"
                      variant={'h5'}
