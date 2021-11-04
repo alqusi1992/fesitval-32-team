@@ -5,10 +5,13 @@ import { Grid } from '@mui/material';
 import { classes } from './aboutStyles';
 
 import Typography from '@mui/material/Typography';
+import useScrollToTop from '../../../utils/useScrollToTop';
 
 const About = () => {
-  const [progress, setProgress] = useState(10);
-  const [loading, setLoading] = useState(false);
+   useScrollToTop();
+   const [progress, setProgress] = useState(10);
+   const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
     const timer = setInterval(() => {

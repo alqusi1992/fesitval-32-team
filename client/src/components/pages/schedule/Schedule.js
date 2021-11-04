@@ -13,8 +13,10 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useValue } from '../../../context/globalContext';
 import { useStyles } from './ScheduleStyles';
+import useScrollToTop from '../../../utils/useScrollToTop';
 
-export default function Schedule() {
+const Schedule = () => {
+  useScrollToTop();
   const { dispatch } = useValue();
   const [scheduleData, setScheduleData] = useState({ genre: [], artists: [] });
   useEffect(() => {
@@ -46,6 +48,7 @@ export default function Schedule() {
     fetchData();
   }, [dispatch]);
   const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -73,4 +76,6 @@ export default function Schedule() {
       </TableContainer>
     </div>
   );
-}
+};
+
+export default Schedule;

@@ -1,9 +1,11 @@
 import { Grid } from '@mui/material';
 import React from 'react';
 import { useGuestContext } from '../../../context/guestContext';
+import useScrollToTop from '../../../utils/useScrollToTop';
 import { classes } from './OrderSummaryStyles';
 
 const OrderSummary = () => {
+  useScrollToTop();
   const { guestUserOrder } = useGuestContext();
   const {
     userInfo: { firstName, lastName, email },

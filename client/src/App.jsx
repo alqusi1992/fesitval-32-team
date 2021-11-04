@@ -3,7 +3,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import { ThemeProvider } from '@mui/material/styles';
 import { classes, theme } from './GlobalStyles';
-
 import {
   LandingPage,
   SuccessPage,
@@ -21,8 +20,10 @@ import {
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
+import useScrollToTop from './utils/useScrollToTop';
 
 function App() {
+  useScrollToTop();
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
