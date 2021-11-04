@@ -97,8 +97,6 @@ const OrderStepper = () => {
     }
   }, [memorizedQuery, dispatch]);
 
-
-
   return (
     <Grid container sx={classes.stepper}>
       {alert.isAlert && <Alert />}
