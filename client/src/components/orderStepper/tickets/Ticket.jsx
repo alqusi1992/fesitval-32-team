@@ -7,28 +7,32 @@ import { Grid } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Ticket = ({ ticket }) => {
-  const [ticketsQty, setTicketsQty] = useState(0);
+  const [ticketsQuantity, setTicketsQuantity] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const { guestUserOrder, setGuestUserOrder } = useGuestContext();
   const smallScreen = useMediaQuery('(max-width:450px)');
 
   const addTicket = () => {
-    setTicketsQty(ticketsQty + 1);
+    const newTicketQuantity = ticketsQuantity + 1;
+    setTicketsQuantity(newTicketQuantity);
     setTotalPrice(totalPrice + ticket.price);
+    storeOrderInContext(newTicketQuantity);
   };
 
   const removeTicket = () => {
-    if (ticketsQty > 0) {
-      setTicketsQty(ticketsQty - 1);
+    if (ticketsQuantity > 0) {
+      const newTicketQuantity = ticketsQuantity - 1;
+      setTicketsQuantity(newTicketQuantity);
       setTotalPrice(totalPrice - ticket.price);
+      storeOrderInContext(newTicketQuantity);
     }
   };
 
-  const storeOrderInContext = (ticketsQty) => {
+  const storeOrderInContext = (ticketsQuantity) => {
     setGuestUserOrder((prev) => {
       const foundTicket = prev.tickets.find((t) => t.id === ticket._id);
       if (foundTicket) {
-        foundTicket.quantity = ticketsQty;
+        foundTicket.quantity = ticketsQuantity;
         if (foundTicket.quantity === 0) {
           // remove ticket from guestContext if quantity is 0
           return {
@@ -44,7 +48,7 @@ const Ticket = ({ ticket }) => {
         prev.tickets.push({
           id: ticket._id,
           typeName: ticket.typeName,
-          quantity: ticketsQty,
+          quantity: ticketsQuantity,
           price: ticket.price,
         });
         return {
@@ -62,7 +66,7 @@ const Ticket = ({ ticket }) => {
         (t) => t.id === ticket._id,
       );
       if (foundTicket) {
-        setTicketsQty(foundTicket.quantity);
+        setTicketsQuantity(foundTicket.quantity);
         setTotalPrice(foundTicket.price * foundTicket.quantity);
       }
     }
@@ -108,7 +112,7 @@ const Ticket = ({ ticket }) => {
           paddingBottom: '10px',
         }}
       >
-        € {ticketsQty === 0 ? ticket.price : totalPrice}
+        € {ticketsQuantity === 0 ? ticket.price : totalPrice}
       </Grid>
 
       {ticket.availableQty === 0 ? (
@@ -121,7 +125,7 @@ const Ticket = ({ ticket }) => {
           alignItems='center'
         >
           <Grid item xs={12}>
-             <ButtonWrapper disabled > SOLD OUT</ButtonWrapper>
+            <ButtonWrapper disabled> SOLD OUT</ButtonWrapper>
           </Grid>
         </Grid>
       ) : (
@@ -137,7 +141,6 @@ const Ticket = ({ ticket }) => {
             <ButtonIconWrapper
               onClick={() => {
                 removeTicket();
-                storeOrderInContext(ticketsQty - 1);
               }}
             >
               <RemoveIcon fontSize='small' />
@@ -155,13 +158,12 @@ const Ticket = ({ ticket }) => {
             }}
             alignItems='center'
           >
-            {ticketsQty}
+            {ticketsQuantity}
           </Grid>
           <Grid item xs={4}>
             <ButtonIconWrapper
               onClick={() => {
                 addTicket();
-                storeOrderInContext(ticketsQty + 1);
               }}
             >
               <AddIcon fontSize='small' />

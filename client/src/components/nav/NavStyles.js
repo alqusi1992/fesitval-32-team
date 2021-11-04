@@ -10,7 +10,7 @@ export const useStyles = makeStyles((theme, prop) => {
     appBar: {
       '&&': {
         backgroundColor: ({ drawer }) => (drawer ? '#000' : '#fff'),
-        height: '82px',
+        height: '100px',
         justifyContent: 'center',
         transition: 'all 0.5s ease-in-out',
         [theme.breakpoints.up('mdlg')]: {
@@ -43,7 +43,7 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         lineHeight: '1',
-        fontSize: '35px',
+        fontSize: '25px',
         cursor: 'pointer',
         transition: 'transform .3s',
         '&:hover': {
@@ -151,6 +151,8 @@ export const useStyles = makeStyles((theme, prop) => {
     loginHamburgerWrapper: {
       '&&': {
         display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
       },
     },
     selected: {

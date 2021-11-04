@@ -1,57 +1,30 @@
-import { makeStyles } from '@mui/styles';
-import styled from 'styled-components';
-
-export const useStyles = makeStyles({
-  FormGroup: {
-    textTransform: 'capitalize',
+export const classes = {
+  btn: {
+    width: '100px',
+    backgroundColor: '#610527',
+    color: '#ddd',
+    borderRadius: '20px',
+    padding: '7px 20px',
+    transition: 'all 0.2s ease-in-out',
+    '&:hover': { backgroundColor: '#92083b', transform: 'scale(1.1)' },
   },
-  FormLabel: {
-    display: 'block',
-    letterSpacing: 'var(--mainSpacing)',
-    marginBottom: '0.5rem',
+  btnContainer: {
+    textAlign: 'center',
+    margin: '20px',
   },
-  InputControl: {
-    width: '100%',
-    background: 'transparent',
-    fontSize: '1rem',
-    padding: '10px 5px',
-    borderRadius: '5px',
-    boxSizing: 'border-box',
-  },
-  FieldsContainer: {
-    margin: '0 auto',
+  fieldsContainer: {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fit, minmax(202px, 1fr))',
     gridRowGap: '2rem',
     gridColumnGap: '40px',
   },
-  BtnContainer: {
-    textAlign: 'center',
-    marginTop: '20px',
-    '&:hover': {
-      background: 'transparent',
-      color: '#222',
-    },
+  inputAdornment: {
+    position: 'absolute',
+    right: '0',
+    top: '30px',
   },
-  ButtonPrimary: {
-    display: 'inline-block',
-    textDecoration: 'none',
-    letterSpacing: '3px',
-    color: '#ccc',
-    background: '#222',
-    border: '3px solid #222',
-    transition: 'all 0.3s linear',
-    textTransform: 'uppercase',
-    cursor: 'pointer',
-    padding: '1.1rem 1.3rem 1.2rem',
-    borderRadius: '25px',
+  rememberMe: {
+    color: '#828282',
+    marginTop: '5px',
   },
-});
-export const BtnContainer = styled.div`
-  text-align: center;
-  margin-top: 20px;
-  & :hover {
-    background: transparent;
-    color: #222;
-  }
-`;
+};

@@ -77,6 +77,7 @@ const GuestForm = ({
     }
     if (isFormSubmitted) {
       handleNext(guestUserOrder);
+      setIsFormSubmitted(false);
     }
   }, [
     onSubmitCallback,
@@ -85,6 +86,7 @@ const GuestForm = ({
     guestUserOrder,
     handleNext,
     isFormSubmitted,
+    setIsFormSubmitted,
   ]);
 
   return (

@@ -8,8 +8,14 @@ export const useStyles = makeStyles({
     alignItems: 'center',
     textTransform: 'capitalize',
   },
+  title: {
+    textAlign: 'center',
+  },
   collapse: {
     cursor: 'pointer',
+  },
+  clock: {
+    width: 'auto',
   },
   tableHead: {
     fontSize: '1.5rem !important',
