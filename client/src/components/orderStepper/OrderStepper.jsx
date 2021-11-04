@@ -17,6 +17,7 @@ import { useLocation } from 'react-router';
 import { showAlert } from '../../actions/alertActions';
 import Alert from '../alert/Alert';
 import { useValue } from '../../context/globalContext';
+import useScrollToTop from '../../utils/useScrollToTop';
 import { classes } from './OrderStepperStyles';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -25,6 +26,7 @@ import { PayButton } from '../payButton/PayButton';
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
+  useScrollToTop();
   const { dispatch } = useValue();
 
   const {

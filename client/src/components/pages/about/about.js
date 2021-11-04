@@ -3,8 +3,10 @@ import { CardHeader, CardHolder, CardParagraph, Header, Image, Button, Descripti
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import useScrollToTop from '../../../utils/useScrollToTop';
 
 const About = () => {
+   useScrollToTop();
    const [progress, setProgress] = useState(10);
    const [loading, setLoading] = useState(false);
 
