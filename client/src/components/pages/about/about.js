@@ -1,4 +1,5 @@
 import React from 'react';
+import useScrollToTop from '../../../utils/useScrollToTop';
 
 import {
   CardHeader,
@@ -11,6 +12,8 @@ import {
 } from './aboutStyles';
 
 const About = () => {
+  useScrollToTop();
+
   return (
     <>
       <Header>hello form about</Header>

@@ -14,10 +14,12 @@ import { useLocation } from 'react-router';
 import { showAlert } from '../../actions/alertActions';
 import Alert from '../alert/Alert';
 import { useValue } from '../../context/globalContext';
+import useScrollToTop from '../../utils/useScrollToTop';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
 
 const OrderStepper = () => {
+  useScrollToTop();
   const { dispatch } = useValue();
 
   const {
@@ -79,6 +81,8 @@ const OrderStepper = () => {
       );
     }
   }, [memorizedQuery, dispatch]);
+
+
 
   return (
     <Grid container sx={{ width: '100%', minHeight: '550px', padding: '30px' }}>

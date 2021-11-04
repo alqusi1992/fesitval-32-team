@@ -1,10 +1,12 @@
 import { Grid } from '@mui/material';
-import React, {useEffect} from 'react';
+import React from 'react';
 import { PayButton } from '../..';
 import { useGuestContext } from '../../../context/guestContext';
+import useScrollToTop from '../../../utils/useScrollToTop';
 import { classes } from './OrderSummaryStyles';
 
 const OrderSummary = () => {
+  useScrollToTop();
   const { guestUserOrder } = useGuestContext();
   const {
     userInfo: { firstName, lastName, email },
@@ -15,10 +17,6 @@ const OrderSummary = () => {
     (acc, value) => acc + value.price * value.quantity,
     0,
   );
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, []);
 
   return (
     <Grid container position='relative'>

@@ -9,8 +9,10 @@ import 'react-multi-carousel/lib/styles.css';
 import { useValue } from '../../../context/globalContext';
 import { showAlert } from '../../../actions/alertActions';
 import Alert from '../../alert/Alert';
+import useScrollToTop from '../../../utils/useScrollToTop';
 
 const LandingPage = () => {
+  useScrollToTop();
   const {
     dispatch,
     state: { alert },
@@ -48,7 +50,7 @@ const LandingPage = () => {
       showAlert(
         'danger',
         'Link is expired, please request a new link',
-        dispatch,
+        dispatch
       );
     } else {
       showAlert('danger', 'Verification is failed', dispatch);

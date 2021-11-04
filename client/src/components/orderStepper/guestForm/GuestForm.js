@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import FormControl from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import useScrollToTop from '../../../utils/useScrollToTop';
 
 const GuestForm = ({
   setIsFormSubmitted,
@@ -18,6 +19,7 @@ const GuestForm = ({
   setIsTriggerSubmit,
   isFormSubmitted,
 }) => {
+  useScrollToTop();
   const {
     handleSubmit,
     register,
@@ -84,10 +86,6 @@ const GuestForm = ({
     handleNext,
     isFormSubmitted,
   ]);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, []);
 
   return (
     <FormWrapper>

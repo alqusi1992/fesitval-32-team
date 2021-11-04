@@ -1,9 +1,11 @@
 import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useGuestContext } from '../../../context/guestContext';
+import useScrollToTop from '../../../utils/useScrollToTop';
 import Ticket from './Ticket';
 
 const Tickets = () => {
+  useScrollToTop();
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState('');
   const { guestUserOrder } = useGuestContext();
@@ -34,10 +36,6 @@ const Tickets = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
 
   return (

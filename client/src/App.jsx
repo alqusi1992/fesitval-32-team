@@ -20,9 +20,11 @@ import {
 } from './components';
 import './app.css';
 import { GuestProvider } from './context/guestContext';
-import ScrollToTop from './utils/ScrollToTop';
+import useScrollToTop from './utils/useScrollToTop';
 
 function App() {
+  useScrollToTop();
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -30,8 +32,7 @@ function App() {
         <NavBar />
         <Loading />
         <Verify />
-        <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>
-          <ScrollToTop/>
+        <Container maxWidth='lg' style={{ padding: '50px 20px 350px 20px' }}>    
           <Switch>
             <Route exact path='/' component={LandingPage} />
             <Route exact path='/success' component={SuccessPage} />
@@ -56,7 +57,6 @@ function App() {
               <Route exact path='/tickets' component={OrderStepper} />
             </GuestProvider>
           </Switch>
-          
         </Container>
         <Footer />
       </Router>
