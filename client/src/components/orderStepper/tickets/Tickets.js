@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import useScrollToTop from '../../../utils/useScrollToTop';
 import Ticket from './Ticket';
+import { classes } from './ticketsStyles';
 
 const Tickets = () => {
   useScrollToTop();
@@ -31,15 +32,13 @@ const Tickets = () => {
   }, []);
 
   return (
-    <Grid container sx={{ padding: '40px 0px' }}>
-      <Grid container item xs={12} justifyContent='center'>
-        {error && <h3>Sorry! the tickets are not available now</h3>}
-        <h2> Select Your Tickets </h2>
-        {tickets &&
-          tickets.map((ticket) => {
-            return <Ticket key={ticket._id} ticket={ticket} />;
-          })}
-      </Grid>
+    <Grid container item xs={12} sx={classes.ticketsContainer}>
+      {error && <h3>Sorry! the tickets are not available now</h3>}
+      <h2> Select Your Tickets </h2>
+      {tickets &&
+        tickets.map((ticket) => {
+          return <Ticket key={ticket._id} ticket={ticket} />;
+        })}
     </Grid>
   );
 };
