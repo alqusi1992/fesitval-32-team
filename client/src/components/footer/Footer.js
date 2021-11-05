@@ -1,21 +1,19 @@
 import { Grid } from '@mui/material';
 import React from 'react';
-import { FooterWrapper } from './FooterStyles';
+import { classes } from './FooterStyles';
 import FooterList from './FooterList';
 import SocialMediaIcons from './SocialMediaIcons';
 import FooterLogo from './FooterLogo';
 
 const Footer = () => {
   return (
-    <FooterWrapper>
-      <Grid container alignItems='space-between' height='100%'>
+      <Grid container sx={classes.footer}>
         <Grid
           item
           md={6}
           xs={12}
           container
-          justifyContent='center'
-          alignItems='center'
+          sx={classes.logoContainer}
         >
           <FooterLogo />
         </Grid>
@@ -24,16 +22,14 @@ const Footer = () => {
         </Grid>
         <Grid
           item
-          md={1}
+          md={3}
           xs={12}
           container
-          justifyContent='center'
-          alignItems='center'
+          sx={classes.socialIconsContainer}
         >
           <SocialMediaIcons />
         </Grid>
       </Grid>
-    </FooterWrapper>
   );
 };
 

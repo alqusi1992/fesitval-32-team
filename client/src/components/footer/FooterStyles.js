@@ -1,57 +1,80 @@
-import { makeStyles } from '@mui/styles';
-import styled from 'styled-components';
+export const classes = {
+  footer: {
+    backgroundColor: 'black',
+    width: '100%',
+    marginTop: '0',
+    padding: '50px',
+    color: '#fff',
+    alignItems: 'space-between',
+    height: '100%',
+  },
+  list: {
+    listStyle: 'none',
+    textDecoration: 'none',
+    fontSize: '20px',
+    fontWeight: '500',
+    paddingLeft: '20px',
+    marginLeft: '10px',
+    position: 'relative',
+    ' &::after': {
+      content: '" "',
+      position: 'absolute',
+      top: '0%',
+      left: '0',
+      width: '4px',
+      height: '100%',
+      backgroundColor: '#610527',
+    },
+  },
+  listItem: {
+    width: 'fit-content',
+    textDecoration: 'none',
+    color: '#fff',
+    transition: 'transform 0.3s',
+    padding: '5px',
+    cursor: 'pointer',
+    ' &:hover': {
+      transform: 'translateX(4px)',
+      backgroundColor: 'transparent',
+    },
+  },
+  logoContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: '10px',
+  },
+  logo: {
+    fontSize: '50px',
+    color: '#fff',
+  },
+  socialIconsContainer: {
+    justifyContent: {
+      xs: 'space-around',
+      md: 'center',
+    },
+    alignItems: 'center',
+    paddingTop: '10px',
+  },
 
-export const iconsStyles = makeStyles({
   facebookIcon: {
     cursor: 'pointer',
     '&:hover': { color: '#1877F2', transform: 'translateX(1px)' },
+    fontSize: '40px',
+    transition: 'all .2s',
+    margin: '3px',
   },
   instagramIcon: {
     cursor: 'pointer',
     '&:hover': { color: '#E4405F', transform: 'translateX(1px)' },
+    fontSize: '40px',
+    transition: 'all .2s',
+    margin: '3px',
   },
   youTubeIcon: {
     cursor: 'pointer',
     '&:hover': { color: '#CD201F', transform: 'translateX(1px)' },
+    fontSize: '40px',
+    transition: 'all .2s',
+    margin: '3px',
   },
-});
-
-export const FooterWrapper = styled.footer`
-  background-color: black;
-  width: 100%;
-  margin-top: 0;
-  padding: 50px;
-  color: #fff;
-`;
-
-export const ListWrapper = styled.ul`
-  list-style: none;
-  text-decoration: none;
-  font-size: 20px;
-  font-weight: 500;
-  padding-left: 20px;
-  margin-left: 10px;
-  position: relative;
-  &::after {
-    content: ' ';
-    position: absolute;
-    top: 0%;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background-color: #610527;
-  }
-`;
-
-export const ListItem = styled.li`
-  width: fit-content;
-  text-decoration: none;
-  color: #fff;
-  transition: transform 0.3s;
-  padding: 5px;
-  cursor: pointer;
-  &:hover {
-    transform: translateX(4px);
-    background-color: transparent;
-  }
-`;
+};
