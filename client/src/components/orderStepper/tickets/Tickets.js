@@ -1,8 +1,10 @@
 import { Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import useScrollToTop from '../../../utils/useScrollToTop';
 import Ticket from './Ticket';
 
 const Tickets = () => {
+  useScrollToTop();
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState('');
 
