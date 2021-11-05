@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { FormWrapper } from './GuestFormStyles';
+import { classes } from './GuestFormStyles';
 import { useGuestContext } from '../../../context/guestContext';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -11,6 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import useScrollToTop from '../../../utils/useScrollToTop';
+import { Grid } from '@mui/material';
 
 const GuestForm = ({
   setIsFormSubmitted,
@@ -90,9 +91,9 @@ const GuestForm = ({
   ]);
 
   return (
-    <FormWrapper>
-      <h3 sx={{ textAlign: 'center' }}>Fill in Your Personal Details </h3>
-      <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
+    <Grid container sx={classes.formContainer}>
+      <h2>Fill in Your Personal Details </h2>
+      <FormControl sx={classes.formControl} variant='standard'>
         <TextField
           error={errors?.firstName?.type ? true : false}
           label='First Name'
@@ -111,7 +112,7 @@ const GuestForm = ({
         />
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
+      <FormControl sx={classes.formControl} variant='standard'>
         <TextField
           error={errors?.lastName?.type ? true : false}
           label='Last Name'
@@ -130,7 +131,7 @@ const GuestForm = ({
         />
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
+      <FormControl sx={classes.formControl} variant='standard'>
         <TextField
           error={errors?.email?.type ? true : false}
           label='E-mail Address'
@@ -150,7 +151,7 @@ const GuestForm = ({
         />
       </FormControl>
 
-      <FormControl sx={{ m: 1, width: '25ch' }} variant='standard'>
+      <FormControl sx={classes.formControl} variant='standard'>
         <TextField
           error={errors?.confirmEmail?.type ? true : false}
           label='Confirm your E-mail Address'
@@ -171,10 +172,10 @@ const GuestForm = ({
       </FormControl>
 
       <FormControlLabel
-        sx={{ m: 1, width: '25ch', margin: '20px 0 10px -10px' }}
+        sx={classes.checkboxLabel}
         control={
           <Checkbox
-            sx={{ padding: '0 10px 0 0' }}
+            sx={classes.checkbox}
             checked={checked}
             onChange={handleCheckBox}
             inputProps={{ 'aria-label': 'controlled' }}
@@ -184,10 +185,7 @@ const GuestForm = ({
       />
 
       {checked && (
-        <FormControl
-          sx={{ m: 1, width: '25ch', position: 'relative' }}
-          variant='standard'
-        >
+        <FormControl sx={classes.formControlPassword} variant='standard'>
           <TextField
             error={errors?.password?.type ? true : false}
             label='password'
@@ -207,9 +205,7 @@ const GuestForm = ({
             })}
           />
 
-          <InputAdornment
-            sx={{ position: 'absolute', right: '0', top: '30px' }}
-          >
+          <InputAdornment sx={classes.inputAdornment}>
             <IconButton
               aria-label='toggle password visibility'
               onClick={handleClickShowPassword}
@@ -219,7 +215,7 @@ const GuestForm = ({
           </InputAdornment>
         </FormControl>
       )}
-    </FormWrapper>
+    </Grid>
   );
 };
 

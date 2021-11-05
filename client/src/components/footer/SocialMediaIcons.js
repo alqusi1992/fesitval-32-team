@@ -3,32 +3,28 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Grid } from '@mui/material';
-import { iconsStyles } from './FooterStyles';
+import { classes } from './FooterStyles';
 
 const SocialMediaIcons = () => {
-  const { facebookIcon, instagramIcon, youTubeIcon } = iconsStyles();
-
   return (
-    <Grid container justifyContent='space-around'>
+    <>
       <Grid item xm={2}>
         <FacebookIcon
-          sx={{ fontSize: '40px', transition: 'all .2s' }}
-          className={facebookIcon}
+          sx={classes.facebookIcon}        
         />
       </Grid>
       <Grid item xm={2}>
         <InstagramIcon
-          sx={{ fontSize: '40px', transition: 'all .2s' }}
-          className={instagramIcon}
+          sx={classes.instagramIcon}        
         />
       </Grid>
       <Grid item xm={2}>
         <YouTubeIcon
-          sx={{ fontSize: '40px', transition: 'all .2s' }}
-          className={youTubeIcon}
+          sx={classes.youTubeIcon}
         />
       </Grid>
-    </Grid>
+    </>
+   
   );
 };
 

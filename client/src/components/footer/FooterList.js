@@ -1,26 +1,27 @@
+import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '..';
-import { ListWrapper, ListItem } from './FooterStyles';
+import {  classes } from './FooterStyles';
 
 const FooterList = () => {
   const [isRegister, setIsRegister] = useState(false);
   return (
     <>
-      <ListWrapper>
+      <Grid sx={classes.list}>
         <Link to='/schedule'>
-          <ListItem>Program</ListItem>
+          <Grid sx={classes.listItem}>Program</Grid>
         </Link>
         <Link to='/tickets'>
-          <ListItem>Tickets</ListItem>
+          <Grid sx={classes.listItem}>Tickets</Grid>
         </Link>
         <Link to='/about'>
-          <ListItem>About</ListItem>
+          <Grid sx={classes.listItem}>About</Grid>
         </Link>
         <Link to='/schedule'>
-          <ListItem>Contact</ListItem>
+          <Grid sx={classes.listItem}>Contact</Grid>
         </Link>
-      </ListWrapper>
+      </Grid>
       {isRegister && <User setIsRegister={setIsRegister} />}
     </>
   );
