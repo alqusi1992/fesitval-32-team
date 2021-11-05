@@ -93,7 +93,7 @@ export const useStyles = makeStyles((theme, prop) => {
     iconButtonContainer: {
       '&&': {
         backgroundColor: '#610527',
-        marginLeft: '20px',
+        marginLeft: '0',
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         borderRadius: '50%',
         width: '50px',
@@ -152,7 +152,6 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         display: 'flex',
         alignItems: 'center',
-        flexDirection: 'column',
         [theme.breakpoints.up('xss')]: {
           flexDirection: 'row',
         },

@@ -11,32 +11,27 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import { useState } from 'react';
 import Artist from './Artist';
-import { useStyles } from './ScheduleStyles';
+import { classes } from './ScheduleStyles';
 
 export default function Row({ genre, artists }) {
   const [open, setOpen] = useState(false);
-  const classes = useStyles();
   return (
     <>
-      <TableRow
-        sx={{ '& > *': { borderBottom: 'unset' } }}
-        onClick={() => setOpen(!open)}
-        className={classes.collapse}
-      >
-        <TableCell className={classes.genre} component='th' scope='row'>
+      <TableRow onClick={() => setOpen(!open)} sx={classes.collapse}>
+        <TableCell sx={classes.genre} component='th' scope='row'>
           <IconButton aria-label='expand row' size='large'>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
-          <span className={classes.collapse}>{genre.genre}</span>
+          <span>{genre.genre}</span>
         </TableCell>
-        <TableCell component='th' scope='row' className={classes.genre}>
+        <TableCell component='th' scope='row' sx={classes.genre}>
           {genre.area}
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell sx={classes.genreDetails} colSpan={6}>
           <Collapse in={open} timeout='auto' unmountOnExit>
-            <Box sx={{ margin: 1 }}>
+            <Box sx={classes.content}>
               <Typography variant='h6' gutterBottom component='div'>
                 {genre.genre}
               </Typography>
@@ -54,7 +49,7 @@ export default function Row({ genre, artists }) {
                     (artist) =>
                       artist.genre === genre.genre && (
                         <Artist artist={artist} key={artist._id} />
-                      ),
+                      )
                   )}
                 </TableBody>
               </Table>
