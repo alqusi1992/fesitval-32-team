@@ -1,6 +1,4 @@
-import { makeStyles } from '@mui/styles';
-
-export const useStyles = makeStyles({
+export const classes = {
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -10,12 +8,20 @@ export const useStyles = makeStyles({
   },
   title: {
     textAlign: 'center',
+    fontSize: '2rem',
   },
   collapse: {
     cursor: 'pointer',
   },
+  genreDetails: {
+    paddingBottom: 0,
+    paddingTop: 0,
+  },
+  content: {
+    margin: '10px',
+  },
   clock: {
-    width: 'auto',
+    maxWidth: '100%',
   },
   tableHead: {
     fontSize: '1.5rem !important',
@@ -24,4 +30,4 @@ export const useStyles = makeStyles({
   genre: {
     fontSize: '1.3rem !important',
   },
-});
+};

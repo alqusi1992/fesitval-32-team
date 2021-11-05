@@ -61,7 +61,7 @@ const Ticket = ({ ticket }) => {
   const checkPreviousValues = useCallback(() => {
     if (guestUserOrder.tickets.length > 0) {
       const foundTicket = guestUserOrder.tickets.find(
-        (t) => t.id === ticket._id,
+        (t) => t.id === ticket._id
       );
       if (foundTicket) {
         setTicketsQuantity(foundTicket.quantity);

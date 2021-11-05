@@ -12,8 +12,9 @@ import ClockPicker from '@mui/lab/ClockPicker';
 import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useValue } from '../../../context/globalContext';
-import { useStyles } from './ScheduleStyles';
 import useScrollToTop from '../../../utils/useScrollToTop';
+import { classes } from './ScheduleStyles';
+import { AlertTitle, Grid } from '@mui/material';
 
 const Schedule = () => {
   useScrollToTop();
@@ -47,24 +48,18 @@ const Schedule = () => {
     };
     fetchData();
   }, [dispatch]);
-  const classes = useStyles();
-
   return (
-    <div className={classes.container}>
+    <Grid sx={classes.container}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        <ClockPicker
-          className={classes.clock}
-          date={moment()}
-          onChange={() => {}}
-        />
+        <ClockPicker sx={classes.clock} date={moment()} onChange={() => {}} />
       </LocalizationProvider>
-      <h1 className={classes.title}>Festival32 Schedule</h1>
+      <AlertTitle sx={classes.title}>Festival32 Schedule</AlertTitle>
       <TableContainer component={Paper}>
         <Table aria-label='collapsible table'>
           <TableHead>
             <TableRow>
-              <TableCell className={classes.tableHead}>Genre</TableCell>
-              <TableCell className={classes.tableHead}>Area</TableCell>
+              <TableCell sx={classes.tableHead}>Genre</TableCell>
+              <TableCell sx={classes.tableHead}>Area</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -74,7 +69,7 @@ const Schedule = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Grid>
   );
 };
 

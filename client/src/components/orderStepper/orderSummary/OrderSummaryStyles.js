@@ -7,6 +7,7 @@ export const classes = {
     backgroundColor: '#581127',
     padding: '20px',
     width: '100%',
+    margin: '10px',
   },
   BuyTicketTitle: {
     color: '#fff',
