@@ -22,9 +22,9 @@ export const NavBar = ({ drawer, setDrawer, handleDrawer, isMatch }) => {
       <Toolbar className={classes.toolBar}>
         <Grid container maxWidth='xs' className={classes.logoContainer}>
           <Typography to='/' component={Link}>
-            <img src={logo} height='50px' />
-            <Grid>Festival 32</Grid>
+            <img src={logo} height='50px' alt='logo' />
           </Typography>
+          <Grid>Festival 32</Grid>
         </Grid>
 
         {isMatch && (

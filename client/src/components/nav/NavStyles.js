@@ -38,7 +38,7 @@ export const useStyles = makeStyles((theme, prop) => {
         flexDirection: 'column',
         fontFamily: '"Courgette", cursive',
         fontSize: '1.5rem',
-        // color: ({ drawer }) => (drawer ? '#fff' : '#000'),
+        color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         [theme.breakpoints.up('lg')]: {
           marginLeft: '5px',
