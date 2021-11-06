@@ -22,7 +22,7 @@ const Verify = () => {
         <Grid
           container
           justifyContent='center'
-          sx={{ position: 'absolute', top: '90px', zIndex: 1 }}
+          sx={{ position: 'absolute', top: '100px', zIndex: 1 }}
         >
           <Grid
             container
@@ -35,7 +35,14 @@ const Verify = () => {
           >
             Your Email is not verified yet, please verify to get full access
           </Grid>
-          <Grid container item md={4} sm={5} margin='5px' className={classes.verifyButton}>
+          <Grid
+            container
+            item
+            md={4}
+            sm={5}
+            margin='5px'
+            className={classes.verifyButton}
+          >
             <VerifyButton />
           </Grid>
         </Grid>
