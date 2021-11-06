@@ -13,6 +13,7 @@ import { NavDrawer } from './NavDrawer';
 import { useStyles } from './NavStyles';
 import NavUser from './NavUser/NavUser';
 import { Link } from 'react-router-dom';
+import logo from '../../images/logo.png';
 
 export const NavBar = ({ drawer, setDrawer, handleDrawer, isMatch }) => {
   const classes = useStyles({ drawer });
@@ -20,30 +21,12 @@ export const NavBar = ({ drawer, setDrawer, handleDrawer, isMatch }) => {
     <AppBar position='sticky' className={classes.appBar}>
       <Toolbar className={classes.toolBar}>
         <Grid container maxWidth='xs' className={classes.logoContainer}>
-          <Grid item>
-            <Typography
-              variant='h6'
-              to='/'
-              className={classes.logo}
-              component={Link}
-              sx={{ flexGrow: 1 }}
-            >
-              Festival32
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Box className={classes.navDate}>
-              <Typography
-                className={classes.dateText}
-                variant='subtitle1'
-                component='div'
-                sx={{ flexGrow: 1 }}
-              >
-                4th october 2021 11:00-23:00
-              </Typography>
-            </Box>
-          </Grid>
+          <Typography to='/' component={Link}>
+            <img src={logo} height='50px' />
+            <Grid>Festival 32</Grid>
+          </Typography>
         </Grid>
+
         {isMatch && (
           <Grid container className={classes.listItemContainer} spacing={3}>
             <ListItem label='program' drawer={drawer} />

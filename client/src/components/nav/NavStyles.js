@@ -33,25 +33,23 @@ export const useStyles = makeStyles((theme, prop) => {
       '&&': {
         alignItems: 'center',
         maxWidth: '330px',
+        display: 'flex',
+        cursor: 'pointer',
+        flexDirection: 'column',
+        fontFamily: '"Courgette", cursive',
+        fontSize: '1.5rem',
+        // color: ({ drawer }) => (drawer ? '#fff' : '#000'),
         zIndex: ({ drawer }) => (drawer ? '99999' : '1'),
         [theme.breakpoints.up('lg')]: {
           marginLeft: '5px',
         },
-      },
-    },
-    logo: {
-      '&&': {
-        color: ({ drawer }) => (drawer ? '#fff' : '#000'),
-        lineHeight: '1',
-        fontSize: '25px',
-        cursor: 'pointer',
         transition: 'transform .3s',
         '&:hover': {
           transform: 'translateX(4px)',
-          backgroundColor: 'transparent ',
         },
       },
     },
+
     navDate: {
       '&&': {
         maxWidth: '160px',
