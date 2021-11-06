@@ -40,7 +40,7 @@ export const classes = {
     width: '5rem',
     textAlign: 'center',
   },
-  totalPrice: {
+  totalPriceContainer: {
     borderTop: '2px solid #DDD',
     padding: '0.3rem',
     fontWeight: 'bold',

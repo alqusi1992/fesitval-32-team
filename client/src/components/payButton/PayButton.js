@@ -7,6 +7,7 @@ import { register } from '../../actions/userActions';
 import { useValue } from '../../context/globalContext';
 
 export const PayButton = ({ classes }) => {
+  const { payBtn } = classes;
   const {
     guestUserOrder: { tickets, festivalId },
     guestUserOrder: {
@@ -68,7 +69,7 @@ export const PayButton = ({ classes }) => {
         loading={loading}
         loadingPosition='end'
         variant='contained'
-        sx={classes.payBtn}
+        sx={payBtn}
       >
         Pay with card
       </LoadingButton>

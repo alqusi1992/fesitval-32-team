@@ -17,6 +17,9 @@ import FormControl from '@mui/material/FormControl';
 import { Button, IconButton } from '@mui/material';
 import { Box } from '@mui/system';
 
+const { fieldsContainer, inputAdornment, rememberMe, btnContainer, btn } =
+  classes;
+
 const Login = ({ setIsRegister }) => {
   const history = useHistory();
   const localEmail = getLocalStorage('remember-email');
@@ -65,7 +68,7 @@ const Login = ({ setIsRegister }) => {
     <>
       {alert.isAlert && <Alert />}
       <form>
-        <Box sx={classes.fieldsContainer}>
+        <Box sx={fieldsContainer}>
           <FormControl>
             <TextField
               variant='standard'
@@ -97,7 +100,7 @@ const Login = ({ setIsRegister }) => {
                 required: 'Please insert a password!',
               })}
             />
-            <InputAdornment position='end' sx={classes.inputAdornment}>
+            <InputAdornment position='end' sx={inputAdornment}>
               <IconButton
                 aria-label='toggle password visibility'
                 onClick={handleClickShowPassword}
@@ -109,7 +112,7 @@ const Login = ({ setIsRegister }) => {
         </Box>
         <Box>
           <FormControlLabel
-            sx={classes.rememberMe}
+            sx={rememberMe}
             control={
               <Checkbox
                 checked={checked}
@@ -120,11 +123,11 @@ const Login = ({ setIsRegister }) => {
             label='Remember me.'
           />
         </Box>
-        <Box sx={classes.btnContainer}>
+        <Box sx={btnContainer}>
           <Button
             variant='contained'
             onClick={handleSubmit(loginHandler)}
-            sx={classes.btn}
+            sx={btn}
           >
             Log in
           </Button>

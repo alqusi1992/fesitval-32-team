@@ -4,6 +4,20 @@ import { useGuestContext } from '../../../context/guestContext';
 import useScrollToTop from '../../../utils/useScrollToTop';
 import { classes } from './OrderSummaryStyles';
 
+const {
+  tableOrder,
+  behindColor,
+  BuyTicketTitle,
+  userContainer,
+  userInfo,
+  personalDetailsHeader,
+  personalDetails,
+  orderContainer,
+  orderTitles,
+  orderInfo,
+  totalPrice,
+} = classes;
+
 const OrderSummary = () => {
   useScrollToTop();
   const { guestUserOrder } = useGuestContext();
@@ -19,19 +33,19 @@ const OrderSummary = () => {
 
   return (
     <Grid container position='relative'>
-      <Grid container sx={classes.tableOrder}>
+      <Grid container sx={tableOrder}>
         <Grid container justifyContent='center' item xs={12}>
-          <Grid sx={classes.behindColor}>
-            <Grid sx={classes.BuyTicketTitle}>ORDER OVERVIEW</Grid>
+          <Grid sx={behindColor}>
+            <Grid sx={BuyTicketTitle}>ORDER OVERVIEW</Grid>
           </Grid>
         </Grid>
-        <Grid sx={classes.userContainer}>
-          <Grid container item xs={12} sx={classes.userInfo}>
+        <Grid sx={userContainer}>
+          <Grid container item xs={12} sx={userInfo}>
             <Grid container>
-              <Grid item xs={12} sx={classes.personalDetailsHeader}>
+              <Grid item xs={12} sx={personalDetailsHeader}>
                 PERSONAL DETAILS
               </Grid>
-              <Grid item xs={12} sx={classes.personalDetails}>
+              <Grid item xs={12} sx={personalDetails}>
                 <Grid item xs={12}>
                   First name: {firstName}
                 </Grid>
@@ -44,8 +58,8 @@ const OrderSummary = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid container item xs={12} sx={classes.orderContainer}>
-            <Grid container item xs={12} sx={classes.orderTitles}>
+          <Grid container item xs={12} sx={orderContainer}>
+            <Grid container item xs={12} sx={orderTitles}>
               <Grid item xs={4}>
                 Ticket Type
               </Grid>
@@ -58,7 +72,7 @@ const OrderSummary = () => {
             </Grid>
 
             {tickets.map((ticket, idx) => (
-              <Grid container item xs={12} key={idx} sx={classes.orderInfo}>
+              <Grid container item xs={12} key={idx} sx={orderInfo}>
                 <Grid item xs={4}>
                   {ticket.typeName}
                 </Grid>
@@ -70,7 +84,7 @@ const OrderSummary = () => {
                 </Grid>
               </Grid>
             ))}
-            <Grid container item xs={12} sx={classes.totalPrice}>
+            <Grid container item xs={12} sx={totalPrice}>
               <Grid textAlign='center'>Total: € {totalTicketsPrice}</Grid>
             </Grid>
           </Grid>

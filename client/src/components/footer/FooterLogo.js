@@ -3,10 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { classes } from './FooterStyles';
 
+const { logo } = classes;
 const FooterLogo = () => {
   return (
     <Link to='/'>
-      <Grid sx={classes.logo}>Festival32</Grid>
+      <Grid sx={logo}>Festival32</Grid>
     </Link>
   );
 };

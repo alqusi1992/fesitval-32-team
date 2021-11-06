@@ -5,26 +5,20 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 import { Grid } from '@mui/material';
 import { classes } from './FooterStyles';
 
+const { facebookIcon, instagramIcon, youTubeIcon } = classes;
 const SocialMediaIcons = () => {
   return (
     <>
       <Grid item xm={2}>
-        <FacebookIcon
-          sx={classes.facebookIcon}        
-        />
+        <FacebookIcon sx={facebookIcon} />
       </Grid>
       <Grid item xm={2}>
-        <InstagramIcon
-          sx={classes.instagramIcon}        
-        />
+        <InstagramIcon sx={instagramIcon} />
       </Grid>
       <Grid item xm={2}>
-        <YouTubeIcon
-          sx={classes.youTubeIcon}
-        />
+        <YouTubeIcon sx={youTubeIcon} />
       </Grid>
     </>
-   
   );
 };
 
