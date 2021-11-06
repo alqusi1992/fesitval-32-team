@@ -2,14 +2,14 @@ import { Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '..';
-import {  classes } from './FooterStyles';
+import { classes } from './FooterStyles';
 
 const FooterList = () => {
   const [isRegister, setIsRegister] = useState(false);
   return (
     <>
       <Grid sx={classes.list}>
-        <Link to='/schedule'>
+        <Link to='/program'>
           <Grid sx={classes.listItem}>Program</Grid>
         </Link>
         <Link to='/tickets'>
@@ -17,9 +17,6 @@ const FooterList = () => {
         </Link>
         <Link to='/about'>
           <Grid sx={classes.listItem}>About</Grid>
-        </Link>
-        <Link to='/schedule'>
-          <Grid sx={classes.listItem}>Contact</Grid>
         </Link>
       </Grid>
       {isRegister && <User setIsRegister={setIsRegister} />}
