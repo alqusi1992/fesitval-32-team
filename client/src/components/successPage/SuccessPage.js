@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import OrderDisplay from '../ordersDisplay/OrderDisplay';
 import { Grid } from '@mui/material';
 import '../../app.css';
-import { DownloadButton } from '../downloadButton/DownloadButton';
 
 export const SuccessPage = () => {
   const [order, setOrder] = useState({});
