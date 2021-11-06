@@ -128,14 +128,7 @@ const OrderStepper = () => {
         )}
         {step.third && <OrderSummary />}
       </Grid>
-      <Grid
-        container
-        justifyContent='space-between'
-        item
-        xs={12}
-        alignSelf='center'
-        sx={ctaBar}
-      >
+      <Grid container item xs={12} sx={ctaBar}>
         {!step.first && (
           <Grid>
             <Button color='inherit' onClick={handleBack} sx={btn}>

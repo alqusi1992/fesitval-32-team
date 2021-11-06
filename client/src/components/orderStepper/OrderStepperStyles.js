@@ -14,6 +14,8 @@ export const classes = {
     width: '100%',
     position: 'sticky',
     bottom: '0',
+    justifyContent: 'space-between',
+    alignSelf: 'center',
   },
   btn: {
     backgroundColor: '#dfdfdf',
