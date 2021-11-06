@@ -37,10 +37,6 @@ export const NavDrawer = ({ drawer, handleDrawer }) => {
                 text='about us'
                 handleClick={() => handleClick(() => history.push('/about'))}
               />
-              <DrawerListButton
-                text='contact'
-                handleClick={() => handleClick(() => history.push('/contact'))}
-              />
             </Grid>
           </Grid>
         </List>

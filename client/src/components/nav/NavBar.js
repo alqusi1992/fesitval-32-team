@@ -49,7 +49,6 @@ export const NavBar = ({ drawer, setDrawer, handleDrawer, isMatch }) => {
             <ListItem label='program' drawer={drawer} />
             <ListItem label='about' drawer={drawer} />
             <ListItem label='tickets' drawer={drawer} />
-            <ListItem label='contact' drawer={drawer} />
           </Grid>
         )}
         <div className={classes.loginHamburgerWrapper}>
