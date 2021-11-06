@@ -3,7 +3,8 @@ import { LoadingButton } from '@mui/lab';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { saveAs } from 'file-saver';
 
-export const DownloadButton = ({ order }) => {
+export const DownloadButton = ({ order, classes }) => {
+  const { downloadButton } = classes;
   const [loading, setLoading] = useState(false);
 
   const downloadOrder = async (order) => {
@@ -15,7 +16,7 @@ export const DownloadButton = ({ order }) => {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ orderId: order._id, email, tickets }),
-      }
+      },
     );
 
     const blob = await response.blob();
@@ -29,14 +30,7 @@ export const DownloadButton = ({ order }) => {
   return (
     <>
       <LoadingButton
-        sx={{
-          backgroundColor: '#ccc',
-          color: '#000',
-          boxShadow: 'none',
-          '&:hover': {
-            backgroundColor: '#fff',
-          },
-        }}
+        sx={downloadButton}
         endIcon={<FileDownloadIcon />}
         onClick={() => downloadOrder(order)}
         loading={loading}

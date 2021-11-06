@@ -5,7 +5,6 @@ import { classes } from './OrderStyle';
 const {
   tableOrder,
   orderHeader,
-  downloadButton,
   orderContainer,
   orderTitles,
   orderDetails,
@@ -28,7 +27,7 @@ export const Order = ({ order }) => {
         <Grid>Order Number:</Grid>
         <Grid>{order?._id}</Grid>
         <Grid>
-          <DownloadButton order={order} item xs={12} sx={downloadButton} />
+          <DownloadButton order={order} item xs={12} classes={classes} />
         </Grid>
       </Grid>
       <Grid container sx={orderContainer}>

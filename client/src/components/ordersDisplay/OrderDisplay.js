@@ -1,32 +1,17 @@
 import * as React from 'react';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableBody from '@mui/material/TableBody';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import Paper from '@mui/material/Paper';
+import { Grid } from '@mui/material';
+import { classes } from './orderDisplayStyles';
+import { DownloadButton } from '../downloadButton/DownloadButton';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+const {
+  tableOrder,
+  orderHeader,
+  orderContainer,
+  orderTitles,
+  orderDetails,
+  orderItem,
+  totalPriceContainer,
+} = classes;
 
 export default function OrderDisplay({ order }) {
   const ticketsData = order.tickets.map((ticket) => {
@@ -47,34 +32,33 @@ export default function OrderDisplay({ order }) {
   );
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label='customized table'>
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>Ticket Type</StyledTableCell>
-            <StyledTableCell align='right'>Quantity</StyledTableCell>
-            <StyledTableCell align='right'>Price</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {ticketsData.map((ticket) => (
-            <StyledTableRow key={ticket.id}>
-              <StyledTableCell component='th' scope='row'>
-                {ticket.typeName}
-              </StyledTableCell>
-              <StyledTableCell align='right'>{ticket.quantity}</StyledTableCell>
-              <StyledTableCell align='right'>€ {ticket.price}</StyledTableCell>
-            </StyledTableRow>
-          ))}
-          <StyledTableRow>
-            <StyledTableCell component='th' scope='row'>
-              Total:
-            </StyledTableCell>
-            <StyledTableCell align='right'>{quantitySum}</StyledTableCell>
-            <StyledTableCell align='right'>€ {priceSum}</StyledTableCell>
-          </StyledTableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Grid container sx={tableOrder}>
+      <Grid sx={orderHeader}>
+        <Grid>Order Number:</Grid>
+        <Grid>{order?._id}</Grid>
+        <Grid>
+          <DownloadButton order={order} item xs={12} classes={classes} />
+        </Grid>
+      </Grid>
+      <Grid container sx={orderContainer}>
+        <Grid container sx={orderTitles}>
+          <Grid>Ticket Type</Grid>
+          <Grid>Quantity</Grid>
+          <Grid>Price</Grid>
+        </Grid>
+        {order.tickets.map((ticket) => (
+          <Grid key={ticket.id} sx={orderDetails}>
+            <Grid sx={orderItem}>{ticket.typeName}</Grid>
+            <Grid>{ticket.quantity}</Grid>
+            <Grid>€ {ticket.price}</Grid>
+          </Grid>
+        ))}
+        <Grid sx={totalPriceContainer}>
+          <Grid sx={orderItem}>Total:</Grid>
+          <Grid>{quantitySum}</Grid>
+          <Grid>€{priceSum}</Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
