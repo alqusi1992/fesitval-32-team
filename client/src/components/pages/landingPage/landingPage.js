@@ -50,7 +50,7 @@ const LandingPage = () => {
       showAlert(
         'danger',
         'Link is expired, please request a new link',
-        dispatch
+        dispatch,
       );
     } else {
       showAlert('danger', 'Verification is failed', dispatch);
@@ -73,7 +73,7 @@ const LandingPage = () => {
           </Link>
         </ListItem>
         <ListItem>
-          <Link to='/schedule'>
+          <Link to='/program'>
             <ImageCard
               {...{ img: program, title: 'PROGRAM', buttonTitle: 'PROGRAM' }}
             />
