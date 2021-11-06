@@ -14,6 +14,7 @@ const {
   cardHolder,
   cardHeader,
   cardParagraph,
+  progressStyle,
 } = classes;
 
 const About = () => {
@@ -63,12 +64,7 @@ const About = () => {
               component='div'
               color='text.secondary'
               variant={'h5'}
-              sx={{
-                position: 'absolute',
-                top: { xs: '20%', md: '10%', sm: '15%', lg: '7%', xl: '5%' },
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-              }}
+              sx={progressStyle}
             >
               {`${Math.round(progress)}%`}
             </Typography>
