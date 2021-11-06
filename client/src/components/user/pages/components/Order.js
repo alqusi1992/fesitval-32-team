@@ -37,7 +37,7 @@ export const Order = ({ order }) => {
           <Grid>Price</Grid>
         </Grid>
         {order.tickets.map((ticket) => (
-          <Grid key={ticket.id} sx={orderDetails}>
+          <Grid key={ticket._id} sx={orderDetails}>
             <Grid sx={orderItem}>{ticket.typeName}</Grid>
             <Grid>{ticket.quantity}</Grid>
             <Grid>€ {ticket.price}</Grid>

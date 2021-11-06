@@ -8,7 +8,7 @@ export const classes = {
     justifyContent: 'center',
   },
   ticketType: {
-    fontSize: '24px',
+    fontSize: '18px',
     borderBottom: {
       xs: 'none',
       s: '2px solid #ddd',
@@ -22,7 +22,7 @@ export const classes = {
       xs: '0px',
       s: '40px',
     },
-    fontSize: '30px',
+    fontSize: '18px',
     borderBottom: {
       xs: 'none',
       s: '2px solid #ddd',

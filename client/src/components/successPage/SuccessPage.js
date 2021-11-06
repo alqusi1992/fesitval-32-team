@@ -76,7 +76,7 @@ export const SuccessPage = () => {
                   </div>
                 </div>
               </Grid>
-              <Grid item xs={11} md={6}>
+              <Grid item xs={6} md={12}>
                 {order.tickets && <OrderDisplay order={order} />}
               </Grid>
             </Grid>
