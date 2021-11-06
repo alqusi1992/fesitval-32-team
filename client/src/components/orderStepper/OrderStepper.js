@@ -24,6 +24,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { PayButton } from '../payButton/PayButton';
 
 const steps = ['Select Ticket', 'Fill in form', 'Checkout'];
+const { stepper, stepContainer, ctaBar, btn } = classes;
 
 const OrderStepper = () => {
   useScrollToTop();
@@ -92,13 +93,13 @@ const OrderStepper = () => {
       showAlert(
         'danger',
         'Your payment was canceled either by you or by the bank, please try again',
-        dispatch
+        dispatch,
       );
     }
   }, [memorizedQuery, dispatch]);
 
   return (
-    <Grid container sx={classes.stepper}>
+    <Grid container sx={stepper}>
       {alert.isAlert && <Alert />}
       <Grid item xs={12}>
         <Stepper activeStep={activeStep}>
@@ -114,7 +115,7 @@ const OrderStepper = () => {
           })}
         </Stepper>
       </Grid>
-      <Grid item xs={12} sx={classes.stepContainer}>
+      <Grid item xs={12} sx={stepContainer}>
         {step.first && <Tickets />}
         {step.second && (
           <GuestForm
@@ -127,18 +128,10 @@ const OrderStepper = () => {
         )}
         {step.third && <OrderSummary />}
       </Grid>
-      <Grid
-        container
-        justifyContent='space-between'
-        item
-        xs={12}
-
-        alignSelf='center'
-        sx={classes.ctaBar}
-      >
+      <Grid container item xs={12} sx={ctaBar}>
         {!step.first && (
           <Grid>
-            <Button color='inherit' onClick={handleBack} sx={classes.btn}>
+            <Button color='inherit' onClick={handleBack} sx={btn}>
               <KeyboardArrowLeftIcon /> Back
             </Button>
           </Grid>
@@ -149,15 +142,14 @@ const OrderStepper = () => {
             <Button
               onClick={() => handleNext(guestUserOrder)}
               disabled={disableNextButton()}
-              sx={classes.btn}
+              sx={btn}
             >
               Go to Form <KeyboardArrowRightIcon />
             </Button>
           )}
 
           {step.second && (
-
-            <Button onClick={() => setIsTriggerSubmit(true)} sx={classes.btn}>
+            <Button onClick={() => setIsTriggerSubmit(true)} sx={btn}>
               Go to Payment <KeyboardArrowRightIcon />
             </Button>
           )}

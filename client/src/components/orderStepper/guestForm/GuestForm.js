@@ -13,6 +13,15 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import useScrollToTop from '../../../utils/useScrollToTop';
 import { Grid } from '@mui/material';
 
+const {
+  formContainer,
+  formControl,
+  checkboxLabel,
+  checkbox,
+  formControlPassword,
+  inputAdornment,
+} = classes;
+
 const GuestForm = ({
   setIsFormSubmitted,
   isTriggerSubmit,
@@ -91,7 +100,7 @@ const GuestForm = ({
   ]);
 
   return (
-    <Grid container sx={classes.formContainer}>
+    <Grid container sx={formContainer}>
       <h2>Fill in Your Personal Details </h2>
       <FormControl sx={classes.formControl} variant='standard'>
         <TextField
@@ -112,7 +121,7 @@ const GuestForm = ({
         />
       </FormControl>
 
-      <FormControl sx={classes.formControl} variant='standard'>
+      <FormControl sx={formControl} variant='standard'>
         <TextField
           error={errors?.lastName?.type ? true : false}
           label='Last Name'
@@ -131,7 +140,7 @@ const GuestForm = ({
         />
       </FormControl>
 
-      <FormControl sx={classes.formControl} variant='standard'>
+      <FormControl sx={formControl} variant='standard'>
         <TextField
           error={errors?.email?.type ? true : false}
           label='E-mail Address'
@@ -151,7 +160,7 @@ const GuestForm = ({
         />
       </FormControl>
 
-      <FormControl sx={classes.formControl} variant='standard'>
+      <FormControl sx={formControl} variant='standard'>
         <TextField
           error={errors?.confirmEmail?.type ? true : false}
           label='Confirm your E-mail Address'
@@ -172,10 +181,10 @@ const GuestForm = ({
       </FormControl>
 
       <FormControlLabel
-        sx={classes.checkboxLabel}
+        sx={checkboxLabel}
         control={
           <Checkbox
-            sx={classes.checkbox}
+            sx={checkbox}
             checked={checked}
             onChange={handleCheckBox}
             inputProps={{ 'aria-label': 'controlled' }}
@@ -185,7 +194,7 @@ const GuestForm = ({
       />
 
       {checked && (
-        <FormControl sx={classes.formControlPassword} variant='standard'>
+        <FormControl sx={formControlPassword} variant='standard'>
           <TextField
             error={errors?.password?.type ? true : false}
             label='password'
@@ -205,7 +214,7 @@ const GuestForm = ({
             })}
           />
 
-          <InputAdornment sx={classes.inputAdornment}>
+          <InputAdornment sx={inputAdornment}>
             <IconButton
               aria-label='toggle password visibility'
               onClick={handleClickShowPassword}

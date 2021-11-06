@@ -32,6 +32,6 @@ export const theme = createTheme({
 
 export const classes = {
   container: {
-    padding: '50px 0 350px',
+    padding: '50px 0 70px',
   },
 };

@@ -51,4 +51,10 @@ export const classes = {
     padding: '10px 20px',
     textAlign: 'center',
   },
+  progressStyle: {
+    position: 'absolute',
+    top: { xs: '20%', md: '10%', sm: '15%', lg: '7%', xl: '5%' },
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  },
 };

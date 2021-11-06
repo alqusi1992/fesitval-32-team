@@ -13,11 +13,13 @@ import { useState } from 'react';
 import Artist from './Artist';
 import { classes } from './ScheduleStyles';
 
+const { collapse, genreDetails, content } = classes;
+
 export default function Row({ genre, artists }) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <TableRow onClick={() => setOpen(!open)} sx={classes.collapse}>
+      <TableRow onClick={() => setOpen(!open)} sx={collapse}>
         <TableCell sx={classes.genre} component='th' scope='row'>
           <IconButton aria-label='expand row' size='large'>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
@@ -29,9 +31,9 @@ export default function Row({ genre, artists }) {
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell sx={classes.genreDetails} colSpan={6}>
+        <TableCell sx={genreDetails} colSpan={6}>
           <Collapse in={open} timeout='auto' unmountOnExit>
-            <Box sx={classes.content}>
+            <Box sx={content}>
               <Typography variant='h6' gutterBottom component='div'>
                 {genre.genre}
               </Typography>
@@ -49,7 +51,7 @@ export default function Row({ genre, artists }) {
                     (artist) =>
                       artist.genre === genre.genre && (
                         <Artist artist={artist} key={artist._id} />
-                      )
+                      ),
                   )}
                 </TableBody>
               </Table>

@@ -16,6 +16,8 @@ import useScrollToTop from '../../../utils/useScrollToTop';
 import { classes } from './ScheduleStyles';
 import { AlertTitle, Grid } from '@mui/material';
 
+const { container, clock, title, tableHead } = classes;
+
 const Schedule = () => {
   useScrollToTop();
   const { dispatch } = useValue();
@@ -49,17 +51,17 @@ const Schedule = () => {
     fetchData();
   }, [dispatch]);
   return (
-    <Grid sx={classes.container}>
+    <Grid sx={container}>
       <LocalizationProvider dateAdapter={AdapterMoment}>
-        <ClockPicker sx={classes.clock} date={moment()} onChange={() => {}} />
+        <ClockPicker sx={clock} date={moment()} onChange={() => {}} />
       </LocalizationProvider>
-      <AlertTitle sx={classes.title}>Festival32 Schedule</AlertTitle>
+      <AlertTitle sx={title}>Festival32 Schedule</AlertTitle>
       <TableContainer component={Paper}>
         <Table aria-label='collapsible table'>
           <TableHead>
             <TableRow>
-              <TableCell sx={classes.tableHead}>Genre</TableCell>
-              <TableCell sx={classes.tableHead}>Area</TableCell>
+              <TableCell sx={tableHead}>Genre</TableCell>
+              <TableCell sx={tableHead}>Area</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

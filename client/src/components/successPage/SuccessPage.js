@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import OrderDisplay from '../ordersDisplay/OrderDisplay';
 import { Grid } from '@mui/material';
 import '../../app.css';
-import { DownloadButton } from '../downloadButton/DownloadButton';
 
 export const SuccessPage = () => {
   const [order, setOrder] = useState({});
@@ -23,7 +22,7 @@ export const SuccessPage = () => {
               'content-type': 'application/json',
             },
             body: JSON.stringify(orderInfo),
-          }
+          },
         );
 
         const { order } = await response.json();
@@ -79,9 +78,6 @@ export const SuccessPage = () => {
               </Grid>
               <Grid item xs={11} md={6}>
                 {order.tickets && <OrderDisplay order={order} />}
-              </Grid>
-              <Grid container justifyContent='center' item xs={12}>
-                <DownloadButton order={order} />
               </Grid>
             </Grid>
           </Grid>
