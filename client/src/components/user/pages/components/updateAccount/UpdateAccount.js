@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import { UpdateUser } from '../../../../../actions/profileAction';
 import { useValue } from '../../../../../context/globalContext';
 import Box from '@mui/material/Box';
-import { TextField, Button, FormControl, InputAdornment, IconButton } from '@mui/material';
+import {
+  TextField,
+  Button,
+  FormControl,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
 import { useStyles } from '../manageAccount/accountStyles';
 import { useForm } from 'react-hook-form';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -65,7 +71,7 @@ const UpdateAccount = () => {
         {<div className={classes.alertStyle}>{alert.isAlert && <Alert />}</div>}
         <TextField
           error={errors?.firstName?.type ? true : false}
-          label='FirstName'
+          label='First name'
           variant='standard'
           helperText={errors?.firstName?.message}
           {...register('firstName', {
@@ -77,7 +83,7 @@ const UpdateAccount = () => {
         />
         <TextField
           error={errors?.lastName?.type ? true : false}
-          label='LastName'
+          label='Last name'
           variant='standard'
           helperText={errors?.lastName?.message}
           {...register('lastName', {
@@ -89,7 +95,7 @@ const UpdateAccount = () => {
         />
         <TextField
           error={errors?.email?.type ? true : false}
-          label='Emial'
+          label='Email'
           variant='standard'
           helperText={errors?.email?.message}
           {...register('email', {
@@ -112,10 +118,13 @@ const UpdateAccount = () => {
             },
           })}
         />
-        <FormControl sx={{ m: 1, width: '25ch', position: 'relative' }} variant='standard'>
+        <FormControl
+          sx={{ m: 1, width: '25ch', position: 'relative' }}
+          variant='standard'
+        >
           <TextField
             error={errors?.currentPassword?.type ? true : false}
-            label='CurrentPassword'
+            label='Current password'
             variant='standard'
             type={showPassword.showCurrentPassword ? 'text' : 'password'}
             helperText={errors?.currentPassword?.message}
@@ -123,34 +132,53 @@ const UpdateAccount = () => {
               required: 'Please insert your currentPassword!',
             })}
           />
-          <InputAdornment sx={{ position: 'absolute', right: '0', top: '30px' }}>
+          <InputAdornment
+            sx={{ position: 'absolute', right: '0', top: '30px' }}
+          >
             <IconButton
               aria-label='toggle password visibility'
               onClick={handleClickCurrentPassword}
             >
-              {showPassword.showCurrentPassword ? <VisibilityOff /> : <Visibility />}
+              {showPassword.showCurrentPassword ? (
+                <VisibilityOff />
+              ) : (
+                <Visibility />
+              )}
             </IconButton>
           </InputAdornment>
         </FormControl>
 
-        <FormControl sx={{ m: 1, width: '25ch', position: 'relative' }} variant='standard'>
+        <FormControl
+          sx={{ m: 1, width: '25ch', position: 'relative' }}
+          variant='standard'
+        >
           <TextField
             error={errors?.newPassword?.type ? true : false}
-            label='NewPassword'
+            label='New password'
             variant='standard'
             type={showPassword.showNewPassword ? 'text' : 'password'}
             helperText={errors?.newPassword?.message}
             {...register('newPassword', {
               pattern: {
-                value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                value:
+                  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
                 message:
                   'Password should have at least 8 characters, one uppercase, one lowercase,one number and one special character!',
               },
             })}
           />
-          <InputAdornment sx={{ position: 'absolute', right: '0', top: '30px' }}>
-            <IconButton aria-label='toggle password visibility' onClick={handleClickNewPassword}>
-              {showPassword.showNewPassword ? <VisibilityOff /> : <Visibility />}
+          <InputAdornment
+            sx={{ position: 'absolute', right: '0', top: '30px' }}
+          >
+            <IconButton
+              aria-label='toggle password visibility'
+              onClick={handleClickNewPassword}
+            >
+              {showPassword.showNewPassword ? (
+                <VisibilityOff />
+              ) : (
+                <Visibility />
+              )}
             </IconButton>
           </InputAdornment>
         </FormControl>
