@@ -64,7 +64,7 @@ const Register = ({ setIsRegister }) => {
       {alert.isAlert && <Alert />}
       <form>
         <FieldsContainer>
-          <FormGroup>
+          <FormControl variant='standard'>
             <TextField
               variant='standard'
               type='text'
@@ -81,8 +81,8 @@ const Register = ({ setIsRegister }) => {
                 },
               })}
             />
-          </FormGroup>
-          <FormGroup>
+          </FormControl>
+          <FormControl variant='standard'>
             <TextField
               variant='standard'
               type='text'
@@ -98,8 +98,8 @@ const Register = ({ setIsRegister }) => {
                 },
               })}
             />
-          </FormGroup>
-          <FormGroup>
+          </FormControl>{' '}
+          <FormControl variant='standard'>
             <TextField
               variant='standard'
               label='Email'
@@ -115,8 +115,8 @@ const Register = ({ setIsRegister }) => {
                 },
               })}
             />
-          </FormGroup>
-          <FormGroup>
+          </FormControl>{' '}
+          <FormControl variant='standard'>
             <TextField
               variant='standard'
               type='tel'
@@ -131,7 +131,7 @@ const Register = ({ setIsRegister }) => {
                 },
               })}
             />
-          </FormGroup>
+          </FormControl>{' '}
           <FormControl sx={{ position: 'relative' }} variant='standard'>
             <TextField
               variant='standard'
