@@ -15,7 +15,6 @@ const Verify = () => {
   };
   const verified = useQuery().get('isVerified');
   const classes = useStyles();
-  console.log(verified);
   return (
     <>
       {user?.result?.isVerified === false && (
