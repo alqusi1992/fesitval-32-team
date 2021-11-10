@@ -14,10 +14,6 @@ const scheduleSchema = new mongoose.Schema({
   ],
 });
 
-const Schedule = mongoose.model(
-  'areasSchedule',
-  scheduleSchema,
-  'areasSchedule',
-);
+const Schedule = mongoose.model('areasSchedule', scheduleSchema);
 
 export default Schedule;

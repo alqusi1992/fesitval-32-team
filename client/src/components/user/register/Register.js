@@ -5,7 +5,7 @@ import { register } from '../../../actions/userActions';
 import { useValue } from '../../../context/globalContext';
 import Alert from '../../alert/Alert';
 import { showAlert } from '../../../actions/alertActions';
-import { FieldsContainer, FormGroup, BtnContainer } from './RegisterStyles';
+import { FieldsContainer, BtnContainer } from './RegisterStyles';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import Visibility from '@mui/icons-material/Visibility';
@@ -64,7 +64,7 @@ const Register = ({ setIsRegister }) => {
       {alert.isAlert && <Alert />}
       <form>
         <FieldsContainer>
-          <FormGroup>
+          <FormControl variant='standard'>
             <TextField
               variant='standard'
               type='text'
@@ -81,8 +81,8 @@ const Register = ({ setIsRegister }) => {
                 },
               })}
             />
-          </FormGroup>
-          <FormGroup>
+          </FormControl>
+          <FormControl variant='standard'>
             <TextField
               variant='standard'
               type='text'
@@ -98,8 +98,8 @@ const Register = ({ setIsRegister }) => {
                 },
               })}
             />
-          </FormGroup>
-          <FormGroup>
+          </FormControl>{' '}
+          <FormControl variant='standard'>
             <TextField
               variant='standard'
               label='Email'
@@ -115,8 +115,8 @@ const Register = ({ setIsRegister }) => {
                 },
               })}
             />
-          </FormGroup>
-          <FormGroup>
+          </FormControl>{' '}
+          <FormControl variant='standard'>
             <TextField
               variant='standard'
               type='tel'
@@ -131,7 +131,7 @@ const Register = ({ setIsRegister }) => {
                 },
               })}
             />
-          </FormGroup>
+          </FormControl>{' '}
           <FormControl sx={{ position: 'relative' }} variant='standard'>
             <TextField
               variant='standard'

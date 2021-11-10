@@ -15,7 +15,6 @@ const Verify = () => {
   };
   const verified = useQuery().get('isVerified');
   const classes = useStyles();
-
   return (
     <>
       {user?.result?.isVerified === false && (
@@ -48,7 +47,7 @@ const Verify = () => {
         </Grid>
       )}
       <Grid sx={{ position: 'relative', top: '50px' }}>
-        {alert.isAlert && !verified ? <Alert /> : ''}
+        {alert.isAlert && verified === 'false' ? <Alert /> : ''}
       </Grid>
     </>
   );
