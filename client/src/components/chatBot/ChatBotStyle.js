@@ -6,4 +6,9 @@ export const classes = {
     width: '100%',
     marginLeft: '-20px',
   },
+  containerCoponent: {
+    padding: '8px',
+    lineHeight: '1.9',
+    fontWeight: 'bold',
+  },
 };
