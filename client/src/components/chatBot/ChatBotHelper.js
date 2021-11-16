@@ -1,91 +1,26 @@
-import React from 'react';
-import ChatBot from 'react-simple-chatbot';
-import { classes } from './ChatBotStyle';
-import { Grid } from '@mui/material';
-
+import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import ChatBotItem from './ChatBotItem';
+import { steps } from './ChatSteps';
 const ChatBotHelper = () => {
-  const steps = [
-    {
-      id: '0',
-      message: 'Welcome our festival 32',
-      trigger: '2',
-    },
-    {
-      id: '2',
-      message: 'What is your name?',
-      trigger: '3',
-    },
-    {
-      id: '3',
-      user: true,
-      trigger: '4',
-    },
-    {
-      id: '4',
-      message: 'Hi {previousValue}, nice to meet you!',
-      trigger: '5',
-    },
-    {
-      id: '5',
-      message: 'Hi! Do you need some help?',
-      trigger: '6',
-    },
-    {
-      id: '6',
-      options: [
-        { value: 1, label: 'YES', trigger: '7' },
-        { value: 2, label: 'NO, THANK YOU', trigger: '8' },
-      ],
-    },
-    {
-      id: '8',
-      message: 'YOUR WELCOME, HAVE A NICE DAY',
-      trigger: '5',
-    },
-    {
-      id: '7',
-      message: 'Select the page that you want to redirect',
-      trigger: '9',
-    },
-    {
-      id: '9',
-      component: (
-        <Grid sx={classes.containerCoponent}>
-          <div>
-            <a href='/' rel='noreferrer'>
-              Home
-            </a>
-          </div>
-          <div>
-            <a href='/about' rel='noreferrer'>
-              About
-            </a>
-          </div>
-          <div>
-            <a href='/tickets' rel='noreferrer'>
-              Ticket
-            </a>
-          </div>
-          <div>
-            <a href='/program' rel='noreferrer'>
-              Program
-            </a>
-          </div>
-        </Grid>
-      ),
-      trigger: '10',
-    },
-    {
-      id: '10',
-      message: 'I will redirect you to the page when you clicked',
-      end: true,
-    },
-  ];
+  const [show, setShow] = useState(true);
+
+  const theme = {
+    background: '#f5f8fb',
+    fontFamily: 'Helvetica Neue',
+    headerBgColor: '#610527',
+    headerFontColor: '#fff',
+    headerFontSize: '15px',
+    botBubbleColor: '#610527',
+    botFontColor: '#fff',
+    userBubbleColor: '#fff',
+    userFontColor: '#4a4a4a',
+  };
 
   return (
-    <Grid sx={classes.chatBotHelper}>
-      <ChatBot steps={steps} />
-    </Grid>
+    <ThemeProvider theme={theme}>
+      <ChatBotItem steps={steps} show={show} setShow={setShow} />
+    </ThemeProvider>
   );
 };
 
