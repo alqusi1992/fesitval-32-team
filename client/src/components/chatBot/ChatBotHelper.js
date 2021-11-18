@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import ChatBotItem from './ChatBotItem';
 import { steps } from './ChatSteps';
 const ChatBotHelper = () => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
 
   const theme = {
     background: '#f5f8fb',
