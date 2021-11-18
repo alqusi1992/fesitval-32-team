@@ -1,24 +1,15 @@
-import {
-  IconButton,
-  Menu,
-  MenuItem,
-  Button,
-  Avatar,
-  ListItemIcon,
-  Divider,
-  Tooltip,
-} from '@mui/material/';
 import { useState } from 'react';
-import Logout from '@mui/icons-material/Logout';
 import LockIcon from '@mui/icons-material/Lock';
 import { useValue } from '../../../context/globalContext';
 import { logout, setUser } from '../../../actions/userActions';
 import User from '../../user/User';
+import { Button } from '@mui/material/';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getLocalStorage, setLocalStorage } from '../../../utils/localStorage';
 import decode from 'jwt-decode';
 import { useStyles } from './NavUserStyles';
+import NavItem from './NavItem';
 
 const NavUser = ({ drawer, setDrawer }) => {
   const history = useHistory();
@@ -73,11 +64,7 @@ const NavUser = ({ drawer, setDrawer }) => {
   if (!user?.token) {
     return (
       <>
-        <Button
-          onClick={handleLogin}
-          className={classes.listItemBtn}
-          startIcon={<LockIcon />}
-        >
+        <Button onClick={handleLogin} className={classes.listItemBtn} startIcon={<LockIcon />}>
           Login
         </Button>
         {isRegister && <User setIsRegister={setIsRegister} />}
@@ -87,59 +74,14 @@ const NavUser = ({ drawer, setDrawer }) => {
 
   return (
     <div>
-      <Tooltip title='Account settings'>
-        <IconButton onClick={handleMenu} size='large' sx={{ ml: 2 }}>
-          <Avatar sx={{ width: 32, height: 32 }}>
-            {user?.result?.firstName?.charAt(0)?.toUpperCase() ||
-              user?.result?.givenName?.charAt(0)?.toUpperCase()}
-          </Avatar>
-        </IconButton>
-      </Tooltip>
-      <Menu
-        anchorEl={anchorEl}
+      <NavItem
         open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-      >
-        <MenuItem onClick={() => history.push('/account')}>
-          <Avatar /> My account
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleLogout}>
-          <ListItemIcon>
-            <Logout fontSize='small' />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
-      </Menu>
+        handleMenu={handleMenu}
+        handleLogout={handleLogout}
+        handleClose={handleClose}
+        history={history}
+        anchorEl={anchorEl}
+      />
     </div>
   );
 };
