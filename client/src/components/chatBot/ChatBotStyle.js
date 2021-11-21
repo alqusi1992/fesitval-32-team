@@ -5,7 +5,7 @@ export const classes = {
     position: 'fixed',
     width: '100%',
     marginLeft: '-20px',
-    marginTop: '100px',
+    marginTop: '17.5rem',
     zIndex: '1',
   },
   containerCoponent: {
@@ -14,9 +14,10 @@ export const classes = {
     fontWeight: 'bold',
     fontSize: '1.2rem',
     textAlign: 'center',
+    cursor: 'pointer',
   },
   chatButton: {
-    backgroundColor: '#610527',
+    backgroundColor: '#000',
     border: '1px solid #ccc',
     borderRadius: '50%',
     height: '50px',
@@ -29,9 +30,30 @@ export const classes = {
     right: '0',
     bottom: '0',
     fontSize: '2rem',
+
     zIndex: '1',
     '&:hover': {
       backgroundColor: '#610527',
     },
+  },
+  tikcetInfo: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: '10px',
+    marginBottom: '15px',
+    borderBottom: '1px solid #ccc',
+    fontSize: '0.9rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+  },
+  programInfo: {
+    marginTop: '10px',
+    marginBottom: '15px',
+    borderBottom: '1px solid #ccc',
+    borderTop: '1px solid #ccc',
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    cursor: 'pointer',
   },
 };

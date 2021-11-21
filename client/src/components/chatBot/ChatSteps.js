@@ -25,7 +25,7 @@ export const steps = [
   },
   {
     id: '5',
-    message: 'Hi! Do you need some help?',
+    message: ' Do you need some help?',
     trigger: '6',
   },
   {
@@ -75,7 +75,69 @@ export const steps = [
   },
   {
     id: '10',
-    message: 'I will redirect you to the page when you clicked',
-    end: true,
+    message: 'I will redirect you to the page when you clicked it',
+    trigger: '14',
+  },
+  {
+    id: '14',
+    message: 'More Information about the fesitval',
+    trigger: '15',
+  },
+  {
+    id: '15',
+    options: [
+      { value: 1, label: 'YES', trigger: '11' },
+      { value: 2, label: 'NO, THANK YOU', trigger: '8' },
+    ],
+  },
+  {
+    id: '11',
+    options: [
+      { value: 1, label: 'Info About Ticket', trigger: '12' },
+      { value: 2, label: 'Info About Program', trigger: '13' },
+    ],
+  },
+  {
+    id: '12',
+    component: (
+      <Grid>
+        <Grid sx={classes.tikcetInfo}>
+          <Grid>| Bird € 20</Grid>
+          <Grid>| Regular € 30</Grid>
+          <Grid>| Parking € 10</Grid>
+          <Grid>|Locker € 5</Grid>
+          <Grid>| Weekend € 25</Grid>
+        </Grid>
+        <Grid sx={{ textAlign: 'center', fontFamily: 'revert' }}>
+          <div>
+            <a href='/ticket' rel='noreferrer'>
+              Tickets
+            </a>
+          </div>
+        </Grid>
+      </Grid>
+    ),
+    trigger: '11',
+  },
+  {
+    id: '13',
+    component: (
+      <Grid>
+        <Grid sx={classes.programInfo}>
+          <Grid>Soul: Area 2</Grid>
+          <Grid>Rock: Area 3</Grid>
+          <Grid>Tech: Area 1</Grid>
+          <Grid>Pop : Area 3</Grid>
+        </Grid>
+        <Grid sx={{ textAlign: 'center', fontFamily: 'revert' }}>
+          <div>
+            <a href='/program' rel='noreferrer'>
+              Program
+            </a>
+          </div>
+        </Grid>
+      </Grid>
+    ),
+    trigger: '11',
   },
 ];
