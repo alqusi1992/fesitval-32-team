@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid } from '@mui/material';
 import { classes } from './ChatBotStyle';
+import { Link } from 'react-router-dom';
 
 export const steps = [
   {
@@ -49,26 +50,19 @@ export const steps = [
     id: '9',
     component: (
       <Grid sx={classes.containerCoponent}>
-        <div>
-          <a href='/' rel='noreferrer'>
-            Home
-          </a>
-        </div>
-        <div>
-          <a href='/about' rel='noreferrer'>
-            About
-          </a>
-        </div>
-        <div>
-          <a href='/tickets' rel='noreferrer'>
-            Ticket
-          </a>
-        </div>
-        <div>
-          <a href='/program' rel='noreferrer'>
-            Program
-          </a>
-        </div>
+        <Link to='/home'>
+          <Grid>Home</Grid>
+        </Link>
+        <Link to='/about'>
+          <Grid>About</Grid>
+        </Link>
+
+        <Link to='/tickets'>
+          <Grid>Tickets</Grid>
+        </Link>
+        <Link to='/program'>
+          <Grid>Program</Grid>
+        </Link>
       </Grid>
     ),
     trigger: '10',
@@ -109,11 +103,9 @@ export const steps = [
           <Grid>| Weekend € 25</Grid>
         </Grid>
         <Grid sx={{ textAlign: 'center', fontFamily: 'revert' }}>
-          <div>
-            <a href='/ticket' rel='noreferrer'>
-              Tickets
-            </a>
-          </div>
+          <Link to='/tickets'>
+            <Grid>Tickets</Grid>
+          </Link>
         </Grid>
       </Grid>
     ),
@@ -130,11 +122,9 @@ export const steps = [
           <Grid>Pop : Area 3</Grid>
         </Grid>
         <Grid sx={{ textAlign: 'center', fontFamily: 'revert' }}>
-          <div>
-            <a href='/program' rel='noreferrer'>
-              Program
-            </a>
-          </div>
+          <Link to='/program'>
+            <Grid>Program</Grid>
+          </Link>
         </Grid>
       </Grid>
     ),
