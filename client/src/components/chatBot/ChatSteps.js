@@ -11,7 +11,7 @@ export const steps = [
   },
   {
     id: '2',
-    message: 'What is your name?',
+    message: 'What is your name??',
     trigger: '3',
   },
   {
