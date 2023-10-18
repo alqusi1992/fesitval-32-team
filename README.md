@@ -1,4 +1,4 @@
-Demo: https://github.com/alqusi1992/fesitval-32-team
+Demo: https://festival32.netlify.app/
 
 
 # class32-project
